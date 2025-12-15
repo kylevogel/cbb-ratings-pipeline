@@ -16,6 +16,7 @@ From the project root:
 
 ```bash
 python update_all.py
+``` 
 
 ## Repo Structure
 - update_all.py Runs the full pipeline end to end (games, rankings, merge)
