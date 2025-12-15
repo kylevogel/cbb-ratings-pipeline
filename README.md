@@ -24,7 +24,7 @@ python update_all.py
 ``` 
 
 ## Repo Structure
-- `update_all.py` — Runs the full pipeline end to end (games, rankings, merge)
+- `update_all.py` — Runs the full pipeline end-to-end (games, rankings, merge)
 - `update_games_from_espn.py` — Pulls NCAA men’s game results from ESPN and writes a clean season table to data_raw/
 - `update_net_rank.py` — Pulls NET rankings and writes data_raw/NET_Rank.csv
 - `update_bpi_rank.py` — Pulls ESPN BPI rankings and writes data_raw/BPI_Rank.csv
