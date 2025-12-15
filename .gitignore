@@ -209,3 +209,19 @@ __marimo__/
 # Debug HTML dumps
 data_raw/*.html
 data_raw/*debug*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Mac
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data outputs (optional — see step 2)
+# data_raw/*.csv
+# data_processed/*.csv
