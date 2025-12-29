@@ -3,6 +3,10 @@ from datetime import datetime
 from pathlib import Path
 import pandas as pd
 
+def canon_team(name, alias_map):
+    k = _norm(name)
+    return alias_map.get(k, name)
+
 def pick_col(cols, candidates):
     lower = {c.lower(): c for c in cols}
     for cand in candidates:
