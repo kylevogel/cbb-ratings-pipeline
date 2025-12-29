@@ -1,79 +1,113 @@
-import pandas as pd
-from pathlib import Path
+import json
 from datetime import datetime
+from pathlib import Path
+import pandas as pd
 
 def pick_col(cols, candidates):
-  lower = {c.lower(): c for c in cols}
-  for cand in candidates:
-    if cand.lower() in lower:
-      return lower[cand.lower()]
-  for c in cols:
-    lc = c.lower()
+    lower = {c.lower(): c for c in cols}
     for cand in candidates:
-      if cand.lower() in lc:
-        return c
-  return None
+        if cand.lower() in lower:
+            return lower[cand.lower()]
+    for c in cols:
+        lc = c.lower()
+        for cand in candidates:
+            if cand.lower() in lc:
+                return c
+    return None
 
-def load_rank(path, team_candidates, rank_candidates):
-  if not Path(path).exists():
-    return pd.DataFrame(columns=["Team", "Rank"])
-  df = pd.read_csv(path)
-  df.columns = [str(c).strip() for c in df.columns]
-  team_col = pick_col(df.columns, team_candidates)
-  rank_col = pick_col(df.columns, rank_candidates)
+def norm(s):
+    if s is None:
+        return ""
+    s = str(s).strip().lower()
+    s = " ".join(s.split())
+    return s
 
-  if team_col is None:
-    team_col = df.columns[0]
-  if rank_col is None:
-    num_cols = [c for c in df.columns if pd.api.types.is_numeric_dtype(df[c])]
-    rank_col = num_cols[0] if num_cols else df.columns[-1]
+def build_alias_map(alias_path):
+    df = pd.read_csv(alias_path)
+    df.columns = [str(c).strip() for c in df.columns]
+    canon_col = pick_col(df.columns, ["ESPN", "Team", "Canonical", "School"])
+    if canon_col is None:
+        canon_col = df.columns[0]
 
-  out = df[[team_col, rank_col]].copy()
-  out.columns = ["Team", "Rank"]
-  out["Team"] = out["Team"].astype(str).str.strip()
-  out["Rank"] = pd.to_numeric(out["Rank"], errors="coerce").astype("Int64")
-  out = out.dropna(subset=["Team"])
-  out = out.drop_duplicates(subset=["Team"], keep="first")
-  return out
+    m = {}
+    canon_vals = df[canon_col].astype(str).map(lambda x: str(x).strip())
+    for i in range(len(df)):
+        canon = canon_vals.iloc[i]
+        if not canon or canon.lower() == "nan":
+            continue
+        for c in df.columns:
+            v = df.iloc[i][c]
+            if pd.isna(v):
+                continue
+            key = norm(v)
+            if key and key != "nan":
+                m[key] = canon
+    return canon_col, m, df
+
+def infer_team_rank(df):
+    df.columns = [str(c).strip() for c in df.columns]
+    team_col = pick_col(df.columns, ["Team", "School"])
+    rank_col = pick_col(df.columns, ["Rank", "RK", "BPI", "KenPom", "NET", "AP_Rank"])
+    if team_col is None:
+        team_col = df.columns[0]
+    if rank_col is None:
+        rank_col = df.columns[-1]
+    return team_col, rank_col
+
+def load_rank(path, out_col, alias_map):
+    p = Path(path)
+    if not p.exists():
+        return pd.DataFrame(columns=["Team", out_col])
+
+    df = pd.read_csv(p)
+    team_col, rank_col = infer_team_rank(df)
+
+    out = df[[team_col, rank_col]].copy()
+    out.columns = ["TeamRaw", out_col]
+    out["Team"] = out["TeamRaw"].map(lambda x: alias_map.get(norm(x), str(x).strip()))
+    out[out_col] = pd.to_numeric(out[out_col], errors="coerce")
+    out = out.dropna(subset=["Team"])
+    out = out.drop_duplicates(subset=["Team"], keep="first")
+    return out[["Team", out_col]]
 
 def main():
-  net = load_rank("data_raw/NET_Rank.csv", ["Team", "School"], ["NET", "Rank"])
-  kp = load_rank("data_raw/KenPom_Rank.csv", ["Team", "School"], ["KenPom", "Rank"])
-  bpi = load_rank("data_raw/BPI_Rank.csv", ["Team", "School"], ["BPI", "Rank"])
-  ap = load_rank("data_raw/AP_Rank.csv", ["Team", "School"], ["AP", "AP_Rank", "Rank"])
+    canon_col, alias_map, alias_df = build_alias_map("team_alias.csv")
 
-  net = net.rename(columns={"Rank": "NET"})
-  kp = kp.rename(columns={"Rank": "KenPom"})
-  bpi = bpi.rename(columns={"Rank": "BPI"})
-  ap = ap.rename(columns={"Rank": "AP"})
+    base = pd.DataFrame({"Team": alias_df[canon_col].astype(str).map(lambda x: str(x).strip())})
+    base = base[base["Team"].str.lower() != "nan"]
+    base = base.drop_duplicates(subset=["Team"], keep="first")
 
-  teams = pd.DataFrame({"Team": pd.concat([net["Team"], kp["Team"], bpi["Team"], ap["Team"]], ignore_index=True).dropna().unique()})
-  df = teams.merge(net, on="Team", how="left").merge(kp, on="Team", how="left").merge(bpi, on="Team", how="left").merge(ap, on="Team", how="left")
+    net = load_rank("data_raw/NET_Rank.csv", "NET", alias_map)
+    kp = load_rank("data_raw/KenPom_Rank.csv", "KenPom", alias_map)
+    bpi = load_rank("data_raw/BPI_Rank.csv", "BPI", alias_map)
+    ap = load_rank("data_raw/AP_Rank.csv", "AP", alias_map)
 
-  df["AP"] = df["AP"].astype("Int64")
-  df["AP"] = df["AP"].apply(lambda x: "NR" if pd.isna(x) else int(x))
+    df = base.merge(net, on="Team", how="left").merge(kp, on="Team", how="left").merge(bpi, on="Team", how="left").merge(ap, on="Team", how="left")
 
-  def int_or_blank(v):
-    if pd.isna(v):
-      return ""
-    return int(v)
+    def to_int_or_blank(v):
+        if pd.isna(v):
+            return ""
+        return int(v)
 
-  df["NET"] = df["NET"].apply(int_or_blank)
-  df["KenPom"] = df["KenPom"].apply(int_or_blank)
-  df["BPI"] = df["BPI"].apply(int_or_blank)
+    def ap_val(v):
+        if pd.isna(v):
+            return "NR"
+        return int(v)
 
-  out_dir = Path("docs") / "data"
-  out_dir.mkdir(parents=True, exist_ok=True)
+    df["NET"] = df["NET"].apply(to_int_or_blank)
+    df["KenPom"] = df["KenPom"].apply(to_int_or_blank)
+    df["BPI"] = df["BPI"].apply(to_int_or_blank)
+    df["AP"] = df["AP"].apply(ap_val)
 
-  payload = {
-    "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M"),
-    "rows": df.sort_values(by=["Team"]).to_dict(orient="records")
-  }
+    out_dir = Path("docs") / "data"
+    out_dir.mkdir(parents=True, exist_ok=True)
 
-  out_path = out_dir / "rankings_current.json"
-  import json
-  out_path.write_text(json.dumps(payload, ensure_ascii=False))
-  print(f"Wrote {out_path} ({len(df)} teams)")
+    payload = {
+        "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "rows": df.sort_values(by=["Team"]).to_dict(orient="records")
+    }
+
+    (out_dir / "rankings_current.json").write_text(json.dumps(payload, ensure_ascii=False))
 
 if __name__ == "__main__":
-  main()
+    main()
