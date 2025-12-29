@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CBB Rankings Dashboard</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:24px}
+    h1{margin:0 0 8px 0}
+    .meta{color:#555;margin:0 0 16px 0}
+    .controls{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+    input{padding:10px 12px;font-size:14px;min-width:260px}
+    table{border-collapse:collapse;width:100%;margin-top:12px}
+    th,td{border-bottom:1px solid #eee;padding:10px 8px;text-align:left}
+    th{cursor:pointer;user-select:none}
+    .num{text-align:right}
+    .badge{display:inline-block;padding:2px 8px;border:1px solid #ddd;border-radius:999px;font-size:12px;color:#444}
+    .muted{color:#777}
+  </style>
+</head>
+<body>
+  <h1>CBB Rankings Dashboard</h1>
+  <p class="meta">
+    <span class="badge">NET</span>
+    <span class="badge">KenPom</span>
+    <span class="badge">BPI</span>
+    <span class="badge">AP</span>
+    <span class="muted" id="lastUpdated"></span>
+  </p>
+
+  <div class="controls">
+    <input id="search" placeholder="Search team..." />
+  </div>
+
+  <table id="tbl">
+    <thead>
+      <tr>
+        <th data-key="Team">Team</th>
+        <th class="num" data-key="NET">NET</th>
+        <th class="num" data-key="KenPom">KenPom</th>
+        <th class="num" data-key="BPI">BPI</th>
+        <th class="num" data-key="AP">AP</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    let rows = []
+    let sortKey = "NET"
+    let sortDir = 1
+
+    function asNum(v){
+      if(v === null || v === undefined) return null
+      if(typeof v === "number") return v
+      const s = String(v).trim()
+      if(!s || s.toUpperCase() === "NR") return null
+      const n = Number(s)
+      return Number.isFinite(n) ? n : null
+    }
+
+    function render(){
+      const q = document.getElementById("search").value.trim().toLowerCase()
+      const filtered = rows.filter(r => r.Team.toLowerCase().includes(q))
+
+      filtered.sort((a,b) => {
+        const av = sortKey === "Team" ? a.Team : asNum(a[sortKey])
+        const bv = sortKey === "Team" ? b.Team : asNum(b[sortKey])
+
+        if(sortKey === "Team"){
+          return a.Team.localeCompare(b.Team) * sortDir
+        }
+
+        if(av === null && bv === null) return a.Team.localeCompare(b.Team)
+        if(av === null) return 1
+        if(bv === null) return -1
+        if(av === bv) return a.Team.localeCompare(b.Team)
+        return (av - bv) * sortDir
+      })
+
+      const tb = document.querySelector("#tbl tbody")
+      tb.innerHTML = ""
+
+      for(const r of filtered){
+        const tr = document.createElement("tr")
+        tr.innerHTML = `
+          <td>${r.Team}</td>
+          <td class="num">${r.NET ?? ""}</td>
+          <td class="num">${r.KenPom ?? ""}</td>
+          <td class="num">${r.BPI ?? ""}</td>
+          <td class="num">${r.AP ?? ""}</td>
+        `
+        tb.appendChild(tr)
+      }
+    }
+
+    async function init(){
+      const res = await fetch("data/rankings_current.json", { cache: "no-store" })
+      const payload = await res.json()
+      rows = payload.rows || []
+      const lu = payload.last_updated || ""
+      document.getElementById("lastUpdated").textContent = lu ? ` • Updated: ${lu}` : ""
+      render()
+    }
+
+    document.getElementById("search").addEventListener("input", render)
+
+    for(const th of document.querySelectorAll("th[data-key]")){
+      th.addEventListener("click", () => {
+        const k = th.getAttribute("data-key")
+        if(sortKey === k) sortDir *= -1
+        else { sortKey = k; sortDir = 1 }
+        render()
+      })
+    }
+
+    init()
+  </script>
+</body>
+</html>
