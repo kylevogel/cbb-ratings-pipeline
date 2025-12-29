@@ -16,31 +16,28 @@ def pick_games_file(data_raw: Path) -> Path:
         + f"\nFiles present: {[p.name for p in data_raw.glob('*.csv')]}"
     )
 
-def load_alias_map(path: Path) -> dict:
-    df = pd.read_csv(path).fillna("")
-    cols = [c.lower().strip() for c in df.columns]
+import re
 
-    if "standard_name" not in cols:
-        raise RuntimeError(f"team_alias.csv must contain standard_name. Found: {df.columns.tolist()}")
+def _norm(s):
+    s = (s or "").strip().lower()
+    s = re.sub(r"[^\w\s]", "", s)
+    s = re.sub(r"\s+", " ", s)
+    return s
 
-    # Find the real column names (case safe)
-    col_map = {c.lower().strip(): c for c in df.columns}
-    std_col = col_map["standard_name"]
-
-    # These may or may not exist, depending on your file
-    possible = ["game_log_name", "net_name", "bpi_name", "kenpom_name", "standard_name"]
-    present = [col_map[p] for p in possible if p in col_map]
-
-    alias = {}
-    for _, r in df.iterrows():
-        std = str(r[std_col]).strip()
-        if not std:
-            continue
-        for c in present:
-            val = str(r[c]).strip()
-            if val:
-                alias[val] = std
-    return alias
+def load_alias_map(path):
+    alias_to_canon = {}
+    with open(path, "r", encoding="utf-8") as f:
+        for raw in f:
+            raw = raw.strip()
+            if not raw:
+                continue
+            parts = [p.strip() for p in raw.split(",") if p.strip()]
+            if not parts:
+                continue
+            canon = parts[0]
+            for p in parts:
+                alias_to_canon[_norm(p)] = canon
+    return alias_to_canon
 
 def apply_alias(series: pd.Series, alias: dict) -> pd.Series:
     def f(x):
