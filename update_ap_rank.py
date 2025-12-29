@@ -1,48 +1,61 @@
+import re
+from pathlib import Path
+from datetime import datetime
+
 import pandas as pd
 import requests
-from datetime import datetime
-from pathlib import Path
+from bs4 import BeautifulSoup
 
 AP_URL = "https://www.ncaa.com/rankings/basketball-men/d1/associated-press"
+
+def clean_team(s: str) -> str:
+    s = (s or "").strip()
+    s = re.sub(r"\s*\(\d+\)\s*$", "", s)  # remove first-place votes like "(35)"
+    s = re.sub(r"\s+", " ", s)
+    return s
 
 def main():
     r = requests.get(AP_URL, timeout=30, headers={"User-Agent": "Mozilla/5.0"})
     r.raise_for_status()
 
-    tables = pd.read_html(r.text)
-    if not tables:
-        raise RuntimeError("No tables found on NCAA AP rankings page")
+    soup = BeautifulSoup(r.text, "lxml")
 
-    df = tables[0].copy()
-    df.columns = [str(c).strip() for c in df.columns]
+    table = None
+    for t in soup.find_all("table"):
+        head = t.find("thead")
+        if not head:
+            continue
+        hdr = head.get_text(" ", strip=True).lower()
+        if "rank" in hdr and ("school" in hdr or "team" in hdr):
+            table = t
+            break
 
-    rank_col = None
-    team_col = None
-    for c in df.columns:
-        lc = c.lower()
-        if rank_col is None and "rank" in lc:
-            rank_col = c
-        if team_col is None and (lc in {"school", "team"} or "school" in lc):
-            team_col = c
+    if table is None:
+        raise RuntimeError("Could not find AP rankings table")
 
-    if rank_col is None:
-        rank_col = df.columns[0]
-    if team_col is None:
-        team_col = df.columns[1] if len(df.columns) > 1 else df.columns[0]
+    body = table.find("tbody")
+    if body is None:
+        raise RuntimeError("AP rankings table missing tbody")
 
-    out = df[[rank_col, team_col]].rename(columns={rank_col: "AP_Rank", team_col: "Team"})
+    rows = []
+    for tr in body.find_all("tr"):
+        tds = tr.find_all(["td", "th"])
+        if len(tds) < 2:
+            continue
 
-    out["Team"] = (
-        out["Team"].astype(str)
-        .str.replace(r"\s*\(\d+\)\s*$", "", regex=True)
-        .str.strip()
-    )
+        rank_txt = tds[0].get_text(" ", strip=True)
+        team_txt = tds[1].get_text(" ", strip=True)
 
-    out["AP_Rank"] = (
-        out["AP_Rank"].astype(str)
-        .str.extract(r"(\d+)", expand=False)
-    )
-    out["AP_Rank"] = pd.to_numeric(out["AP_Rank"], errors="coerce").astype("Int64")
+        m = re.search(r"\d+", rank_txt)
+        if not m:
+            continue
+
+        rk = int(m.group(0))
+        team = clean_team(team_txt)
+        if team:
+            rows.append({"AP_Rank": rk, "Team": team})
+
+    out = pd.DataFrame(rows).drop_duplicates(subset=["AP_Rank"], keep="first").sort_values("AP_Rank")
 
     out_dir = Path("data_raw")
     out_dir.mkdir(parents=True, exist_ok=True)
