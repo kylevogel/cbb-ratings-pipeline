@@ -86,6 +86,19 @@ def main():
     bpi = load_rank("data_raw/BPI_Rank.csv", "BPI", alias_map)
     ap = load_rank("data_raw/AP_Rank.csv", "AP", alias_map)
 
+alias_map = load_alias_map("data_raw/team_alias.csv")
+
+net = pd.read_csv("data_raw/NET_Rank.csv")
+kenpom = pd.read_csv("data_raw/KenPom_Rank.csv")
+bpi = pd.read_csv("data_raw/BPI_Rank.csv")
+ap = pd.read_csv("data_raw/AP_Rank.csv")
+
+net["Team"] = net["Team"].apply(lambda x: canon_team(x, alias_map))
+kenpom["Team"] = kenpom["Team"].apply(lambda x: canon_team(x, alias_map))
+bpi["Team"] = bpi["Team"].apply(lambda x: canon_team(x, alias_map))
+ap["Team"] = ap["Team"].apply(lambda x: canon_team(x, alias_map))
+
+
     df = base.merge(net, on="Team", how="left").merge(kp, on="Team", how="left").merge(bpi, on="Team", how="left").merge(ap, on="Team", how="left")
 
     def to_int_or_blank(v):
