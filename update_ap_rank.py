@@ -31,8 +31,17 @@ def main():
     team_col = df.columns[1] if len(df.columns) > 1 else df.columns[0]
 
   out = df[[rank_col, team_col]].rename(columns={rank_col: "AP_Rank", team_col: "Team"})
-  out["Team"] = out["Team"].astype(str).str.strip()
-  out["AP_Rank"] = pd.to_numeric(out["AP_Rank"], errors="coerce").astype("Int64")
+  out["Team"] = (
+    out["Team"].astype(str)
+    .str.replace(r"\s*\(\d+\)\s*$", "", regex=True)
+    .str.strip()
+)
+
+out["AP_Rank"] = (
+    out["AP_Rank"].astype(str)
+    .str.extract(r"(\d+)", expand=False)
+)
+out["AP_Rank"] = pd.to_numeric(out["AP_Rank"], errors="coerce").astype("Int64")
 
   out_dir = Path("data_raw")
   out_dir.mkdir(parents=True, exist_ok=True)
