@@ -3,7 +3,7 @@ name: Update data + site
 on:
   workflow_dispatch:
   schedule:
-    - cron: "15 10 * * *"
+    - cron: "0 */6 * * *"
 
 permissions:
   contents: write
