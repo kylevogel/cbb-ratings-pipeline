@@ -21,6 +21,7 @@ def main():
     soup = BeautifulSoup(r.text, "lxml")
 
     table = None
+    alias_map = load_alias_map(Path("data_raw") / "team_alias.csv")
     for t in soup.find_all("table"):
         head = t.find("thead")
         if not head:
@@ -52,6 +53,26 @@ def main():
 
         rk = int(m.group(0))
         team = clean_team(team_txt)
+        team = alias_map.get(norm_name(team), team)
+        def norm_name(s: str) -> str:
+            s = (s or "").strip().lower()
+            s = re.sub(r"[^\w\s]", "", s)
+            s = " ".join(s.split())
+            return s
+
+        def load_alias_map(path: Path) -> dict:
+            m = {}
+            if not path.exists():
+                return m
+            for line in path.read_text(encoding="utf-8").splitlines():
+                parts = [p.strip() for p in line.split(",") if p.strip()]
+                if not parts:
+                    continue
+                canonical = parts[0]
+                for a in parts:
+                    m[norm_name(a)] = canonical
+            return m
+
         if team:
             rows.append({"AP_Rank": rk, "Team": team})
 
