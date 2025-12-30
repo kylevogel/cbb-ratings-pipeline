@@ -1,10 +1,9 @@
 import json
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import pandas as pd
-
 
 MISSING_OPP_NET = 366
 
@@ -81,12 +80,10 @@ def load_rank(path: Path, team_col: str, rank_col: str, out_col: str, alias_map:
         return pd.DataFrame(columns=["Team", "TeamKey", out_col])
     if team_col not in df.columns or rank_col not in df.columns:
         return pd.DataFrame(columns=["Team", "TeamKey", out_col])
-
     out = df[[team_col, rank_col]].copy()
     out["Team"] = out[team_col].astype(str).map(lambda x: canon_team(x, alias_map))
     out["TeamKey"] = out["Team"].map(_team_key)
     out[out_col] = pd.to_numeric(out[rank_col], errors="coerce")
-
     out = out.dropna(subset=[out_col])
     out = out.drop_duplicates(subset=["TeamKey"], keep="first")
     return out[["Team", "TeamKey", out_col]]
@@ -111,11 +108,9 @@ def ap_val(v):
 
 
 def _load_records_completed_only(data_raw: Path, alias_map: dict):
-    # Prefer your canonical file name if it exists
     games_path = data_raw / "games_2024_clean_no_ids.csv"
     if not games_path.exists():
         games_path = _latest_file_by_contains(data_raw, ["games"])
-
     if games_path is None or not games_path.exists():
         return pd.DataFrame(columns=["TeamKey", "Record"])
 
@@ -126,6 +121,7 @@ def _load_records_completed_only(data_raw: Path, alias_map: dict):
     cols = {c.lower().strip(): c for c in g.columns}
     team_col = cols.get("team")
     win_col = cols.get("win?")
+
     if team_col is None:
         return pd.DataFrame(columns=["TeamKey", "Record"])
 
@@ -133,7 +129,6 @@ def _load_records_completed_only(data_raw: Path, alias_map: dict):
     tmp["Team"] = tmp[team_col].astype(str).map(lambda x: canon_team(x, alias_map))
     tmp["TeamKey"] = tmp["Team"].map(_team_key)
 
-    # only count completed games (Win? present OR scores present)
     if win_col is not None:
         v = tmp[win_col].astype(str).str.strip().str.lower()
         is_win = v.isin({"w", "win", "true", "t", "1", "yes", "y"})
@@ -158,17 +153,11 @@ def _load_records_completed_only(data_raw: Path, alias_map: dict):
 
 
 def _compute_sos_1_to_365(data_raw: Path, alias_map: dict, net_df: pd.DataFrame):
-    """
-    SOS = average opponent NET over ALL games in the games file (past + future).
-    Opponent missing NET -> 366.
-    Rank NET teams 1..365 with no gaps (lowest avg opp NET = rank 1).
-    """
     net_base = net_df[["Team", "TeamKey", "NET"]].copy()
     net_base["NET"] = pd.to_numeric(net_base["NET"], errors="coerce")
     net_base = net_base.dropna(subset=["NET"])
     net_base = net_base[(net_base["NET"] >= 1) & (net_base["NET"] <= 365)]
     net_base = net_base.drop_duplicates(subset=["TeamKey"], keep="first")
-
     net_map = dict(zip(net_base["TeamKey"], net_base["NET"].astype(int)))
 
     games_path = data_raw / "games_2024_clean_no_ids.csv"
@@ -203,7 +192,6 @@ def _compute_sos_1_to_365(data_raw: Path, alias_map: dict, net_df: pd.DataFrame)
     tmp["TeamKey"] = tmp["TeamCanon"].map(_team_key)
     tmp["OppKey"] = tmp["OppCanon"].map(_team_key)
 
-    # only compute SOS for NET universe teams
     net_keys = set(net_base["TeamKey"])
     tmp = tmp[tmp["TeamKey"].isin(net_keys)].copy()
 
@@ -216,8 +204,14 @@ def _compute_sos_1_to_365(data_raw: Path, alias_map: dict, net_df: pd.DataFrame)
 
     net_base = net_base.sort_values(["OppAvg", "NET", "Team"], ascending=[True, True, True]).reset_index(drop=True)
     net_base["SOS"] = range(1, len(net_base) + 1)
-
     return net_base[["TeamKey", "SOS"]]
+
+
+def _updated_display_utc_minus5():
+    now_utc = datetime.utcnow()
+    display = now_utc - timedelta(hours=5)
+    hour = display.strftime("%I").lstrip("0") or "12"
+    return f"{display:%Y-%m-%d} {hour}:{display:%M} {display:%p} (UTC-5)"
 
 
 def main():
@@ -259,34 +253,34 @@ def main():
     rec = rec.merge(fallback_rec, on="TeamKey", how="outer", suffixes=("", "_fb"))
     rec["Record"] = rec["Record"].fillna(rec["Record_fb"])
     rec = rec[["TeamKey", "Record"]]
+
     sos = _compute_sos_1_to_365(data_raw, alias_map, net)
 
     df = net[["Team", "TeamKey", "NET"]].copy()
     df = df.merge(rec, on="TeamKey", how="left")
-    df = df.merge(sos, on="TeamKey", how="left")
+    df = df.merge(ap[["TeamKey", "AP"]], on="TeamKey", how="left")
     df = df.merge(kp[["TeamKey", "KenPom"]], on="TeamKey", how="left")
     df = df.merge(bpi[["TeamKey", "BPI"]], on="TeamKey", how="left")
-    df = df.merge(ap[["TeamKey", "AP"]], on="TeamKey", how="left")
+    df = df.merge(sos, on="TeamKey", how="left")
 
     df = df.sort_values("NET", na_position="last")
-
     df["Record"] = df["Record"].fillna("0-0")
+
     df["NET"] = df["NET"].apply(to_int_or_blank)
     df["SOS"] = df["SOS"].apply(to_int_or_blank)
     df["KenPom"] = df["KenPom"].apply(to_int_or_blank)
     df["BPI"] = df["BPI"].apply(to_int_or_blank)
     df["AP"] = df["AP"].apply(ap_val)
 
-    ts = datetime.now().strftime("%Y-%m-%d %H:%M")
+    ts_display = _updated_display_utc_minus5()
 
     payload = {
-        "updated": ts,
-        "last_updated": ts,
-        "rows": df[["Team", "Record", "SOS", "NET", "KenPom", "BPI", "AP"]].to_dict(orient="records"),
+        "updated": ts_display,
+        "last_updated": ts_display,
+        "rows": df[["Team", "Record", "AP", "NET", "KenPom", "BPI", "SOS"]].to_dict(orient="records"),
     }
 
     (out_dir / "rankings_current.json").write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
-    print("Wrote docs/data/rankings_current.json")
 
 
 if __name__ == "__main__":
