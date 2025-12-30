@@ -1,1 +1,5645 @@
-{"last_updated": "2025-12-30 17:24", "rows": [{"Team": "Michigan", "NET": 1, "KenPom": 1, "BPI": 3, "AP": 2}, {"Team": "Gonzaga", "NET": 2, "KenPom": 3, "BPI": 1, "AP": 7}, {"Team": "Duke", "NET": 3, "KenPom": 6, "BPI": 2, "AP": 6}, {"Team": "Arizona", "NET": 4, "KenPom": 2, "BPI": 4, "AP": 1}, {"Team": "Iowa St.", "NET": 5, "KenPom": 4, "BPI": 5, "AP": 3}, {"Team": "Purdue", "NET": 6, "KenPom": 5, "BPI": 8, "AP": 5}, {"Team": "Vanderbilt", "NET": 7, "KenPom": 8, "BPI": 12, "AP": 11}, {"Team": "Connecticut", "NET": 8, "KenPom": 7, "BPI": 9, "AP": 4}, {"Team": "BYU", "NET": 9, "KenPom": 10, "BPI": 11, "AP": 10}, {"Team": "Illinois", "NET": 10, "KenPom": 9, "BPI": 10, "AP": 20}, {"Team": "Nebraska", "NET": 11, "KenPom": 23, "BPI": 27, "AP": 13}, {"Team": "Michigan St.", "NET": 12, "KenPom": 14, "BPI": 20, "AP": 9}, {"Team": "Iowa", "NET": 13, "KenPom": 18, "BPI": 28, "AP": 25}, {"Team": "Alabama", "NET": 14, "KenPom": 15, "BPI": 16, "AP": 14}, {"Team": "Louisville", "NET": 15, "KenPom": 13, "BPI": 6, "AP": 16}, {"Team": "North Carolina", "NET": 16, "KenPom": 22, "BPI": 29, "AP": 12}, {"Team": "Houston", "NET": 17, "KenPom": 11, "BPI": 7, "AP": 8}, {"Team": "Kansas", "NET": 18, "KenPom": 17, "BPI": 15, "AP": 17}, {"Team": "Utah St.", "NET": 19, "KenPom": 29, "BPI": 26, "AP": "NR"}, {"Team": "Texas Tech", "NET": 20, "KenPom": 21, "BPI": 21, "AP": 15}, {"Team": "Villanova", "NET": 21, "KenPom": 25, "BPI": 37, "AP": "NR"}, {"Team": "Georgia", "NET": 22, "KenPom": 26, "BPI": 33, "AP": 23}, {"Team": "Florida", "NET": 23, "KenPom": 12, "BPI": 13, "AP": 22}, {"Team": "Virginia", "NET": 24, "KenPom": 24, "BPI": 32, "AP": 21}, {"Team": "Kentucky", "NET": 25, "KenPom": 19, "BPI": 17, "AP": "NR"}, {"Team": "Tennessee", "NET": 26, "KenPom": 16, "BPI": 14, "AP": 19}, {"Team": "Saint Louis", "NET": 27, "KenPom": 41, "BPI": 34, "AP": "NR"}, {"Team": "Saint Mary's", "NET": 28, "KenPom": 34, "BPI": 39, "AP": "NR"}, {"Team": "St. John's", "NET": 29, "KenPom": 20, "BPI": 18, "AP": "NR"}, {"Team": "Arkansas", "NET": 30, "KenPom": 28, "BPI": 31, "AP": 18}, {"Team": "SMU", "NET": 31, "KenPom": 40, "BPI": 46, "AP": "NR"}, {"Team": "N.C. State", "NET": 32, "KenPom": 27, "BPI": 24, "AP": "NR"}, {"Team": "Indiana", "NET": 33, "KenPom": 31, "BPI": 19, "AP": "NR"}, {"Team": "LSU", "NET": 34, "KenPom": 38, "BPI": 47, "AP": "NR"}, {"Team": "Auburn", "NET": 35, "KenPom": 33, "BPI": 23, "AP": "NR"}, {"Team": "UCF", "NET": 36, "KenPom": 46, "BPI": 56, "AP": "NR"}, {"Team": "Miami FL", "NET": 37, "KenPom": 36, "BPI": 43, "AP": "NR"}, {"Team": "Clemson", "NET": 38, "KenPom": 35, "BPI": 25, "AP": "NR"}, {"Team": "UCLA", "NET": 39, "KenPom": 32, "BPI": 22, "AP": "NR"}, {"Team": "USC", "NET": 40, "KenPom": 39, "BPI": 48, "AP": 24}, {"Team": "Baylor", "NET": 41, "KenPom": 30, "BPI": 30, "AP": "NR"}, {"Team": "Butler", "NET": 42, "KenPom": 49, "BPI": 42, "AP": "NR"}, {"Team": "Ohio St.", "NET": 43, "KenPom": 37, "BPI": 36, "AP": "NR"}, {"Team": "Seton Hall", "NET": 44, "KenPom": 47, "BPI": 61, "AP": "NR"}, {"Team": "Tulsa", "NET": 45, "KenPom": 82, "BPI": 94, "AP": "NR"}, {"Team": "Boise St.", "NET": 46, "KenPom": 53, "BPI": 82, "AP": "NR"}, {"Team": "California", "NET": 47, "KenPom": 61, "BPI": 73, "AP": "NR"}, {"Team": "McNeese", "NET": 48, "KenPom": 69, "BPI": 60, "AP": "NR"}, {"Team": "Akron", "NET": 49, "KenPom": 56, "BPI": 85, "AP": "NR"}, {"Team": "Oklahoma", "NET": 50, "KenPom": 52, "BPI": 41, "AP": "NR"}, {"Team": "TCU", "NET": 51, "KenPom": 54, "BPI": 58, "AP": "NR"}, {"Team": "Washington", "NET": 52, "KenPom": 50, "BPI": 55, "AP": "NR"}, {"Team": "Yale", "NET": 53, "KenPom": 84, "BPI": 109, "AP": "NR"}, {"Team": "Texas", "NET": 54, "KenPom": 45, "BPI": 44, "AP": "NR"}, {"Team": "Illinois St.", "NET": 55, "KenPom": 77, "BPI": 83, "AP": "NR"}, {"Team": "Creighton", "NET": 56, "KenPom": 44, "BPI": 45, "AP": "NR"}, {"Team": "Utah Valley", "NET": 57, "KenPom": 83, "BPI": 106, "AP": "NR"}, {"Team": "New Mexico", "NET": 58, "KenPom": 67, "BPI": 78, "AP": "NR"}, {"Team": "VCU", "NET": 59, "KenPom": 42, "BPI": 51, "AP": "NR"}, {"Team": "Kansas St.", "NET": 60, "KenPom": 73, "BPI": 59, "AP": "NR"}, {"Team": "Belmont", "NET": 61, "KenPom": 71, "BPI": 105, "AP": "NR"}, {"Team": "UC San Diego", "NET": 62, "KenPom": 89, "BPI": 107, "AP": "NR"}, {"Team": "Virginia Tech", "NET": 63, "KenPom": 68, "BPI": 86, "AP": "NR"}, {"Team": "Texas A&M", "NET": 64, "KenPom": 48, "BPI": 35, "AP": "NR"}, {"Team": "Santa Clara", "NET": 65, "KenPom": 58, "BPI": 84, "AP": "NR"}, {"Team": "Wisconsin", "NET": 66, "KenPom": 43, "BPI": 38, "AP": "NR"}, {"Team": "Wake Forest", "NET": 67, "KenPom": 59, "BPI": 53, "AP": "NR"}, {"Team": "South Florida", "NET": 68, "KenPom": 85, "BPI": 77, "AP": "NR"}, {"Team": "Northwestern", "NET": 69, "KenPom": 55, "BPI": 52, "AP": "NR"}, {"Team": "Murray St.", "NET": 70, "KenPom": 97, "BPI": 102, "AP": "NR"}, {"Team": "William & Mary", "NET": 71, "KenPom": 115, "BPI": 133, "AP": "NR"}, {"Team": "Nevada", "NET": 72, "KenPom": 80, "BPI": 90, "AP": "NR"}, {"Team": "Oklahoma St.", "NET": 73, "KenPom": 60, "BPI": 71, "AP": "NR"}, {"Team": "Colorado St.", "NET": 74, "KenPom": 74, "BPI": 70, "AP": "NR"}, {"Team": "Northern Iowa", "NET": 75, "KenPom": 92, "BPI": 88, "AP": "NR"}, {"Team": "Notre Dame", "NET": 76, "KenPom": 65, "BPI": 62, "AP": "NR"}, {"Team": "Colorado", "NET": 77, "KenPom": 86, "BPI": 97, "AP": "NR"}, {"Team": "Arizona St.", "NET": 78, "KenPom": 76, "BPI": 99, "AP": "NR"}, {"Team": "Miami OH", "NET": 79, "KenPom": 112, "BPI": 98, "AP": "NR"}, {"Team": "Wyoming", "NET": 80, "KenPom": 98, "BPI": 117, "AP": "NR"}, {"Team": "George Washington", "NET": 81, "KenPom": 81, "BPI": 75, "AP": "NR"}, {"Team": "Bowling Green", "NET": 82, "KenPom": 107, "BPI": 121, "AP": "NR"}, {"Team": "San Diego St.", "NET": 83, "KenPom": 51, "BPI": 80, "AP": "NR"}, {"Team": "George Mason", "NET": 84, "KenPom": 88, "BPI": 72, "AP": "NR"}, {"Team": "Stanford", "NET": 85, "KenPom": 87, "BPI": 87, "AP": "NR"}, {"Team": "Wichita St.", "NET": 86, "KenPom": 93, "BPI": 93, "AP": "NR"}, {"Team": "Dayton", "NET": 87, "KenPom": 64, "BPI": 65, "AP": "NR"}, {"Team": "Hofstra", "NET": 88, "KenPom": 103, "BPI": 113, "AP": "NR"}, {"Team": "Syracuse", "NET": 89, "KenPom": 78, "BPI": 67, "AP": "NR"}, {"Team": "Sam Houston St.", "NET": 90, "KenPom": 118, "BPI": 118, "AP": "NR"}, {"Team": "Mississippi", "NET": 91, "KenPom": 57, "BPI": 50, "AP": "NR"}, {"Team": "West Virginia", "NET": 92, "KenPom": 66, "BPI": 40, "AP": "NR"}, {"Team": "Missouri", "NET": 93, "KenPom": 63, "BPI": 49, "AP": "NR"}, {"Team": "Stephen F. Austin", "NET": 94, "KenPom": 122, "BPI": 137, "AP": "NR"}, {"Team": "Cincinnati", "NET": 95, "KenPom": 62, "BPI": 54, "AP": "NR"}, {"Team": "High Point", "NET": 96, "KenPom": 95, "BPI": 64, "AP": "NR"}, {"Team": "Oregon", "NET": 97, "KenPom": 72, "BPI": 66, "AP": "NR"}, {"Team": "San Francisco", "NET": 98, "KenPom": 94, "BPI": 81, "AP": "NR"}, {"Team": "Providence", "NET": 99, "KenPom": 75, "BPI": 63, "AP": "NR"}, {"Team": "Grand Canyon", "NET": 100, "KenPom": 96, "BPI": 96, "AP": "NR"}, {"Team": "St. Bonaventure", "NET": 101, "KenPom": 117, "BPI": 120, "AP": "NR"}, {"Team": "Columbia", "NET": 102, "KenPom": 133, "BPI": 153, "AP": "NR"}, {"Team": "Mississippi St.", "NET": 103, "KenPom": 79, "BPI": 57, "AP": "NR"}, {"Team": "Memphis", "NET": 104, "KenPom": 70, "BPI": 69, "AP": "NR"}, {"Team": "Cal Baptist", "NET": 105, "KenPom": 127, "BPI": 141, "AP": "NR"}, {"Team": "Florida Atlantic", "NET": 106, "KenPom": 111, "BPI": 119, "AP": "NR"}, {"Team": "Liberty", "NET": 107, "KenPom": 104, "BPI": 92, "AP": "NR"}, {"Team": "Minnesota", "NET": 108, "KenPom": 101, "BPI": 79, "AP": "NR"}, {"Team": "Richmond", "NET": 109, "KenPom": 109, "BPI": 124, "AP": "NR"}, {"Team": "New Mexico St.", "NET": 110, "KenPom": 129, "BPI": 145, "AP": "NR"}, {"Team": "Rhode Island", "NET": 111, "KenPom": 108, "BPI": 101, "AP": "NR"}, {"Team": "Hawaii", "NET": 112, "KenPom": 105, "BPI": 129, "AP": "NR"}, {"Team": "UNC Wilmington", "NET": 113, "KenPom": 116, "BPI": 111, "AP": "NR"}, {"Team": "Seattle", "NET": 114, "KenPom": 114, "BPI": 128, "AP": "NR"}, {"Team": "South Carolina", "NET": 115, "KenPom": 90, "BPI": 76, "AP": "NR"}, {"Team": "Xavier", "NET": 116, "KenPom": 100, "BPI": 103, "AP": "NR"}, {"Team": "Northern Colorado", "NET": 117, "KenPom": 149, "BPI": 152, "AP": "NR"}, {"Team": "Davidson", "NET": 118, "KenPom": 125, "BPI": 127, "AP": "NR"}, {"Team": "UAB", "NET": 119, "KenPom": 106, "BPI": 95, "AP": "NR"}, {"Team": "Pittsburgh", "NET": 120, "KenPom": 91, "BPI": 74, "AP": "NR"}, {"Team": "Bradley", "NET": 121, "KenPom": 119, "BPI": 108, "AP": "NR"}, {"Team": "St. Thomas", "NET": 122, "KenPom": 140, "BPI": 158, "AP": "NR"}, {"Team": "Arkansas St.", "NET": 123, "KenPom": 135, "BPI": 125, "AP": "NR"}, {"Team": "Idaho St.", "NET": 124, "KenPom": 169, "BPI": 277, "AP": "NR"}, {"Team": "Pacific", "NET": 125, "KenPom": 138, "BPI": 146, "AP": "NR"}, {"Team": "Middle Tennessee", "NET": 126, "KenPom": 147, "BPI": 150, "AP": "NR"}, {"Team": "Georgetown", "NET": 127, "KenPom": 102, "BPI": 91, "AP": "NR"}, {"Team": "Florida St.", "NET": 128, "KenPom": 110, "BPI": 100, "AP": "NR"}, {"Team": "Southern Illinois", "NET": 129, "KenPom": 120, "BPI": 123, "AP": "NR"}, {"Team": "Marshall", "NET": 130, "KenPom": 158, "BPI": 155, "AP": "NR"}, {"Team": "Utah", "NET": 131, "KenPom": 123, "BPI": 104, "AP": "NR"}, {"Team": "Wright St.", "NET": 132, "KenPom": 141, "BPI": 130, "AP": "NR"}, {"Team": "Loyola Marymount", "NET": 133, "KenPom": 124, "BPI": 112, "AP": "NR"}, {"Team": "Mercer", "NET": 134, "KenPom": 163, "BPI": 161, "AP": "NR"}, {"Team": "Troy", "NET": 135, "KenPom": 139, "BPI": 135, "AP": "NR"}, {"Team": "Tarleton St.", "NET": 136, "KenPom": 167, "BPI": 231, "AP": "NR"}, {"Team": "Lipscomb", "NET": 137, "KenPom": 145, "BPI": 142, "AP": "NR"}, {"Team": "UC Irvine", "NET": 138, "KenPom": 130, "BPI": 122, "AP": "NR"}, {"Team": "Buffalo", "NET": 139, "KenPom": 179, "BPI": 239, "AP": "NR"}, {"Team": "Penn St.", "NET": 140, "KenPom": 126, "BPI": 110, "AP": "NR"}, {"Team": "Winthrop", "NET": 141, "KenPom": 128, "BPI": 144, "AP": "NR"}, {"Team": "Elon", "NET": 142, "KenPom": 148, "BPI": 171, "AP": "NR"}, {"Team": "Towson", "NET": 143, "KenPom": 143, "BPI": 138, "AP": "NR"}, {"Team": "Quinnipiac", "NET": 144, "KenPom": 151, "BPI": 151, "AP": "NR"}, {"Team": "East Tennessee St.", "NET": 145, "KenPom": 132, "BPI": 140, "AP": "NR"}, {"Team": "Maryland", "NET": 146, "KenPom": 99, "BPI": 68, "AP": "NR"}, {"Team": "DePaul", "NET": 147, "KenPom": 121, "BPI": 114, "AP": "NR"}, {"Team": "UT Arlington", "NET": 148, "KenPom": 168, "BPI": 178, "AP": "NR"}, {"Team": "Oakland", "NET": 149, "KenPom": 146, "BPI": 157, "AP": "NR"}, {"Team": "Idaho", "NET": 150, "KenPom": 189, "BPI": 172, "AP": "NR"}, {"Team": "Cornell", "NET": 151, "KenPom": 164, "BPI": 148, "AP": "NR"}, {"Team": "Western Kentucky", "NET": 152, "KenPom": 159, "BPI": 149, "AP": "NR"}, {"Team": "Kent St.", "NET": 153, "KenPom": 136, "BPI": 136, "AP": "NR"}, {"Team": "North Dakota St.", "NET": 154, "KenPom": 153, "BPI": 156, "AP": "NR"}, {"Team": "Furman", "NET": 155, "KenPom": 150, "BPI": 163, "AP": "NR"}, {"Team": "Montana St.", "NET": 156, "KenPom": 170, "BPI": 162, "AP": "NR"}, {"Team": "UC Santa Barbara", "NET": 157, "KenPom": 144, "BPI": 143, "AP": "NR"}, {"Team": "Austin Peay", "NET": 158, "KenPom": 193, "BPI": 175, "AP": "NR"}, {"Team": "Washington St.", "NET": 159, "KenPom": 152, "BPI": 184, "AP": "NR"}, {"Team": "Marist", "NET": 160, "KenPom": 155, "BPI": 189, "AP": "NR"}, {"Team": "UC Davis", "NET": 161, "KenPom": 166, "BPI": 219, "AP": "NR"}, {"Team": "Tennessee Martin", "NET": 162, "KenPom": 204, "BPI": 223, "AP": "NR"}, {"Team": "Toledo", "NET": 163, "KenPom": 162, "BPI": 179, "AP": "NR"}, {"Team": "South Dakota St.", "NET": 164, "KenPom": 183, "BPI": 183, "AP": "NR"}, {"Team": "Iona", "NET": 165, "KenPom": 182, "BPI": 173, "AP": "NR"}, {"Team": "Kennesaw St.", "NET": 166, "KenPom": 160, "BPI": 115, "AP": "NR"}, {"Team": "Fresno St.", "NET": 167, "KenPom": 171, "BPI": 180, "AP": "NR"}, {"Team": "Duquesne", "NET": 168, "KenPom": 131, "BPI": 147, "AP": "NR"}, {"Team": "Drake", "NET": 169, "KenPom": 156, "BPI": 154, "AP": "NR"}, {"Team": "Youngstown St.", "NET": 170, "KenPom": 172, "BPI": 176, "AP": "NR"}, {"Team": "Temple", "NET": 171, "KenPom": 154, "BPI": 134, "AP": "NR"}, {"Team": "UT Rio Grande Valley", "NET": 172, "KenPom": 200, "BPI": 170, "AP": "NR"}, {"Team": "Marquette", "NET": 173, "KenPom": 113, "BPI": 89, "AP": "NR"}, {"Team": "Siena", "NET": 174, "KenPom": 174, "BPI": 204, "AP": "NR"}, {"Team": "North Texas", "NET": 175, "KenPom": 137, "BPI": 132, "AP": "NR"}, {"Team": "Robert Morris", "NET": 176, "KenPom": 184, "BPI": 200, "AP": "NR"}, {"Team": "UNLV", "NET": 177, "KenPom": 142, "BPI": 116, "AP": "NR"}, {"Team": "Georgia Tech", "NET": 178, "KenPom": 134, "BPI": 126, "AP": "NR"}, {"Team": "Charlotte", "NET": 179, "KenPom": 186, "BPI": 214, "AP": "NR"}, {"Team": "Portland St.", "NET": 180, "KenPom": 180, "BPI": 222, "AP": "NR"}, {"Team": "Vermont", "NET": 181, "KenPom": 187, "BPI": 194, "AP": "NR"}, {"Team": "Boston College", "NET": 182, "KenPom": 157, "BPI": 168, "AP": "NR"}, {"Team": "Colgate", "NET": 183, "KenPom": 185, "BPI": 197, "AP": "NR"}, {"Team": "FIU", "NET": 184, "KenPom": 177, "BPI": 238, "AP": "NR"}, {"Team": "Milwaukee", "NET": 185, "KenPom": 201, "BPI": 164, "AP": "NR"}, {"Team": "Eastern Michigan", "NET": 186, "KenPom": 210, "BPI": 226, "AP": "NR"}, {"Team": "Charleston Southern", "NET": 187, "KenPom": 219, "BPI": 243, "AP": "NR"}, {"Team": "Abilene Christian", "NET": 188, "KenPom": 209, "BPI": 241, "AP": "NR"}, {"Team": "Southern Miss", "NET": 189, "KenPom": 197, "BPI": 244, "AP": "NR"}, {"Team": "LIU", "NET": 190, "KenPom": 203, "BPI": 233, "AP": "NR"}, {"Team": "South Alabama", "NET": 191, "KenPom": 192, "BPI": 186, "AP": "NR"}, {"Team": "Massachusetts", "NET": 192, "KenPom": 173, "BPI": 139, "AP": "NR"}, {"Team": "Indiana St.", "NET": 193, "KenPom": 188, "BPI": 224, "AP": "NR"}, {"Team": "Weber St.", "NET": 194, "KenPom": 215, "BPI": 196, "AP": "NR"}, {"Team": "Harvard", "NET": 195, "KenPom": 181, "BPI": 199, "AP": "NR"}, {"Team": "Incarnate Word", "NET": 196, "KenPom": 165, "BPI": 159, "AP": "NR"}, {"Team": "Lindenwood", "NET": 197, "KenPom": 232, "BPI": 216, "AP": "NR"}, {"Team": "New Orleans", "NET": 198, "KenPom": 190, "BPI": 256, "AP": "NR"}, {"Team": "Rutgers", "NET": 199, "KenPom": 161, "BPI": 131, "AP": "NR"}, {"Team": "Charleston", "NET": 200, "KenPom": 178, "BPI": 190, "AP": "NR"}, {"Team": "Florida Gulf Coast", "NET": 201, "KenPom": 175, "BPI": 169, "AP": "NR"}, {"Team": "Northern Kentucky", "NET": 202, "KenPom": 205, "BPI": 206, "AP": "NR"}, {"Team": "Ohio", "NET": 203, "KenPom": 202, "BPI": 181, "AP": "NR"}, {"Team": "Oregon St.", "NET": 204, "KenPom": 191, "BPI": 166, "AP": "NR"}, {"Team": "Southeast Missouri", "NET": 205, "KenPom": 228, "BPI": 268, "AP": "NR"}, {"Team": "Cal St. Fullerton", "NET": 206, "KenPom": 229, "BPI": 278, "AP": "NR"}, {"Team": "Coastal Carolina", "NET": 207, "KenPom": 224, "BPI": 235, "AP": "NR"}, {"Team": "Tennessee St.", "NET": 208, "KenPom": 249, "BPI": 272, "AP": "NR"}, {"Team": "Navy", "NET": 209, "KenPom": 199, "BPI": 191, "AP": "NR"}, {"Team": "Fordham", "NET": 210, "KenPom": 196, "BPI": 192, "AP": "NR"}, {"Team": "Wofford", "NET": 211, "KenPom": 225, "BPI": 237, "AP": "NR"}, {"Team": "San Diego", "NET": 212, "KenPom": 213, "BPI": 221, "AP": "NR"}, {"Team": "USC Upstate", "NET": 213, "KenPom": 260, "BPI": 274, "AP": "NR"}, {"Team": "Northeastern", "NET": 214, "KenPom": 212, "BPI": 217, "AP": "NR"}, {"Team": "Georgia Southern", "NET": 215, "KenPom": 216, "BPI": 211, "AP": "NR"}, {"Team": "CSUN", "NET": 216, "KenPom": 208, "BPI": 209, "AP": "NR"}, {"Team": "Grambling St.", "NET": 217, "KenPom": 246, "BPI": 267, "AP": "NR"}, {"Team": "Denver", "NET": 218, "KenPom": 266, "BPI": 283, "AP": "NR"}, {"Team": "Tulane", "NET": 219, "KenPom": 194, "BPI": 202, "AP": "NR"}, {"Team": "Penn", "NET": 220, "KenPom": 218, "BPI": 203, "AP": "NR"}, {"Team": "Utah Tech", "NET": 221, "KenPom": 230, "BPI": 249, "AP": "NR"}, {"Team": "Nicholls", "NET": 222, "KenPom": 221, "BPI": 185, "AP": "NR"}, {"Team": "Purdue Fort Wayne", "NET": 223, "KenPom": 223, "BPI": 195, "AP": "NR"}, {"Team": "Louisiana Tech", "NET": 224, "KenPom": 176, "BPI": 160, "AP": "NR"}, {"Team": "Valparaiso", "NET": 225, "KenPom": 207, "BPI": 208, "AP": "NR"}, {"Team": "James Madison", "NET": 226, "KenPom": 217, "BPI": 188, "AP": "NR"}, {"Team": "Texas A&M Corpus Chris", "NET": 227, "KenPom": 231, "BPI": 193, "AP": "NR"}, {"Team": "Illinois Chicago", "NET": 228, "KenPom": 206, "BPI": 177, "AP": "NR"}, {"Team": "Central Arkansas", "NET": 229, "KenPom": 238, "BPI": 262, "AP": "NR"}, {"Team": "Central Connecticut", "NET": 230, "KenPom": 273, "BPI": 236, "AP": "NR"}, {"Team": "Cal Poly", "NET": 231, "KenPom": 243, "BPI": 291, "AP": "NR"}, {"Team": "UC Riverside", "NET": 232, "KenPom": 259, "BPI": 257, "AP": "NR"}, {"Team": "Tennessee Tech", "NET": 233, "KenPom": 283, "BPI": 307, "AP": "NR"}, {"Team": "San Jose St.", "NET": 234, "KenPom": 195, "BPI": 187, "AP": "NR"}, {"Team": "Missouri St.", "NET": 235, "KenPom": 239, "BPI": 251, "AP": "NR"}, {"Team": "Montana", "NET": 236, "KenPom": 211, "BPI": 228, "AP": "NR"}, {"Team": "Rice", "NET": 237, "KenPom": 235, "BPI": 165, "AP": "NR"}, {"Team": "Monmouth", "NET": 238, "KenPom": 233, "BPI": 198, "AP": "NR"}, {"Team": "Portland", "NET": 239, "KenPom": 234, "BPI": 320, "AP": "NR"}, {"Team": "Wagner", "NET": 240, "KenPom": 300, "BPI": 330, "AP": "NR"}, {"Team": "Stony Brook", "NET": 241, "KenPom": 248, "BPI": 265, "AP": "NR"}, {"Team": "Queens", "NET": 242, "KenPom": 214, "BPI": 240, "AP": "NR"}, {"Team": "Appalachian St.", "NET": 243, "KenPom": 247, "BPI": 182, "AP": "NR"}, {"Team": "Campbell", "NET": 244, "KenPom": 227, "BPI": 201, "AP": "NR"}, {"Team": "Howard", "NET": 245, "KenPom": 268, "BPI": 263, "AP": "NR"}, {"Team": "Saint Joseph's", "NET": 246, "KenPom": 198, "BPI": 167, "AP": "NR"}, {"Team": "Old Dominion", "NET": 247, "KenPom": 222, "BPI": 213, "AP": "NR"}, {"Team": "Dartmouth", "NET": 248, "KenPom": 251, "BPI": 254, "AP": "NR"}, {"Team": "Fairfield", "NET": 249, "KenPom": 284, "BPI": 261, "AP": "NR"}, {"Team": "Bellarmine", "NET": 250, "KenPom": 244, "BPI": 302, "AP": "NR"}, {"Team": "Nebraska Omaha", "NET": 251, "KenPom": 245, "BPI": 282, "AP": "NR"}, {"Team": "UNC Asheville", "NET": 252, "KenPom": 252, "BPI": 248, "AP": "NR"}, {"Team": "Green Bay", "NET": 253, "KenPom": 282, "BPI": 288, "AP": "NR"}, {"Team": "Lamar", "NET": 254, "KenPom": 237, "BPI": 230, "AP": "NR"}, {"Team": "Pepperdine", "NET": 255, "KenPom": 255, "BPI": 275, "AP": "NR"}, {"Team": "Samford", "NET": 256, "KenPom": 241, "BPI": 210, "AP": "NR"}, {"Team": "Merrimack", "NET": 257, "KenPom": 263, "BPI": 245, "AP": "NR"}, {"Team": "Jacksonville St.", "NET": 258, "KenPom": 220, "BPI": 174, "AP": "NR"}, {"Team": "Detroit Mercy", "NET": 259, "KenPom": 279, "BPI": 294, "AP": "NR"}, {"Team": "UMBC", "NET": 260, "KenPom": 270, "BPI": 264, "AP": "NR"}, {"Team": "SIUE", "NET": 261, "KenPom": 250, "BPI": 253, "AP": "NR"}, {"Team": "Sacramento St.", "NET": 262, "KenPom": 275, "BPI": 305, "AP": "NR"}, {"Team": "Long Beach St.", "NET": 263, "KenPom": 258, "BPI": 300, "AP": "NR"}, {"Team": "Hampton", "NET": 264, "KenPom": 256, "BPI": 234, "AP": "NR"}, {"Team": "Brown", "NET": 265, "KenPom": 236, "BPI": 220, "AP": "NR"}, {"Team": "West Georgia", "NET": 266, "KenPom": 310, "BPI": 334, "AP": "NR"}, {"Team": "American", "NET": 267, "KenPom": 253, "BPI": 215, "AP": "NR"}, {"Team": "UTEP", "NET": 268, "KenPom": 226, "BPI": 242, "AP": "NR"}, {"Team": "Texas St.", "NET": 269, "KenPom": 257, "BPI": 205, "AP": "NR"}, {"Team": "North Carolina A&T", "NET": 270, "KenPom": 306, "BPI": 290, "AP": "NR"}, {"Team": "La Salle", "NET": 271, "KenPom": 262, "BPI": 229, "AP": "NR"}, {"Team": "East Texas A&M", "NET": 272, "KenPom": 311, "BPI": 287, "AP": "NR"}, {"Team": "Evansville", "NET": 273, "KenPom": 271, "BPI": 271, "AP": "NR"}, {"Team": "North Alabama", "NET": 274, "KenPom": 267, "BPI": 279, "AP": "NR"}, {"Team": "Alabama A&M", "NET": 275, "KenPom": 286, "BPI": 343, "AP": "NR"}, {"Team": "Norfolk St.", "NET": 276, "KenPom": 272, "BPI": 207, "AP": "NR"}, {"Team": "South Dakota", "NET": 277, "KenPom": 281, "BPI": 311, "AP": "NR"}, {"Team": "Houston Christian", "NET": 278, "KenPom": 276, "BPI": 321, "AP": "NR"}, {"Team": "Western Carolina", "NET": 279, "KenPom": 280, "BPI": 281, "AP": "NR"}, {"Team": "Northern Arizona", "NET": 280, "KenPom": 290, "BPI": 270, "AP": "NR"}, {"Team": "Chattanooga", "NET": 281, "KenPom": 240, "BPI": 212, "AP": "NR"}, {"Team": "Eastern Kentucky", "NET": 282, "KenPom": 269, "BPI": 232, "AP": "NR"}, {"Team": "Presbyterian", "NET": 283, "KenPom": 291, "BPI": 286, "AP": "NR"}, {"Team": "Eastern Washington", "NET": 284, "KenPom": 261, "BPI": 280, "AP": "NR"}, {"Team": "Boston University", "NET": 285, "KenPom": 294, "BPI": 255, "AP": "NR"}, {"Team": "Western Michigan", "NET": 286, "KenPom": 277, "BPI": 317, "AP": "NR"}, {"Team": "Sacred Heart", "NET": 287, "KenPom": 287, "BPI": 276, "AP": "NR"}, {"Team": "Radford", "NET": 288, "KenPom": 254, "BPI": 218, "AP": "NR"}, {"Team": "Bethune Cookman", "NET": 289, "KenPom": 265, "BPI": 247, "AP": "NR"}, {"Team": "Saint Peter's", "NET": 290, "KenPom": 292, "BPI": 273, "AP": "NR"}, {"Team": "Alabama St.", "NET": 291, "KenPom": 288, "BPI": 299, "AP": "NR"}, {"Team": "Oral Roberts", "NET": 292, "KenPom": 298, "BPI": 306, "AP": "NR"}, {"Team": "Prairie View A&M", "NET": 293, "KenPom": 299, "BPI": 296, "AP": "NR"}, {"Team": "Princeton", "NET": 294, "KenPom": 264, "BPI": 269, "AP": "NR"}, {"Team": "Southeastern Louisiana", "NET": 295, "KenPom": 274, "BPI": 259, "AP": "NR"}, {"Team": "Drexel", "NET": 296, "KenPom": 289, "BPI": 252, "AP": "NR"}, {"Team": "Southern", "NET": 297, "KenPom": 242, "BPI": 227, "AP": "NR"}, {"Team": "Le Moyne", "NET": 298, "KenPom": 301, "BPI": 313, "AP": "NR"}, {"Team": "East Carolina", "NET": 299, "KenPom": 278, "BPI": 293, "AP": "NR"}, {"Team": "Delaware", "NET": 300, "KenPom": 296, "BPI": 309, "AP": "NR"}, {"Team": "Morehead St.", "NET": 301, "KenPom": 307, "BPI": 304, "AP": "NR"}, {"Team": "UNC Greensboro", "NET": 302, "KenPom": 293, "BPI": 266, "AP": "NR"}, {"Team": "UTSA", "NET": 303, "KenPom": 285, "BPI": 246, "AP": "NR"}, {"Team": "Arkansas Pine Bluff", "NET": 304, "KenPom": 345, "BPI": 341, "AP": "NR"}, {"Team": "Cal St. Bakersfield", "NET": 305, "KenPom": 309, "BPI": 292, "AP": "NR"}, {"Team": "Army", "NET": 306, "KenPom": 334, "BPI": 336, "AP": "NR"}, {"Team": "Manhattan", "NET": 307, "KenPom": 314, "BPI": 298, "AP": "NR"}, {"Team": "North Dakota", "NET": 308, "KenPom": 322, "BPI": 297, "AP": "NR"}, {"Team": "Albany", "NET": 309, "KenPom": 305, "BPI": 285, "AP": "NR"}, {"Team": "Mercyhurst", "NET": 310, "KenPom": 320, "BPI": 295, "AP": "NR"}, {"Team": "Holy Cross", "NET": 311, "KenPom": 332, "BPI": 339, "AP": "NR"}, {"Team": "Mount St. Mary's", "NET": 312, "KenPom": 295, "BPI": 284, "AP": "NR"}, {"Team": "Air Force", "NET": 313, "KenPom": 324, "BPI": 337, "AP": "NR"}, {"Team": "Lehigh", "NET": 314, "KenPom": 312, "BPI": 308, "AP": "NR"}, {"Team": "Chicago St.", "NET": 315, "KenPom": 340, "BPI": 344, "AP": "NR"}, {"Team": "Northern Illinois", "NET": 316, "KenPom": 318, "BPI": 303, "AP": "NR"}, {"Team": "Longwood", "NET": 317, "KenPom": 302, "BPI": 250, "AP": "NR"}, {"Team": "Jacksonville", "NET": 318, "KenPom": 317, "BPI": 258, "AP": "NR"}, {"Team": "Eastern Illinois", "NET": 319, "KenPom": 321, "BPI": 342, "AP": "NR"}, {"Team": "Georgia St.", "NET": 320, "KenPom": 328, "BPI": 316, "AP": "NR"}, {"Team": "Bucknell", "NET": 321, "KenPom": 303, "BPI": 331, "AP": "NR"}, {"Team": "UMass Lowell", "NET": 322, "KenPom": 308, "BPI": 301, "AP": "NR"}, {"Team": "IU Indy", "NET": 323, "KenPom": 344, "BPI": 326, "AP": "NR"}, {"Team": "New Hampshire", "NET": 324, "KenPom": 330, "BPI": 324, "AP": "NR"}, {"Team": "Bryant", "NET": 325, "KenPom": 319, "BPI": 333, "AP": "NR"}, {"Team": "Loyola Chicago", "NET": 326, "KenPom": 297, "BPI": 225, "AP": "NR"}, {"Team": "Northwestern St.", "NET": 327, "KenPom": 304, "BPI": 310, "AP": "NR"}, {"Team": "New Haven", "NET": 328, "KenPom": 348, "BPI": 329, "AP": "NR"}, {"Team": "Florida A&M", "NET": 329, "KenPom": 341, "BPI": 338, "AP": "NR"}, {"Team": "Louisiana", "NET": 330, "KenPom": 316, "BPI": 319, "AP": "NR"}, {"Team": "Central Michigan", "NET": 331, "KenPom": 326, "BPI": 318, "AP": "NR"}, {"Team": "Ball St.", "NET": 332, "KenPom": 315, "BPI": 260, "AP": "NR"}, {"Team": "Maryland Eastern Shore", "NET": 333, "KenPom": 343, "BPI": 346, "AP": "NR"}, {"Team": "Lafayette", "NET": 334, "KenPom": 323, "BPI": 289, "AP": "NR"}, {"Team": "Cleveland St.", "NET": 335, "KenPom": 325, "BPI": 312, "AP": "NR"}, {"Team": "Kansas City", "NET": 336, "KenPom": 337, "BPI": 340, "AP": "NR"}, {"Team": "Little Rock", "NET": 337, "KenPom": 313, "BPI": 322, "AP": "NR"}, {"Team": "Canisius", "NET": 338, "KenPom": 347, "BPI": 351, "AP": "NR"}, {"Team": "Southern Utah", "NET": 339, "KenPom": 327, "BPI": 327, "AP": "NR"}, {"Team": "North Florida", "NET": 340, "KenPom": 339, "BPI": 328, "AP": "NR"}, {"Team": "Alcorn St.", "NET": 341, "KenPom": 336, "BPI": 355, "AP": "NR"}, {"Team": "Maine", "NET": 342, "KenPom": 349, "BPI": 323, "AP": "NR"}, {"Team": "Texas Southern", "NET": 343, "KenPom": 331, "BPI": 315, "AP": "NR"}, {"Team": "VMI", "NET": 344, "KenPom": 333, "BPI": 332, "AP": "NR"}, {"Team": "Southern Indiana", "NET": 345, "KenPom": 335, "BPI": 347, "AP": "NR"}, {"Team": "Stonehill", "NET": 346, "KenPom": 342, "BPI": 325, "AP": "NR"}, {"Team": "NJIT", "NET": 347, "KenPom": 354, "BPI": 354, "AP": "NR"}, {"Team": "Loyola MD", "NET": 348, "KenPom": 329, "BPI": 314, "AP": "NR"}, {"Team": "Stetson", "NET": 349, "KenPom": 346, "BPI": 357, "AP": "NR"}, {"Team": "Western Illinois", "NET": 350, "KenPom": 353, "BPI": 352, "AP": "NR"}, {"Team": "North Carolina Central", "NET": 351, "KenPom": 351, "BPI": 345, "AP": "NR"}, {"Team": "Louisiana Monroe", "NET": 352, "KenPom": 352, "BPI": 353, "AP": "NR"}, {"Team": "Fairleigh Dickinson", "NET": 353, "KenPom": 358, "BPI": 335, "AP": "NR"}, {"Team": "Delaware St.", "NET": 354, "KenPom": 355, "BPI": 358, "AP": "NR"}, {"Team": "Jackson St.", "NET": 355, "KenPom": 338, "BPI": 349, "AP": "NR"}, {"Team": "Niagara", "NET": 356, "KenPom": 356, "BPI": 359, "AP": "NR"}, {"Team": "The Citadel", "NET": 357, "KenPom": 357, "BPI": 361, "AP": "NR"}, {"Team": "Saint Francis", "NET": 358, "KenPom": 359, "BPI": 348, "AP": "NR"}, {"Team": "Rider", "NET": 359, "KenPom": 350, "BPI": 350, "AP": "NR"}, {"Team": "Morgan St.", "NET": 360, "KenPom": 362, "BPI": 362, "AP": "NR"}, {"Team": "Gardner Webb", "NET": 361, "KenPom": 360, "BPI": 363, "AP": "NR"}, {"Team": "South Carolina St.", "NET": 362, "KenPom": 361, "BPI": 360, "AP": "NR"}, {"Team": "Binghamton", "NET": 363, "KenPom": 363, "BPI": 356, "AP": "NR"}, {"Team": "Mississippi Valley St.", "NET": 364, "KenPom": 365, "BPI": 365, "AP": "NR"}, {"Team": "Coppin St.", "NET": 365, "KenPom": 364, "BPI": 364, "AP": "NR"}]}
+{
+  "updated": "2025-12-30 15:10",
+  "rows": [
+    {
+      "Team": "Michigan",
+      "Record": "13-0",
+      "NET": 1,
+      "KenPom": 1,
+      "BPI": 3,
+      "AP": 2
+    },
+    {
+      "Team": "Gonzaga",
+      "Record": "12-1",
+      "NET": 2,
+      "KenPom": 3,
+      "BPI": 1,
+      "AP": 7
+    },
+    {
+      "Team": "Duke",
+      "Record": "11-1",
+      "NET": 3,
+      "KenPom": 6,
+      "BPI": 2,
+      "AP": 6
+    },
+    {
+      "Team": "Arizona",
+      "Record": "13-0",
+      "NET": 4,
+      "KenPom": 2,
+      "BPI": 4,
+      "AP": 1
+    },
+    {
+      "Team": "Iowa St.",
+      "Record": "0-0",
+      "NET": 5,
+      "KenPom": 4,
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Purdue",
+      "Record": "13-1",
+      "NET": 6,
+      "KenPom": 5,
+      "BPI": 8,
+      "AP": 5
+    },
+    {
+      "Team": "Vanderbilt",
+      "Record": "13-0",
+      "NET": 7,
+      "KenPom": 8,
+      "BPI": 12,
+      "AP": 11
+    },
+    {
+      "Team": "UConn",
+      "Record": "13-1",
+      "NET": 8,
+      "KenPom": 7,
+      "BPI": 9,
+      "AP": 4
+    },
+    {
+      "Team": "BYU",
+      "Record": "13-1",
+      "NET": 9,
+      "KenPom": 10,
+      "BPI": 11,
+      "AP": 10
+    },
+    {
+      "Team": "Illinois",
+      "Record": "11-3",
+      "NET": 10,
+      "KenPom": 9,
+      "BPI": 10,
+      "AP": 20
+    },
+    {
+      "Team": "Nebraska",
+      "Record": "12-0",
+      "NET": 11,
+      "KenPom": 23,
+      "BPI": 27,
+      "AP": 13
+    },
+    {
+      "Team": "Michigan St.",
+      "Record": "7-1",
+      "NET": 12,
+      "KenPom": 14,
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Iowa",
+      "Record": "9-3",
+      "NET": 13,
+      "KenPom": 18,
+      "BPI": 28,
+      "AP": 25
+    },
+    {
+      "Team": "Alabama",
+      "Record": "10-3",
+      "NET": 14,
+      "KenPom": 15,
+      "BPI": 16,
+      "AP": 14
+    },
+    {
+      "Team": "Louisville",
+      "Record": "10-2",
+      "NET": 15,
+      "KenPom": 13,
+      "BPI": 6,
+      "AP": 16
+    },
+    {
+      "Team": "UNC",
+      "Record": "12-1",
+      "NET": 16,
+      "KenPom": 22,
+      "BPI": 29,
+      "AP": 12
+    },
+    {
+      "Team": "Houston",
+      "Record": "13-1",
+      "NET": 17,
+      "KenPom": 11,
+      "BPI": 7,
+      "AP": 8
+    },
+    {
+      "Team": "Kansas",
+      "Record": "10-3",
+      "NET": 18,
+      "KenPom": 17,
+      "BPI": 15,
+      "AP": 17
+    },
+    {
+      "Team": "Utah St.",
+      "Record": "0-0",
+      "NET": 19,
+      "KenPom": 29,
+      "BPI": 26,
+      "AP": "NR"
+    },
+    {
+      "Team": "Texas Tech",
+      "Record": "10-3",
+      "NET": 20,
+      "KenPom": 21,
+      "BPI": 21,
+      "AP": 15
+    },
+    {
+      "Team": "Villanova",
+      "Record": "8-3",
+      "NET": 21,
+      "KenPom": 25,
+      "BPI": 37,
+      "AP": "NR"
+    },
+    {
+      "Team": "Georgia",
+      "Record": "11-1",
+      "NET": 22,
+      "KenPom": 26,
+      "BPI": 33,
+      "AP": 23
+    },
+    {
+      "Team": "Florida",
+      "Record": "9-5",
+      "NET": 23,
+      "KenPom": 12,
+      "BPI": 13,
+      "AP": 22
+    },
+    {
+      "Team": "Virginia",
+      "Record": "12-1",
+      "NET": 24,
+      "KenPom": 24,
+      "BPI": 32,
+      "AP": 21
+    },
+    {
+      "Team": "Kentucky",
+      "Record": "8-4",
+      "NET": 25,
+      "KenPom": 19,
+      "BPI": 17,
+      "AP": "NR"
+    },
+    {
+      "Team": "Tennessee",
+      "Record": "9-3",
+      "NET": 26,
+      "KenPom": 16,
+      "BPI": 14,
+      "AP": 19
+    },
+    {
+      "Team": "Saint Louis",
+      "Record": "7-1",
+      "NET": 27,
+      "KenPom": 41,
+      "BPI": 34,
+      "AP": "NR"
+    },
+    {
+      "Team": "Saint Mary's (CA)",
+      "Record": "8-1",
+      "NET": 28,
+      "KenPom": 34,
+      "BPI": 39,
+      "AP": "NR"
+    },
+    {
+      "Team": "St. John's (NY)",
+      "Record": "8-4",
+      "NET": 29,
+      "KenPom": 20,
+      "BPI": 18,
+      "AP": "NR"
+    },
+    {
+      "Team": "Arkansas",
+      "Record": "10-3",
+      "NET": 30,
+      "KenPom": 28,
+      "BPI": 31,
+      "AP": 18
+    },
+    {
+      "Team": "SMU",
+      "Record": "9-1",
+      "NET": 31,
+      "KenPom": 40,
+      "BPI": 46,
+      "AP": "NR"
+    },
+    {
+      "Team": "NC State",
+      "Record": "7-4",
+      "NET": 32,
+      "KenPom": 27,
+      "BPI": 24,
+      "AP": "NR"
+    },
+    {
+      "Team": "Indiana",
+      "Record": "8-2",
+      "NET": 33,
+      "KenPom": 31,
+      "BPI": 19,
+      "AP": "NR"
+    },
+    {
+      "Team": "LSU",
+      "Record": "8-1",
+      "NET": 34,
+      "KenPom": 38,
+      "BPI": 47,
+      "AP": "NR"
+    },
+    {
+      "Team": "Auburn",
+      "Record": "8-4",
+      "NET": 35,
+      "KenPom": 33,
+      "BPI": 23,
+      "AP": "NR"
+    },
+    {
+      "Team": "UCF",
+      "Record": "9-1",
+      "NET": 36,
+      "KenPom": 46,
+      "BPI": 56,
+      "AP": "NR"
+    },
+    {
+      "Team": "Miami (FL)",
+      "Record": "1-0",
+      "NET": 37,
+      "KenPom": 36,
+      "BPI": 43,
+      "AP": "NR"
+    },
+    {
+      "Team": "Clemson",
+      "Record": "7-4",
+      "NET": 38,
+      "KenPom": 35,
+      "BPI": 25,
+      "AP": "NR"
+    },
+    {
+      "Team": "UCLA",
+      "Record": "8-3",
+      "NET": 39,
+      "KenPom": 32,
+      "BPI": 22,
+      "AP": "NR"
+    },
+    {
+      "Team": "Southern California",
+      "Record": "0-0",
+      "NET": 40,
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Baylor",
+      "Record": "7-2",
+      "NET": 41,
+      "KenPom": 30,
+      "BPI": 30,
+      "AP": "NR"
+    },
+    {
+      "Team": "Butler",
+      "Record": "7-3",
+      "NET": 42,
+      "KenPom": 49,
+      "BPI": 42,
+      "AP": "NR"
+    },
+    {
+      "Team": "Ohio St",
+      "Record": "2-2",
+      "NET": 43,
+      "KenPom": 37,
+      "BPI": 36,
+      "AP": "NR"
+    },
+    {
+      "Team": "Seton Hall",
+      "Record": "9-2",
+      "NET": 44,
+      "KenPom": 47,
+      "BPI": 61,
+      "AP": "NR"
+    },
+    {
+      "Team": "Tulsa",
+      "Record": "8-1",
+      "NET": 45,
+      "KenPom": 82,
+      "BPI": 94,
+      "AP": "NR"
+    },
+    {
+      "Team": "Boise St.",
+      "Record": "7-2",
+      "NET": 46,
+      "KenPom": 53,
+      "BPI": 82,
+      "AP": "NR"
+    },
+    {
+      "Team": "Cal",
+      "Record": "9-1",
+      "NET": 47,
+      "KenPom": 61,
+      "BPI": 73,
+      "AP": "NR"
+    },
+    {
+      "Team": "McNeese",
+      "Record": "8-3",
+      "NET": 48,
+      "KenPom": 69,
+      "BPI": 60,
+      "AP": "NR"
+    },
+    {
+      "Team": "Akron",
+      "Record": "7-2",
+      "NET": 49,
+      "KenPom": 56,
+      "BPI": 85,
+      "AP": "NR"
+    },
+    {
+      "Team": "Oklahoma",
+      "Record": "6-3",
+      "NET": 50,
+      "KenPom": 52,
+      "BPI": 41,
+      "AP": "NR"
+    },
+    {
+      "Team": "TCU",
+      "Record": "7-3",
+      "NET": 51,
+      "KenPom": 54,
+      "BPI": 58,
+      "AP": "NR"
+    },
+    {
+      "Team": "Washington",
+      "Record": "6-3",
+      "NET": 52,
+      "KenPom": 50,
+      "BPI": 55,
+      "AP": "NR"
+    },
+    {
+      "Team": "Yale",
+      "Record": "11-2",
+      "NET": 53,
+      "KenPom": 84,
+      "BPI": 109,
+      "AP": "NR"
+    },
+    {
+      "Team": "Texas",
+      "Record": "8-4",
+      "NET": 54,
+      "KenPom": 45,
+      "BPI": 44,
+      "AP": "NR"
+    },
+    {
+      "Team": "Illinois St.",
+      "Record": "8-2",
+      "NET": 55,
+      "KenPom": 77,
+      "BPI": 83,
+      "AP": "NR"
+    },
+    {
+      "Team": "Creighton",
+      "Record": "5-4",
+      "NET": 56,
+      "KenPom": 44,
+      "BPI": 45,
+      "AP": "NR"
+    },
+    {
+      "Team": "Utah Valley",
+      "Record": "7-3",
+      "NET": 57,
+      "KenPom": 83,
+      "BPI": 106,
+      "AP": "NR"
+    },
+    {
+      "Team": "New Mexico",
+      "Record": "8-2",
+      "NET": 58,
+      "KenPom": 67,
+      "BPI": 78,
+      "AP": "NR"
+    },
+    {
+      "Team": "VCU",
+      "Record": "6-4",
+      "NET": 59,
+      "KenPom": 42,
+      "BPI": 51,
+      "AP": "NR"
+    },
+    {
+      "Team": "Kansas St.",
+      "Record": "7-4",
+      "NET": 60,
+      "KenPom": 73,
+      "BPI": 59,
+      "AP": "NR"
+    },
+    {
+      "Team": "Belmont",
+      "Record": "8-1",
+      "NET": 61,
+      "KenPom": 71,
+      "BPI": 105,
+      "AP": "NR"
+    },
+    {
+      "Team": "UC San Diego",
+      "Record": "7-1",
+      "NET": 62,
+      "KenPom": 89,
+      "BPI": 107,
+      "AP": "NR"
+    },
+    {
+      "Team": "Virginia Tech",
+      "Record": "9-2",
+      "NET": 63,
+      "KenPom": 68,
+      "BPI": 86,
+      "AP": "NR"
+    },
+    {
+      "Team": "Texas A&M",
+      "Record": "7-3",
+      "NET": 64,
+      "KenPom": 48,
+      "BPI": 35,
+      "AP": "NR"
+    },
+    {
+      "Team": "Santa Clara",
+      "Record": "8-2",
+      "NET": 65,
+      "KenPom": 58,
+      "BPI": 84,
+      "AP": "NR"
+    },
+    {
+      "Team": "Wisconsin",
+      "Record": "7-4",
+      "NET": 66,
+      "KenPom": 43,
+      "BPI": 38,
+      "AP": "NR"
+    },
+    {
+      "Team": "Wake forest",
+      "Record": "7-4",
+      "NET": 67,
+      "KenPom": 59,
+      "BPI": 53,
+      "AP": "NR"
+    },
+    {
+      "Team": "South Fla.",
+      "Record": "5-5",
+      "NET": 68,
+      "KenPom": 85,
+      "BPI": 77,
+      "AP": "NR"
+    },
+    {
+      "Team": "Northwestern",
+      "Record": "5-4",
+      "NET": 69,
+      "KenPom": 55,
+      "BPI": 52,
+      "AP": "NR"
+    },
+    {
+      "Team": "Murray St.",
+      "Record": "6-3",
+      "NET": 70,
+      "KenPom": 97,
+      "BPI": 102,
+      "AP": "NR"
+    },
+    {
+      "Team": "William & Mary",
+      "Record": "7-3",
+      "NET": 71,
+      "KenPom": 115,
+      "BPI": 133,
+      "AP": "NR"
+    },
+    {
+      "Team": "Nevada",
+      "Record": "7-3",
+      "NET": 72,
+      "KenPom": 80,
+      "BPI": 90,
+      "AP": "NR"
+    },
+    {
+      "Team": "Oklahoma St.",
+      "Record": "9-0",
+      "NET": 73,
+      "KenPom": 60,
+      "BPI": 71,
+      "AP": "NR"
+    },
+    {
+      "Team": "Colorado St.",
+      "Record": "7-2",
+      "NET": 74,
+      "KenPom": 74,
+      "BPI": 70,
+      "AP": "NR"
+    },
+    {
+      "Team": "UNI",
+      "Record": "7-2",
+      "NET": 75,
+      "KenPom": 92,
+      "BPI": 88,
+      "AP": "NR"
+    },
+    {
+      "Team": "Notre Dame",
+      "Record": "8-3",
+      "NET": 76,
+      "KenPom": 65,
+      "BPI": 62,
+      "AP": "NR"
+    },
+    {
+      "Team": "Colorado",
+      "Record": "8-1",
+      "NET": 77,
+      "KenPom": 86,
+      "BPI": 97,
+      "AP": "NR"
+    },
+    {
+      "Team": "Arizona St.",
+      "Record": "8-2",
+      "NET": 78,
+      "KenPom": 76,
+      "BPI": 99,
+      "AP": "NR"
+    },
+    {
+      "Team": "Miami (OH)",
+      "Record": "8-0",
+      "NET": 79,
+      "KenPom": 112,
+      "BPI": 98,
+      "AP": "NR"
+    },
+    {
+      "Team": "Wyoming",
+      "Record": "8-2",
+      "NET": 80,
+      "KenPom": 98,
+      "BPI": 117,
+      "AP": "NR"
+    },
+    {
+      "Team": "George Washington",
+      "Record": "0-1",
+      "NET": 81,
+      "KenPom": 81,
+      "BPI": 75,
+      "AP": "NR"
+    },
+    {
+      "Team": "Bowling Green",
+      "Record": "6-3",
+      "NET": 82,
+      "KenPom": 107,
+      "BPI": 121,
+      "AP": "NR"
+    },
+    {
+      "Team": "San Diego St.",
+      "Record": "5-4",
+      "NET": 83,
+      "KenPom": 51,
+      "BPI": 80,
+      "AP": "NR"
+    },
+    {
+      "Team": "George Mason",
+      "Record": "8-1",
+      "NET": 84,
+      "KenPom": 88,
+      "BPI": 72,
+      "AP": "NR"
+    },
+    {
+      "Team": "Stanford",
+      "Record": "8-2",
+      "NET": 85,
+      "KenPom": 87,
+      "BPI": 87,
+      "AP": "NR"
+    },
+    {
+      "Team": "Wichita St.",
+      "Record": "6-4",
+      "NET": 86,
+      "KenPom": 93,
+      "BPI": 93,
+      "AP": "NR"
+    },
+    {
+      "Team": "Dayton",
+      "Record": "6-3",
+      "NET": 87,
+      "KenPom": 64,
+      "BPI": 65,
+      "AP": "NR"
+    },
+    {
+      "Team": "Hofstra",
+      "Record": "7-3",
+      "NET": 88,
+      "KenPom": 103,
+      "BPI": 113,
+      "AP": "NR"
+    },
+    {
+      "Team": "Syracuse",
+      "Record": "6-3",
+      "NET": 89,
+      "KenPom": 78,
+      "BPI": 67,
+      "AP": "NR"
+    },
+    {
+      "Team": "Sam Houston",
+      "Record": "5-3",
+      "NET": 90,
+      "KenPom": 118,
+      "BPI": 118,
+      "AP": "NR"
+    },
+    {
+      "Team": "Ole Miss",
+      "Record": "5-4",
+      "NET": 91,
+      "KenPom": 57,
+      "BPI": 50,
+      "AP": "NR"
+    },
+    {
+      "Team": "West Virginia",
+      "Record": "8-3",
+      "NET": 92,
+      "KenPom": 66,
+      "BPI": 40,
+      "AP": "NR"
+    },
+    {
+      "Team": "Missouri",
+      "Record": "9-3",
+      "NET": 93,
+      "KenPom": 63,
+      "BPI": 49,
+      "AP": "NR"
+    },
+    {
+      "Team": "SFA",
+      "Record": "0-0",
+      "NET": 94,
+      "KenPom": 122,
+      "BPI": 137,
+      "AP": "NR"
+    },
+    {
+      "Team": "Cincinnati",
+      "Record": "6-3",
+      "NET": 95,
+      "KenPom": 62,
+      "BPI": 54,
+      "AP": "NR"
+    },
+    {
+      "Team": "High Point",
+      "Record": "7-2",
+      "NET": 96,
+      "KenPom": 95,
+      "BPI": 64,
+      "AP": "NR"
+    },
+    {
+      "Team": "Oregon",
+      "Record": "4-6",
+      "NET": 97,
+      "KenPom": 72,
+      "BPI": 66,
+      "AP": "NR"
+    },
+    {
+      "Team": "San Francisco",
+      "Record": "5-4",
+      "NET": 98,
+      "KenPom": 94,
+      "BPI": 81,
+      "AP": "NR"
+    },
+    {
+      "Team": "Providence",
+      "Record": "7-4",
+      "NET": 99,
+      "KenPom": 75,
+      "BPI": 63,
+      "AP": "NR"
+    },
+    {
+      "Team": "Grand Canyon",
+      "Record": "4-4",
+      "NET": 100,
+      "KenPom": 96,
+      "BPI": 96,
+      "AP": "NR"
+    },
+    {
+      "Team": "St. Bonaventure",
+      "Record": "9-1",
+      "NET": 101,
+      "KenPom": 117,
+      "BPI": 120,
+      "AP": "NR"
+    },
+    {
+      "Team": "Columbia",
+      "Record": "9-2",
+      "NET": 102,
+      "KenPom": 133,
+      "BPI": 153,
+      "AP": "NR"
+    },
+    {
+      "Team": "Mississippi St.",
+      "Record": "4-5",
+      "NET": 103,
+      "KenPom": 79,
+      "BPI": 57,
+      "AP": "NR"
+    },
+    {
+      "Team": "Memphis",
+      "Record": "4-6",
+      "NET": 104,
+      "KenPom": 70,
+      "BPI": 69,
+      "AP": "NR"
+    },
+    {
+      "Team": "California Baptist",
+      "Record": "0-0",
+      "NET": 105,
+      "KenPom": 127,
+      "BPI": 141,
+      "AP": "NR"
+    },
+    {
+      "Team": "FAU",
+      "Record": "6-4",
+      "NET": 106,
+      "KenPom": 111,
+      "BPI": 119,
+      "AP": "NR"
+    },
+    {
+      "Team": "Liberty",
+      "Record": "5-3",
+      "NET": 107,
+      "KenPom": 104,
+      "BPI": 92,
+      "AP": "NR"
+    },
+    {
+      "Team": "Minnesota",
+      "Record": "5-6",
+      "NET": 108,
+      "KenPom": 101,
+      "BPI": 79,
+      "AP": "NR"
+    },
+    {
+      "Team": "Richmond",
+      "Record": "8-1",
+      "NET": 109,
+      "KenPom": 109,
+      "BPI": 124,
+      "AP": "NR"
+    },
+    {
+      "Team": "New Mexico St.",
+      "Record": "6-2",
+      "NET": 110,
+      "KenPom": 129,
+      "BPI": 145,
+      "AP": "NR"
+    },
+    {
+      "Team": "Rhode Island",
+      "Record": "6-4",
+      "NET": 111,
+      "KenPom": 108,
+      "BPI": 101,
+      "AP": "NR"
+    },
+    {
+      "Team": "Hawaii",
+      "Record": "0-0",
+      "NET": 112,
+      "KenPom": 105,
+      "BPI": 129,
+      "AP": "NR"
+    },
+    {
+      "Team": "UNCW",
+      "Record": "9-1",
+      "NET": 113,
+      "KenPom": 116,
+      "BPI": 111,
+      "AP": "NR"
+    },
+    {
+      "Team": "Seattle U",
+      "Record": "6-2",
+      "NET": 114,
+      "KenPom": 114,
+      "BPI": 128,
+      "AP": "NR"
+    },
+    {
+      "Team": "South Carolina",
+      "Record": "6-3",
+      "NET": 115,
+      "KenPom": 90,
+      "BPI": 76,
+      "AP": "NR"
+    },
+    {
+      "Team": "Xavier",
+      "Record": "7-3",
+      "NET": 116,
+      "KenPom": 100,
+      "BPI": 103,
+      "AP": "NR"
+    },
+    {
+      "Team": "Northern Colo.",
+      "Record": "0-1",
+      "NET": 117,
+      "KenPom": 149,
+      "BPI": 152,
+      "AP": "NR"
+    },
+    {
+      "Team": "Davidson",
+      "Record": "6-3",
+      "NET": 118,
+      "KenPom": 125,
+      "BPI": 127,
+      "AP": "NR"
+    },
+    {
+      "Team": "UAB",
+      "Record": "6-3",
+      "NET": 119,
+      "KenPom": 106,
+      "BPI": 95,
+      "AP": "NR"
+    },
+    {
+      "Team": "Pitt",
+      "Record": "5-5",
+      "NET": 120,
+      "KenPom": 91,
+      "BPI": 74,
+      "AP": "NR"
+    },
+    {
+      "Team": "Bradley",
+      "Record": "6-3",
+      "NET": 121,
+      "KenPom": 119,
+      "BPI": 108,
+      "AP": "NR"
+    },
+    {
+      "Team": "St. Thomas (MN)",
+      "Record": "0-0",
+      "NET": 122,
+      "KenPom": 140,
+      "BPI": 158,
+      "AP": "NR"
+    },
+    {
+      "Team": "Arkansas St.",
+      "Record": "6-3",
+      "NET": 123,
+      "KenPom": 135,
+      "BPI": 125,
+      "AP": "NR"
+    },
+    {
+      "Team": "Idaho St.",
+      "Record": "6-5",
+      "NET": 124,
+      "KenPom": 169,
+      "BPI": 277,
+      "AP": "NR"
+    },
+    {
+      "Team": "Pacific",
+      "Record": "7-4",
+      "NET": 125,
+      "KenPom": 138,
+      "BPI": 146,
+      "AP": "NR"
+    },
+    {
+      "Team": "Middle Tenn.",
+      "Record": "0-1",
+      "NET": 126,
+      "KenPom": 147,
+      "BPI": 150,
+      "AP": "NR"
+    },
+    {
+      "Team": "Georgetown",
+      "Record": "6-3",
+      "NET": 127,
+      "KenPom": 102,
+      "BPI": 91,
+      "AP": "NR"
+    },
+    {
+      "Team": "Florida St.",
+      "Record": "5-4",
+      "NET": 128,
+      "KenPom": 110,
+      "BPI": 100,
+      "AP": "NR"
+    },
+    {
+      "Team": "Southern Ill.",
+      "Record": "0-0",
+      "NET": 129,
+      "KenPom": 120,
+      "BPI": 123,
+      "AP": "NR"
+    },
+    {
+      "Team": "Marshall",
+      "Record": "6-4",
+      "NET": 130,
+      "KenPom": 158,
+      "BPI": 155,
+      "AP": "NR"
+    },
+    {
+      "Team": "Utah",
+      "Record": "7-3",
+      "NET": 131,
+      "KenPom": 123,
+      "BPI": 104,
+      "AP": "NR"
+    },
+    {
+      "Team": "Wright St.",
+      "Record": "4-5",
+      "NET": 132,
+      "KenPom": 141,
+      "BPI": 130,
+      "AP": "NR"
+    },
+    {
+      "Team": "LMU (CA)",
+      "Record": "1-0",
+      "NET": 133,
+      "KenPom": 124,
+      "BPI": 112,
+      "AP": "NR"
+    },
+    {
+      "Team": "Merc",
+      "Record": "7-1",
+      "NET": 134,
+      "KenPom": 163,
+      "BPI": 161,
+      "AP": "NR"
+    },
+    {
+      "Team": "Troy",
+      "Record": "5-5",
+      "NET": 135,
+      "KenPom": 139,
+      "BPI": 135,
+      "AP": "NR"
+    },
+    {
+      "Team": "Tarleton",
+      "Record": "7-3",
+      "NET": 136,
+      "KenPom": 167,
+      "BPI": 231,
+      "AP": "NR"
+    },
+    {
+      "Team": "Lipscomb",
+      "Record": "6-4",
+      "NET": 137,
+      "KenPom": 145,
+      "BPI": 142,
+      "AP": "NR"
+    },
+    {
+      "Team": "UC Irvine",
+      "Record": "6-4",
+      "NET": 138,
+      "KenPom": 130,
+      "BPI": 122,
+      "AP": "NR"
+    },
+    {
+      "Team": "Buffalo",
+      "Record": "8-1",
+      "NET": 139,
+      "KenPom": 179,
+      "BPI": 239,
+      "AP": "NR"
+    },
+    {
+      "Team": "Penn St",
+      "Record": "1-1",
+      "NET": 140,
+      "KenPom": 126,
+      "BPI": 110,
+      "AP": "NR"
+    },
+    {
+      "Team": "Winthrop",
+      "Record": "5-6",
+      "NET": 141,
+      "KenPom": 128,
+      "BPI": 144,
+      "AP": "NR"
+    },
+    {
+      "Team": "Elon",
+      "Record": "5-4",
+      "NET": 142,
+      "KenPom": 148,
+      "BPI": 171,
+      "AP": "NR"
+    },
+    {
+      "Team": "Towson",
+      "Record": "5-5",
+      "NET": 143,
+      "KenPom": 143,
+      "BPI": 138,
+      "AP": "NR"
+    },
+    {
+      "Team": "Quin",
+      "Record": "7-2",
+      "NET": 144,
+      "KenPom": 151,
+      "BPI": 151,
+      "AP": "NR"
+    },
+    {
+      "Team": "ETSU",
+      "Record": "8-3",
+      "NET": 145,
+      "KenPom": 132,
+      "BPI": 140,
+      "AP": "NR"
+    },
+    {
+      "Team": "Maryland",
+      "Record": "6-6",
+      "NET": 146,
+      "KenPom": 99,
+      "BPI": 68,
+      "AP": "NR"
+    },
+    {
+      "Team": "Depaul",
+      "Record": "7-5",
+      "NET": 147,
+      "KenPom": 121,
+      "BPI": 114,
+      "AP": "NR"
+    },
+    {
+      "Team": "UT Arlington",
+      "Record": "6-3",
+      "NET": 148,
+      "KenPom": 168,
+      "BPI": 178,
+      "AP": "NR"
+    },
+    {
+      "Team": "Oakland",
+      "Record": "5-5",
+      "NET": 149,
+      "KenPom": 146,
+      "BPI": 157,
+      "AP": "NR"
+    },
+    {
+      "Team": "Idaho",
+      "Record": "5-5",
+      "NET": 150,
+      "KenPom": 189,
+      "BPI": 172,
+      "AP": "NR"
+    },
+    {
+      "Team": "Cornell",
+      "Record": "5-6",
+      "NET": 151,
+      "KenPom": 164,
+      "BPI": 148,
+      "AP": "NR"
+    },
+    {
+      "Team": "Western Ky.",
+      "Record": "1-0",
+      "NET": 152,
+      "KenPom": 159,
+      "BPI": 149,
+      "AP": "NR"
+    },
+    {
+      "Team": "Kent St.",
+      "Record": "0-1",
+      "NET": 153,
+      "KenPom": 136,
+      "BPI": 136,
+      "AP": "NR"
+    },
+    {
+      "Team": "North Dakota St.",
+      "Record": "1-0",
+      "NET": 154,
+      "KenPom": 153,
+      "BPI": 156,
+      "AP": "NR"
+    },
+    {
+      "Team": "Furman",
+      "Record": "7-3",
+      "NET": 155,
+      "KenPom": 150,
+      "BPI": 163,
+      "AP": "NR"
+    },
+    {
+      "Team": "MTST",
+      "Record": "4-5",
+      "NET": 156,
+      "KenPom": 170,
+      "BPI": 162,
+      "AP": "NR"
+    },
+    {
+      "Team": "UC Santa Barbara",
+      "Record": "0-0",
+      "NET": 157,
+      "KenPom": 144,
+      "BPI": 143,
+      "AP": "NR"
+    },
+    {
+      "Team": "Austin Peay",
+      "Record": "3-5",
+      "NET": 158,
+      "KenPom": 193,
+      "BPI": 175,
+      "AP": "NR"
+    },
+    {
+      "Team": "Washington St.",
+      "Record": "3-6",
+      "NET": 159,
+      "KenPom": 152,
+      "BPI": 184,
+      "AP": "NR"
+    },
+    {
+      "Team": "Marist",
+      "Record": "6-1",
+      "NET": 160,
+      "KenPom": 155,
+      "BPI": 189,
+      "AP": "NR"
+    },
+    {
+      "Team": "UC Davis",
+      "Record": "4-3",
+      "NET": 161,
+      "KenPom": 166,
+      "BPI": 219,
+      "AP": "NR"
+    },
+    {
+      "Team": "UT Martin",
+      "Record": "7-3",
+      "NET": 162,
+      "KenPom": 204,
+      "BPI": 223,
+      "AP": "NR"
+    },
+    {
+      "Team": "Toledo",
+      "Record": "5-4",
+      "NET": 163,
+      "KenPom": 162,
+      "BPI": 179,
+      "AP": "NR"
+    },
+    {
+      "Team": "South Dakota St.",
+      "Record": "0-2",
+      "NET": 164,
+      "KenPom": 183,
+      "BPI": 183,
+      "AP": "NR"
+    },
+    {
+      "Team": "Iona",
+      "Record": "8-4",
+      "NET": 165,
+      "KenPom": 182,
+      "BPI": 173,
+      "AP": "NR"
+    },
+    {
+      "Team": "Kennesaw St.",
+      "Record": "8-3",
+      "NET": 166,
+      "KenPom": 160,
+      "BPI": 115,
+      "AP": "NR"
+    },
+    {
+      "Team": "Fresno St.",
+      "Record": "5-5",
+      "NET": 167,
+      "KenPom": 171,
+      "BPI": 180,
+      "AP": "NR"
+    },
+    {
+      "Team": "Duquesne",
+      "Record": "6-4",
+      "NET": 168,
+      "KenPom": 131,
+      "BPI": 147,
+      "AP": "NR"
+    },
+    {
+      "Team": "Drake",
+      "Record": "5-4",
+      "NET": 169,
+      "KenPom": 156,
+      "BPI": 154,
+      "AP": "NR"
+    },
+    {
+      "Team": "YSU",
+      "Record": "6-3",
+      "NET": 170,
+      "KenPom": 172,
+      "BPI": 176,
+      "AP": "NR"
+    },
+    {
+      "Team": "Temple",
+      "Record": "5-5",
+      "NET": 171,
+      "KenPom": 154,
+      "BPI": 134,
+      "AP": "NR"
+    },
+    {
+      "Team": "UTRGV",
+      "Record": "0-0",
+      "NET": 172,
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Marquette",
+      "Record": "5-6",
+      "NET": 173,
+      "KenPom": 113,
+      "BPI": 89,
+      "AP": "NR"
+    },
+    {
+      "Team": "Siena",
+      "Record": "8-2",
+      "NET": 174,
+      "KenPom": 174,
+      "BPI": 204,
+      "AP": "NR"
+    },
+    {
+      "Team": "North Texas",
+      "Record": "6-3",
+      "NET": 175,
+      "KenPom": 137,
+      "BPI": 132,
+      "AP": "NR"
+    },
+    {
+      "Team": "Robert Morris",
+      "Record": "7-4",
+      "NET": 176,
+      "KenPom": 184,
+      "BPI": 200,
+      "AP": "NR"
+    },
+    {
+      "Team": "UNLV",
+      "Record": "4-5",
+      "NET": 177,
+      "KenPom": 142,
+      "BPI": 116,
+      "AP": "NR"
+    },
+    {
+      "Team": "Georgia Tech",
+      "Record": "6-4",
+      "NET": 178,
+      "KenPom": 134,
+      "BPI": 126,
+      "AP": "NR"
+    },
+    {
+      "Team": "Charlotte",
+      "Record": "3-6",
+      "NET": 179,
+      "KenPom": 186,
+      "BPI": 214,
+      "AP": "NR"
+    },
+    {
+      "Team": "Portland St.",
+      "Record": "5-3",
+      "NET": 180,
+      "KenPom": 180,
+      "BPI": 222,
+      "AP": "NR"
+    },
+    {
+      "Team": "Vermont",
+      "Record": "5-5",
+      "NET": 181,
+      "KenPom": 187,
+      "BPI": 194,
+      "AP": "NR"
+    },
+    {
+      "Team": "Boston College",
+      "Record": "5-6",
+      "NET": 182,
+      "KenPom": 157,
+      "BPI": 168,
+      "AP": "NR"
+    },
+    {
+      "Team": "Colgate",
+      "Record": "6-5",
+      "NET": 183,
+      "KenPom": 185,
+      "BPI": 197,
+      "AP": "NR"
+    },
+    {
+      "Team": "FIU",
+      "Record": "4-3",
+      "NET": 184,
+      "KenPom": 177,
+      "BPI": 238,
+      "AP": "NR"
+    },
+    {
+      "Team": "Milwaukee",
+      "Record": "3-5",
+      "NET": 185,
+      "KenPom": 201,
+      "BPI": 164,
+      "AP": "NR"
+    },
+    {
+      "Team": "Eastern Mich.",
+      "Record": "0-0",
+      "NET": 186,
+      "KenPom": 210,
+      "BPI": 226,
+      "AP": "NR"
+    },
+    {
+      "Team": "CHSO",
+      "Record": "8-4",
+      "NET": 187,
+      "KenPom": 219,
+      "BPI": 243,
+      "AP": "NR"
+    },
+    {
+      "Team": "Abilene Christian",
+      "Record": "0-2",
+      "NET": 188,
+      "KenPom": 209,
+      "BPI": 241,
+      "AP": "NR"
+    },
+    {
+      "Team": "Southern Miss.",
+      "Record": "7-3",
+      "NET": 189,
+      "KenPom": 197,
+      "BPI": 244,
+      "AP": "NR"
+    },
+    {
+      "Team": "Long Island",
+      "Record": "5-4",
+      "NET": 190,
+      "KenPom": 203,
+      "BPI": 233,
+      "AP": "NR"
+    },
+    {
+      "Team": "South Alabama",
+      "Record": "7-2",
+      "NET": 191,
+      "KenPom": 192,
+      "BPI": 186,
+      "AP": "NR"
+    },
+    {
+      "Team": "Massachusetts",
+      "Record": "0-0",
+      "NET": 192,
+      "KenPom": 173,
+      "BPI": 139,
+      "AP": "NR"
+    },
+    {
+      "Team": "Indiana St.",
+      "Record": "6-3",
+      "NET": 193,
+      "KenPom": 188,
+      "BPI": 224,
+      "AP": "NR"
+    },
+    {
+      "Team": "Weber St.",
+      "Record": "4-5",
+      "NET": 194,
+      "KenPom": 215,
+      "BPI": 196,
+      "AP": "NR"
+    },
+    {
+      "Team": "Harvard",
+      "Record": "5-7",
+      "NET": 195,
+      "KenPom": 181,
+      "BPI": 199,
+      "AP": "NR"
+    },
+    {
+      "Team": "UIW",
+      "Record": "5-6",
+      "NET": 196,
+      "KenPom": 165,
+      "BPI": 159,
+      "AP": "NR"
+    },
+    {
+      "Team": "Lindenwood",
+      "Record": "6-5",
+      "NET": 197,
+      "KenPom": 232,
+      "BPI": 216,
+      "AP": "NR"
+    },
+    {
+      "Team": "UNO",
+      "Record": "3-8",
+      "NET": 198,
+      "KenPom": 190,
+      "BPI": 256,
+      "AP": "NR"
+    },
+    {
+      "Team": "Rutgers",
+      "Record": "5-5",
+      "NET": 199,
+      "KenPom": 161,
+      "BPI": 131,
+      "AP": "NR"
+    },
+    {
+      "Team": "Col. of Charleston",
+      "Record": "3-6",
+      "NET": 200,
+      "KenPom": 178,
+      "BPI": 190,
+      "AP": "NR"
+    },
+    {
+      "Team": "FGCU",
+      "Record": "4-5",
+      "NET": 201,
+      "KenPom": 175,
+      "BPI": 169,
+      "AP": "NR"
+    },
+    {
+      "Team": "Northern Ky.",
+      "Record": "0-0",
+      "NET": 202,
+      "KenPom": 205,
+      "BPI": 206,
+      "AP": "NR"
+    },
+    {
+      "Team": "Ohio",
+      "Record": "3-5",
+      "NET": 203,
+      "KenPom": 202,
+      "BPI": 181,
+      "AP": "NR"
+    },
+    {
+      "Team": "Oregon St.",
+      "Record": "4-5",
+      "NET": 204,
+      "KenPom": 191,
+      "BPI": 166,
+      "AP": "NR"
+    },
+    {
+      "Team": "Southeast Mo. St.",
+      "Record": "0-0",
+      "NET": 205,
+      "KenPom": 228,
+      "BPI": 268,
+      "AP": "NR"
+    },
+    {
+      "Team": "Cal St. Fullerton",
+      "Record": "0-0",
+      "NET": 206,
+      "KenPom": 229,
+      "BPI": 278,
+      "AP": "NR"
+    },
+    {
+      "Team": "Coastal Carolina",
+      "Record": "0-0",
+      "NET": 207,
+      "KenPom": 224,
+      "BPI": 235,
+      "AP": "NR"
+    },
+    {
+      "Team": "Tennessee St.",
+      "Record": "4-4",
+      "NET": 208,
+      "KenPom": 249,
+      "BPI": 272,
+      "AP": "NR"
+    },
+    {
+      "Team": "Navy",
+      "Record": "5-5",
+      "NET": 209,
+      "KenPom": 199,
+      "BPI": 191,
+      "AP": "NR"
+    },
+    {
+      "Team": "Fordham",
+      "Record": "7-4",
+      "NET": 210,
+      "KenPom": 196,
+      "BPI": 192,
+      "AP": "NR"
+    },
+    {
+      "Team": "Wofford",
+      "Record": "7-3",
+      "NET": 211,
+      "KenPom": 225,
+      "BPI": 237,
+      "AP": "NR"
+    },
+    {
+      "Team": "San Diego",
+      "Record": "3-6",
+      "NET": 212,
+      "KenPom": 213,
+      "BPI": 221,
+      "AP": "NR"
+    },
+    {
+      "Team": "USC Upstate",
+      "Record": "0-9",
+      "NET": 213,
+      "KenPom": 260,
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Northeastern",
+      "Record": "4-4",
+      "NET": 214,
+      "KenPom": 212,
+      "BPI": 217,
+      "AP": "NR"
+    },
+    {
+      "Team": "Ga. Southern",
+      "Record": "0-0",
+      "NET": 215,
+      "KenPom": 216,
+      "BPI": 211,
+      "AP": "NR"
+    },
+    {
+      "Team": "CSUN",
+      "Record": "0-1",
+      "NET": 216,
+      "KenPom": 208,
+      "BPI": 209,
+      "AP": "NR"
+    },
+    {
+      "Team": "Grambling",
+      "Record": "2-8",
+      "NET": 217,
+      "KenPom": 246,
+      "BPI": 267,
+      "AP": "NR"
+    },
+    {
+      "Team": "Denver",
+      "Record": "5-5",
+      "NET": 218,
+      "KenPom": 266,
+      "BPI": 283,
+      "AP": "NR"
+    },
+    {
+      "Team": "Tulane",
+      "Record": "6-3",
+      "NET": 219,
+      "KenPom": 194,
+      "BPI": 202,
+      "AP": "NR"
+    },
+    {
+      "Team": "Penn",
+      "Record": "7-4",
+      "NET": 220,
+      "KenPom": 218,
+      "BPI": 203,
+      "AP": "NR"
+    },
+    {
+      "Team": "Utah Tech",
+      "Record": "4-6",
+      "NET": 221,
+      "KenPom": 230,
+      "BPI": 249,
+      "AP": "NR"
+    },
+    {
+      "Team": "Nicholls",
+      "Record": "2-7",
+      "NET": 222,
+      "KenPom": 221,
+      "BPI": 185,
+      "AP": "NR"
+    },
+    {
+      "Team": "Purdue Fort Wayne",
+      "Record": "0-0",
+      "NET": 223,
+      "KenPom": 223,
+      "BPI": 195,
+      "AP": "NR"
+    },
+    {
+      "Team": "Louisiana Tech",
+      "Record": "5-3",
+      "NET": 224,
+      "KenPom": 176,
+      "BPI": 160,
+      "AP": "NR"
+    },
+    {
+      "Team": "Valparaiso",
+      "Record": "6-3",
+      "NET": 225,
+      "KenPom": 207,
+      "BPI": 208,
+      "AP": "NR"
+    },
+    {
+      "Team": "James Madison",
+      "Record": "7-4",
+      "NET": 226,
+      "KenPom": 217,
+      "BPI": 188,
+      "AP": "NR"
+    },
+    {
+      "Team": "A&M-Corpus Christi",
+      "Record": "0-0",
+      "NET": 227,
+      "KenPom": 231,
+      "BPI": 193,
+      "AP": "NR"
+    },
+    {
+      "Team": "Chic",
+      "Record": "3-5",
+      "NET": 228,
+      "KenPom": 206,
+      "BPI": 177,
+      "AP": "NR"
+    },
+    {
+      "Team": "Central Ark",
+      "Record": "0-1",
+      "NET": 229,
+      "KenPom": 238,
+      "BPI": 262,
+      "AP": "NR"
+    },
+    {
+      "Team": "Central Conn. St.",
+      "Record": "0-0",
+      "NET": 230,
+      "KenPom": 273,
+      "BPI": 236,
+      "AP": "NR"
+    },
+    {
+      "Team": "Cal Poly",
+      "Record": "5-5",
+      "NET": 231,
+      "KenPom": 243,
+      "BPI": 291,
+      "AP": "NR"
+    },
+    {
+      "Team": "UC Riverside",
+      "Record": "4-7",
+      "NET": 232,
+      "KenPom": 259,
+      "BPI": 257,
+      "AP": "NR"
+    },
+    {
+      "Team": "Tennessee Tech",
+      "Record": "4-5",
+      "NET": 233,
+      "KenPom": 283,
+      "BPI": 307,
+      "AP": "NR"
+    },
+    {
+      "Team": "SJSU",
+      "Record": "0-0",
+      "NET": 234,
+      "KenPom": 195,
+      "BPI": 187,
+      "AP": "NR"
+    },
+    {
+      "Team": "Missouri St.",
+      "Record": "5-4",
+      "NET": 235,
+      "KenPom": 239,
+      "BPI": 251,
+      "AP": "NR"
+    },
+    {
+      "Team": "Montana",
+      "Record": "5-6",
+      "NET": 236,
+      "KenPom": 211,
+      "BPI": 228,
+      "AP": "NR"
+    },
+    {
+      "Team": "Rice",
+      "Record": "4-6",
+      "NET": 237,
+      "KenPom": 235,
+      "BPI": 165,
+      "AP": "NR"
+    },
+    {
+      "Team": "Monmouth",
+      "Record": "5-5",
+      "NET": 238,
+      "KenPom": 233,
+      "BPI": 198,
+      "AP": "NR"
+    },
+    {
+      "Team": "Portland",
+      "Record": "5-4",
+      "NET": 239,
+      "KenPom": 234,
+      "BPI": 320,
+      "AP": "NR"
+    },
+    {
+      "Team": "Wagner",
+      "Record": "3-5",
+      "NET": 240,
+      "KenPom": 300,
+      "BPI": 330,
+      "AP": "NR"
+    },
+    {
+      "Team": "Stony Brook",
+      "Record": "6-3",
+      "NET": 241,
+      "KenPom": 248,
+      "BPI": 265,
+      "AP": "NR"
+    },
+    {
+      "Team": "Queens (NC)",
+      "Record": "4-5",
+      "NET": 242,
+      "KenPom": 214,
+      "BPI": 240,
+      "AP": "NR"
+    },
+    {
+      "Team": "App State",
+      "Record": "6-4",
+      "NET": 243,
+      "KenPom": 247,
+      "BPI": 182,
+      "AP": "NR"
+    },
+    {
+      "Team": "Campbell",
+      "Record": "5-5",
+      "NET": 244,
+      "KenPom": 227,
+      "BPI": 201,
+      "AP": "NR"
+    },
+    {
+      "Team": "Howard",
+      "Record": "6-4",
+      "NET": 245,
+      "KenPom": 268,
+      "BPI": 263,
+      "AP": "NR"
+    },
+    {
+      "Team": "Saint Joseph's",
+      "Record": "5-4",
+      "NET": 246,
+      "KenPom": 198,
+      "BPI": 167,
+      "AP": "NR"
+    },
+    {
+      "Team": "Old Dominion",
+      "Record": "3-6",
+      "NET": 247,
+      "KenPom": 222,
+      "BPI": 213,
+      "AP": "NR"
+    },
+    {
+      "Team": "Dartmouth",
+      "Record": "3-6",
+      "NET": 248,
+      "KenPom": 251,
+      "BPI": 254,
+      "AP": "NR"
+    },
+    {
+      "Team": "Fairfield",
+      "Record": "5-4",
+      "NET": 249,
+      "KenPom": 284,
+      "BPI": 261,
+      "AP": "NR"
+    },
+    {
+      "Team": "Bellarmine",
+      "Record": "4-6",
+      "NET": 250,
+      "KenPom": 244,
+      "BPI": 302,
+      "AP": "NR"
+    },
+    {
+      "Team": "Omaha",
+      "Record": "5-6",
+      "NET": 251,
+      "KenPom": 245,
+      "BPI": 282,
+      "AP": "NR"
+    },
+    {
+      "Team": "UNC Asheville",
+      "Record": "4-6",
+      "NET": 252,
+      "KenPom": 252,
+      "BPI": 248,
+      "AP": "NR"
+    },
+    {
+      "Team": "Green Bay",
+      "Record": "5-7",
+      "NET": 253,
+      "KenPom": 282,
+      "BPI": 288,
+      "AP": "NR"
+    },
+    {
+      "Team": "Lamar University",
+      "Record": "4-4",
+      "NET": 254,
+      "KenPom": 237,
+      "BPI": 230,
+      "AP": "NR"
+    },
+    {
+      "Team": "Pepperdine",
+      "Record": "2-8",
+      "NET": 255,
+      "KenPom": 255,
+      "BPI": 275,
+      "AP": "NR"
+    },
+    {
+      "Team": "Samford",
+      "Record": "6-5",
+      "NET": 256,
+      "KenPom": 241,
+      "BPI": 210,
+      "AP": "NR"
+    },
+    {
+      "Team": "Merrimack",
+      "Record": "6-5",
+      "NET": 257,
+      "KenPom": 263,
+      "BPI": 245,
+      "AP": "NR"
+    },
+    {
+      "Team": "Jacksonville St.",
+      "Record": "0-0",
+      "NET": 258,
+      "KenPom": 220,
+      "BPI": 174,
+      "AP": "NR"
+    },
+    {
+      "Team": "Detroit Mercy",
+      "Record": "4-5",
+      "NET": 259,
+      "KenPom": 279,
+      "BPI": 294,
+      "AP": "NR"
+    },
+    {
+      "Team": "UMBC",
+      "Record": "6-4",
+      "NET": 260,
+      "KenPom": 270,
+      "BPI": 264,
+      "AP": "NR"
+    },
+    {
+      "Team": "SIUE",
+      "Record": "6-4",
+      "NET": 261,
+      "KenPom": 250,
+      "BPI": 253,
+      "AP": "NR"
+    },
+    {
+      "Team": "Sacramento St.",
+      "Record": "4-6",
+      "NET": 262,
+      "KenPom": 275,
+      "BPI": 305,
+      "AP": "NR"
+    },
+    {
+      "Team": "Long Beach St.",
+      "Record": "2-10",
+      "NET": 263,
+      "KenPom": 258,
+      "BPI": 300,
+      "AP": "NR"
+    },
+    {
+      "Team": "Hampton",
+      "Record": "5-4",
+      "NET": 264,
+      "KenPom": 256,
+      "BPI": 234,
+      "AP": "NR"
+    },
+    {
+      "Team": "Brown",
+      "Record": "5-7",
+      "NET": 265,
+      "KenPom": 236,
+      "BPI": 220,
+      "AP": "NR"
+    },
+    {
+      "Team": "West Ga.",
+      "Record": "5-4",
+      "NET": 266,
+      "KenPom": 310,
+      "BPI": 334,
+      "AP": "NR"
+    },
+    {
+      "Team": "American",
+      "Record": "7-4",
+      "NET": 267,
+      "KenPom": 253,
+      "BPI": 215,
+      "AP": "NR"
+    },
+    {
+      "Team": "UTEP",
+      "Record": "2-5",
+      "NET": 268,
+      "KenPom": 226,
+      "BPI": 242,
+      "AP": "NR"
+    },
+    {
+      "Team": "Texas St.",
+      "Record": "7-4",
+      "NET": 269,
+      "KenPom": 257,
+      "BPI": 205,
+      "AP": "NR"
+    },
+    {
+      "Team": "N.C. A&T",
+      "Record": "0-0",
+      "NET": 270,
+      "KenPom": 306,
+      "BPI": 290,
+      "AP": "NR"
+    },
+    {
+      "Team": "La Salle",
+      "Record": "4-7",
+      "NET": 271,
+      "KenPom": 262,
+      "BPI": 229,
+      "AP": "NR"
+    },
+    {
+      "Team": "East Texas A&M",
+      "Record": "1-0",
+      "NET": 272,
+      "KenPom": 311,
+      "BPI": 287,
+      "AP": "NR"
+    },
+    {
+      "Team": "Evansville",
+      "Record": "4-6",
+      "NET": 273,
+      "KenPom": 271,
+      "BPI": 271,
+      "AP": "NR"
+    },
+    {
+      "Team": "North Ala.",
+      "Record": "5-5",
+      "NET": 274,
+      "KenPom": 267,
+      "BPI": 279,
+      "AP": "NR"
+    },
+    {
+      "Team": "Alabama A&M",
+      "Record": "4-4",
+      "NET": 275,
+      "KenPom": 286,
+      "BPI": 343,
+      "AP": "NR"
+    },
+    {
+      "Team": "Norfolk St.",
+      "Record": "3-7",
+      "NET": 276,
+      "KenPom": 272,
+      "BPI": 207,
+      "AP": "NR"
+    },
+    {
+      "Team": "South Dakota",
+      "Record": "5-5",
+      "NET": 277,
+      "KenPom": 281,
+      "BPI": 311,
+      "AP": "NR"
+    },
+    {
+      "Team": "Houston Christian",
+      "Record": "0-2",
+      "NET": 278,
+      "KenPom": 276,
+      "BPI": 321,
+      "AP": "NR"
+    },
+    {
+      "Team": "WCU",
+      "Record": "0-1",
+      "NET": 279,
+      "KenPom": 280,
+      "BPI": 281,
+      "AP": "NR"
+    },
+    {
+      "Team": "Northern Ariz.",
+      "Record": "0-0",
+      "NET": 280,
+      "KenPom": 290,
+      "BPI": 270,
+      "AP": "NR"
+    },
+    {
+      "Team": "Chattanooga",
+      "Record": "4-6",
+      "NET": 281,
+      "KenPom": 240,
+      "BPI": 212,
+      "AP": "NR"
+    },
+    {
+      "Team": "Eastern Ky.",
+      "Record": "0-0",
+      "NET": 282,
+      "KenPom": 269,
+      "BPI": 232,
+      "AP": "NR"
+    },
+    {
+      "Team": "Presbyterian",
+      "Record": "6-5",
+      "NET": 283,
+      "KenPom": 291,
+      "BPI": 286,
+      "AP": "NR"
+    },
+    {
+      "Team": "Eastern Wash.",
+      "Record": "0-1",
+      "NET": 284,
+      "KenPom": 261,
+      "BPI": 280,
+      "AP": "NR"
+    },
+    {
+      "Team": "Boston U.",
+      "Record": "0-0",
+      "NET": 285,
+      "KenPom": 294,
+      "BPI": 255,
+      "AP": "NR"
+    },
+    {
+      "Team": "Western Mich.",
+      "Record": "0-0",
+      "NET": 286,
+      "KenPom": 277,
+      "BPI": 317,
+      "AP": "NR"
+    },
+    {
+      "Team": "Sacred Heart",
+      "Record": "3-6",
+      "NET": 287,
+      "KenPom": 287,
+      "BPI": 276,
+      "AP": "NR"
+    },
+    {
+      "Team": "Radford",
+      "Record": "3-7",
+      "NET": 288,
+      "KenPom": 254,
+      "BPI": 218,
+      "AP": "NR"
+    },
+    {
+      "Team": "BCU",
+      "Record": "0-1",
+      "NET": 289,
+      "KenPom": 265,
+      "BPI": 247,
+      "AP": "NR"
+    },
+    {
+      "Team": "Saint Peter's",
+      "Record": "4-3",
+      "NET": 290,
+      "KenPom": 292,
+      "BPI": 273,
+      "AP": "NR"
+    },
+    {
+      "Team": "Alabama St.",
+      "Record": "3-7",
+      "NET": 291,
+      "KenPom": 288,
+      "BPI": 299,
+      "AP": "NR"
+    },
+    {
+      "Team": "Oral Roberts",
+      "Record": "4-7",
+      "NET": 292,
+      "KenPom": 298,
+      "BPI": 306,
+      "AP": "NR"
+    },
+    {
+      "Team": "Prairie View",
+      "Record": "3-5",
+      "NET": 293,
+      "KenPom": 299,
+      "BPI": 296,
+      "AP": "NR"
+    },
+    {
+      "Team": "Princeton",
+      "Record": "3-10",
+      "NET": 294,
+      "KenPom": 264,
+      "BPI": 269,
+      "AP": "NR"
+    },
+    {
+      "Team": "SELA",
+      "Record": "0-1",
+      "NET": 295,
+      "KenPom": 274,
+      "BPI": 259,
+      "AP": "NR"
+    },
+    {
+      "Team": "Drexel",
+      "Record": "3-6",
+      "NET": 296,
+      "KenPom": 289,
+      "BPI": 252,
+      "AP": "NR"
+    },
+    {
+      "Team": "Southern U.",
+      "Record": "4-7",
+      "NET": 297,
+      "KenPom": 242,
+      "BPI": 227,
+      "AP": "NR"
+    },
+    {
+      "Team": "Le Moyne",
+      "Record": "4-5",
+      "NET": 298,
+      "KenPom": 301,
+      "BPI": 313,
+      "AP": "NR"
+    },
+    {
+      "Team": "East Carolina",
+      "Record": "3-8",
+      "NET": 299,
+      "KenPom": 278,
+      "BPI": 293,
+      "AP": "NR"
+    },
+    {
+      "Team": "Delaware",
+      "Record": "3-5",
+      "NET": 300,
+      "KenPom": 296,
+      "BPI": 309,
+      "AP": "NR"
+    },
+    {
+      "Team": "Morehead St.",
+      "Record": "2-7",
+      "NET": 301,
+      "KenPom": 307,
+      "BPI": 304,
+      "AP": "NR"
+    },
+    {
+      "Team": "UNC Greensboro",
+      "Record": "2-8",
+      "NET": 302,
+      "KenPom": 293,
+      "BPI": 266,
+      "AP": "NR"
+    },
+    {
+      "Team": "UTSA",
+      "Record": "4-5",
+      "NET": 303,
+      "KenPom": 285,
+      "BPI": 246,
+      "AP": "NR"
+    },
+    {
+      "Team": "UABP",
+      "Record": "1-0",
+      "NET": 304,
+      "KenPom": 345,
+      "BPI": 341,
+      "AP": "NR"
+    },
+    {
+      "Team": "Cal State Bake.",
+      "Record": "1-0",
+      "NET": 305,
+      "KenPom": 309,
+      "BPI": 292,
+      "AP": "NR"
+    },
+    {
+      "Team": "Army West Point",
+      "Record": "4-7",
+      "NET": 306,
+      "KenPom": 334,
+      "BPI": 336,
+      "AP": "NR"
+    },
+    {
+      "Team": "Manhattan",
+      "Record": "4-6",
+      "NET": 307,
+      "KenPom": 314,
+      "BPI": 298,
+      "AP": "NR"
+    },
+    {
+      "Team": "UND",
+      "Record": "4-8",
+      "NET": 308,
+      "KenPom": 322,
+      "BPI": 297,
+      "AP": "NR"
+    },
+    {
+      "Team": "UAlbany",
+      "Record": "3-7",
+      "NET": 309,
+      "KenPom": 305,
+      "BPI": 285,
+      "AP": "NR"
+    },
+    {
+      "Team": "Mercyhurst",
+      "Record": "4-5",
+      "NET": 310,
+      "KenPom": 320,
+      "BPI": 295,
+      "AP": "NR"
+    },
+    {
+      "Team": "Holy Cross",
+      "Record": "5-5",
+      "NET": 311,
+      "KenPom": 332,
+      "BPI": 339,
+      "AP": "NR"
+    },
+    {
+      "Team": "Mount St. Mary's",
+      "Record": "0-0",
+      "NET": 312,
+      "KenPom": 295,
+      "BPI": 284,
+      "AP": "NR"
+    },
+    {
+      "Team": "Air Force",
+      "Record": "3-7",
+      "NET": 313,
+      "KenPom": 324,
+      "BPI": 337,
+      "AP": "NR"
+    },
+    {
+      "Team": "Lehigh",
+      "Record": "3-7",
+      "NET": 314,
+      "KenPom": 312,
+      "BPI": 308,
+      "AP": "NR"
+    },
+    {
+      "Team": "Chicago St.",
+      "Record": "1-8",
+      "NET": 315,
+      "KenPom": 340,
+      "BPI": 344,
+      "AP": "NR"
+    },
+    {
+      "Team": "NIU",
+      "Record": "0-0",
+      "NET": 316,
+      "KenPom": 318,
+      "BPI": 303,
+      "AP": "NR"
+    },
+    {
+      "Team": "Longwood",
+      "Record": "5-5",
+      "NET": 317,
+      "KenPom": 302,
+      "BPI": 250,
+      "AP": "NR"
+    },
+    {
+      "Team": "Jacksonville",
+      "Record": "5-4",
+      "NET": 318,
+      "KenPom": 317,
+      "BPI": 258,
+      "AP": "NR"
+    },
+    {
+      "Team": "Eastern Ill.",
+      "Record": "0-1",
+      "NET": 319,
+      "KenPom": 321,
+      "BPI": 342,
+      "AP": "NR"
+    },
+    {
+      "Team": "Georgia St.",
+      "Record": "1-8",
+      "NET": 320,
+      "KenPom": 328,
+      "BPI": 316,
+      "AP": "NR"
+    },
+    {
+      "Team": "Bucknell",
+      "Record": "2-9",
+      "NET": 321,
+      "KenPom": 303,
+      "BPI": 331,
+      "AP": "NR"
+    },
+    {
+      "Team": "UMass Lowell",
+      "Record": "3-8",
+      "NET": 322,
+      "KenPom": 308,
+      "BPI": 301,
+      "AP": "NR"
+    },
+    {
+      "Team": "IU Indy",
+      "Record": "3-8",
+      "NET": 323,
+      "KenPom": 344,
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "New Hamp",
+      "Record": "3-6",
+      "NET": 324,
+      "KenPom": 330,
+      "BPI": 324,
+      "AP": "NR"
+    },
+    {
+      "Team": "Bryant",
+      "Record": "3-7",
+      "NET": 325,
+      "KenPom": 319,
+      "BPI": 333,
+      "AP": "NR"
+    },
+    {
+      "Team": "Loyola Chicago",
+      "Record": "2-7",
+      "NET": 326,
+      "KenPom": 297,
+      "BPI": 225,
+      "AP": "NR"
+    },
+    {
+      "Team": "NWST",
+      "Record": "0-0",
+      "NET": 327,
+      "KenPom": 304,
+      "BPI": 310,
+      "AP": "NR"
+    },
+    {
+      "Team": "New Hav",
+      "Record": "5-6",
+      "NET": 328,
+      "KenPom": 348,
+      "BPI": 329,
+      "AP": "NR"
+    },
+    {
+      "Team": "Florida A&M",
+      "Record": "2-5",
+      "NET": 329,
+      "KenPom": 341,
+      "BPI": 338,
+      "AP": "NR"
+    },
+    {
+      "Team": "Louisiana",
+      "Record": "1-8",
+      "NET": 330,
+      "KenPom": 316,
+      "BPI": 319,
+      "AP": "NR"
+    },
+    {
+      "Team": "Central Mich.",
+      "Record": "0-0",
+      "NET": 331,
+      "KenPom": 326,
+      "BPI": 318,
+      "AP": "NR"
+    },
+    {
+      "Team": "Ball St.",
+      "Record": "0-0",
+      "NET": 332,
+      "KenPom": 315,
+      "BPI": 260,
+      "AP": "NR"
+    },
+    {
+      "Team": "UMES",
+      "Record": "0-1",
+      "NET": 333,
+      "KenPom": 343,
+      "BPI": 346,
+      "AP": "NR"
+    },
+    {
+      "Team": "Lafayette",
+      "Record": "3-8",
+      "NET": 334,
+      "KenPom": 323,
+      "BPI": 289,
+      "AP": "NR"
+    },
+    {
+      "Team": "Cleveland St.",
+      "Record": "3-7",
+      "NET": 335,
+      "KenPom": 325,
+      "BPI": 312,
+      "AP": "NR"
+    },
+    {
+      "Team": "Kansas City",
+      "Record": "0-9",
+      "NET": 336,
+      "KenPom": 337,
+      "BPI": 340,
+      "AP": "NR"
+    },
+    {
+      "Team": "Little Rock",
+      "Record": "2-8",
+      "NET": 337,
+      "KenPom": 313,
+      "BPI": 322,
+      "AP": "NR"
+    },
+    {
+      "Team": "Canisius",
+      "Record": "4-5",
+      "NET": 338,
+      "KenPom": 347,
+      "BPI": 351,
+      "AP": "NR"
+    },
+    {
+      "Team": "Southern Utah",
+      "Record": "4-7",
+      "NET": 339,
+      "KenPom": 327,
+      "BPI": 327,
+      "AP": "NR"
+    },
+    {
+      "Team": "North Florida",
+      "Record": "2-7",
+      "NET": 340,
+      "KenPom": 339,
+      "BPI": 328,
+      "AP": "NR"
+    },
+    {
+      "Team": "Alcorn",
+      "Record": "1-9",
+      "NET": 341,
+      "KenPom": 336,
+      "BPI": 355,
+      "AP": "NR"
+    },
+    {
+      "Team": "Maine",
+      "Record": "1-10",
+      "NET": 342,
+      "KenPom": 349,
+      "BPI": 323,
+      "AP": "NR"
+    },
+    {
+      "Team": "Texas Southern",
+      "Record": "1-5",
+      "NET": 343,
+      "KenPom": 331,
+      "BPI": 315,
+      "AP": "NR"
+    },
+    {
+      "Team": "VMI",
+      "Record": "4-7",
+      "NET": 344,
+      "KenPom": 333,
+      "BPI": 332,
+      "AP": "NR"
+    },
+    {
+      "Team": "Southern Ind.",
+      "Record": "0-0",
+      "NET": 345,
+      "KenPom": 335,
+      "BPI": 347,
+      "AP": "NR"
+    },
+    {
+      "Team": "Stonehill",
+      "Record": "1-8",
+      "NET": 346,
+      "KenPom": 342,
+      "BPI": 325,
+      "AP": "NR"
+    },
+    {
+      "Team": "NJIT",
+      "Record": "4-7",
+      "NET": 347,
+      "KenPom": 354,
+      "BPI": 354,
+      "AP": "NR"
+    },
+    {
+      "Team": "Loyola Maryland",
+      "Record": "4-6",
+      "NET": 348,
+      "KenPom": 329,
+      "BPI": 314,
+      "AP": "NR"
+    },
+    {
+      "Team": "Stetson",
+      "Record": "4-7",
+      "NET": 349,
+      "KenPom": 346,
+      "BPI": 357,
+      "AP": "NR"
+    },
+    {
+      "Team": "Western Ill.",
+      "Record": "0-0",
+      "NET": 350,
+      "KenPom": 353,
+      "BPI": 352,
+      "AP": "NR"
+    },
+    {
+      "Team": "NC Central",
+      "Record": "3-8",
+      "NET": 351,
+      "KenPom": 351,
+      "BPI": 345,
+      "AP": "NR"
+    },
+    {
+      "Team": "ULM",
+      "Record": "0-0",
+      "NET": 352,
+      "KenPom": 352,
+      "BPI": 353,
+      "AP": "NR"
+    },
+    {
+      "Team": "FDU",
+      "Record": "2-7",
+      "NET": 353,
+      "KenPom": 358,
+      "BPI": 335,
+      "AP": "NR"
+    },
+    {
+      "Team": "Delaware St.",
+      "Record": "3-8",
+      "NET": 354,
+      "KenPom": 355,
+      "BPI": 358,
+      "AP": "NR"
+    },
+    {
+      "Team": "JKST",
+      "Record": "1-8",
+      "NET": 355,
+      "KenPom": 338,
+      "BPI": 349,
+      "AP": "NR"
+    },
+    {
+      "Team": "Niagara",
+      "Record": "2-7",
+      "NET": 356,
+      "KenPom": 356,
+      "BPI": 359,
+      "AP": "NR"
+    },
+    {
+      "Team": "The Citadel",
+      "Record": "2-7",
+      "NET": 357,
+      "KenPom": 357,
+      "BPI": 361,
+      "AP": "NR"
+    },
+    {
+      "Team": "SFPA",
+      "Record": "2-8",
+      "NET": 358,
+      "KenPom": 359,
+      "BPI": 348,
+      "AP": "NR"
+    },
+    {
+      "Team": "Rider",
+      "Record": "1-7",
+      "NET": 359,
+      "KenPom": 350,
+      "BPI": 350,
+      "AP": "NR"
+    },
+    {
+      "Team": "Morg St",
+      "Record": "1-8",
+      "NET": 360,
+      "KenPom": 362,
+      "BPI": 362,
+      "AP": "NR"
+    },
+    {
+      "Team": "GWEB",
+      "Record": "0-12",
+      "NET": 361,
+      "KenPom": 360,
+      "BPI": 363,
+      "AP": "NR"
+    },
+    {
+      "Team": "South Carolina St.",
+      "Record": "0-1",
+      "NET": 362,
+      "KenPom": 361,
+      "BPI": 360,
+      "AP": "NR"
+    },
+    {
+      "Team": "BING",
+      "Record": "3-7",
+      "NET": 363,
+      "KenPom": 363,
+      "BPI": 356,
+      "AP": "NR"
+    },
+    {
+      "Team": "Mississippi Val.",
+      "Record": "0-1",
+      "NET": 364,
+      "KenPom": 365,
+      "BPI": 365,
+      "AP": "NR"
+    },
+    {
+      "Team": "Coppin St",
+      "Record": "2-10",
+      "NET": 365,
+      "KenPom": 364,
+      "BPI": 364,
+      "AP": "NR"
+    },
+    {
+      "Team": "USC",
+      "Record": "9-1",
+      "NET": "NR",
+      "KenPom": 39,
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "UT Rio Grande Valley",
+      "Record": "0-0",
+      "NET": "NR",
+      "KenPom": 200,
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Iowa State Cyclones",
+      "Record": "4-0",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": 5,
+      "AP": "NR"
+    },
+    {
+      "Team": "Michigan State Spartans",
+      "Record": "4-0",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": 20,
+      "AP": "NR"
+    },
+    {
+      "Team": "USC Trojans",
+      "Record": "0-0",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": 48,
+      "AP": "NR"
+    },
+    {
+      "Team": "UT Rio Grande Valley Vaqueros",
+      "Record": "0-0",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": 170,
+      "AP": "NR"
+    },
+    {
+      "Team": "South Carolina Upstate Spartans",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": 274,
+      "AP": "NR"
+    },
+    {
+      "Team": "IU Indianapolis Jaguars",
+      "Record": "0-0",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": 326,
+      "AP": "NR"
+    },
+    {
+      "Team": "AK-Anchorage",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "AR-Pine Bluff",
+      "Record": "1-9",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "AU Montgomery",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Abilene Chrstn",
+      "Record": "6-3",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Adams St",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Adrian",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Albany St (GA) Golden Rams",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Allegheny",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Angelo State",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Apprentice",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Aquinas",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Ark Baptist",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Arlington Bapt",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Averett",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Bakersfield",
+      "Record": "4-6",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Ball State",
+      "Record": "2-7",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Barber Scotia",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Belmont Abbey",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Benedictne",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Berea",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Bethany (WV)",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Bethel (TN)",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Bethesda",
+      "Record": "0-4",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Bethune",
+      "Record": "3-5",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Biblical Stud",
+      "Record": "0-6",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Blackburn",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Bloomfield",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Bloomsburg",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Bluefield",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Bluefield St",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Bob Jones",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Boston U",
+      "Record": "3-7",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Bowie State",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Boyce",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Brandeis",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Brescia",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Bryan (TN)",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Bryan (TN) Lions",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Bryant Str-Alb",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Buena Vista",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "C Arkansas",
+      "Record": "4-5",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "C Connecticut",
+      "Record": "4-4",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "C Michigan",
+      "Record": "2-6",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "CA Baptist",
+      "Record": "6-3",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "CO Christian",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "CSU Northridge",
+      "Record": "4-5",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Caldwell",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Calumet",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Cameron",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Campbellsville Tigers",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Capital",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Carolina U",
+      "Record": "0-3",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Catawba",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Cent St OH",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Central Penn",
+      "Record": "0-3",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Chaminade",
+      "Record": "0-3",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Champ Chrstn",
+      "Record": "0-3",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Cheyney (PA)",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Christendom",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Christian Bros",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "City (NY)",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Cleary",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Cleary University Cougars",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Cmbrlnd KY",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Coastal",
+      "Record": "6-3",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Coastal GA",
+      "Record": "0-3",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Coe",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Columbia College (SC) Fighting Koalas",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Columbia Int'l",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Concordia (NE)",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Converse",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Crown",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Culver Stock",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Curry",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Dakota St",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Dall Christian",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Dallas",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Defiance",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Dicknsn PA",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Dist Columbia",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Doane",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Dominican CA",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Dominican IL",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "E Illinois",
+      "Record": "2-8",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "E Kentucky",
+      "Record": "3-7",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "E Michigan",
+      "Record": "5-5",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "E Texas A&M",
+      "Record": "4-4",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "E Washington",
+      "Record": "2-6",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "EMERSON",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "East West",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Eastern",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Eastern Oregon",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Ecclesia",
+      "Record": "0-3",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Ecclesia Royals",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Elizabeth City",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Elms",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Embry Rid (AZ)",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Emmanuel (MA)",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Erskine",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Eureka",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Evergreen",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "FL Memorial",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Fisher",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Fisk",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Fort Valley St",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Franciscan",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Frank Pierce",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Ft Lauderdale",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Fullerton",
+      "Record": "3-7",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "G Washington",
+      "Record": "7-3",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "GA Southern",
+      "Record": "7-5",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Gallaudet",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Geneva",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Georgian Court",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Gwynedd Mercy",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Han LaGrange",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Hanover",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Haskell",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Hawai'i Hilo",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Hawaii Pac",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Hawai\u2019i",
+      "Record": "9-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Holy Cross Col",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Hou Christian",
+      "Record": "4-4",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Howard Payne",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Humboldt",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Hunting AL",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "IU Columbus",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "IU East",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Illinois Tech",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Iowa St",
+      "Record": "1-0",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Iowa State",
+      "Record": "9-0",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": 3
+    },
+    {
+      "Team": "Jamestown",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Jarvis Chrstn",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Jax State",
+      "Record": "3-4",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Jessup",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "John Brown",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "John Jay",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Johnson C Smth",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Johnson Wales",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Justice",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "KCU",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Kean",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Kent State",
+      "Record": "9-0",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Kentucky St",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "LA Christian",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "LMU",
+      "Record": "6-3",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "LaGrange",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Lady of Lake",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Lane",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Lawrence",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Lewis & Clark",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Life Pacific",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Lincoln U (CA)",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Lncstr Bible",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Loras",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Lynchburg",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Lyon",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "MD Eastern",
+      "Record": "4-8",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "MD West St",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "MIT",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "MO So St",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "MTSU",
+      "Record": "5-4",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Maine-Augusta",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Manhatnvll",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Manor",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Mansfield",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Marywood",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Mayville St",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Merch Marn",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Mercy",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Miami",
+      "Record": "7-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Michigan St",
+      "Record": "1-0",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Michigan State",
+      "Record": "0-0",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": 9
+    },
+    {
+      "Team": "Mid Am Chr",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Mid Atl Chrstn",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Midway",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Milligan",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Minnesota Crookston Golden Eagles",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Misericordia",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Miss Valley St",
+      "Record": "1-8",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Miss for Women",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Missouri Bapt",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Mitchell",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Mnhttn Chrstn",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Molloy",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Mount Marty",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Mount St Marys",
+      "Record": "2-8",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Mt Saint Mary",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "N Arizona",
+      "Record": "4-4",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "N Colorado",
+      "Record": "8-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "N Dakota St",
+      "Record": "8-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "N Greenville",
+      "Record": "1-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "N Illinois",
+      "Record": "2-7",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "N Kentucky",
+      "Record": "7-3",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "N'Western St",
+      "Record": "2-6",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "NC A&T",
+      "Record": "4-4",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "NM Highlands",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "NW Indian",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "NW Okla St",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "New College FL",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Nobel",
+      "Record": "0-5",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Northeastern St",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Northwood",
+      "Record": "1-0",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Notre Dame MD",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Oakland City",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Oakwood",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Occidental",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Oglethorpe",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Ohio Christian",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Ohio State",
+      "Record": "6-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Ohio Weslyan",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Old Westbury",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Ottawa (AZ)",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Ozark Chrstn",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "PSU Abington",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "PSU New Kens",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "PSU York",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Pacif. Lutheran",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Park U Gilbert",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Paul Smith's",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Penn State",
+      "Record": "7-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Penn State-She",
+      "Record": "0-4",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Pensacola Chrs",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Peru State",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Pfeiffer",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Piedmont",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Pit Greensburg",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Plattsburgh",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Point",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Puget Sound",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Purdue FW",
+      "Record": "6-5",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "RIT",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Randolph",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Redlands",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Regent",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Regis College",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Regis U",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Reinhardt",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Rhodes",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Rhodes Lynx",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Ripon",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Rob. Wesleyan",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Rockford",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Rowan",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Rust",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Rutgers-Camden",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "S Dakota St",
+      "Record": "5-5",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "S Illinois",
+      "Record": "5-4",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "S Virginia",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "S Wesleyan",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "SC Upstate",
+      "Record": "6-4",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "SE Louisiana",
+      "Record": "3-5",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "SE Missouri",
+      "Record": "4-5",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "SF Austin",
+      "Record": "6-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "SUNY Delhi",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "SUNY-Maritime",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "SUNY-Oneonta",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "SW Adventist",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "SW Christian U",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Saint Leo",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Saint Xavier",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "SalishKootenai",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Salve Regina",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "San Fran St",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "San Jos\u00e9 St",
+      "Record": "5-4",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Santa Barbara",
+      "Record": "8-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Sarah Lawrence",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Scholastic",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Schreiner",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Shaw",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Simpson",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "So Indiana",
+      "Record": "3-7",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Southern Cal.",
+      "Record": "0-0",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": 24
+    },
+    {
+      "Team": "Southern Wesleyan Warriors",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Spring Hill",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "St Elizabeth",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "St John Fisher",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "St John's (MN)",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "St Joseph BKN",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "St Joseph's LI",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "St Mary's",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "St Mary's (MD)",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "St Thomas (MN)",
+      "Record": "8-3",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "St Thomas (TX)",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "St. Ambrose",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "St. Francis IL",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "TN Wesleyan",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Texas A&M-CC",
+      "Record": "2-5",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Texas A&M-SA",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Texas Lutheran",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Tiffin",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Toccoa Falls",
+      "Record": "0-3",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Tougaloo",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Trinity (FL)",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Trinity (IL)",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Trinity Co Jax",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Tusculum",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "UC Merced",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "UHSP",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "UL Monroe",
+      "Record": "3-6",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "UMass",
+      "Record": "7-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "UT Rio Grande",
+      "Record": "3-5",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "UT Southern",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Utah State",
+      "Record": "7-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "VA Lynchburg",
+      "Record": "0-8",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "VT-Lyndon",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "VTSU Johnson",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Valley Forge",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Vassar",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Virginia St",
+      "Record": "1-0",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Voorhees",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "W Carolina",
+      "Record": "4-5",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "W Illinois",
+      "Record": "3-6",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "W Michigan",
+      "Record": "4-5",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "WILMNGTNDE",
+      "Record": "1-0",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "WV Wesleyan",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "WVU Tech Golden Bears",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Warren Wilson",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Wash Adventist",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Wash Coll (MD)",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Wash and Lee",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Waynesburg",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Webster",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "West Coast",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Western KY",
+      "Record": "5-3",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Western NM",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Westminster UT",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Whitman",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Whittier",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "William Carey",
+      "Record": "0-2",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Wilson",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    },
+    {
+      "Team": "Worcester St",
+      "Record": "0-1",
+      "NET": "NR",
+      "KenPom": "NR",
+      "BPI": "NR",
+      "AP": "NR"
+    }
+  ]
+}
