@@ -6,6 +6,9 @@ from pathlib import Path
 import pandas as pd
 
 
+MISSING_OPP_NET = 366
+
+
 def _norm(s):
     s = (s or "").strip().lower()
     s = s.replace("&", " and ")
@@ -114,7 +117,6 @@ def _load_records(data_raw: Path, alias_map: dict):
 
     cols = {c.lower().strip(): c for c in g.columns}
     team_col = cols.get("team")
-    opp_col = cols.get("opponent")
     win_col = cols.get("win?")
 
     if team_col is None:
@@ -174,11 +176,9 @@ def _compute_sos_rank(data_raw: Path, alias_map: dict, net_df: pd.DataFrame):
     tmp["OppCanon"] = tmp[opp_col].astype(str).map(lambda x: canon_team(x, alias_map))
     tmp["TeamKey"] = tmp["TeamCanon"].map(_team_key)
     tmp["OppKey"] = tmp["OppCanon"].map(_team_key)
-    tmp["OppNET"] = tmp["OppKey"].map(net_map)
 
-    tmp = tmp.dropna(subset=["OppNET"])
-    if tmp.empty:
-        return pd.DataFrame(columns=["Team", "SOS"])
+    tmp["OppNET"] = tmp["OppKey"].map(net_map)
+    tmp["OppNET"] = tmp["OppNET"].fillna(MISSING_OPP_NET).astype(int)
 
     avg = tmp.groupby("TeamKey", as_index=False)["OppNET"].mean()
     avg = avg.sort_values("OppNET", ascending=True)
