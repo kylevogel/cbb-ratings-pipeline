@@ -25,22 +25,10 @@ def _norm(s):
 
 
 def _team_key(team_name: str) -> str:
-    """
-    Canonical join key for merging between sources.
-    Handles the biggest mismatch you’re seeing: "St." vs "State".
-    Also handles common shorthand: UNC, UConn, etc.
-    """
     t = _norm(team_name)
-
-    # common shorthands
     t = re.sub(r"\buconn\b", "connecticut", t)
     t = re.sub(r"\bunc\b", "north carolina", t)
-
-    # st -> state (very common across rankings vs ESPN)
-    # convert standalone "st" token to "state"
     t = re.sub(r"\bst\b", "state", t)
-
-    # clean spaces again
     t = re.sub(r"\s+", " ", t).strip()
     return t
 
@@ -65,7 +53,6 @@ def _find_latest_csv(search_root: Path, name_keywords):
 
 
 def _safe_read_csv(path: Path):
-    # alias file can have stray commas -> use python engine + skip bad lines
     try:
         return pd.read_csv(path, dtype=str)
     except Exception:
@@ -73,10 +60,6 @@ def _safe_read_csv(path: Path):
 
 
 def _read_alias_map(base_dir: Path):
-    """
-    Returns mapping from TeamKey -> PreferredDisplayName
-    We use this only to choose the display name, not the join key.
-    """
     explicit = base_dir / "team_alias.csv"
     alias_file = explicit if explicit.exists() else None
 
@@ -98,7 +81,6 @@ def _read_alias_map(base_dir: Path):
     df = df.fillna("")
     cols = {c.lower().strip(): c for c in df.columns}
 
-    # prefer ESPN->Team format if present
     if "espn" in cols and ("team" in cols or "canonical" in cols or "school" in cols):
         espn_col = cols["espn"]
         team_col = cols.get("team", cols.get("canonical", cols.get("school")))
@@ -111,7 +93,6 @@ def _read_alias_map(base_dir: Path):
                 m[_team_key(c)] = c
         return m
 
-    # fallback: first col = alias, second col = canonical
     if df.shape[1] >= 2:
         c0, c1 = df.columns[0], df.columns[1]
         m = {}
@@ -244,12 +225,11 @@ def main():
     bpi = _load_rank_file(bpi_path) if bpi_path else pd.DataFrame(columns=["Team", "Rank", "TeamKey"])
     ap = _load_rank_file(ap_path) if ap_path else pd.DataFrame(columns=["Team", "Rank", "TeamKey"])
 
-    # build master list of keys
-    all_keys = set(net["TeamKey"]).union(kp["TeamKey"]).union(bpi["TeamKey"]).union(ap["TeamKey"]).union(records.keys())
+    # ✅ ONLY show teams that appear in NET (the 365-team universe)
+    all_keys = set(net["TeamKey"].dropna().tolist())
 
     out = pd.DataFrame({"TeamKey": sorted(all_keys)})
 
-    # choose display name priority: alias map > NET > KenPom > BPI > AP > key
     net_name = net.groupby("TeamKey")["Team"].first()
     kp_name = kp.groupby("TeamKey")["Team"].first()
     bpi_name = bpi.groupby("TeamKey")["Team"].first()
@@ -269,11 +249,8 @@ def main():
         return k
 
     out["Team"] = out["TeamKey"].map(display_for_key)
-
-    # records
     out["Record"] = out["TeamKey"].map(lambda k: records.get(k, "0-0"))
 
-    # merge rankings on TeamKey
     net2 = net[["TeamKey", "Rank"]].rename(columns={"Rank": "NET"})
     kp2 = kp[["TeamKey", "Rank"]].rename(columns={"Rank": "KenPom"})
     bpi2 = bpi[["TeamKey", "Rank"]].rename(columns={"Rank": "BPI"})
@@ -303,10 +280,7 @@ def main():
     out = out.sort_values(by=["NET", "KenPom", "BPI"], key=lambda s: s.map(sort_key), ascending=True)
     out = out[["Team", "Record", "NET", "KenPom", "BPI", "AP"]].reset_index(drop=True)
 
-    payload = {
-        "updated": _now_et_string(),
-        "rows": out.to_dict(orient="records"),
-    }
+    payload = {"updated": _now_et_string(), "rows": out.to_dict(orient="records")}
 
     docs_data = base_dir / "docs" / "data"
     docs_data.mkdir(parents=True, exist_ok=True)
