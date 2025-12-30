@@ -6,24 +6,11 @@ from pathlib import Path
 import pandas as pd
 
 
-MISSING_OPP_NET = 366
-
-
 def _norm(s):
     s = (s or "").strip().lower()
-    s = s.replace("&", " and ")
-    s = re.sub(r"[^a-z0-9\s]", " ", s)
-    s = re.sub(r"\s+", " ", s).strip()
+    s = re.sub(r"[^\w\s]", "", s)
+    s = re.sub(r"\s+", " ", s)
     return s
-
-
-def _team_key(s):
-    t = _norm(s)
-    t = re.sub(r"\buconn\b", "connecticut", t)
-    t = re.sub(r"\bunc\b", "north carolina", t)
-    t = re.sub(r"\bst\b", "state", t)
-    t = re.sub(r"\s+", " ", t).strip()
-    return t
 
 
 def load_alias_map(path: Path):
@@ -49,176 +36,154 @@ def canon_team(name, alias_map):
     return alias_map.get(_norm(s), s)
 
 
-def _safe_read_csv(p: Path):
+def _safe_read_csv(path: Path):
+    if path is None or not Path(path).exists():
+        return None
     try:
-        return pd.read_csv(p)
+        return pd.read_csv(path)
     except Exception:
         try:
-            return pd.read_csv(p, engine="python", on_bad_lines="skip")
+            return pd.read_csv(path, engine="python", on_bad_lines="skip")
         except Exception:
             return None
 
 
-def _latest_file_by_contains(folder: Path, contains_tokens):
-    toks = [t.lower() for t in contains_tokens]
-    best = None
-    best_mtime = None
-    for p in folder.glob("*.csv"):
+def _pick_existing(data_raw: Path, preferred_names):
+    for n in preferred_names:
+        p = data_raw / n
+        if p.exists():
+            return p
+    return None
+
+
+def _pick_by_contains(data_raw: Path, substrings):
+    subs = [s.lower() for s in substrings]
+    matches = []
+    for p in data_raw.glob("*.csv"):
         name = p.name.lower()
-        if all(t in name for t in toks):
-            m = p.stat().st_mtime
-            if best is None or m > best_mtime:
-                best = p
-                best_mtime = m
-    return best
+        if all(s in name for s in subs):
+            matches.append(p)
+    if not matches:
+        return None
+    matches = sorted(matches)
+    return matches[-1]
 
 
 def load_rank(path: Path, team_col: str, rank_col: str, out_col: str, alias_map: dict):
-    if path is None or not path.exists():
-        return pd.DataFrame(columns=["Team", "TeamKey", out_col])
-    df = _safe_read_csv(path)
+    if path is None or not Path(path).exists():
+        return pd.DataFrame(columns=["Team", out_col])
+    df = _safe_read_csv(Path(path))
     if df is None or df.empty:
-        return pd.DataFrame(columns=["Team", "TeamKey", out_col])
+        return pd.DataFrame(columns=["Team", out_col])
     if team_col not in df.columns or rank_col not in df.columns:
-        return pd.DataFrame(columns=["Team", "TeamKey", out_col])
-
+        return pd.DataFrame(columns=["Team", out_col])
     out = df[[team_col, rank_col]].copy()
     out["Team"] = out[team_col].astype(str).map(lambda x: canon_team(x, alias_map))
-    out["TeamKey"] = out["Team"].map(_team_key)
     out[out_col] = pd.to_numeric(out[rank_col], errors="coerce")
-
-    out = out.dropna(subset=[out_col])
-    out = out.drop_duplicates(subset=["TeamKey"], keep="first")
-    return out[["Team", "TeamKey", out_col]]
+    out = out.dropna(subset=[out_col]).drop_duplicates(subset=["Team"], keep="first")
+    return out[["Team", out_col]]
 
 
-def to_int_or_blank(v):
-    if pd.isna(v):
-        return ""
-    try:
-        return int(v)
-    except Exception:
-        return ""
+def load_records(data_raw: Path, alias_map: dict):
+    p = _pick_by_contains(data_raw, ["games", "2024"])
+    if p is None:
+        p = _pick_by_contains(data_raw, ["games"])
+    if p is None:
+        return pd.DataFrame(columns=["Team", "Record"])
 
+    df = _safe_read_csv(p)
+    if df is None or df.empty or "Team" not in df.columns:
+        return pd.DataFrame(columns=["Team", "Record"])
 
-def ap_val(v):
-    if pd.isna(v):
-        return "NR"
-    try:
-        return int(v)
-    except Exception:
-        return "NR"
+    tmp = df.copy()
+    tmp["Team"] = tmp["Team"].astype(str).map(lambda x: canon_team(x, alias_map))
 
-
-def _load_records(data_raw: Path, alias_map: dict):
-    games_path = _latest_file_by_contains(data_raw, ["games"])
-    if games_path is None:
-        return pd.DataFrame(columns=["TeamKey", "Record"])
-
-    g = _safe_read_csv(games_path)
-    if g is None or g.empty:
-        return pd.DataFrame(columns=["TeamKey", "Record"])
-
-    cols = {c.lower().strip(): c for c in g.columns}
-    team_col = cols.get("team")
-    win_col = cols.get("win?")
-
-    if team_col is None:
-        return pd.DataFrame(columns=["TeamKey", "Record"])
-
-    tmp = g.copy()
-    tmp["Team"] = tmp[team_col].astype(str).map(lambda x: canon_team(x, alias_map))
-    tmp["TeamKey"] = tmp["Team"].map(_team_key)
-
+    win_col = "Win?" if "Win?" in tmp.columns else ("Win" if "Win" in tmp.columns else None)
     if win_col is not None:
         v = tmp[win_col].astype(str).str.strip().str.lower()
         is_win = v.isin({"w", "win", "true", "t", "1", "yes", "y"})
         is_loss = v.isin({"l", "loss", "false", "f", "0", "no", "n"})
     else:
-        ts_col = cols.get("team_score")
-        os_col = cols.get("opponent_score")
-        if ts_col is None or os_col is None:
-            return pd.DataFrame(columns=["TeamKey", "Record"])
-        ts = pd.to_numeric(tmp[ts_col], errors="coerce")
-        os = pd.to_numeric(tmp[os_col], errors="coerce")
-        is_win = (ts > os) & ts.notna() & os.notna()
-        is_loss = (ts < os) & ts.notna() & os.notna()
+        if "Team_Score" in tmp.columns and "Opponent_Score" in tmp.columns:
+            ts = pd.to_numeric(tmp["Team_Score"], errors="coerce")
+            os_ = pd.to_numeric(tmp["Opponent_Score"], errors="coerce")
+            is_win = (ts > os_) & ts.notna() & os_.notna()
+            is_loss = (ts < os_) & ts.notna() & os_.notna()
+        else:
+            return pd.DataFrame(columns=["Team", "Record"])
 
     rec = (
         tmp.assign(_W=is_win.astype(int), _L=is_loss.astype(int))
-        .groupby("TeamKey", as_index=False)[["_W", "_L"]]
+        .groupby("Team", as_index=False)[["_W", "_L"]]
         .sum()
     )
     rec["Record"] = rec["_W"].astype(int).astype(str) + "-" + rec["_L"].astype(int).astype(str)
-    return rec[["TeamKey", "Record"]]
+    return rec[["Team", "Record"]]
 
 
-def _compute_sos_rank_full_1_to_365(data_raw: Path, alias_map: dict, net_df: pd.DataFrame):
-    """
-    SOS is based on the average NET rating of ALL opponents on the schedule.
-    If opponent has no NET rank, treat as 366.
-    Then rank the 365 NET teams from 1..365 (no gaps), lowest avg opponent NET = SOS rank 1.
-    """
-    # NET universe (365 teams)
-    net_base = net_df[["Team", "TeamKey", "NET"]].copy()
-    net_base["NET"] = pd.to_numeric(net_base["NET"], errors="coerce")
-    net_base = net_base.dropna(subset=["NET"])
-    net_base = net_base[(net_base["NET"] >= 1) & (net_base["NET"] <= 365)]
-    net_base = net_base.drop_duplicates(subset=["TeamKey"], keep="first")
+def load_sos(data_raw: Path, alias_map: dict, net_df: pd.DataFrame):
+    p = _pick_by_contains(data_raw, ["games", "2024"])
+    if p is None:
+        p = _pick_by_contains(data_raw, ["games"])
+    if p is None:
+        return pd.DataFrame(columns=["Team", "Strength of Schedule"])
 
-    # map opponent TeamKey -> NET
-    net_map = dict(zip(net_base["TeamKey"], net_base["NET"].astype(int)))
+    games = _safe_read_csv(p)
+    if games is None or games.empty or "Team" not in games.columns or "Opponent" not in games.columns:
+        return pd.DataFrame(columns=["Team", "Strength of Schedule"])
 
-    games_path = _latest_file_by_contains(data_raw, ["games"])
-    if games_path is None:
-        # no games -> everyone gets avg 366 then rank by NET as tie-break
-        net_base["OppNET_Avg"] = float(MISSING_OPP_NET)
-        net_base = net_base.sort_values(["OppNET_Avg", "NET", "Team"], ascending=[True, True, True]).reset_index(drop=True)
-        net_base["SOS"] = range(1, len(net_base) + 1)
-        return net_base[["TeamKey", "SOS"]]
+    games = games.copy()
+    games["Team"] = games["Team"].astype(str).map(lambda x: canon_team(x, alias_map))
+    games["Opponent"] = games["Opponent"].astype(str).map(lambda x: canon_team(x, alias_map))
 
-    g = _safe_read_csv(games_path)
-    if g is None or g.empty:
-        net_base["OppNET_Avg"] = float(MISSING_OPP_NET)
-        net_base = net_base.sort_values(["OppNET_Avg", "NET", "Team"], ascending=[True, True, True]).reset_index(drop=True)
-        net_base["SOS"] = range(1, len(net_base) + 1)
-        return net_base[["TeamKey", "SOS"]]
+    net_map = net_df.set_index("Team")["NET"].to_dict()
+    games["Opp_NET"] = games["Opponent"].map(net_map)
+    games["Opp_NET"] = pd.to_numeric(games["Opp_NET"], errors="coerce").fillna(366)
 
-    cols = {c.lower().strip(): c for c in g.columns}
-    team_col = cols.get("team")
-    opp_col = cols.get("opponent")
-    if team_col is None or opp_col is None:
-        net_base["OppNET_Avg"] = float(MISSING_OPP_NET)
-        net_base = net_base.sort_values(["OppNET_Avg", "NET", "Team"], ascending=[True, True, True]).reset_index(drop=True)
-        net_base["SOS"] = range(1, len(net_base) + 1)
-        return net_base[["TeamKey", "SOS"]]
+    avg = games.groupby("Team", as_index=False)["Opp_NET"].mean()
+    avg = avg.rename(columns={"Opp_NET": "Opp_NET_AVG"})
 
-    tmp = g[[team_col, opp_col]].copy()
-    tmp["TeamCanon"] = tmp[team_col].astype(str).map(lambda x: canon_team(x, alias_map))
-    tmp["OppCanon"] = tmp[opp_col].astype(str).map(lambda x: canon_team(x, alias_map))
-    tmp["TeamKey"] = tmp["TeamCanon"].map(_team_key)
-    tmp["OppKey"] = tmp["OppCanon"].map(_team_key)
+    base = pd.DataFrame({"Team": net_df["Team"].astype(str).tolist()})
+    base = base.merge(avg, on="Team", how="left")
+    base["Opp_NET_AVG"] = base["Opp_NET_AVG"].fillna(366)
 
-    # only compute SOS for the NET universe teams
-    tmp = tmp[tmp["TeamKey"].isin(set(net_base["TeamKey"]))].copy()
+    base = base.sort_values(["Opp_NET_AVG", "Team"], ascending=[True, True]).reset_index(drop=True)
+    base["Strength of Schedule"] = range(1, len(base) + 1)
 
-    # opponent NET, default 366
-    tmp["OppNET"] = tmp["OppKey"].map(net_map)
-    tmp["OppNET"] = tmp["OppNET"].fillna(MISSING_OPP_NET).astype(int)
+    return base[["Team", "Strength of Schedule"]]
 
-    # average opponent NET across ENTIRE schedule
-    opp_avg = tmp.groupby("TeamKey", as_index=False)["OppNET"].mean()
-    opp_avg = opp_avg.rename(columns={"OppNET": "OppNET_Avg"})
 
-    # merge onto full NET list; teams with zero games get 366 avg
-    net_base = net_base.merge(opp_avg, on="TeamKey", how="left")
-    net_base["OppNET_Avg"] = net_base["OppNET_Avg"].fillna(float(MISSING_OPP_NET))
+def _to_int_or_blank(v):
+    if pd.isna(v):
+        return ""
+    try:
+        return int(v)
+    except Exception:
+        return ""
 
-    # rank 1..365 with no gaps: use ordering then assign sequential integers
-    net_base = net_base.sort_values(["OppNET_Avg", "NET", "Team"], ascending=[True, True, True]).reset_index(drop=True)
-    net_base["SOS"] = range(1, len(net_base) + 1)
 
-    return net_base[["TeamKey", "SOS"]]
+def _ap_or_nr(v):
+    if pd.isna(v):
+        return "NR"
+    try:
+        return int(v)
+    except Exception:
+        return "NR"
+
+
+def load_previous(out_path: Path):
+    if not out_path.exists():
+        return pd.DataFrame(columns=["Team", "KenPom", "BPI", "AP", "Record", "Strength of Schedule"])
+    try:
+        payload = json.loads(out_path.read_text(encoding="utf-8"))
+        rows = payload.get("rows", [])
+        df = pd.DataFrame(rows)
+        if "Team" not in df.columns:
+            return pd.DataFrame(columns=["Team", "KenPom", "BPI", "AP", "Record", "Strength of Schedule"])
+        keep = [c for c in ["Team", "KenPom", "BPI", "AP", "Record", "Strength of Schedule"] if c in df.columns]
+        return df[keep].copy()
+    except Exception:
+        return pd.DataFrame(columns=["Team", "KenPom", "BPI", "AP", "Record", "Strength of Schedule"])
 
 
 def main():
@@ -226,56 +191,103 @@ def main():
     data_raw = root / "data_raw"
     out_dir = root / "docs" / "data"
     out_dir.mkdir(parents=True, exist_ok=True)
+    out_path = out_dir / "rankings_current.json"
 
     alias_path = data_raw / "team_alias.csv"
     if not alias_path.exists():
         alias_path = root / "team_alias.csv"
-    alias_map = load_alias_map(alias_path) if alias_path.exists() else {}
+    alias_map = load_alias_map(alias_path)
 
-    net_path = data_raw / "NET_Rank.csv"
-    kp_path = data_raw / "KenPom_Rank.csv"
-    bpi_path = data_raw / "BPI_Rank.csv"
-    ap_path = data_raw / "AP_Rank.csv"
+    net_path = _pick_existing(data_raw, ["NET_Rank.csv", "net_rank.csv", "NET.csv", "net.csv"])
+    kp_path = _pick_existing(data_raw, ["KenPom_Rank.csv", "kenpom_rank.csv", "KenPom.csv", "kenpom.csv"])
+    bpi_path = _pick_existing(data_raw, ["BPI_Rank.csv", "bpi_rank.csv", "BPI.csv", "bpi.csv"])
+    ap_path = _pick_existing(data_raw, ["AP_Rank.csv", "ap_rank.csv", "AP.csv", "ap.csv"])
+
+    if bpi_path is None:
+        bpi_path = _pick_by_contains(data_raw, ["bpi"])
+    if ap_path is None:
+        ap_path = _pick_by_contains(data_raw, ["ap"])
+    if kp_path is None:
+        kp_path = _pick_by_contains(data_raw, ["kenpom"])
+    if net_path is None:
+        net_path = _pick_by_contains(data_raw, ["net"])
 
     net = load_rank(net_path, "Team", "NET_Rank", "NET", alias_map)
-    kp = load_rank(kp_path, "Team", "KenPom_Rank", "KenPom", alias_map)
-    bpi = load_rank(bpi_path, "Team", "BPI_Rank", "BPI", alias_map)
-    ap = load_rank(ap_path, "Team", "AP_Rank", "AP", alias_map)
+    if net.empty and net_path is not None:
+        df_try = _safe_read_csv(net_path)
+        if df_try is not None and "Team" in df_try.columns:
+            for c in ["NET", "Rank", "NET Rank", "NET_Rank"]:
+                if c in df_try.columns:
+                    net = load_rank(net_path, "Team", c, "NET", alias_map)
+                    break
 
-    # enforce NET universe 1..365 only (and remove non-NET teams from dashboard)
     net["NET"] = pd.to_numeric(net["NET"], errors="coerce")
     net = net.dropna(subset=["NET"])
     net = net[(net["NET"] >= 1) & (net["NET"] <= 365)]
-    net = net.drop_duplicates(subset=["TeamKey"], keep="first")
+    net = net.drop_duplicates(subset=["Team"], keep="first")
 
-    rec = _load_records(data_raw, alias_map)
-    sos = _compute_sos_rank_full_1_to_365(data_raw, alias_map, net)
+    prev = load_previous(out_path)
 
-    df = net[["Team", "TeamKey", "NET"]].copy()
-    df = df.merge(rec, on="TeamKey", how="left")
-    df = df.merge(sos, on="TeamKey", how="left")
-    df = df.merge(kp[["TeamKey", "KenPom"]], on="TeamKey", how="left")
-    df = df.merge(bpi[["TeamKey", "BPI"]], on="TeamKey", how="left")
-    df = df.merge(ap[["TeamKey", "AP"]], on="TeamKey", how="left")
+    kp = load_rank(kp_path, "Team", "KenPom_Rank", "KenPom", alias_map)
+    if kp.empty and kp_path is not None:
+        df_try = _safe_read_csv(kp_path)
+        if df_try is not None and "Team" in df_try.columns:
+            for c in ["KenPom", "Rank", "KenPom Rank", "KenPom_Rank"]:
+                if c in df_try.columns:
+                    kp = load_rank(kp_path, "Team", c, "KenPom", alias_map)
+                    break
+
+    bpi = load_rank(bpi_path, "Team", "BPI_Rank", "BPI", alias_map)
+    if bpi.empty and bpi_path is not None:
+        df_try = _safe_read_csv(bpi_path)
+        if df_try is not None and "Team" in df_try.columns:
+            for c in ["BPI", "Rank", "BPI Rank", "BPI_Rank"]:
+                if c in df_try.columns:
+                    bpi = load_rank(bpi_path, "Team", c, "BPI", alias_map)
+                    break
+
+    ap = load_rank(ap_path, "Team", "AP_Rank", "AP", alias_map)
+    if ap.empty and ap_path is not None:
+        df_try = _safe_read_csv(ap_path)
+        if df_try is not None and "Team" in df_try.columns:
+            for c in ["AP", "Rank", "AP Rank", "AP_Rank"]:
+                if c in df_try.columns:
+                    ap = load_rank(ap_path, "Team", c, "AP", alias_map)
+                    break
+
+    rec = load_records(data_raw, alias_map)
+    sos = load_sos(data_raw, alias_map, net)
+
+    df = net.merge(sos, on="Team", how="left").merge(kp, on="Team", how="left").merge(bpi, on="Team", how="left").merge(ap, on="Team", how="left")
+
+    if not rec.empty:
+        df = df.merge(rec, on="Team", how="left")
+    else:
+        df["Record"] = ""
+
+    for col in ["KenPom", "BPI", "AP", "Record", "Strength of Schedule"]:
+        if col in prev.columns and col in df.columns:
+            df[col] = df[col].where(
+                df[col].notna() & (df[col].astype(str) != ""),
+                prev.set_index("Team").reindex(df["Team"])[col].values,
+            )
 
     df = df.sort_values("NET", na_position="last")
 
-    df["Record"] = df["Record"].fillna("0-0")
-    df["NET"] = df["NET"].apply(to_int_or_blank)
-    df["SOS"] = df["SOS"].apply(to_int_or_blank)
-    df["KenPom"] = df["KenPom"].apply(to_int_or_blank)
-    df["BPI"] = df["BPI"].apply(to_int_or_blank)
-    df["AP"] = df["AP"].apply(ap_val)
-
-    ts = datetime.now().strftime("%Y-%m-%d %H:%M")
+    df["Record"] = df["Record"].fillna("")
+    df["Strength of Schedule"] = df["Strength of Schedule"].apply(_to_int_or_blank)
+    df["NET"] = df["NET"].apply(_to_int_or_blank)
+    df["KenPom"] = df["KenPom"].apply(_to_int_or_blank)
+    df["BPI"] = df["BPI"].apply(_to_int_or_blank)
+    df["AP"] = df["AP"].apply(_ap_or_nr)
 
     payload = {
-        "updated": ts,
-        "last_updated": ts,
-        "rows": df[["Team", "Record", "SOS", "NET", "KenPom", "BPI", "AP"]].to_dict(orient="records"),
+        "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "rows": df[["Team", "Record", "Strength of Schedule", "NET", "KenPom", "BPI", "AP"]].to_dict(orient="records"),
     }
 
-    (out_dir / "rankings_current.json").write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+    out_path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+    print(f"Wrote {out_path}")
 
 
 if __name__ == "__main__":
