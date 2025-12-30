@@ -1,41 +1,41 @@
-from pathlib import Path
-from datetime import date
 import pandas as pd
 import requests
+from pathlib import Path
 
 URL = "https://www.ncaa.com/rankings/basketball-men/d1/ncaa-mens-basketball-net-rankings"
-
-def pick_net_table(tables):
-    best = None
-    best_score = -1
-    for t in tables:
-        cols = [str(c).strip() for c in t.columns]
-        score = int("Rank" in cols) + int("School" in cols) + int("Record" in cols)
-        if score > best_score:
-            best_score = score
-            best = t
-    if best is None or best_score < 2:
-        raise RuntimeError("Could not find NET table on the NCAA page.")
-    return best
 
 def main():
     root = Path(__file__).resolve().parent
     out_path = root / "data_raw" / "NET_Rank.csv"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    headers = {"User-Agent": "Mozilla/5.0"}
-    html = requests.get(URL, headers=headers, timeout=30).text
-    tables = pd.read_html(html)
-    df = pick_net_table(tables).copy()
-    df.columns = [str(c).strip() for c in df.columns]
+    r = requests.get(
+        URL,
+        headers={"User-Agent": "Mozilla/5.0"},
+        timeout=30,
+    )
+    r.raise_for_status()
 
-    out = pd.DataFrame({
-        "snapshot_date": date.today().isoformat(),
-        "Team": df["School"].astype(str),
-        "NET_Rank": pd.to_numeric(df["Rank"], errors="coerce"),
-    }).dropna(subset=["NET_Rank"])
+    tables = pd.read_html(r.text)
+    df = None
+    for t in tables:
+        cols = {c.lower().strip(): c for c in t.columns}
+        if "rank" in cols and "school" in cols and "record" in cols:
+            df = t.rename(columns={cols["rank"]: "NET_Rank", cols["school"]: "Team", cols["record"]: "Record"}).copy()
+            break
 
-    out.to_csv(out_path, index=False)
-    print(f"Wrote {len(out)} rows to {out_path}")
+    if df is None or df.empty:
+        raise RuntimeError("Could not find NET rankings table with Rank/School/Record columns.")
+
+    df["Team"] = df["Team"].astype(str).str.strip()
+    df["Record"] = df["Record"].astype(str).str.strip()
+    df["NET_Rank"] = pd.to_numeric(df["NET_Rank"], errors="coerce")
+    df = df.dropna(subset=["NET_Rank"])
+    df["NET_Rank"] = df["NET_Rank"].astype(int)
+
+    df = df[["Team", "NET_Rank", "Record"]].drop_duplicates(subset=["Team"], keep="first")
+    df.to_csv(out_path, index=False)
+    print(f"Wrote {out_path}")
 
 if __name__ == "__main__":
     main()
