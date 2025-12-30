@@ -246,7 +246,19 @@ def main():
     net = net[(net["NET"] >= 1) & (net["NET"] <= 365)]
     net = net.drop_duplicates(subset=["TeamKey"], keep="first")
 
-    rec = _load_records_completed_only(data_raw, alias_map)
+    net_raw = _safe_read_csv(net_path)
+    rec = pd.DataFrame(columns=["TeamKey", "Record"])
+    if net_raw is not None and not net_raw.empty and "Team" in net_raw.columns and "Record" in net_raw.columns:
+        tmp = net_raw[["Team", "Record"]].copy()
+        tmp["Team"] = tmp["Team"].astype(str).map(lambda x: canon_team(x, alias_map))
+        tmp["TeamKey"] = tmp["Team"].map(_team_key)
+        tmp["Record"] = tmp["Record"].astype(str).str.strip()
+        rec = tmp[["TeamKey", "Record"]].drop_duplicates(subset=["TeamKey"], keep="first")
+
+    fallback_rec = _load_records_completed_only(data_raw, alias_map)
+    rec = rec.merge(fallback_rec, on="TeamKey", how="outer", suffixes=("", "_fb"))
+    rec["Record"] = rec["Record"].fillna(rec["Record_fb"])
+    rec = rec[["TeamKey", "Record"]]
     sos = _compute_sos_1_to_365(data_raw, alias_map, net)
 
     df = net[["Team", "TeamKey", "NET"]].copy()
