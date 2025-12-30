@@ -5,72 +5,44 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>CBB Rankings Dashboard</title>
   <style>
-    :root { color-scheme: light; }
-    body { font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; margin: 24px; }
-    h1 { margin: 0 0 10px 0; font-size: 34px; }
-    .topbar { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 6px 0 14px 0; }
-    .tabs { display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 24px; color:#111; }
+    h1 { margin: 0 0 6px 0; font-size: 28px; }
+    .top { display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-bottom: 14px; }
+    .tabs { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
     .tab {
-      border: 1px solid #d0d7de;
-      background: #f6f8fa;
-      padding: 5px 10px;
-      border-radius: 999px;
-      font-size: 13px;
-      cursor: pointer;
-      user-select: none;
+      border:1px solid #ddd; background:#fff; padding:6px 10px; border-radius:999px;
+      cursor:pointer; font-size:12px;
     }
-    .tab.active { background: #fff; border-color: #8c959f; }
-    .updated { font-size: 13px; color: #57606a; }
-    .search {
-      width: 260px;
-      border: 1px solid #d0d7de;
-      border-radius: 6px;
-      padding: 8px 10px;
-      font-size: 14px;
-      outline: none;
-    }
-    table { width: 100%; border-collapse: collapse; margin-top: 14px; }
-    thead th {
-      text-align: left;
-      font-size: 13px;
-      color: #57606a;
-      font-weight: 600;
-      border-bottom: 1px solid #d8dee4;
-      padding: 10px 10px;
-    }
-    tbody td {
-      border-bottom: 1px solid #f0f2f4;
-      padding: 10px 10px;
-      font-size: 14px;
-    }
-    td.num, th.num { text-align: right; }
-    td.team { width: 34%; }
-    td.record { width: 10%; color: #24292f; }
-    .error { color: #b42318; margin-top: 10px; }
+    .tab.active { border-color:#111; }
+    .meta { font-size:12px; color:#555; }
+    .search { width: 220px; padding: 8px 10px; border:1px solid #ddd; border-radius:8px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { text-align:left; padding: 10px 8px; border-bottom:1px solid #f0f0f0; font-size:13px; }
+    th { color:#444; font-weight:600; }
+    td.num, th.num { text-align:right; }
   </style>
 </head>
 <body>
   <h1>CBB Rankings Dashboard</h1>
 
-  <div class="topbar">
-    <div class="tabs" id="tabs">
-      <span class="tab active" data-sort="NET">NET</span>
-      <span class="tab" data-sort="KenPom">KenPom</span>
-      <span class="tab" data-sort="BPI">BPI</span>
-      <span class="tab" data-sort="AP">AP</span>
+  <div class="top">
+    <div class="tabs">
+      <button class="tab active" data-sort="NET">NET</button>
+      <button class="tab" data-sort="SOS">SOS</button>
+      <button class="tab" data-sort="KenPom">KenPom</button>
+      <button class="tab" data-sort="BPI">BPI</button>
+      <button class="tab" data-sort="AP">AP</button>
+      <span class="meta" id="updated"></span>
     </div>
-    <div class="updated" id="updated">Updated: ...</div>
+    <input class="search" id="search" placeholder="Search team..." />
   </div>
-
-  <input class="search" id="search" type="text" placeholder="Search team..." />
-
-  <div class="error" id="error" style="display:none;"></div>
 
   <table>
     <thead>
       <tr>
         <th>Team</th>
-        <th>Record</th>
+        <th class="num">Record</th>
+        <th class="num">Strength of Schedule</th>
         <th class="num">NET</th>
         <th class="num">KenPom</th>
         <th class="num">BPI</th>
@@ -80,80 +52,89 @@
     <tbody id="tbody"></tbody>
   </table>
 
-  <script>
-    let allRows = []
-    let sortKey = "NET"
+<script>
+  let rawRows = [];
+  let sortKey = "NET";
+  let query = "";
 
-    function rankValue(v) {
-      if (v === null || v === undefined) return Number.POSITIVE_INFINITY
-      if (typeof v === "number") return v
-      const s = String(v).trim().toUpperCase()
-      if (s === "NR" || s === "") return Number.POSITIVE_INFINITY
-      const n = Number(s)
-      return Number.isFinite(n) ? n : Number.POSITIVE_INFINITY
+  function toNum(v) {
+    if (v === null || v === undefined) return null;
+    if (typeof v === "number") return v;
+    const s = String(v).trim();
+    if (!s || s.toUpperCase() === "NR") return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  function sortRows(rows, key) {
+    const copy = rows.slice();
+    copy.sort((a,b) => {
+      const av = toNum(a[key]);
+      const bv = toNum(b[key]);
+      if (av === null && bv === null) return String(a.Team).localeCompare(String(b.Team));
+      if (av === null) return 1;
+      if (bv === null) return -1;
+      if (av !== bv) return av - bv;
+      return String(a.Team).localeCompare(String(b.Team));
+    });
+    return copy;
+  }
+
+  function filterRows(rows, q) {
+    if (!q) return rows;
+    const t = q.toLowerCase();
+    return rows.filter(r => String(r.Team || "").toLowerCase().includes(t));
+  }
+
+  function render() {
+    const tbody = document.getElementById("tbody");
+    tbody.innerHTML = "";
+    const rows = sortRows(filterRows(rawRows, query), sortKey);
+    for (const r of rows) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${r.Team ?? ""}</td>
+        <td class="num">${r.Record ?? ""}</td>
+        <td class="num">${r.SOS ?? ""}</td>
+        <td class="num">${r.NET ?? ""}</td>
+        <td class="num">${r.KenPom ?? ""}</td>
+        <td class="num">${r.BPI ?? ""}</td>
+        <td class="num">${r.AP ?? ""}</td>
+      `;
+      tbody.appendChild(tr);
     }
+  }
 
-    function render() {
-      const q = document.getElementById("search").value.trim().toLowerCase()
-      let rows = allRows.slice()
+  function setActiveTab(key) {
+    document.querySelectorAll(".tab").forEach(b => {
+      b.classList.toggle("active", b.dataset.sort === key);
+    });
+  }
 
-      if (q) rows = rows.filter(r => String(r.Team || "").toLowerCase().includes(q))
+  document.getElementById("search").addEventListener("input", (e) => {
+    query = e.target.value || "";
+    render();
+  });
 
-      rows.sort((a, b) => {
-        const av = rankValue(a[sortKey])
-        const bv = rankValue(b[sortKey])
-        if (av !== bv) return av - bv
-        const av2 = rankValue(a.NET)
-        const bv2 = rankValue(b.NET)
-        if (av2 !== bv2) return av2 - bv2
-        return String(a.Team || "").localeCompare(String(b.Team || ""))
-      })
+  document.querySelectorAll(".tab").forEach(btn => {
+    btn.addEventListener("click", () => {
+      sortKey = btn.dataset.sort;
+      setActiveTab(sortKey);
+      render();
+    });
+  });
 
-      const tbody = document.getElementById("tbody")
-      tbody.innerHTML = rows.map(r => `
-        <tr>
-          <td class="team">${r.Team ?? ""}</td>
-          <td class="record">${r.Record ?? ""}</td>
-          <td class="num">${r.NET ?? "NR"}</td>
-          <td class="num">${r.KenPom ?? "NR"}</td>
-          <td class="num">${r.BPI ?? "NR"}</td>
-          <td class="num">${r.AP ?? "NR"}</td>
-        </tr>
-      `).join("")
-    }
-
-    function setActiveTab(nextKey) {
-      sortKey = nextKey
-      document.querySelectorAll(".tab").forEach(t => {
-        t.classList.toggle("active", t.dataset.sort === nextKey)
-      })
-      render()
-    }
-
-    async function load() {
-      try {
-        const res = await fetch("./data/rankings_current.json", { cache: "no-store" })
-        if (!res.ok) throw new Error("Could not load rankings_current.json")
-        const data = await res.json()
-        document.getElementById("updated").textContent = "Updated: " + (data.updated ?? "")
-        allRows = Array.isArray(data.rows) ? data.rows : []
-        render()
-      } catch (e) {
-        const el = document.getElementById("error")
-        el.style.display = "block"
-        el.textContent = String(e.message || e)
-      }
-    }
-
-    document.getElementById("tabs").addEventListener("click", (e) => {
-      const t = e.target.closest(".tab")
-      if (!t) return
-      setActiveTab(t.dataset.sort)
+  fetch("data/rankings_current.json", { cache: "no-store" })
+    .then(r => r.json())
+    .then(data => {
+      const ts = data.updated || data.last_updated || "";
+      document.getElementById("updated").textContent = ts ? `Updated: ${ts}` : "";
+      rawRows = Array.isArray(data.rows) ? data.rows : [];
+      render();
     })
-
-    document.getElementById("search").addEventListener("input", render)
-
-    load()
-  </script>
+    .catch(() => {
+      document.getElementById("updated").textContent = "Updated: (failed to load data)";
+    });
+</script>
 </body>
 </html>
