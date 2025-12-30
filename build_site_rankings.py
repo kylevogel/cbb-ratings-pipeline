@@ -75,17 +75,21 @@ def _latest_file_by_contains(folder: Path, contains_tokens):
 
 def load_rank(path: Path, team_col: str, rank_col: str, out_col: str, alias_map: dict):
     if path is None or not path.exists():
-        return pd.DataFrame(columns=["Team", out_col])
+        return pd.DataFrame(columns=["Team", "TeamKey", out_col])
     df = _safe_read_csv(path)
     if df is None or df.empty:
-        return pd.DataFrame(columns=["Team", out_col])
+        return pd.DataFrame(columns=["Team", "TeamKey", out_col])
     if team_col not in df.columns or rank_col not in df.columns:
-        return pd.DataFrame(columns=["Team", out_col])
+        return pd.DataFrame(columns=["Team", "TeamKey", out_col])
+
     out = df[[team_col, rank_col]].copy()
     out["Team"] = out[team_col].astype(str).map(lambda x: canon_team(x, alias_map))
+    out["TeamKey"] = out["Team"].map(_team_key)
     out[out_col] = pd.to_numeric(out[rank_col], errors="coerce")
-    out = out.dropna(subset=[out_col]).drop_duplicates(subset=["Team"], keep="first")
-    return out[["Team", out_col]]
+
+    out = out.dropna(subset=[out_col])
+    out = out.drop_duplicates(subset=["TeamKey"], keep="first")
+    return out[["Team", "TeamKey", out_col]]
 
 
 def to_int_or_blank(v):
@@ -109,21 +113,22 @@ def ap_val(v):
 def _load_records(data_raw: Path, alias_map: dict):
     games_path = _latest_file_by_contains(data_raw, ["games"])
     if games_path is None:
-        return pd.DataFrame(columns=["Team", "Record"])
+        return pd.DataFrame(columns=["TeamKey", "Record"])
 
     g = _safe_read_csv(games_path)
     if g is None or g.empty:
-        return pd.DataFrame(columns=["Team", "Record"])
+        return pd.DataFrame(columns=["TeamKey", "Record"])
 
     cols = {c.lower().strip(): c for c in g.columns}
     team_col = cols.get("team")
     win_col = cols.get("win?")
 
     if team_col is None:
-        return pd.DataFrame(columns=["Team", "Record"])
+        return pd.DataFrame(columns=["TeamKey", "Record"])
 
     tmp = g.copy()
     tmp["Team"] = tmp[team_col].astype(str).map(lambda x: canon_team(x, alias_map))
+    tmp["TeamKey"] = tmp["Team"].map(_team_key)
 
     if win_col is not None:
         v = tmp[win_col].astype(str).str.strip().str.lower()
@@ -133,7 +138,7 @@ def _load_records(data_raw: Path, alias_map: dict):
         ts_col = cols.get("team_score")
         os_col = cols.get("opponent_score")
         if ts_col is None or os_col is None:
-            return pd.DataFrame(columns=["Team", "Record"])
+            return pd.DataFrame(columns=["TeamKey", "Record"])
         ts = pd.to_numeric(tmp[ts_col], errors="coerce")
         os = pd.to_numeric(tmp[os_col], errors="coerce")
         is_win = (ts > os) & ts.notna() & os.notna()
@@ -141,35 +146,52 @@ def _load_records(data_raw: Path, alias_map: dict):
 
     rec = (
         tmp.assign(_W=is_win.astype(int), _L=is_loss.astype(int))
-        .groupby("Team", as_index=False)[["_W", "_L"]]
+        .groupby("TeamKey", as_index=False)[["_W", "_L"]]
         .sum()
     )
     rec["Record"] = rec["_W"].astype(int).astype(str) + "-" + rec["_L"].astype(int).astype(str)
-    return rec[["Team", "Record"]]
+    return rec[["TeamKey", "Record"]]
 
 
-def _compute_sos_rank(data_raw: Path, alias_map: dict, net_df: pd.DataFrame):
+def _compute_sos_rank_full_1_to_365(data_raw: Path, alias_map: dict, net_df: pd.DataFrame):
+    """
+    SOS is based on the average NET rating of ALL opponents on the schedule.
+    If opponent has no NET rank, treat as 366.
+    Then rank the 365 NET teams from 1..365 (no gaps), lowest avg opponent NET = SOS rank 1.
+    """
+    # NET universe (365 teams)
+    net_base = net_df[["Team", "TeamKey", "NET"]].copy()
+    net_base["NET"] = pd.to_numeric(net_base["NET"], errors="coerce")
+    net_base = net_base.dropna(subset=["NET"])
+    net_base = net_base[(net_base["NET"] >= 1) & (net_base["NET"] <= 365)]
+    net_base = net_base.drop_duplicates(subset=["TeamKey"], keep="first")
+
+    # map opponent TeamKey -> NET
+    net_map = dict(zip(net_base["TeamKey"], net_base["NET"].astype(int)))
+
     games_path = _latest_file_by_contains(data_raw, ["games"])
     if games_path is None:
-        return pd.DataFrame(columns=["Team", "SOS"])
+        # no games -> everyone gets avg 366 then rank by NET as tie-break
+        net_base["OppNET_Avg"] = float(MISSING_OPP_NET)
+        net_base = net_base.sort_values(["OppNET_Avg", "NET", "Team"], ascending=[True, True, True]).reset_index(drop=True)
+        net_base["SOS"] = range(1, len(net_base) + 1)
+        return net_base[["TeamKey", "SOS"]]
 
     g = _safe_read_csv(games_path)
     if g is None or g.empty:
-        return pd.DataFrame(columns=["Team", "SOS"])
+        net_base["OppNET_Avg"] = float(MISSING_OPP_NET)
+        net_base = net_base.sort_values(["OppNET_Avg", "NET", "Team"], ascending=[True, True, True]).reset_index(drop=True)
+        net_base["SOS"] = range(1, len(net_base) + 1)
+        return net_base[["TeamKey", "SOS"]]
 
     cols = {c.lower().strip(): c for c in g.columns}
     team_col = cols.get("team")
     opp_col = cols.get("opponent")
     if team_col is None or opp_col is None:
-        return pd.DataFrame(columns=["Team", "SOS"])
-
-    net_map = {}
-    for _, r in net_df.iterrows():
-        t = str(r["Team"])
-        rk = pd.to_numeric(r["NET"], errors="coerce")
-        if pd.isna(rk):
-            continue
-        net_map[_team_key(t)] = int(rk)
+        net_base["OppNET_Avg"] = float(MISSING_OPP_NET)
+        net_base = net_base.sort_values(["OppNET_Avg", "NET", "Team"], ascending=[True, True, True]).reset_index(drop=True)
+        net_base["SOS"] = range(1, len(net_base) + 1)
+        return net_base[["TeamKey", "SOS"]]
 
     tmp = g[[team_col, opp_col]].copy()
     tmp["TeamCanon"] = tmp[team_col].astype(str).map(lambda x: canon_team(x, alias_map))
@@ -177,21 +199,26 @@ def _compute_sos_rank(data_raw: Path, alias_map: dict, net_df: pd.DataFrame):
     tmp["TeamKey"] = tmp["TeamCanon"].map(_team_key)
     tmp["OppKey"] = tmp["OppCanon"].map(_team_key)
 
+    # only compute SOS for the NET universe teams
+    tmp = tmp[tmp["TeamKey"].isin(set(net_base["TeamKey"]))].copy()
+
+    # opponent NET, default 366
     tmp["OppNET"] = tmp["OppKey"].map(net_map)
     tmp["OppNET"] = tmp["OppNET"].fillna(MISSING_OPP_NET).astype(int)
 
-    avg = tmp.groupby("TeamKey", as_index=False)["OppNET"].mean()
-    avg = avg.sort_values("OppNET", ascending=True)
-    avg["SOS"] = avg["OppNET"].rank(method="min", ascending=True).astype(int)
+    # average opponent NET across ENTIRE schedule
+    opp_avg = tmp.groupby("TeamKey", as_index=False)["OppNET"].mean()
+    opp_avg = opp_avg.rename(columns={"OppNET": "OppNET_Avg"})
 
-    net_teamkey_to_display = {}
-    for _, r in net_df.iterrows():
-        t = str(r["Team"])
-        net_teamkey_to_display[_team_key(t)] = t
+    # merge onto full NET list; teams with zero games get 366 avg
+    net_base = net_base.merge(opp_avg, on="TeamKey", how="left")
+    net_base["OppNET_Avg"] = net_base["OppNET_Avg"].fillna(float(MISSING_OPP_NET))
 
-    avg["Team"] = avg["TeamKey"].map(lambda k: net_teamkey_to_display.get(k, k))
-    out = avg[["Team", "SOS"]].drop_duplicates(subset=["Team"], keep="first")
-    return out
+    # rank 1..365 with no gaps: use ordering then assign sequential integers
+    net_base = net_base.sort_values(["OppNET_Avg", "NET", "Team"], ascending=[True, True, True]).reset_index(drop=True)
+    net_base["SOS"] = range(1, len(net_base) + 1)
+
+    return net_base[["TeamKey", "SOS"]]
 
 
 def main():
@@ -215,17 +242,22 @@ def main():
     bpi = load_rank(bpi_path, "Team", "BPI_Rank", "BPI", alias_map)
     ap = load_rank(ap_path, "Team", "AP_Rank", "AP", alias_map)
 
+    # enforce NET universe 1..365 only (and remove non-NET teams from dashboard)
     net["NET"] = pd.to_numeric(net["NET"], errors="coerce")
     net = net.dropna(subset=["NET"])
     net = net[(net["NET"] >= 1) & (net["NET"] <= 365)]
-    net = net.drop_duplicates(subset=["Team"], keep="first")
+    net = net.drop_duplicates(subset=["TeamKey"], keep="first")
 
     rec = _load_records(data_raw, alias_map)
-    sos = _compute_sos_rank(data_raw, alias_map, net)
+    sos = _compute_sos_rank_full_1_to_365(data_raw, alias_map, net)
 
-    df = net.merge(rec, on="Team", how="left")
-    df = df.merge(sos, on="Team", how="left")
-    df = df.merge(kp, on="Team", how="left").merge(bpi, on="Team", how="left").merge(ap, on="Team", how="left")
+    df = net[["Team", "TeamKey", "NET"]].copy()
+    df = df.merge(rec, on="TeamKey", how="left")
+    df = df.merge(sos, on="TeamKey", how="left")
+    df = df.merge(kp[["TeamKey", "KenPom"]], on="TeamKey", how="left")
+    df = df.merge(bpi[["TeamKey", "BPI"]], on="TeamKey", how="left")
+    df = df.merge(ap[["TeamKey", "AP"]], on="TeamKey", how="left")
+
     df = df.sort_values("NET", na_position="last")
 
     df["Record"] = df["Record"].fillna("0-0")
