@@ -662,13 +662,13 @@ Date,Team,Location,Opponent,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 2025-12-16,Florida A&M Rattlers,H,Albany St (GA) Golden Rams,93.0,77.0,1,Florida A&M Rattlers,Albany St (GA) Golden Rams,,338.0,,,,
 2025-12-16,Gardner-Webb,H,Wofford,57.0,83.0,0,Gardner-Webb,Wofford,361.0,,,211.0,,225.0
 2025-12-16,Gardner-Webb Runnin' Bulldogs,H,Wofford Terriers,57.0,83.0,0,Gardner-Webb Runnin' Bulldogs,Wofford Terriers,,363.0,,,237.0,
-2025-12-16,Houston Christian,H,McNeese,68.0,78.0,0,Houston Christian,McNeese,278.0,,276.0,48.0,,69.0
+2025-12-16,Houston Christian,H,McNeese,68.0,78.0,0,Houston Christian,McNeese,278.0,,275.0,48.0,,69.0
 2025-12-16,Houston Christian Huskies,H,McNeese Cowboys,68.0,78.0,0,Houston Christian Huskies,McNeese Cowboys,,321.0,,,60.0,
 2025-12-16,Incarnate Word,A,TCU,65.0,69.0,0,Incarnate Word,TCU,,,165.0,51.0,,54.0
 2025-12-16,Incarnate Word Cardinals,A,TCU Horned Frogs,65.0,69.0,0,Incarnate Word Cardinals,TCU Horned Frogs,,159.0,,,58.0,
 2025-12-16,Lipscomb,A,Duke,73.0,97.0,0,Lipscomb,Duke,137.0,,145.0,3.0,,6.0
 2025-12-16,Lipscomb Bisons,A,Duke Blue Devils,73.0,97.0,0,Lipscomb Bisons,Duke Blue Devils,,142.0,,,2.0,
-2025-12-16,McNeese,A,Houston Christian,78.0,68.0,1,McNeese,Houston Christian,48.0,,69.0,278.0,,276.0
+2025-12-16,McNeese,A,Houston Christian,78.0,68.0,1,McNeese,Houston Christian,48.0,,69.0,278.0,,275.0
 2025-12-16,McNeese Cowboys,A,Houston Christian Huskies,78.0,68.0,1,McNeese Cowboys,Houston Christian Huskies,,60.0,,,321.0,
 2025-12-16,Michigan State,H,Toledo,92.0,69.0,1,Michigan State,Toledo,,,,163.0,,162.0
 2025-12-16,Michigan State Spartans,H,Toledo Rockets,92.0,69.0,1,Michigan State Spartans,Toledo Rockets,,20.0,,,179.0,
@@ -952,10 +952,10 @@ Date,Team,Location,Opponent,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 2025-12-30,Georgia,H,Long Island University,89.0,74.0,1,Georgia,Long Island University,22.0,,26.0,,,
 2025-12-30,Georgia Bulldogs,H,Long Island University Sharks,89.0,74.0,1,Georgia Bulldogs,Long Island University Sharks,,33.0,,,233.0,
 2025-12-30,Houston,H,Middle Tennessee,69.0,60.0,1,Houston,Middle Tennessee,17.0,,11.0,,,147.0
-2025-12-30,Houston Christian,A,Iowa State,61.0,89.0,0,Houston Christian,Iowa State,278.0,,276.0,,,
+2025-12-30,Houston Christian,A,Iowa State,61.0,89.0,0,Houston Christian,Iowa State,278.0,,275.0,,,
 2025-12-30,Houston Christian Huskies,A,Iowa State Cyclones,61.0,89.0,0,Houston Christian Huskies,Iowa State Cyclones,,321.0,,,5.0,
 2025-12-30,Houston Cougars,H,Middle Tennessee Blue Raiders,69.0,60.0,1,Houston Cougars,Middle Tennessee Blue Raiders,,7.0,,,150.0,
-2025-12-30,Iowa State,H,Houston Christian,89.0,61.0,1,Iowa State,Houston Christian,,,,278.0,,276.0
+2025-12-30,Iowa State,H,Houston Christian,89.0,61.0,1,Iowa State,Houston Christian,,,,278.0,,275.0
 2025-12-30,Iowa State Cyclones,H,Houston Christian Huskies,89.0,61.0,1,Iowa State Cyclones,Houston Christian Huskies,,5.0,,,321.0,
 2025-12-30,James Madison,A,Arkansas,74.0,103.0,0,James Madison,Arkansas,226.0,,217.0,30.0,,28.0
 2025-12-30,James Madison Dukes,A,Arkansas Razorbacks,74.0,103.0,0,James Madison Dukes,Arkansas Razorbacks,,188.0,,,31.0,
@@ -1451,7 +1451,7 @@ Date,Team,Location,Opponent,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 2026-01-13,Delaware State Hornets,A,Howard Bison,,,,Delaware State Hornets,Howard Bison,,358.0,,,263.0,
 2026-01-13,East Texas A&M,H,Texas A&M-Corpus Christi,,,,East Texas A&M,Texas A&M-Corpus Christi,272.0,,311.0,,,
 2026-01-13,East Texas A&M Lions,H,Texas A&M-Corpus Christi Islanders,,,,East Texas A&M Lions,Texas A&M-Corpus Christi Islanders,,287.0,,,193.0,
-2026-01-13,Houston Christian,A,Lamar,,,,Houston Christian,Lamar,278.0,,276.0,,,236.0
+2026-01-13,Houston Christian,A,Lamar,,,,Houston Christian,Lamar,278.0,,275.0,,,236.0
 2026-01-13,Houston Christian Huskies,A,Lamar Cardinals,,,,Houston Christian Huskies,Lamar Cardinals,,321.0,,,230.0,
 2026-01-13,Howard,H,Delaware State,,,,Howard,Delaware State,245.0,,268.0,,,
 2026-01-13,Howard Bison,H,Delaware State Hornets,,,,Howard Bison,Delaware State Hornets,,263.0,,,358.0,
@@ -1459,7 +1459,7 @@ Date,Team,Location,Opponent,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 2026-01-13,Incarnate Word Cardinals,A,Stephen F. Austin Lumberjacks,,,,Incarnate Word Cardinals,Stephen F. Austin Lumberjacks,,159.0,,,137.0,
 2026-01-13,Jackson State,A,Alabama A&M,,,,Jackson State,Alabama A&M,,,,275.0,,286.0
 2026-01-13,Jackson State Tigers,A,Alabama A&M Bulldogs,,,,Jackson State Tigers,Alabama A&M Bulldogs,,349.0,,,343.0,
-2026-01-13,Lamar,H,Houston Christian,,,,Lamar,Houston Christian,,,236.0,278.0,,276.0
+2026-01-13,Lamar,H,Houston Christian,,,,Lamar,Houston Christian,,,236.0,278.0,,275.0
 2026-01-13,Lamar Cardinals,H,Houston Christian Huskies,,,,Lamar Cardinals,Houston Christian Huskies,,230.0,,,321.0,
 2026-01-13,Maryland Eastern Shore,A,Norfolk State,,,,Maryland Eastern Shore,Norfolk State,,,343.0,,,
 2026-01-13,Maryland Eastern Shore Hawks,A,Norfolk State Spartans,,,,Maryland Eastern Shore Hawks,Norfolk State Spartans,,346.0,,,207.0,
@@ -1785,7 +1785,7 @@ Date,Team,Location,Opponent,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 2026-01-20,Florida A&M Rattlers,A,Mississippi Valley State Delta Devils,,,,Florida A&M Rattlers,Mississippi Valley State Delta Devils,,338.0,,,365.0,
 2026-01-20,Hampton,H,North Carolina A&T,,,,Hampton,North Carolina A&T,264.0,,256.0,,,306.0
 2026-01-20,Hampton Pirates,H,North Carolina A&T Aggies,,,,Hampton Pirates,North Carolina A&T Aggies,,234.0,,,290.0,
-2026-01-20,Houston Christian,H,Northwestern State,,,,Houston Christian,Northwestern State,278.0,,276.0,,,
+2026-01-20,Houston Christian,H,Northwestern State,,,,Houston Christian,Northwestern State,278.0,,275.0,,,
 2026-01-20,Houston Christian Huskies,H,Northwestern State Demons,,,,Houston Christian Huskies,Northwestern State Demons,,321.0,,,310.0,
 2026-01-20,Jackson State,H,Texas Southern,,,,Jackson State,Texas Southern,,,,343.0,,331.0
 2026-01-20,Jackson State Tigers,H,Texas Southern Tigers,,,,Jackson State Tigers,Texas Southern Tigers,,349.0,,,315.0,
@@ -1815,7 +1815,7 @@ Date,Team,Location,Opponent,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 2026-01-20,Northern Arizona Lumberjacks,H,Montana Grizzlies,,,,Northern Arizona Lumberjacks,Montana Grizzlies,,270.0,,,228.0,
 2026-01-20,Northern Colorado,H,Montana State,,,,Northern Colorado,Montana State,,,149.0,,,
 2026-01-20,Northern Colorado Bears,H,Montana State Bobcats,,,,Northern Colorado Bears,Montana State Bobcats,,152.0,,,162.0,
-2026-01-20,Northwestern State,A,Houston Christian,,,,Northwestern State,Houston Christian,,,,278.0,,276.0
+2026-01-20,Northwestern State,A,Houston Christian,,,,Northwestern State,Houston Christian,,,,278.0,,275.0
 2026-01-20,Northwestern State Demons,A,Houston Christian Huskies,,,,Northwestern State Demons,Houston Christian Huskies,,310.0,,,321.0,
 2026-01-20,SE Louisiana,A,UT Rio Grande Valley,,,,SE Louisiana,UT Rio Grande Valley,,,,,,201.0
 2026-01-20,SE Louisiana Lions,A,UT Rio Grande Valley Vaqueros,,,,SE Louisiana Lions,UT Rio Grande Valley Vaqueros,,259.0,,,170.0,
