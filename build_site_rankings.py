@@ -43,50 +43,84 @@ def _find_latest_csv(search_root: Path, name_keywords):
     return candidates[0]
 
 
+def _safe_read_csv(path: Path):
+    try:
+        return pd.read_csv(path, dtype=str)
+    except Exception:
+        try:
+            return pd.read_csv(path, dtype=str, engine="python", on_bad_lines="skip")
+        except TypeError:
+            return pd.read_csv(path, dtype=str, engine="python", error_bad_lines=False, warn_bad_lines=True)
+
+
 def _read_alias_map(base_dir: Path):
-    data_raw = base_dir / "data_raw"
-    alias_file = None
-    for p in list(data_raw.rglob("*.csv")) + list(base_dir.rglob("*.csv")):
-        if "alias" in p.name.lower() and "team" in p.name.lower():
-            alias_file = p
-            break
-    if alias_file is None:
-        for p in list(data_raw.rglob("*.csv")) + list(base_dir.rglob("*.csv")):
-            if "alias" in p.name.lower():
-                alias_file = p
-                break
-    if alias_file is None:
+    explicit = base_dir / "team_alias.csv"
+    if explicit.exists():
+        alias_file = explicit
+    else:
+        data_raw = base_dir / "data_raw"
+        alias_file = None
+        if data_raw.exists():
+            for p in data_raw.rglob("*.csv"):
+                if p.name.lower() == "team_alias.csv":
+                    alias_file = p
+                    break
+            if alias_file is None:
+                for p in data_raw.rglob("*.csv"):
+                    if "alias" in p.name.lower() and "team" in p.name.lower():
+                        alias_file = p
+                        break
+        if alias_file is None:
+            return {}
+
+    df = _safe_read_csv(alias_file)
+    if df is None or df.empty:
         return {}
 
-    df = pd.read_csv(alias_file)
-    cols = [c.lower().strip() for c in df.columns]
+    df = df.fillna("")
 
-    def pick(*options):
-        for o in options:
-            if o in cols:
-                return df.columns[cols.index(o)]
+    cols_lower = {c.lower().strip(): c for c in df.columns}
+
+    def col(*names):
+        for n in names:
+            if n in cols_lower:
+                return cols_lower[n]
         return None
 
-    alias_col = pick("alias", "aliases", "alt", "alternate", "name", "team_alias")
-    canon_col = pick("canonical", "canon", "team", "standard", "school", "official")
+    espn_col = col("espn")
+    team_col = col("team", "canonical", "school", "standard")
 
-    m = {}
-    if alias_col and canon_col:
-        for _, r in df[[alias_col, canon_col]].dropna().iterrows():
-            a = _norm(r[alias_col])
-            c = str(r[canon_col]).strip()
-            if a:
-                m[a] = c
-        return m
+    alias_map = {}
+
+    if espn_col and team_col:
+        for _, r in df[[espn_col, team_col]].iterrows():
+            a = _norm(r[espn_col])
+            c = str(r[team_col]).strip()
+            if a and c:
+                alias_map[a] = c
+        return alias_map
+
+    if "alias" in cols_lower and ("team" in cols_lower or "canonical" in cols_lower):
+        a_col = cols_lower["alias"]
+        t_col = cols_lower.get("team", cols_lower.get("canonical"))
+        for _, r in df[[a_col, t_col]].iterrows():
+            a = _norm(r[a_col])
+            c = str(r[t_col]).strip()
+            if a and c:
+                alias_map[a] = c
+        return alias_map
 
     if df.shape[1] >= 2:
-        c0, c1 = df.columns[0], df.columns[1]
-        for _, r in df[[c0, c1]].dropna().iterrows():
-            a = _norm(r[c0])
-            c = str(r[c1]).strip()
-            if a:
-                m[a] = c
-        return m
+        for _, r in df.iterrows():
+            vals = [str(r[c]).strip() for c in df.columns if str(r[c]).strip() != ""]
+            if len(vals) < 2:
+                continue
+            canonical = vals[-1]
+            for v in vals[:-1]:
+                nv = _norm(v)
+                if nv:
+                    alias_map[nv] = canonical
+        return alias_map
 
     return {}
 
@@ -146,11 +180,13 @@ def _load_records(base_dir: Path, alias_map):
 
     colmap = {c.lower().strip(): c for c in g.columns}
     team_col = colmap.get("team", None)
+
     win_col = None
     for k in ("win?", "win", "result", "w/l", "wl"):
         if k in colmap:
             win_col = colmap[k]
             break
+
     ts_col = None
     os_col = None
     for k in ("team_score", "teamscore", "score", "pf", "points_for"):
@@ -166,7 +202,7 @@ def _load_records(base_dir: Path, alias_map):
         return {}
 
     tmp = g.copy()
-    tmp["Team"] = tmp[team_col].astype(str)
+    tmp["TeamRaw"] = tmp[team_col].astype(str)
 
     if ts_col is not None and os_col is not None:
         ts = pd.to_numeric(tmp[ts_col], errors="coerce")
@@ -176,19 +212,20 @@ def _load_records(base_dir: Path, alias_map):
         tmp["_win"] = (pd.to_numeric(tmp[ts_col], errors="coerce") > pd.to_numeric(tmp[os_col], errors="coerce"))
     elif win_col is not None:
         w = tmp[win_col].astype(str).str.upper().str.strip()
-        tmp["_win"] = w.isin(["W", "WIN", "TRUE", "1", "YES"])
-        lose_mask = w.isin(["L", "LOSS", "FALSE", "0", "NO"])
-        tmp = tmp.loc[tmp["_win"] | lose_mask].copy()
-        tmp["_win"] = tmp["_win"].astype(bool)
+        win_mask = w.isin(["W", "WIN", "TRUE", "1", "YES", "Y"])
+        lose_mask = w.isin(["L", "LOSS", "FALSE", "0", "NO", "N"])
+        tmp = tmp.loc[win_mask | lose_mask].copy()
+        tmp["_win"] = win_mask.loc[tmp.index].astype(bool)
     else:
         return {}
 
-    tmp["TeamCanon"] = tmp["Team"].map(lambda x: _apply_alias(x, alias_map))
+    tmp["TeamCanon"] = tmp["TeamRaw"].map(lambda x: _apply_alias(x, alias_map))
+
     grp = tmp.groupby("TeamCanon")["_win"].agg(["sum", "count"]).reset_index()
     grp["wins"] = grp["sum"].astype(int)
     grp["losses"] = (grp["count"] - grp["sum"]).astype(int)
-    rec = {r["TeamCanon"]: f'{int(r["wins"])}-{int(r["losses"])}' for _, r in grp.iterrows()}
-    return rec
+
+    return {r["TeamCanon"]: f'{int(r["wins"])}-{int(r["losses"])}' for _, r in grp.iterrows()}
 
 
 def main():
@@ -215,7 +252,8 @@ def main():
         df["Team"] = df["Team"].map(lambda x: _apply_alias(x, alias_map))
         df["Rank"] = _coerce_rank_series(df["Rank"])
 
-    out = pd.DataFrame({"Team": sorted(set(net["Team"]).union(kp["Team"]).union(bpi["Team"]).union(ap["Team"]).union(records.keys()))})
+    all_teams = set(net["Team"]).union(kp["Team"]).union(bpi["Team"]).union(ap["Team"]).union(records.keys())
+    out = pd.DataFrame({"Team": sorted(all_teams)})
     out["Record"] = out["Team"].map(lambda t: records.get(t, "0-0"))
 
     out = out.merge(net.rename(columns={"Rank": "NET"}), on="Team", how="left")
