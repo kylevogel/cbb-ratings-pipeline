@@ -42,11 +42,11 @@
       <tr>
         <th>Team</th>
         <th class="num">Record</th>
-        <th class="num">Strength of Schedule</th>
+        <th class="num">AP</th>
         <th class="num">NET</th>
         <th class="num">KenPom</th>
         <th class="num">BPI</th>
-        <th class="num">AP</th>
+        <th class="num">Strength of Schedule</th>
       </tr>
     </thead>
     <tbody id="tbody"></tbody>
@@ -95,11 +95,11 @@
       tr.innerHTML = `
         <td>${r.Team ?? ""}</td>
         <td class="num">${r.Record ?? ""}</td>
-        <td class="num">${r.SOS ?? ""}</td>
+        <td class="num">${r.AP ?? ""}</td>
         <td class="num">${r.NET ?? ""}</td>
         <td class="num">${r.KenPom ?? ""}</td>
         <td class="num">${r.BPI ?? ""}</td>
-        <td class="num">${r.AP ?? ""}</td>
+        <td class="num">${r.SOS ?? ""}</td>
       `;
       tbody.appendChild(tr);
     }
