@@ -1,9 +1,9 @@
 name: Update data + site
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: "0 5,11,17,23 * * *"
+    - cron: "0 * * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -12,23 +12,34 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: "pip"
 
-      - run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-      - run: python update_all.py
+      - name: Update data
+        run: python update_all.py
 
-      - run: python update_ap_rank.py
+      - name: Build site data
+        run: python build_site_rankings.py
 
-      - run: python build_site_rankings.py
-
-      - run: |
+      - name: Commit and push (if changed)
+        run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add data_raw data_processed docs/data
-          git commit -m "Auto-update data + site" || exit 0
-          git push
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto update data + site"
+            git push
+          fi
