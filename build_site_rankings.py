@@ -24,6 +24,27 @@ def _norm(s):
     return s
 
 
+def _team_key(team_name: str) -> str:
+    """
+    Canonical join key for merging between sources.
+    Handles the biggest mismatch you’re seeing: "St." vs "State".
+    Also handles common shorthand: UNC, UConn, etc.
+    """
+    t = _norm(team_name)
+
+    # common shorthands
+    t = re.sub(r"\buconn\b", "connecticut", t)
+    t = re.sub(r"\bunc\b", "north carolina", t)
+
+    # st -> state (very common across rankings vs ESPN)
+    # convert standalone "st" token to "state"
+    t = re.sub(r"\bst\b", "state", t)
+
+    # clean spaces again
+    t = re.sub(r"\s+", " ", t).strip()
+    return t
+
+
 def _find_latest_csv(search_root: Path, name_keywords):
     if not search_root.exists():
         return None
@@ -44,90 +65,65 @@ def _find_latest_csv(search_root: Path, name_keywords):
 
 
 def _safe_read_csv(path: Path):
+    # alias file can have stray commas -> use python engine + skip bad lines
     try:
         return pd.read_csv(path, dtype=str)
     except Exception:
-        try:
-            return pd.read_csv(path, dtype=str, engine="python", on_bad_lines="skip")
-        except TypeError:
-            return pd.read_csv(path, dtype=str, engine="python", error_bad_lines=False, warn_bad_lines=True)
+        return pd.read_csv(path, dtype=str, engine="python", on_bad_lines="skip")
 
 
 def _read_alias_map(base_dir: Path):
+    """
+    Returns mapping from TeamKey -> PreferredDisplayName
+    We use this only to choose the display name, not the join key.
+    """
     explicit = base_dir / "team_alias.csv"
-    if explicit.exists():
-        alias_file = explicit
-    else:
+    alias_file = explicit if explicit.exists() else None
+
+    if alias_file is None:
         data_raw = base_dir / "data_raw"
-        alias_file = None
         if data_raw.exists():
             for p in data_raw.rglob("*.csv"):
                 if p.name.lower() == "team_alias.csv":
                     alias_file = p
                     break
-            if alias_file is None:
-                for p in data_raw.rglob("*.csv"):
-                    if "alias" in p.name.lower() and "team" in p.name.lower():
-                        alias_file = p
-                        break
-        if alias_file is None:
-            return {}
+
+    if alias_file is None:
+        return {}
 
     df = _safe_read_csv(alias_file)
     if df is None or df.empty:
         return {}
 
     df = df.fillna("")
+    cols = {c.lower().strip(): c for c in df.columns}
 
-    cols_lower = {c.lower().strip(): c for c in df.columns}
-
-    def col(*names):
-        for n in names:
-            if n in cols_lower:
-                return cols_lower[n]
-        return None
-
-    espn_col = col("espn")
-    team_col = col("team", "canonical", "school", "standard")
-
-    alias_map = {}
-
-    if espn_col and team_col:
+    # prefer ESPN->Team format if present
+    if "espn" in cols and ("team" in cols or "canonical" in cols or "school" in cols):
+        espn_col = cols["espn"]
+        team_col = cols.get("team", cols.get("canonical", cols.get("school")))
+        m = {}
         for _, r in df[[espn_col, team_col]].iterrows():
-            a = _norm(r[espn_col])
+            a = str(r[espn_col]).strip()
             c = str(r[team_col]).strip()
             if a and c:
-                alias_map[a] = c
-        return alias_map
+                m[_team_key(a)] = c
+                m[_team_key(c)] = c
+        return m
 
-    if "alias" in cols_lower and ("team" in cols_lower or "canonical" in cols_lower):
-        a_col = cols_lower["alias"]
-        t_col = cols_lower.get("team", cols_lower.get("canonical"))
-        for _, r in df[[a_col, t_col]].iterrows():
-            a = _norm(r[a_col])
-            c = str(r[t_col]).strip()
-            if a and c:
-                alias_map[a] = c
-        return alias_map
-
+    # fallback: first col = alias, second col = canonical
     if df.shape[1] >= 2:
-        for _, r in df.iterrows():
-            vals = [str(r[c]).strip() for c in df.columns if str(r[c]).strip() != ""]
-            if len(vals) < 2:
-                continue
-            canonical = vals[-1]
-            for v in vals[:-1]:
-                nv = _norm(v)
-                if nv:
-                    alias_map[nv] = canonical
-        return alias_map
+        c0, c1 = df.columns[0], df.columns[1]
+        m = {}
+        for _, r in df[[c0, c1]].iterrows():
+            a = str(r[c0]).strip()
+            c = str(r[c1]).strip()
+            if a and c:
+                m[_team_key(a)] = c
+                m[_team_key(c)] = c
+        return m
 
     return {}
-
-
-def _apply_alias(team, alias_map):
-    nt = _norm(team)
-    return alias_map.get(nt, str(team).strip())
 
 
 def _coerce_rank_series(s):
@@ -159,7 +155,7 @@ def _load_rank_file(path: Path, team_col_guess=("team", "school", "name"), rank_
     if rank_col is None:
         for c in df.columns:
             lc = c.lower()
-            if "rank" in lc or lc in ("rk",):
+            if "rank" in lc or lc == "rk":
                 rank_col = c
                 break
     if rank_col is None:
@@ -167,19 +163,23 @@ def _load_rank_file(path: Path, team_col_guess=("team", "school", "name"), rank_
 
     out = df[[team_col, rank_col]].copy()
     out.columns = ["Team", "Rank"]
+    out["TeamKey"] = out["Team"].map(_team_key)
+    out["Rank"] = _coerce_rank_series(out["Rank"])
     return out
 
 
-def _load_records(base_dir: Path, alias_map):
+def _load_records(base_dir: Path):
     data_raw = base_dir / "data_raw"
     games_file = _find_latest_csv(data_raw, ["games"])
     if games_file is None:
         return {}
 
     g = pd.read_csv(games_file)
-
     colmap = {c.lower().strip(): c for c in g.columns}
-    team_col = colmap.get("team", None)
+
+    team_col = colmap.get("team")
+    if team_col is None:
+        return {}
 
     win_col = None
     for k in ("win?", "win", "result", "w/l", "wl"):
@@ -198,11 +198,9 @@ def _load_records(base_dir: Path, alias_map):
             os_col = colmap[k]
             break
 
-    if team_col is None:
-        return {}
-
     tmp = g.copy()
     tmp["TeamRaw"] = tmp[team_col].astype(str)
+    tmp["TeamKey"] = tmp["TeamRaw"].map(_team_key)
 
     if ts_col is not None and os_col is not None:
         ts = pd.to_numeric(tmp[ts_col], errors="coerce")
@@ -219,21 +217,19 @@ def _load_records(base_dir: Path, alias_map):
     else:
         return {}
 
-    tmp["TeamCanon"] = tmp["TeamRaw"].map(lambda x: _apply_alias(x, alias_map))
-
-    grp = tmp.groupby("TeamCanon")["_win"].agg(["sum", "count"]).reset_index()
+    grp = tmp.groupby("TeamKey")["_win"].agg(["sum", "count"]).reset_index()
     grp["wins"] = grp["sum"].astype(int)
     grp["losses"] = (grp["count"] - grp["sum"]).astype(int)
 
-    return {r["TeamCanon"]: f'{int(r["wins"])}-{int(r["losses"])}' for _, r in grp.iterrows()}
+    return {r["TeamKey"]: f'{int(r["wins"])}-{int(r["losses"])}' for _, r in grp.iterrows()}
 
 
 def main():
     base_dir = Path(__file__).resolve().parent
     data_raw = base_dir / "data_raw"
 
-    alias_map = _read_alias_map(base_dir)
-    records = _load_records(base_dir, alias_map)
+    alias_display = _read_alias_map(base_dir)
+    records = _load_records(base_dir)
 
     net_path = _find_latest_csv(data_raw, ["net"])
     kp_path = _find_latest_csv(data_raw, ["kenpom"])
@@ -244,22 +240,49 @@ def main():
         raise FileNotFoundError("Could not find a NET rankings CSV in data_raw (filename must include 'net').")
 
     net = _load_rank_file(net_path)
-    kp = _load_rank_file(kp_path) if kp_path else pd.DataFrame(columns=["Team", "Rank"])
-    bpi = _load_rank_file(bpi_path) if bpi_path else pd.DataFrame(columns=["Team", "Rank"])
-    ap = _load_rank_file(ap_path) if ap_path else pd.DataFrame(columns=["Team", "Rank"])
+    kp = _load_rank_file(kp_path) if kp_path else pd.DataFrame(columns=["Team", "Rank", "TeamKey"])
+    bpi = _load_rank_file(bpi_path) if bpi_path else pd.DataFrame(columns=["Team", "Rank", "TeamKey"])
+    ap = _load_rank_file(ap_path) if ap_path else pd.DataFrame(columns=["Team", "Rank", "TeamKey"])
 
-    for df in (net, kp, bpi, ap):
-        df["Team"] = df["Team"].map(lambda x: _apply_alias(x, alias_map))
-        df["Rank"] = _coerce_rank_series(df["Rank"])
+    # build master list of keys
+    all_keys = set(net["TeamKey"]).union(kp["TeamKey"]).union(bpi["TeamKey"]).union(ap["TeamKey"]).union(records.keys())
 
-    all_teams = set(net["Team"]).union(kp["Team"]).union(bpi["Team"]).union(ap["Team"]).union(records.keys())
-    out = pd.DataFrame({"Team": sorted(all_teams)})
-    out["Record"] = out["Team"].map(lambda t: records.get(t, "0-0"))
+    out = pd.DataFrame({"TeamKey": sorted(all_keys)})
 
-    out = out.merge(net.rename(columns={"Rank": "NET"}), on="Team", how="left")
-    out = out.merge(kp.rename(columns={"Rank": "KenPom"}), on="Team", how="left")
-    out = out.merge(bpi.rename(columns={"Rank": "BPI"}), on="Team", how="left")
-    out = out.merge(ap.rename(columns={"Rank": "AP"}), on="Team", how="left")
+    # choose display name priority: alias map > NET > KenPom > BPI > AP > key
+    net_name = net.groupby("TeamKey")["Team"].first()
+    kp_name = kp.groupby("TeamKey")["Team"].first()
+    bpi_name = bpi.groupby("TeamKey")["Team"].first()
+    ap_name = ap.groupby("TeamKey")["Team"].first()
+
+    def display_for_key(k):
+        if k in alias_display:
+            return alias_display[k]
+        if k in net_name:
+            return net_name[k]
+        if k in kp_name:
+            return kp_name[k]
+        if k in bpi_name:
+            return bpi_name[k]
+        if k in ap_name:
+            return ap_name[k]
+        return k
+
+    out["Team"] = out["TeamKey"].map(display_for_key)
+
+    # records
+    out["Record"] = out["TeamKey"].map(lambda k: records.get(k, "0-0"))
+
+    # merge rankings on TeamKey
+    net2 = net[["TeamKey", "Rank"]].rename(columns={"Rank": "NET"})
+    kp2 = kp[["TeamKey", "Rank"]].rename(columns={"Rank": "KenPom"})
+    bpi2 = bpi[["TeamKey", "Rank"]].rename(columns={"Rank": "BPI"})
+    ap2 = ap[["TeamKey", "Rank"]].rename(columns={"Rank": "AP"})
+
+    out = out.merge(net2, on="TeamKey", how="left")
+    out = out.merge(kp2, on="TeamKey", how="left")
+    out = out.merge(bpi2, on="TeamKey", how="left")
+    out = out.merge(ap2, on="TeamKey", how="left")
 
     def to_display(x):
         if pd.isna(x):
@@ -278,10 +301,11 @@ def main():
         return int(v)
 
     out = out.sort_values(by=["NET", "KenPom", "BPI"], key=lambda s: s.map(sort_key), ascending=True)
+    out = out[["Team", "Record", "NET", "KenPom", "BPI", "AP"]].reset_index(drop=True)
 
     payload = {
         "updated": _now_et_string(),
-        "rows": out[["Team", "Record", "NET", "KenPom", "BPI", "AP"]].to_dict(orient="records"),
+        "rows": out.to_dict(orient="records"),
     }
 
     docs_data = base_dir / "docs" / "data"
