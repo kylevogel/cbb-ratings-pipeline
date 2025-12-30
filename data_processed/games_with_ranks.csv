@@ -261,7 +261,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/4,Adams St,New Mexico St,Away,72.0,83.0,No,Adams St,New Mexico St,,,,,,
 11/25,Adrian,C Michigan,Away,67.0,112.0,No,Adrian,C Michigan,,,,,,
 11/19,Air Force,Alabama St,Home,66.0,64.0,Yes,Air Force,Alabama St,313.0,,324.0,,,
-11/8,Air Force,Austin Peay,Home,54.0,74.0,No,Air Force,Austin Peay,313.0,,324.0,158.0,,193.0
+11/8,Air Force,Austin Peay,Home,54.0,74.0,No,Air Force,Austin Peay,313.0,,324.0,158.0,,192.0
 11/23,Air Force,IU Indy,Home,98.0,85.0,Yes,Air Force,IU Indy,313.0,,324.0,323.0,,344.0
 11/11,Air Force,LIU,Home,72.0,76.0,No,Air Force,LIU,313.0,,324.0,190.0,,203.0
 11/15,Air Force,Miami OH,Home,61.0,76.0,No,Air Force,Miami OH,313.0,,324.0,,,112.0
@@ -273,12 +273,12 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/3,Akron,Bucknell,Home,97.0,77.0,Yes,Akron,Bucknell,49.0,,56.0,321.0,,303.0
 11/23,Akron,Evansville,Away,97.0,59.0,Yes,Akron,Evansville,49.0,,56.0,273.0,,271.0
 11/21,Akron,Iona,Home,96.0,75.0,Yes,Akron,Iona,49.0,,56.0,165.0,,182.0
-11/29,Akron,Milwaukee,Home,105.0,81.0,Yes,Akron,Milwaukee,49.0,,56.0,185.0,,201.0
+11/29,Akron,Milwaukee,Home,105.0,81.0,Yes,Akron,Milwaukee,49.0,,56.0,185.0,,200.0
 11/12,Akron,Penn State-She,Home,109.0,51.0,Yes,Akron,Penn State-She,49.0,,56.0,,,
-11/8,Akron,Princeton,Home,104.0,69.0,Yes,Akron,Princeton,49.0,,56.0,294.0,,264.0
+11/8,Akron,Princeton,Home,104.0,69.0,Yes,Akron,Princeton,49.0,,56.0,294.0,,257.0
 11/16,Akron,Purdue,Away,79.0,97.0,No,Akron,Purdue,49.0,,56.0,6.0,,5.0
-12/6,Akron,Tulane,Away,88.0,71.0,Yes,Akron,Tulane,49.0,,56.0,219.0,,194.0
-11/24,Akron,Yale,Home,94.0,97.0,No,Akron,Yale,49.0,,56.0,53.0,,84.0
+12/6,Akron,Tulane,Away,88.0,71.0,Yes,Akron,Tulane,49.0,,56.0,219.0,,193.0
+11/24,Akron,Yale,Home,94.0,97.0,No,Akron,Yale,49.0,,56.0,53.0,,85.0
 12/3,Alabama,Clemson,Home,90.0,84.0,Yes,Alabama,Clemson,14.0,,15.0,38.0,,35.0
 11/24,Alabama,Gonzaga,Home,85.0,95.0,No,Alabama,Gonzaga,14.0,,15.0,2.0,,3.0
 11/19,Alabama,Illinois,Away,90.0,86.0,Yes,Alabama,Illinois,14.0,,15.0,10.0,,9.0
@@ -314,7 +314,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/11,Alcorn St,Maryland,Away,64.0,84.0,No,Alcorn St,Maryland,,,,146.0,,99.0
 11/8,Alcorn St,Minnesota,Away,50.0,95.0,No,Alcorn St,Minnesota,,,,108.0,,101.0
 11/23,Alcorn St,Oklahoma,Away,53.0,72.0,No,Alcorn St,Oklahoma,,,,50.0,,52.0
-11/6,Alcorn St,South Alabama,Away,70.0,76.0,No,Alcorn St,South Alabama,,,,191.0,,192.0
+11/6,Alcorn St,South Alabama,Away,70.0,76.0,No,Alcorn St,South Alabama,,,,191.0,,191.0
 11/6,Allegheny,Canisius,Away,43.0,84.0,No,Allegheny,Canisius,,,,338.0,,347.0
 11/15,American,Central Penn,Home,115.0,50.0,Yes,American,Central Penn,267.0,,253.0,,,
 12/3,American,Drexel,Home,75.0,73.0,Yes,American,Drexel,267.0,,253.0,296.0,,289.0
@@ -392,20 +392,20 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/3,Auburn,BCU,Home,95.0,90.0,Yes,Auburn,BCU,35.0,,33.0,,,
 11/16,Auburn,Houston,Home,72.0,73.0,No,Auburn,Houston,35.0,,33.0,17.0,,11.0
 11/19,Auburn,Jackson St,Home,112.0,66.0,Yes,Auburn,Jackson St,35.0,,33.0,,,
-11/6,Auburn,Merrimack,Home,95.0,57.0,Yes,Auburn,Merrimack,35.0,,33.0,257.0,,263.0
+11/6,Auburn,Merrimack,Home,95.0,57.0,Yes,Auburn,Merrimack,35.0,,33.0,257.0,,264.0
 11/25,Auburn,Michigan,Away,72.0,102.0,No,Auburn,Michigan,35.0,,33.0,1.0,,1.0
 12/3,Auburn,N.C. State,Home,83.0,73.0,Yes,Auburn,N.C. State,35.0,,33.0,,,27.0
 11/24,Auburn,Oregon,Away,84.0,73.0,Yes,Auburn,Oregon,35.0,,33.0,97.0,,72.0
 11/26,Auburn,St John's,Home,85.0,74.0,Yes,Auburn,St John's,35.0,,33.0,,,
 11/11,Auburn,Wofford,Home,93.0,62.0,Yes,Auburn,Wofford,35.0,,33.0,211.0,,225.0
-11/8,Austin Peay,Air Force,Away,74.0,54.0,Yes,Austin Peay,Air Force,158.0,,193.0,313.0,,324.0
-12/3,Austin Peay,Kent State,Away,84.0,96.0,No,Austin Peay,Kent State,158.0,,193.0,,,
-11/18,Austin Peay,Mississippi,Away,65.0,72.0,No,Austin Peay,Mississippi,158.0,,193.0,,,57.0
-11/25,Austin Peay,N Illinois,Home,77.0,59.0,Yes,Austin Peay,N Illinois,158.0,,193.0,,,
-11/21,Austin Peay,Tulsa,Away,75.0,84.0,No,Austin Peay,Tulsa,158.0,,193.0,45.0,,82.0
-11/15,Austin Peay,UNC Greensboro,Away,69.0,63.0,Yes,Austin Peay,UNC Greensboro,158.0,,193.0,302.0,,293.0
-12/7,Austin Peay,UT Rio Grande,Away,50.0,63.0,No,Austin Peay,UT Rio Grande,158.0,,193.0,,,
-11/11,Austin Peay,Wyoming,Away,65.0,79.0,No,Austin Peay,Wyoming,158.0,,193.0,80.0,,98.0
+11/8,Austin Peay,Air Force,Away,74.0,54.0,Yes,Austin Peay,Air Force,158.0,,192.0,313.0,,324.0
+12/3,Austin Peay,Kent State,Away,84.0,96.0,No,Austin Peay,Kent State,158.0,,192.0,,,
+11/18,Austin Peay,Mississippi,Away,65.0,72.0,No,Austin Peay,Mississippi,158.0,,192.0,,,57.0
+11/25,Austin Peay,N Illinois,Home,77.0,59.0,Yes,Austin Peay,N Illinois,158.0,,192.0,,,
+11/21,Austin Peay,Tulsa,Away,75.0,84.0,No,Austin Peay,Tulsa,158.0,,192.0,45.0,,82.0
+11/15,Austin Peay,UNC Greensboro,Away,69.0,63.0,Yes,Austin Peay,UNC Greensboro,158.0,,192.0,302.0,,293.0
+12/7,Austin Peay,UT Rio Grande,Away,50.0,63.0,No,Austin Peay,UT Rio Grande,158.0,,192.0,,,
+11/11,Austin Peay,Wyoming,Away,65.0,79.0,No,Austin Peay,Wyoming,158.0,,192.0,80.0,,98.0
 11/8,Averett,High Point,Away,52.0,127.0,No,Averett,High Point,,,,96.0,,95.0
 12/3,BYU,CA Baptist,Home,91.0,60.0,Yes,BYU,CA Baptist,9.0,,10.0,,,
 12/9,BYU,Clemson,Home,67.0,64.0,Yes,BYU,Clemson,9.0,,10.0,38.0,,35.0
@@ -480,7 +480,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/6,Bethune,Miami,Away,61.0,101.0,No,Bethune,Miami,,,,,,
 11/19,Bethune,Ohio,Away,76.0,73.0,Yes,Bethune,Ohio,,,,203.0,,202.0
 11/25,Bethune,Stony Brook,Home,54.0,61.0,No,Bethune,Stony Brook,,,,241.0,,248.0
-12/5,Bethune,USC Upstate,Home,80.0,59.0,Yes,Bethune,USC Upstate,,,,213.0,,260.0
+12/5,Bethune,USC Upstate,Home,80.0,59.0,Yes,Bethune,USC Upstate,,,,213.0,,261.0
 11/20,Biblical Stud,Hou Christian,Away,67.0,85.0,No,Biblical Stud,Hou Christian,,,,,,
 11/10,Biblical Stud,McNeese,Away,50.0,132.0,No,Biblical Stud,McNeese,,,,48.0,,69.0
 12/10,Biblical Stud,Nicholls,Away,49.0,117.0,No,Biblical Stud,Nicholls,,,,222.0,,221.0
@@ -519,15 +519,15 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/26,Boston College,Harvard,Home,73.0,60.0,Yes,Boston College,Harvard,182.0,,157.0,195.0,,181.0
 12/3,Boston College,LSU,Home,69.0,78.0,No,Boston College,LSU,182.0,,157.0,34.0,,38.0
 12/6,Boston College,New Haven,Home,67.0,63.0,Yes,Boston College,New Haven,182.0,,157.0,328.0,,348.0
-11/15,Boston College,Temple,Away,76.0,71.0,Yes,Boston College,Temple,182.0,,157.0,171.0,,154.0
+11/15,Boston College,Temple,Away,76.0,71.0,Yes,Boston College,Temple,182.0,,157.0,171.0,,151.0
 11/6,Boston College,The Citadel,Home,76.0,47.0,Yes,Boston College,The Citadel,182.0,,157.0,357.0,,357.0
-11/23,Boston College,Tulane,Home,90.0,93.0,No,Boston College,Tulane,182.0,,157.0,219.0,,194.0
+11/23,Boston College,Tulane,Home,90.0,93.0,No,Boston College,Tulane,182.0,,157.0,219.0,,193.0
 12/10,Boston College,UMass,Home,74.0,76.0,No,Boston College,UMass,182.0,,157.0,,,
-11/12,Boston U,Brown,Home,90.0,77.0,Yes,Boston U,Brown,,,,265.0,,236.0
+11/12,Boston U,Brown,Home,90.0,77.0,Yes,Boston U,Brown,,,,265.0,,237.0
 11/18,Boston U,Columbia,Away,49.0,54.0,No,Boston U,Columbia,,,,102.0,,133.0
 11/22,Boston U,Harvard,Home,75.0,74.0,Yes,Boston U,Harvard,,,,195.0,,181.0
 12/10,Boston U,Maine,Home,59.0,69.0,No,Boston U,Maine,,,,342.0,,349.0
-11/15,Boston U,Merrimack,Home,79.0,91.0,No,Boston U,Merrimack,,,,257.0,,263.0
+11/15,Boston U,Merrimack,Home,79.0,91.0,No,Boston U,Merrimack,,,,257.0,,264.0
 11/29,Boston U,N Kentucky,Away,65.0,74.0,No,Boston U,N Kentucky,,,,,,
 12/6,Boston U,New Hampshire,Away,82.0,88.0,No,Boston U,New Hampshire,,,,324.0,,330.0
 11/7,Boston U,Northwestern,Away,52.0,76.0,No,Boston U,Northwestern,,,,69.0,,55.0
@@ -545,32 +545,32 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/19,Bowling Green,William & Mary,Home,74.0,82.0,No,Bowling Green,William & Mary,82.0,,107.0,71.0,,115.0
 11/15,Boyce,Purdue FW,Away,68.0,118.0,No,Boyce,Purdue FW,,,,,,
 11/8,Bradley,C Michigan,Home,85.0,54.0,Yes,Bradley,C Michigan,121.0,,119.0,,,
-11/26,Bradley,Liberty,Home,74.0,64.0,Yes,Bradley,Liberty,121.0,,119.0,107.0,,104.0
+11/26,Bradley,Liberty,Home,74.0,64.0,Yes,Bradley,Liberty,121.0,,119.0,107.0,,105.0
 12/6,Bradley,N Illinois,Home,84.0,55.0,Yes,Bradley,N Illinois,121.0,,119.0,,,
-11/24,Bradley,Princeton,Home,88.0,64.0,Yes,Bradley,Princeton,121.0,,119.0,294.0,,264.0
+11/24,Bradley,Princeton,Home,88.0,64.0,Yes,Bradley,Princeton,121.0,,119.0,294.0,,257.0
 11/15,Bradley,San Francisco,Away,64.0,75.0,No,Bradley,San Francisco,121.0,,119.0,98.0,,94.0
 11/25,Bradley,UC San Diego,Home,77.0,87.0,No,Bradley,UC San Diego,121.0,,119.0,62.0,,89.0
 11/19,Bradley,UMass Lowell,Home,87.0,77.0,Yes,Bradley,UMass Lowell,121.0,,119.0,322.0,,308.0
 11/12,Bradley,UT Martin,Home,67.0,78.0,No,Bradley,UT Martin,121.0,,119.0,162.0,,
 12/2,Bradley,Washington St,Home,64.0,60.0,Yes,Bradley,Washington St,121.0,,119.0,,,
-12/3,Brandeis,Yale,Away,61.0,79.0,No,Brandeis,Yale,,,,53.0,,84.0
+12/3,Brandeis,Yale,Away,61.0,79.0,No,Brandeis,Yale,,,,53.0,,85.0
 12/9,Brescia,N Kentucky,Away,53.0,92.0,No,Brescia,N Kentucky,,,,,,
 11/25,Brescia,UT Martin,Away,50.0,75.0,No,Brescia,UT Martin,,,,162.0,,
-11/12,Brown,Boston U,Away,77.0,90.0,No,Brown,Boston U,265.0,,236.0,,,
-12/5,Brown,Bryant,Home,75.0,56.0,Yes,Brown,Bryant,265.0,,236.0,325.0,,319.0
-12/6,Brown,Elms,Home,115.0,34.0,Yes,Brown,Elms,265.0,,236.0,,,
-11/14,Brown,Hampton,Home,63.0,72.0,No,Brown,Hampton,265.0,,236.0,264.0,,256.0
-11/18,Brown,Holy Cross,Home,68.0,49.0,Yes,Brown,Holy Cross,265.0,,236.0,311.0,,332.0
-11/23,Brown,Maine,Away,58.0,53.0,Yes,Brown,Maine,265.0,,236.0,342.0,,349.0
-11/26,Brown,New Hampshire,Away,59.0,47.0,Yes,Brown,New Hampshire,265.0,,236.0,324.0,,330.0
-12/9,Brown,Providence,Away,79.0,86.0,No,Brown,Providence,265.0,,236.0,99.0,,75.0
-12/2,Brown,Rhode Island,Away,56.0,66.0,No,Brown,Rhode Island,265.0,,236.0,111.0,,108.0
-11/7,Brown,Siena,Home,46.0,62.0,No,Brown,Siena,265.0,,236.0,174.0,,174.0
-11/20,Brown,Stony Brook,Away,70.0,80.0,No,Brown,Stony Brook,265.0,,236.0,241.0,,248.0
-11/9,Brown,Vermont,Home,84.0,89.0,No,Brown,Vermont,265.0,,236.0,181.0,,187.0
+11/12,Brown,Boston U,Away,77.0,90.0,No,Brown,Boston U,265.0,,237.0,,,
+12/5,Brown,Bryant,Home,75.0,56.0,Yes,Brown,Bryant,265.0,,237.0,325.0,,319.0
+12/6,Brown,Elms,Home,115.0,34.0,Yes,Brown,Elms,265.0,,237.0,,,
+11/14,Brown,Hampton,Home,63.0,72.0,No,Brown,Hampton,265.0,,237.0,264.0,,256.0
+11/18,Brown,Holy Cross,Home,68.0,49.0,Yes,Brown,Holy Cross,265.0,,237.0,311.0,,332.0
+11/23,Brown,Maine,Away,58.0,53.0,Yes,Brown,Maine,265.0,,237.0,342.0,,349.0
+11/26,Brown,New Hampshire,Away,59.0,47.0,Yes,Brown,New Hampshire,265.0,,237.0,324.0,,330.0
+12/9,Brown,Providence,Away,79.0,86.0,No,Brown,Providence,265.0,,237.0,99.0,,75.0
+12/2,Brown,Rhode Island,Away,56.0,66.0,No,Brown,Rhode Island,265.0,,237.0,111.0,,108.0
+11/7,Brown,Siena,Home,46.0,62.0,No,Brown,Siena,265.0,,237.0,174.0,,174.0
+11/20,Brown,Stony Brook,Away,70.0,80.0,No,Brown,Stony Brook,265.0,,237.0,241.0,,248.0
+11/9,Brown,Vermont,Home,84.0,89.0,No,Brown,Vermont,265.0,,237.0,181.0,,194.0
 11/15,Bryan (TN),Lipscomb,Away,53.0,98.0,No,Bryan (TN),Lipscomb,,,,137.0,,145.0
 11/13,Bryan (TN),UNC Asheville,Away,54.0,92.0,No,Bryan (TN),UNC Asheville,,,,252.0,,252.0
-12/5,Bryant,Brown,Away,56.0,75.0,No,Bryant,Brown,325.0,,319.0,265.0,,236.0
+12/5,Bryant,Brown,Away,56.0,75.0,No,Bryant,Brown,325.0,,319.0,265.0,,237.0
 11/23,Bryant,Connecticut,Away,49.0,72.0,No,Bryant,Connecticut,325.0,,319.0,,,7.0
 11/12,Bryant,Dartmouth,Home,82.0,75.0,Yes,Bryant,Dartmouth,325.0,,319.0,248.0,,251.0
 11/7,Bryant,Georgia Tech,Away,45.0,74.0,No,Bryant,Georgia Tech,325.0,,319.0,178.0,,134.0
@@ -583,25 +583,25 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/6,Bryant Str-Alb,Wagner,Away,36.0,92.0,No,Bryant Str-Alb,Wagner,,,,240.0,,300.0
 12/3,Bucknell,Akron,Away,77.0,97.0,No,Bucknell,Akron,321.0,,303.0,49.0,,56.0
 11/24,Bucknell,Bowling Green,Away,66.0,71.0,No,Bucknell,Bowling Green,321.0,,303.0,82.0,,107.0
-11/26,Bucknell,Buffalo,Home,71.0,73.0,No,Bucknell,Buffalo,321.0,,303.0,139.0,,179.0
+11/26,Bucknell,Buffalo,Home,71.0,73.0,No,Bucknell,Buffalo,321.0,,303.0,139.0,,180.0
 11/30,Bucknell,Cornell,Home,72.0,101.0,No,Bucknell,Cornell,321.0,,303.0,151.0,,164.0
 11/14,Bucknell,Hofstra,Home,77.0,83.0,No,Bucknell,Hofstra,321.0,,303.0,88.0,,103.0
 11/7,Bucknell,Mount St Marys,Away,73.0,62.0,Yes,Bucknell,Mount St Marys,321.0,,303.0,,,
 11/17,Bucknell,Pittsburgh,Away,50.0,84.0,No,Bucknell,Pittsburgh,321.0,,303.0,120.0,,91.0
-11/11,Bucknell,Princeton,Away,63.0,73.0,No,Bucknell,Princeton,321.0,,303.0,294.0,,264.0
+11/11,Bucknell,Princeton,Away,63.0,73.0,No,Bucknell,Princeton,321.0,,303.0,294.0,,257.0
 12/9,Bucknell,Rider,Away,51.0,38.0,Yes,Bucknell,Rider,321.0,,303.0,359.0,,350.0
 11/20,Bucknell,St John's,Away,49.0,97.0,No,Bucknell,St John's,321.0,,303.0,,,
 12/6,Bucknell,UMBC,Home,66.0,73.0,No,Bucknell,UMBC,321.0,,303.0,260.0,,270.0
 11/21,Buena Vista,Drake,Away,52.0,98.0,No,Buena Vista,Drake,,,,169.0,,156.0
-11/26,Buffalo,Bucknell,Away,73.0,71.0,Yes,Buffalo,Bucknell,139.0,,179.0,321.0,,303.0
-11/29,Buffalo,Canisius,Away,71.0,53.0,Yes,Buffalo,Canisius,139.0,,179.0,338.0,,347.0
-11/11,Buffalo,DePaul,Away,66.0,53.0,Yes,Buffalo,DePaul,139.0,,179.0,147.0,,121.0
-11/7,Buffalo,Green Bay,Home,83.0,76.0,Yes,Buffalo,Green Bay,139.0,,179.0,253.0,,282.0
-11/15,Buffalo,RIT,Home,80.0,64.0,Yes,Buffalo,RIT,139.0,,179.0,,,
-12/6,Buffalo,St Bonaventure,Home,69.0,77.0,No,Buffalo,St Bonaventure,139.0,,179.0,,,
-12/9,Buffalo,UMBC,Away,83.0,79.0,Yes,Buffalo,UMBC,139.0,,179.0,260.0,,270.0
-11/24,Buffalo,VMI,Home,78.0,70.0,Yes,Buffalo,VMI,139.0,,179.0,344.0,,333.0
-11/18,Buffalo,Vermont,Home,94.0,90.0,Yes,Buffalo,Vermont,139.0,,179.0,181.0,,187.0
+11/26,Buffalo,Bucknell,Away,73.0,71.0,Yes,Buffalo,Bucknell,139.0,,180.0,321.0,,303.0
+11/29,Buffalo,Canisius,Away,71.0,53.0,Yes,Buffalo,Canisius,139.0,,180.0,338.0,,347.0
+11/11,Buffalo,DePaul,Away,66.0,53.0,Yes,Buffalo,DePaul,139.0,,180.0,147.0,,121.0
+11/7,Buffalo,Green Bay,Home,83.0,76.0,Yes,Buffalo,Green Bay,139.0,,180.0,253.0,,282.0
+11/15,Buffalo,RIT,Home,80.0,64.0,Yes,Buffalo,RIT,139.0,,180.0,,,
+12/6,Buffalo,St Bonaventure,Home,69.0,77.0,No,Buffalo,St Bonaventure,139.0,,180.0,,,
+12/9,Buffalo,UMBC,Away,83.0,79.0,Yes,Buffalo,UMBC,139.0,,180.0,260.0,,270.0
+11/24,Buffalo,VMI,Home,78.0,70.0,Yes,Buffalo,VMI,139.0,,180.0,344.0,,333.0
+11/18,Buffalo,Vermont,Home,94.0,90.0,Yes,Buffalo,Vermont,139.0,,180.0,181.0,,194.0
 12/6,Butler,Boise St,Home,68.0,77.0,No,Butler,Boise St,42.0,,49.0,,,
 11/11,Butler,Chicago St,Home,98.0,66.0,Yes,Butler,Chicago St,42.0,,49.0,,,
 12/2,Butler,E Michigan,Home,84.0,68.0,Yes,Butler,E Michigan,42.0,,49.0,,,
@@ -623,7 +623,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/11,C Connecticut,Boston College,Away,60.0,59.0,Yes,C Connecticut,Boston College,,,,182.0,,157.0
 11/30,C Connecticut,Johnson Wales,Home,122.0,57.0,Yes,C Connecticut,Johnson Wales,,,,,,
 12/7,C Connecticut,Northeastern,Away,56.0,73.0,No,C Connecticut,Northeastern,,,,214.0,,212.0
-11/6,C Connecticut,Quinnipiac,Away,49.0,71.0,No,C Connecticut,Quinnipiac,,,,144.0,,151.0
+11/6,C Connecticut,Quinnipiac,Away,49.0,71.0,No,C Connecticut,Quinnipiac,,,,144.0,,153.0
 11/21,C Connecticut,Rutgers,Away,67.0,54.0,Yes,C Connecticut,Rutgers,,,,199.0,,161.0
 11/24,C Connecticut,Sacred Heart,Home,108.0,106.0,Yes,C Connecticut,Sacred Heart,,,,287.0,,287.0
 12/3,C Connecticut,Seton Hall,Away,61.0,77.0,No,C Connecticut,Seton Hall,,,,44.0,,47.0
@@ -635,7 +635,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/22,C Michigan,Marquette,Away,71.0,85.0,No,C Michigan,Marquette,,,,173.0,,113.0
 11/20,C Michigan,N Kentucky,Home,66.0,90.0,No,C Michigan,N Kentucky,,,,,,
 12/7,C Michigan,Saint Louis,Away,65.0,107.0,No,C Michigan,Saint Louis,,,,27.0,,41.0
-11/13,C Michigan,South Alabama,Away,64.0,66.0,No,C Michigan,South Alabama,,,,191.0,,192.0
+11/13,C Michigan,South Alabama,Away,64.0,66.0,No,C Michigan,South Alabama,,,,191.0,,191.0
 12/3,CA Baptist,BYU,Away,60.0,91.0,No,CA Baptist,BYU,,,,9.0,,10.0
 12/1,CA Baptist,Colorado,Away,70.0,78.0,No,CA Baptist,Colorado,,,,77.0,,86.0
 11/21,CA Baptist,Grambling,Home,72.0,59.0,Yes,CA Baptist,Grambling,,,,217.0,,
@@ -649,7 +649,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/7,CO Christian,N Colorado,Away,65.0,101.0,No,CO Christian,N Colorado,,,,,,
 12/4,CSU Northridge,Bakersfield,Home,87.0,66.0,Yes,CSU Northridge,Bakersfield,,,,,,
 12/10,CSU Northridge,Fresno St,Home,89.0,87.0,Yes,CSU Northridge,Fresno St,,,,,,
-11/26,CSU Northridge,Idaho,Home,64.0,78.0,No,CSU Northridge,Idaho,,,,150.0,,189.0
+11/26,CSU Northridge,Idaho,Home,64.0,78.0,No,CSU Northridge,Idaho,,,,150.0,,188.0
 11/28,CSU Northridge,Idaho St,Away,50.0,82.0,No,CSU Northridge,Idaho St,,,,,,
 11/11,CSU Northridge,N Dakota St,Away,68.0,90.0,No,CSU Northridge,N Dakota St,,,,,,
 11/9,CSU Northridge,North Dakota,Away,93.0,85.0,Yes,CSU Northridge,North Dakota,,,,308.0,,322.0
@@ -690,7 +690,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/6,Campbell,West Virginia,Away,65.0,73.0,No,Campbell,West Virginia,244.0,,227.0,92.0,,66.0
 11/6,Canisius,Allegheny,Home,84.0,43.0,Yes,Canisius,Allegheny,338.0,,347.0,,,
 11/23,Canisius,Binghamton,Home,75.0,66.0,Yes,Canisius,Binghamton,338.0,,347.0,363.0,,363.0
-11/29,Canisius,Buffalo,Home,53.0,71.0,No,Canisius,Buffalo,338.0,,347.0,139.0,,179.0
+11/29,Canisius,Buffalo,Home,53.0,71.0,No,Canisius,Buffalo,338.0,,347.0,139.0,,180.0
 11/17,Canisius,High Point,Away,50.0,93.0,No,Canisius,High Point,338.0,,347.0,96.0,,95.0
 11/21,Canisius,MD Eastern,Home,60.0,57.0,Yes,Canisius,MD Eastern,338.0,,347.0,,,
 11/12,Canisius,Mercyhurst,Home,58.0,55.0,Yes,Canisius,Mercyhurst,338.0,,347.0,310.0,,320.0
@@ -699,7 +699,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/8,Canisius,St Bonaventure,Away,70.0,89.0,No,Canisius,St Bonaventure,338.0,,347.0,,,
 11/6,Capital,Cleveland St,Away,70.0,71.0,No,Capital,Cleveland St,,,,,,
 11/5,Carolina U,App State,Away,46.0,92.0,No,Carolina U,App State,,,,243.0,,
-11/17,Carolina U,Liberty,Away,46.0,98.0,No,Carolina U,Liberty,,,,107.0,,104.0
+11/17,Carolina U,Liberty,Away,46.0,98.0,No,Carolina U,Liberty,,,,107.0,,105.0
 11/29,Carolina U,North Carolina Central,Away,61.0,109.0,No,Carolina U,North Carolina Central,,,,,,351.0
 11/11,Catawba,George Mason,Away,62.0,86.0,No,Catawba,George Mason,,,,84.0,,88.0
 11/26,Cent St OH,Duquesne,Away,80.0,101.0,No,Cent St OH,Duquesne,,,,168.0,,131.0
@@ -717,11 +717,11 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/17,Charleston,Drake,Home,62.0,71.0,No,Charleston,Drake,,,178.0,169.0,,156.0
 11/24,Charleston,Evansville,Away,78.0,59.0,Yes,Charleston,Evansville,,,178.0,273.0,,271.0
 11/8,Charleston,Florida Atlantic,Home,77.0,94.0,No,Charleston,Florida Atlantic,,,178.0,,,111.0
-11/7,Charleston,Liberty,Away,75.0,90.0,No,Charleston,Liberty,,,178.0,107.0,,104.0
-12/10,Charleston,South Florida,Away,75.0,81.0,No,Charleston,South Florida,,,178.0,,,85.0
+11/7,Charleston,Liberty,Away,75.0,90.0,No,Charleston,Liberty,,,178.0,107.0,,105.0
+12/10,Charleston,South Florida,Away,75.0,81.0,No,Charleston,South Florida,,,178.0,,,84.0
 11/21,Charleston,UMass,Home,69.0,65.0,Yes,Charleston,UMass,,,178.0,,,
-11/14,Charleston,USC Upstate,Home,88.0,61.0,Yes,Charleston,USC Upstate,,,178.0,213.0,,260.0
-11/23,Charleston,Yale,Home,63.0,74.0,No,Charleston,Yale,,,178.0,53.0,,84.0
+11/14,Charleston,USC Upstate,Home,88.0,61.0,Yes,Charleston,USC Upstate,,,178.0,213.0,,261.0
+11/23,Charleston,Yale,Home,63.0,74.0,No,Charleston,Yale,,,178.0,53.0,,85.0
 11/13,Charleston So,Alabama A&M,Away,64.0,68.0,No,Charleston So,Alabama A&M,,,,275.0,,286.0
 11/21,Charleston So,East Carolina,Away,77.0,65.0,Yes,Charleston So,East Carolina,,,,299.0,,278.0
 11/18,Charleston So,IU Indy,Home,103.0,91.0,Yes,Charleston So,IU Indy,,,,323.0,,344.0
@@ -730,7 +730,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/28,Charleston So,South Carolina,Away,62.0,74.0,No,Charleston So,South Carolina,,,,115.0,,90.0
 11/10,Charleston So,The Citadel,Away,96.0,86.0,Yes,Charleston So,The Citadel,,,,357.0,,357.0
 11/6,Charleston So,Toccoa Falls,Home,106.0,71.0,Yes,Charleston So,Toccoa Falls,,,,,,
-12/8,Charleston So,USC Upstate,Home,84.0,44.0,Yes,Charleston So,USC Upstate,,,,213.0,,260.0
+12/8,Charleston So,USC Upstate,Home,84.0,44.0,Yes,Charleston So,USC Upstate,,,,213.0,,261.0
 12/2,Charleston So,UT Martin,Away,56.0,73.0,No,Charleston So,UT Martin,,,,162.0,,
 12/4,Charleston So,Warren Wilson,Home,124.0,63.0,Yes,Charleston So,Warren Wilson,,,,,,
 11/21,Charlotte,App State,Away,63.0,65.0,No,Charlotte,App State,179.0,,186.0,243.0,,
@@ -750,7 +750,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/28,Chattanooga,TN Wesleyan,Home,109.0,59.0,Yes,Chattanooga,TN Wesleyan,281.0,,240.0,,,
 11/30,Chattanooga,Tennessee St,Home,64.0,70.0,No,Chattanooga,Tennessee St,281.0,,240.0,,,
 11/8,Chattanooga,UNLV,Away,69.0,101.0,No,Chattanooga,UNLV,281.0,,240.0,177.0,,142.0
-11/19,Chattanooga,USC Upstate,Away,78.0,66.0,Yes,Chattanooga,USC Upstate,281.0,,240.0,213.0,,260.0
+11/19,Chattanooga,USC Upstate,Away,78.0,66.0,Yes,Chattanooga,USC Upstate,281.0,,240.0,213.0,,261.0
 11/18,Cheyney (PA),Delaware St,Away,70.0,88.0,No,Cheyney (PA),Delaware St,,,,,,
 11/8,Cheyney (PA),MD Eastern,Away,59.0,104.0,No,Cheyney (PA),MD Eastern,,,,,,
 11/11,Chicago St,Butler,Away,66.0,98.0,No,Chicago St,Butler,,,,42.0,,49.0
@@ -773,7 +773,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/1,Cincinnati,Tarleton St,Home,76.0,58.0,Yes,Cincinnati,Tarleton St,95.0,,62.0,,,
 11/3,Cincinnati,WCU,Home,94.0,63.0,Yes,Cincinnati,WCU,95.0,,62.0,,,
 12/5,Cincinnati,Xavier,Away,74.0,79.0,No,Cincinnati,Xavier,95.0,,62.0,116.0,,100.0
-11/19,City (NY),Quinnipiac,Away,52.0,112.0,No,City (NY),Quinnipiac,,,,144.0,,151.0
+11/19,City (NY),Quinnipiac,Away,52.0,112.0,No,City (NY),Quinnipiac,,,,144.0,,153.0
 11/11,Cleary,Detroit Mercy,Away,54.0,92.0,No,Cleary,Detroit Mercy,,,,259.0,,279.0
 12/5,Cleary,E Michigan,Away,48.0,86.0,No,Cleary,E Michigan,,,,,,
 12/3,Clemson,Alabama,Away,84.0,90.0,No,Clemson,Alabama,38.0,,35.0,14.0,,15.0
@@ -813,7 +813,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/17,Coe,W Illinois,Away,63.0,74.0,No,Coe,W Illinois,,,,,,
 11/20,Colgate,Cornell,Away,94.0,95.0,No,Colgate,Cornell,183.0,,185.0,151.0,,164.0
 11/11,Colgate,Drexel,Home,90.0,83.0,Yes,Colgate,Drexel,183.0,,185.0,296.0,,289.0
-11/30,Colgate,Fordham,Home,72.0,62.0,Yes,Colgate,Fordham,183.0,,185.0,210.0,,196.0
+11/30,Colgate,Fordham,Home,72.0,62.0,Yes,Colgate,Fordham,183.0,,185.0,210.0,,197.0
 11/14,Colgate,Illinois,Away,65.0,84.0,No,Colgate,Illinois,183.0,,185.0,10.0,,9.0
 11/7,Colgate,Northeastern,Home,65.0,68.0,No,Colgate,Northeastern,183.0,,185.0,214.0,,212.0
 11/29,Colgate,SUNY-Oneonta,Home,85.0,50.0,Yes,Colgate,SUNY-Oneonta,183.0,,185.0,,,
@@ -836,7 +836,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/21,Colorado St,Denver,Home,81.0,83.0,No,Colorado St,Denver,,,,218.0,,266.0
 11/16,Colorado St,Loyola Chicago,Away,80.0,67.0,Yes,Colorado St,Loyola Chicago,,,,326.0,,297.0
 11/9,Colorado St,Omaha,Home,97.0,74.0,Yes,Colorado St,Omaha,,,,251.0,,
-11/28,Colorado St,South Florida,Away,83.0,68.0,Yes,Colorado St,South Florida,,,,,,85.0
+11/28,Colorado St,South Florida,Away,83.0,68.0,Yes,Colorado St,South Florida,,,,,,84.0
 11/26,Colorado St,Virginia Tech,Home,64.0,66.0,No,Colorado St,Virginia Tech,,,,63.0,,68.0
 11/27,Colorado St,Wichita St,Home,76.0,70.0,Yes,Colorado St,Wichita St,,,,,,
 11/18,Columbia,Boston U,Home,54.0,49.0,Yes,Columbia,Boston U,102.0,,133.0,,,
@@ -866,13 +866,13 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/14,Coppin St.,C Michigan,Home,59.0,82.0,No,Coppin St.,C Michigan,365.0,,364.0,,,
 11/18,Coppin St.,Central Penn,Home,103.0,62.0,Yes,Coppin St.,Central Penn,365.0,,364.0,,,
 11/9,Coppin St.,James Madison,Away,70.0,84.0,No,Coppin St.,James Madison,365.0,,364.0,226.0,,217.0
-11/5,Coppin St.,La Salle,Away,59.0,87.0,No,Coppin St.,La Salle,365.0,,364.0,271.0,,262.0
-12/6,Coppin St.,Liberty,Away,50.0,92.0,No,Coppin St.,Liberty,365.0,,364.0,107.0,,104.0
+11/5,Coppin St.,La Salle,Away,59.0,87.0,No,Coppin St.,La Salle,365.0,,364.0,271.0,,263.0
+12/6,Coppin St.,Liberty,Away,50.0,92.0,No,Coppin St.,Liberty,365.0,,364.0,107.0,,105.0
 11/30,Coppin St.,Loyola MD,Away,84.0,95.0,No,Coppin St.,Loyola MD,365.0,,364.0,,,329.0
 11/25,Coppin St.,Rider,Away,68.0,65.0,Yes,Coppin St.,Rider,365.0,,364.0,359.0,,350.0
-12/9,Coppin St.,Saint Joseph's,Away,65.0,87.0,No,Coppin St.,Saint Joseph's,365.0,,364.0,246.0,,198.0
-11/15,Coppin St.,South Alabama,Home,62.0,72.0,No,Coppin St.,South Alabama,365.0,,364.0,191.0,,192.0
-11/12,Coppin St.,South Florida,Away,50.0,100.0,No,Coppin St.,South Florida,365.0,,364.0,,,85.0
+12/9,Coppin St.,Saint Joseph's,Away,65.0,87.0,No,Coppin St.,Saint Joseph's,365.0,,364.0,246.0,,196.0
+11/15,Coppin St.,South Alabama,Home,62.0,72.0,No,Coppin St.,South Alabama,365.0,,364.0,191.0,,191.0
+11/12,Coppin St.,South Florida,Away,50.0,100.0,No,Coppin St.,South Florida,365.0,,364.0,,,84.0
 11/22,Coppin St.,VCU,Away,58.0,101.0,No,Coppin St.,VCU,365.0,,364.0,59.0,,42.0
 12/3,Coppin St.,West Virginia,Away,49.0,91.0,No,Coppin St.,West Virginia,365.0,,364.0,92.0,,66.0
 11/18,Cornell,Army,Home,86.0,73.0,Yes,Cornell,Army,151.0,,164.0,,,334.0
@@ -926,7 +926,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/8,Dayton,UMBC,Home,77.0,71.0,Yes,Dayton,UMBC,87.0,,64.0,260.0,,270.0
 12/6,Dayton,Virginia,Away,73.0,86.0,No,Dayton,Virginia,87.0,,64.0,24.0,,24.0
 12/6,DePaul,AR-Pine Bluff,Home,76.0,72.0,Yes,DePaul,AR-Pine Bluff,147.0,,121.0,,,
-11/11,DePaul,Buffalo,Home,53.0,66.0,No,DePaul,Buffalo,147.0,,121.0,139.0,,179.0
+11/11,DePaul,Buffalo,Home,53.0,66.0,No,DePaul,Buffalo,147.0,,121.0,139.0,,180.0
 11/23,DePaul,Detroit Mercy,Home,95.0,75.0,Yes,DePaul,Detroit Mercy,147.0,,121.0,259.0,,279.0
 11/18,DePaul,Gardner-Webb,Home,93.0,62.0,Yes,DePaul,Gardner-Webb,147.0,,121.0,361.0,,
 11/28,DePaul,Georgia Tech,Home,75.0,61.0,Yes,DePaul,Georgia Tech,147.0,,121.0,178.0,,134.0
@@ -951,7 +951,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/15,Delaware St,New Haven,Away,52.0,65.0,No,Delaware St,New Haven,,,,328.0,,348.0
 11/10,Delaware St,Niagara,Away,57.0,68.0,No,Delaware St,Niagara,,,,356.0,,356.0
 11/8,Delaware St,Syracuse,Away,43.0,83.0,No,Delaware St,Syracuse,,,,89.0,,78.0
-11/5,Delaware St,Temple,Away,65.0,83.0,No,Delaware St,Temple,,,,171.0,,154.0
+11/5,Delaware St,Temple,Away,65.0,83.0,No,Delaware St,Temple,,,,171.0,,151.0
 11/29,Delaware St,UMBC,Away,57.0,71.0,No,Delaware St,UMBC,,,,260.0,,270.0
 11/26,Delaware St,Virginia St,Home,58.0,62.0,No,Delaware St,Virginia St,,,,,,
 12/11,Denver,AK-Anchorage,Home,97.0,61.0,Yes,Denver,AK-Anchorage,218.0,,266.0,,,
@@ -979,7 +979,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/9,Doane,Omaha,Away,70.0,79.0,No,Doane,Omaha,,,,251.0,,
 12/9,Dominican CA,California,Away,71.0,93.0,No,Dominican CA,California,,,,47.0,,61.0
 11/4,Dominican CA,Sacramento St,Away,79.0,103.0,No,Dominican CA,Sacramento St,,,,,,
-11/25,Dominican IL,Milwaukee,Away,70.0,125.0,No,Dominican IL,Milwaukee,,,,185.0,,201.0
+11/25,Dominican IL,Milwaukee,Away,70.0,125.0,No,Dominican IL,Milwaukee,,,,185.0,,200.0
 11/9,Dominican IL,Purdue FW,Away,56.0,137.0,No,Dominican IL,Purdue FW,,,,,,
 11/21,Drake,Buena Vista,Home,98.0,52.0,Yes,Drake,Buena Vista,169.0,,156.0,,,
 11/17,Drake,Charleston,Away,71.0,62.0,Yes,Drake,Charleston,169.0,,156.0,,,178.0
@@ -992,12 +992,12 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/2,Drake,W Illinois,Home,108.0,57.0,Yes,Drake,W Illinois,169.0,,156.0,,,
 12/3,Drexel,American,Away,73.0,75.0,No,Drexel,American,296.0,,289.0,267.0,,253.0
 11/11,Drexel,Colgate,Away,83.0,90.0,No,Drexel,Colgate,296.0,,289.0,183.0,,185.0
-12/6,Drexel,La Salle,Away,64.0,69.0,No,Drexel,La Salle,296.0,,289.0,271.0,,262.0
+12/6,Drexel,La Salle,Away,64.0,69.0,No,Drexel,La Salle,296.0,,289.0,271.0,,263.0
 11/25,Drexel,Morgan St,Away,71.0,66.0,Yes,Drexel,Morgan St,296.0,,289.0,,,
 11/18,Drexel,NJIT,Home,75.0,43.0,Yes,Drexel,NJIT,296.0,,289.0,347.0,,354.0
 11/23,Drexel,Old Dominion,Home,75.0,71.0,Yes,Drexel,Old Dominion,296.0,,289.0,247.0,,222.0
 11/21,Drexel,Penn,Home,68.0,84.0,No,Drexel,Penn,296.0,,289.0,220.0,,218.0
-11/8,Drexel,Saint Joseph's,Away,65.0,76.0,No,Drexel,Saint Joseph's,296.0,,289.0,246.0,,198.0
+11/8,Drexel,Saint Joseph's,Away,65.0,76.0,No,Drexel,Saint Joseph's,296.0,,289.0,246.0,,196.0
 11/15,Drexel,Syracuse,Away,50.0,80.0,No,Drexel,Syracuse,296.0,,289.0,89.0,,78.0
 11/27,Duke,Arkansas,Away,80.0,71.0,Yes,Duke,Arkansas,3.0,,6.0,30.0,,28.0
 11/11,Duke,Army,Away,114.0,59.0,Yes,Duke,Army,3.0,,6.0,,,334.0
@@ -1072,7 +1072,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/12,ETSU,N Kentucky,Home,75.0,63.0,Yes,ETSU,N Kentucky,145.0,,,,,
 11/15,ETSU,North Alabama,Away,78.0,74.0,Yes,ETSU,North Alabama,145.0,,,,,267.0
 11/8,ETSU,Presbyterian,Away,64.0,68.0,No,ETSU,Presbyterian,145.0,,,283.0,,291.0
-12/5,ETSU,South Alabama,Home,91.0,65.0,Yes,ETSU,South Alabama,145.0,,,191.0,,192.0
+12/5,ETSU,South Alabama,Home,91.0,65.0,Yes,ETSU,South Alabama,145.0,,,191.0,,191.0
 12/7,ETSU,Tusculum,Home,78.0,62.0,Yes,ETSU,Tusculum,145.0,,,,,
 11/23,ETSU,UL Monroe,Home,97.0,55.0,Yes,ETSU,UL Monroe,145.0,,,,,
 12/11,East Carolina,App State,Home,54.0,67.0,No,East Carolina,App State,299.0,,278.0,243.0,,
@@ -1088,12 +1088,12 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/4,East West,SIUE,Away,50.0,119.0,No,East West,SIUE,,,,261.0,,250.0
 11/15,Eastern,Rider,Away,54.0,86.0,No,Eastern,Rider,,,,359.0,,350.0
 11/17,Eastern Oregon,E Washington,Away,73.0,91.0,No,Eastern Oregon,E Washington,,,,,,
-11/22,Eastern Oregon,Idaho,Away,68.0,97.0,No,Eastern Oregon,Idaho,,,,150.0,,189.0
+11/22,Eastern Oregon,Idaho,Away,68.0,97.0,No,Eastern Oregon,Idaho,,,,150.0,,188.0
 12/7,Ecclesia,Louisiana Tech,Away,37.0,89.0,No,Ecclesia,Louisiana Tech,,,,224.0,,176.0
 11/14,Ecclesia,N'Western St,Away,75.0,95.0,No,Ecclesia,N'Western St,,,,,,
 11/10,Ecclesia,Southern,Away,51.0,115.0,No,Ecclesia,Southern,,,,,,242.0
 11/13,Elizabeth City,East Carolina,Away,70.0,71.0,No,Elizabeth City,East Carolina,,,,299.0,,278.0
-12/6,Elms,Brown,Away,34.0,115.0,No,Elms,Brown,,,,265.0,,236.0
+12/6,Elms,Brown,Away,34.0,115.0,No,Elms,Brown,,,,265.0,,237.0
 11/24,Elon,App State,Away,88.0,53.0,Yes,Elon,App State,142.0,,148.0,243.0,,
 11/5,Elon,Belmont Abbey,Home,99.0,51.0,Yes,Elon,Belmont Abbey,142.0,,148.0,,,
 12/3,Elon,Furman,Home,88.0,97.0,No,Elon,Furman,142.0,,148.0,155.0,,150.0
@@ -1139,14 +1139,14 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/22,Fairfield,Le Moyne,Away,97.0,83.0,Yes,Fairfield,Le Moyne,249.0,,284.0,298.0,,301.0
 11/16,Fairfield,Loyola MD,Home,85.0,82.0,Yes,Fairfield,Loyola MD,249.0,,284.0,,,329.0
 12/5,Fairfield,Manhattan,Away,66.0,70.0,No,Fairfield,Manhattan,249.0,,284.0,307.0,,314.0
-12/7,Fairfield,Merrimack,Away,63.0,74.0,No,Fairfield,Merrimack,249.0,,284.0,257.0,,263.0
+12/7,Fairfield,Merrimack,Away,63.0,74.0,No,Fairfield,Merrimack,249.0,,284.0,257.0,,264.0
 11/8,Fairfield,NJIT,Away,74.0,53.0,Yes,Fairfield,NJIT,249.0,,284.0,347.0,,354.0
 11/30,Fairfield,New Hampshire,Home,72.0,68.0,Yes,Fairfield,New Hampshire,249.0,,284.0,324.0,,330.0
 11/10,Fairfield,Seton Hall,Away,59.0,82.0,No,Fairfield,Seton Hall,249.0,,284.0,44.0,,47.0
 11/14,Fairfield,Stonehill,Home,73.0,71.0,Yes,Fairfield,Stonehill,249.0,,284.0,346.0,,342.0
 11/26,Fairleigh Dickinson,Army,Home,73.0,81.0,No,Fairleigh Dickinson,Army,,,358.0,,,334.0
 11/24,Fairleigh Dickinson,E Texas A&M,Home,65.0,70.0,No,Fairleigh Dickinson,E Texas A&M,,,358.0,,,
-12/10,Fairleigh Dickinson,Fordham,Away,54.0,75.0,No,Fairleigh Dickinson,Fordham,,,358.0,210.0,,196.0
+12/10,Fairleigh Dickinson,Fordham,Away,54.0,75.0,No,Fairleigh Dickinson,Fordham,,,358.0,210.0,,197.0
 12/4,Fairleigh Dickinson,Manor,Home,86.0,38.0,Yes,Fairleigh Dickinson,Manor,,,358.0,,,
 11/15,Fairleigh Dickinson,NJIT,Away,81.0,93.0,No,Fairleigh Dickinson,NJIT,,,358.0,347.0,,354.0
 12/2,Fairleigh Dickinson,Providence,Away,64.0,94.0,No,Fairleigh Dickinson,Providence,,,358.0,99.0,,75.0
@@ -1159,7 +1159,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/9,Florida,Connecticut,Away,73.0,77.0,No,Florida,Connecticut,23.0,,12.0,,,7.0
 12/2,Florida,Duke,Away,66.0,67.0,No,Florida,Duke,23.0,,12.0,3.0,,6.0
 11/11,Florida,Florida St,Home,78.0,76.0,Yes,Florida,Florida St,23.0,,12.0,,,
-11/21,Florida,Merrimack,Home,80.0,45.0,Yes,Florida,Merrimack,23.0,,12.0,257.0,,263.0
+11/21,Florida,Merrimack,Home,80.0,45.0,Yes,Florida,Merrimack,23.0,,12.0,257.0,,264.0
 11/16,Florida,Miami,Home,82.0,68.0,Yes,Florida,Miami,23.0,,12.0,,,
 11/6,Florida,North Florida,Home,104.0,64.0,Yes,Florida,North Florida,23.0,,12.0,340.0,,339.0
 11/28,Florida,Providence,Home,90.0,78.0,Yes,Florida,Providence,23.0,,12.0,99.0,,75.0
@@ -1175,7 +1175,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/7,Florida Atlantic,FGCU,Away,81.0,76.0,Yes,Florida Atlantic,FGCU,,,111.0,201.0,,
 11/25,Florida Atlantic,George Mason,Home,65.0,74.0,No,Florida Atlantic,George Mason,,,111.0,84.0,,88.0
 11/24,Florida Atlantic,LMU,Away,76.0,65.0,Yes,Florida Atlantic,LMU,,,111.0,,,
-11/9,Florida Atlantic,Liberty,Away,68.0,88.0,No,Florida Atlantic,Liberty,,,111.0,107.0,,104.0
+11/9,Florida Atlantic,Liberty,Away,68.0,88.0,No,Florida Atlantic,Liberty,,,111.0,107.0,,105.0
 11/20,Florida Atlantic,Pacific,Home,82.0,59.0,Yes,Florida Atlantic,Pacific,,,111.0,125.0,,138.0
 12/10,Florida Atlantic,Saint Leo,Home,112.0,55.0,Yes,Florida Atlantic,Saint Leo,,,111.0,,,
 11/30,Florida Atlantic,St Bonaventure,Home,65.0,70.0,No,Florida Atlantic,St Bonaventure,,,111.0,,,
@@ -1188,25 +1188,25 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/6,Florida St,Houston,Away,67.0,82.0,No,Florida St,Houston,,,,17.0,,11.0
 11/28,Florida St,Texas A&M,Home,59.0,95.0,No,Florida St,Texas A&M,,,,64.0,,48.0
 11/18,Florida St,UT Martin,Home,87.0,73.0,Yes,Florida St,UT Martin,,,,162.0,,
-11/30,Fordham,Colgate,Away,62.0,72.0,No,Fordham,Colgate,210.0,,196.0,183.0,,185.0
-12/10,Fordham,Fairleigh Dickinson,Home,75.0,54.0,Yes,Fordham,Fairleigh Dickinson,210.0,,196.0,,,358.0
-11/28,Fordham,Frank Pierce,Home,74.0,72.0,Yes,Fordham,Frank Pierce,210.0,,196.0,,,
-12/6,Fordham,Holy Cross,Home,69.0,70.0,No,Fordham,Holy Cross,210.0,,196.0,311.0,,332.0
-11/14,Fordham,Iona,Away,71.0,76.0,No,Fordham,Iona,210.0,,196.0,165.0,,182.0
-11/20,Fordham,LIU,Home,69.0,53.0,Yes,Fordham,LIU,210.0,,196.0,190.0,,203.0
-11/16,Fordham,Manhatnvll,Home,96.0,62.0,Yes,Fordham,Manhatnvll,210.0,,196.0,,,
-11/7,Fordham,Mt Saint Mary,Home,106.0,37.0,Yes,Fordham,Mt Saint Mary,210.0,,196.0,,,
-11/4,Fordham,NJIT,Home,61.0,72.0,No,Fordham,NJIT,210.0,,196.0,347.0,,354.0
-11/29,Fordham,UAlbany,Home,88.0,68.0,Yes,Fordham,UAlbany,210.0,,196.0,309.0,,
-11/11,Fordham,Wagner,Home,63.0,61.0,Yes,Fordham,Wagner,210.0,,196.0,240.0,,300.0
+11/30,Fordham,Colgate,Away,62.0,72.0,No,Fordham,Colgate,210.0,,197.0,183.0,,185.0
+12/10,Fordham,Fairleigh Dickinson,Home,75.0,54.0,Yes,Fordham,Fairleigh Dickinson,210.0,,197.0,,,358.0
+11/28,Fordham,Frank Pierce,Home,74.0,72.0,Yes,Fordham,Frank Pierce,210.0,,197.0,,,
+12/6,Fordham,Holy Cross,Home,69.0,70.0,No,Fordham,Holy Cross,210.0,,197.0,311.0,,332.0
+11/14,Fordham,Iona,Away,71.0,76.0,No,Fordham,Iona,210.0,,197.0,165.0,,182.0
+11/20,Fordham,LIU,Home,69.0,53.0,Yes,Fordham,LIU,210.0,,197.0,190.0,,203.0
+11/16,Fordham,Manhatnvll,Home,96.0,62.0,Yes,Fordham,Manhatnvll,210.0,,197.0,,,
+11/7,Fordham,Mt Saint Mary,Home,106.0,37.0,Yes,Fordham,Mt Saint Mary,210.0,,197.0,,,
+11/4,Fordham,NJIT,Home,61.0,72.0,No,Fordham,NJIT,210.0,,197.0,347.0,,354.0
+11/29,Fordham,UAlbany,Home,88.0,68.0,Yes,Fordham,UAlbany,210.0,,197.0,309.0,,
+11/11,Fordham,Wagner,Home,63.0,61.0,Yes,Fordham,Wagner,210.0,,197.0,240.0,,300.0
 11/13,Fort Valley St,Georgia St,Away,56.0,90.0,No,Fort Valley St,Georgia St,,,,,,
 11/29,Franciscan,Saint Francis,Away,60.0,85.0,No,Franciscan,Saint Francis,,,,358.0,,359.0
-11/28,Frank Pierce,Fordham,Away,72.0,74.0,No,Frank Pierce,Fordham,,,,210.0,,196.0
+11/28,Frank Pierce,Fordham,Away,72.0,74.0,No,Frank Pierce,Fordham,,,,210.0,,197.0
 12/6,Fresno St,Arkansas,Away,58.0,82.0,No,Fresno St,Arkansas,,,,30.0,,28.0
 11/30,Fresno St,Bakersfield,Home,71.0,76.0,No,Fresno St,Bakersfield,,,,,,
 12/10,Fresno St,CSU Northridge,Away,87.0,89.0,No,Fresno St,CSU Northridge,,,,,,
 11/8,Fresno St,Long Beach St,Home,82.0,62.0,Yes,Fresno St,Long Beach St,,,,,,
-11/21,Fresno St,New Orleans,Home,85.0,76.0,Yes,Fresno St,New Orleans,,,,198.0,,190.0
+11/21,Fresno St,New Orleans,Home,85.0,76.0,Yes,Fresno St,New Orleans,,,,198.0,,189.0
 11/26,Fresno St,Pepperdine,Home,76.0,53.0,Yes,Fresno St,Pepperdine,,,,255.0,,255.0
 11/5,Fresno St,SC Upstate,Home,66.0,67.0,No,Fresno St,SC Upstate,,,,,,
 11/18,Fresno St,SF Austin,Home,80.0,78.0,Yes,Fresno St,SF Austin,,,,,,
@@ -1241,7 +1241,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/23,G Washington,McNeese,Home,86.0,92.0,No,G Washington,McNeese,,,,48.0,,69.0
 11/25,G Washington,Murray St,Home,95.0,96.0,No,G Washington,Murray St,,,,,,
 11/15,G Washington,Old Dominion,Home,96.0,73.0,Yes,G Washington,Old Dominion,,,,247.0,,222.0
-11/8,G Washington,South Florida,Home,99.0,95.0,Yes,G Washington,South Florida,,,,,,85.0
+11/8,G Washington,South Florida,Home,99.0,95.0,Yes,G Washington,South Florida,,,,,,84.0
 11/19,G Washington,UMBC,Home,89.0,52.0,Yes,G Washington,UMBC,,,,260.0,,270.0
 12/6,G Washington,William & Mary,Home,99.0,86.0,Yes,G Washington,William & Mary,,,,71.0,,115.0
 12/11,GA Southern,Coastal GA,Home,100.0,58.0,Yes,GA Southern,Coastal GA,,,,,,
@@ -1314,7 +1314,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/10,Georgia Tech,SE Louisiana,Home,70.0,60.0,Yes,Georgia Tech,SE Louisiana,178.0,,134.0,,,
 11/3,Georgia Tech,UMES,Home,56.0,52.0,Yes,Georgia Tech,UMES,178.0,,134.0,333.0,,
 11/23,Georgia Tech,West Georgia,Home,82.0,66.0,Yes,Georgia Tech,West Georgia,178.0,,134.0,,,310.0
-12/9,Georgian Court,Temple,Away,57.0,103.0,No,Georgian Court,Temple,,,,171.0,,154.0
+12/9,Georgian Court,Temple,Away,57.0,103.0,No,Georgian Court,Temple,,,,171.0,,151.0
 11/24,Gonzaga,Alabama,Away,95.0,85.0,Yes,Gonzaga,Alabama,2.0,,3.0,14.0,,15.0
 11/14,Gonzaga,Arizona St,Away,77.0,65.0,Yes,Gonzaga,Arizona St,2.0,,3.0,,,
 11/11,Gonzaga,Creighton,Home,90.0,63.0,Yes,Gonzaga,Creighton,2.0,,3.0,56.0,,44.0
@@ -1328,9 +1328,9 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/9,Grambling,Howard,Away,73.0,70.0,Yes,Grambling,Howard,217.0,,,245.0,,268.0
 11/6,Grambling,Iowa State,Away,62.0,102.0,No,Grambling,Iowa State,217.0,,,,,
 11/18,Grambling,San Diego,Away,68.0,78.0,No,Grambling,San Diego,217.0,,,212.0,,213.0
-11/13,Grambling,Southern Miss,Home,75.0,70.0,Yes,Grambling,Southern Miss,217.0,,,,,197.0
-12/8,Grambling,Southern Miss,Away,60.0,68.0,No,Grambling,Southern Miss,217.0,,,,,197.0
-12/2,Grambling,Tulane,Away,63.0,65.0,No,Grambling,Tulane,217.0,,,219.0,,194.0
+11/13,Grambling,Southern Miss,Home,75.0,70.0,Yes,Grambling,Southern Miss,217.0,,,,,198.0
+12/8,Grambling,Southern Miss,Away,60.0,68.0,No,Grambling,Southern Miss,217.0,,,,,198.0
+12/2,Grambling,Tulane,Away,63.0,65.0,No,Grambling,Tulane,217.0,,,219.0,,193.0
 11/24,Grambling,UC Riverside,Away,74.0,83.0,No,Grambling,UC Riverside,217.0,,,232.0,,259.0
 11/26,Grand Canyon,Iowa,Home,46.0,59.0,No,Grand Canyon,Iowa,100.0,,96.0,13.0,,18.0
 11/10,Grand Canyon,N Illinois,Home,88.0,59.0,Yes,Grand Canyon,N Illinois,100.0,,96.0,,,
@@ -1340,7 +1340,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/2,Grand Canyon,Stetson,Home,67.0,45.0,Yes,Grand Canyon,Stetson,100.0,,96.0,349.0,,346.0
 11/25,Grand Canyon,Utah,Home,68.0,58.0,Yes,Grand Canyon,Utah,100.0,,96.0,131.0,,123.0
 11/7,Grand Canyon,Youngstown St,Home,81.0,90.0,No,Grand Canyon,Youngstown St,100.0,,96.0,,,
-11/7,Green Bay,Buffalo,Away,76.0,83.0,No,Green Bay,Buffalo,253.0,,282.0,139.0,,179.0
+11/7,Green Bay,Buffalo,Away,76.0,83.0,No,Green Bay,Buffalo,253.0,,282.0,139.0,,180.0
 11/29,Green Bay,Haskell,Home,95.0,55.0,Yes,Green Bay,Haskell,253.0,,282.0,,,
 12/11,Green Bay,IU Indy,Away,85.0,75.0,Yes,Green Bay,IU Indy,253.0,,282.0,323.0,,344.0
 11/24,Green Bay,Iona,Away,80.0,75.0,Yes,Green Bay,Iona,253.0,,282.0,165.0,,182.0
@@ -1350,11 +1350,11 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/13,Green Bay,St Thomas (MN),Away,61.0,80.0,No,Green Bay,St Thomas (MN),253.0,,282.0,,,
 11/22,Green Bay,UMass,Away,79.0,75.0,Yes,Green Bay,UMass,253.0,,282.0,,,
 12/7,Green Bay,Wright St,Away,58.0,86.0,No,Green Bay,Wright St,253.0,,282.0,,,
-11/21,Green Bay,Yale,Away,67.0,73.0,No,Green Bay,Yale,253.0,,282.0,53.0,,84.0
+11/21,Green Bay,Yale,Away,67.0,73.0,No,Green Bay,Yale,253.0,,282.0,53.0,,85.0
 11/29,Gwynedd Mercy,MD Eastern,Away,60.0,84.0,No,Gwynedd Mercy,MD Eastern,,,,,,
 12/1,Hampton,Apprentice,Home,94.0,58.0,Yes,Hampton,Apprentice,264.0,,256.0,,,
 11/18,Hampton,Boston College,Away,52.0,63.0,No,Hampton,Boston College,264.0,,256.0,182.0,,157.0
-11/14,Hampton,Brown,Away,72.0,63.0,Yes,Hampton,Brown,264.0,,256.0,265.0,,236.0
+11/14,Hampton,Brown,Away,72.0,63.0,Yes,Hampton,Brown,264.0,,256.0,265.0,,237.0
 11/16,Hampton,Holy Cross,Home,61.0,67.0,No,Hampton,Holy Cross,264.0,,256.0,311.0,,332.0
 12/3,Hampton,Loyola MD,Home,93.0,71.0,Yes,Hampton,Loyola MD,264.0,,256.0,,,329.0
 11/25,Hampton,MD Eastern,Away,74.0,68.0,Yes,Hampton,MD Eastern,264.0,,256.0,,,
@@ -1401,16 +1401,16 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/14,Hofstra,Bucknell,Away,83.0,77.0,Yes,Hofstra,Bucknell,88.0,,103.0,321.0,,303.0
 12/3,Hofstra,Columbia,Away,70.0,72.0,No,Hofstra,Columbia,88.0,,103.0,102.0,,133.0
 11/7,Hofstra,Iona,Away,73.0,81.0,No,Hofstra,Iona,88.0,,103.0,165.0,,182.0
-11/28,Hofstra,La Salle,Away,63.0,58.0,Yes,Hofstra,La Salle,88.0,,103.0,271.0,,262.0
-11/29,Hofstra,Merrimack,Home,78.0,58.0,Yes,Hofstra,Merrimack,88.0,,103.0,257.0,,263.0
+11/28,Hofstra,La Salle,Away,63.0,58.0,Yes,Hofstra,La Salle,88.0,,103.0,271.0,,263.0
+11/29,Hofstra,Merrimack,Home,78.0,58.0,Yes,Hofstra,Merrimack,88.0,,103.0,257.0,,264.0
 11/10,Hofstra,Molloy,Home,95.0,61.0,Yes,Hofstra,Molloy,88.0,,103.0,,,
 12/10,Hofstra,Old Westbury,Home,92.0,23.0,Yes,Hofstra,Old Westbury,88.0,,103.0,,,
 11/30,Hofstra,Penn,Away,77.0,60.0,Yes,Hofstra,Penn,88.0,,103.0,220.0,,218.0
 12/7,Hofstra,Pittsburgh,Away,80.0,73.0,Yes,Hofstra,Pittsburgh,88.0,,103.0,120.0,,91.0
-11/19,Hofstra,Temple,Away,76.0,81.0,No,Hofstra,Temple,88.0,,103.0,171.0,,154.0
+11/19,Hofstra,Temple,Away,76.0,81.0,No,Hofstra,Temple,88.0,,103.0,171.0,,151.0
 11/8,Holy Cross,BYU,Away,53.0,98.0,No,Holy Cross,BYU,311.0,,332.0,9.0,,10.0
-11/18,Holy Cross,Brown,Away,49.0,68.0,No,Holy Cross,Brown,311.0,,332.0,265.0,,236.0
-12/6,Holy Cross,Fordham,Away,70.0,69.0,Yes,Holy Cross,Fordham,311.0,,332.0,210.0,,196.0
+11/18,Holy Cross,Brown,Away,49.0,68.0,No,Holy Cross,Brown,311.0,,332.0,265.0,,237.0
+12/6,Holy Cross,Fordham,Away,70.0,69.0,Yes,Holy Cross,Fordham,311.0,,332.0,210.0,,197.0
 11/16,Holy Cross,Hampton,Away,67.0,61.0,Yes,Holy Cross,Hampton,311.0,,332.0,264.0,,256.0
 12/3,Holy Cross,Northeastern,Home,76.0,59.0,Yes,Holy Cross,Northeastern,311.0,,332.0,214.0,,212.0
 12/9,Holy Cross,Regis College,Home,69.0,47.0,Yes,Holy Cross,Regis College,311.0,,332.0,,,
@@ -1422,7 +1422,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/25,Hou Christian,Bellarmine,Away,69.0,74.0,No,Hou Christian,Bellarmine,,,,250.0,,244.0
 11/20,Hou Christian,Biblical Stud,Home,85.0,67.0,Yes,Hou Christian,Biblical Stud,,,,,,
 11/29,Hou Christian,GA Southern,Away,62.0,80.0,No,Hou Christian,GA Southern,,,,,,
-12/6,Hou Christian,New Orleans,Away,85.0,76.0,Yes,Hou Christian,New Orleans,,,,198.0,,190.0
+12/6,Hou Christian,New Orleans,Away,85.0,76.0,Yes,Hou Christian,New Orleans,,,,198.0,,189.0
 12/2,Hou Christian,North Texas,Away,75.0,77.0,No,Hou Christian,North Texas,,,,175.0,,137.0
 11/26,Hou Christian,The Citadel,Away,72.0,65.0,Yes,Hou Christian,The Citadel,,,,357.0,,357.0
 11/8,Hou Christian,UC San Diego,Away,60.0,78.0,No,Hou Christian,UC San Diego,,,,62.0,,89.0
@@ -1465,15 +1465,15 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/6,IU Indy,LIU,Home,90.0,94.0,No,IU Indy,LIU,323.0,,344.0,190.0,,203.0
 11/29,IU Indy,Morehead St,Home,85.0,80.0,Yes,IU Indy,Morehead St,323.0,,344.0,,,
 12/6,IU Indy,Youngstown St,Home,55.0,78.0,No,IU Indy,Youngstown St,323.0,,344.0,,,
-11/26,Idaho,CSU Northridge,Away,78.0,64.0,Yes,Idaho,CSU Northridge,150.0,,189.0,,,
-11/22,Idaho,Eastern Oregon,Home,97.0,68.0,Yes,Idaho,Eastern Oregon,150.0,,189.0,,,
-12/3,Idaho,North Dakota,Home,90.0,58.0,Yes,Idaho,North Dakota,150.0,,189.0,308.0,,322.0
-12/10,Idaho,Notre Dame,Away,65.0,80.0,No,Idaho,Notre Dame,150.0,,189.0,76.0,,65.0
-12/6,Idaho,S Dakota St,Away,84.0,81.0,Yes,Idaho,S Dakota St,150.0,,189.0,,,
-11/28,Idaho,Sam Houston,Home,68.0,94.0,No,Idaho,Sam Houston,150.0,,189.0,90.0,,
-11/12,Idaho,San Diego,Away,74.0,78.0,No,Idaho,San Diego,150.0,,189.0,212.0,,213.0
-11/15,Idaho,UC San Diego,Away,67.0,75.0,No,Idaho,UC San Diego,150.0,,189.0,62.0,,89.0
-11/7,Idaho,Whitman,Home,94.0,49.0,Yes,Idaho,Whitman,150.0,,189.0,,,
+11/26,Idaho,CSU Northridge,Away,78.0,64.0,Yes,Idaho,CSU Northridge,150.0,,188.0,,,
+11/22,Idaho,Eastern Oregon,Home,97.0,68.0,Yes,Idaho,Eastern Oregon,150.0,,188.0,,,
+12/3,Idaho,North Dakota,Home,90.0,58.0,Yes,Idaho,North Dakota,150.0,,188.0,308.0,,322.0
+12/10,Idaho,Notre Dame,Away,65.0,80.0,No,Idaho,Notre Dame,150.0,,188.0,76.0,,65.0
+12/6,Idaho,S Dakota St,Away,84.0,81.0,Yes,Idaho,S Dakota St,150.0,,188.0,,,
+11/28,Idaho,Sam Houston,Home,68.0,94.0,No,Idaho,Sam Houston,150.0,,188.0,90.0,,
+11/12,Idaho,San Diego,Away,74.0,78.0,No,Idaho,San Diego,150.0,,188.0,212.0,,213.0
+11/15,Idaho,UC San Diego,Away,67.0,75.0,No,Idaho,UC San Diego,150.0,,188.0,62.0,,89.0
+11/7,Idaho,Whitman,Home,94.0,49.0,Yes,Idaho,Whitman,150.0,,188.0,,,
 11/28,Idaho St,CSU Northridge,Home,82.0,50.0,Yes,Idaho St,CSU Northridge,,,,,,
 12/6,Idaho St,Denver,Home,93.0,79.0,Yes,Idaho St,Denver,,,,218.0,,266.0
 11/21,Idaho St,Justice,Home,89.0,51.0,Yes,Idaho St,Justice,,,,,,
@@ -1510,7 +1510,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/16,Incarnate Word,Indiana,Away,61.0,69.0,No,Incarnate Word,Indiana,,,165.0,33.0,,31.0
 11/7,Incarnate Word,Jarvis Chrstn,Home,104.0,60.0,Yes,Incarnate Word,Jarvis Chrstn,,,165.0,,,
 12/1,Incarnate Word,McNeese,Home,71.0,67.0,Yes,Incarnate Word,McNeese,,,165.0,48.0,,69.0
-12/8,Incarnate Word,New Orleans,Away,83.0,84.0,No,Incarnate Word,New Orleans,,,165.0,198.0,,190.0
+12/8,Incarnate Word,New Orleans,Away,83.0,84.0,No,Incarnate Word,New Orleans,,,165.0,198.0,,189.0
 12/6,Incarnate Word,Nicholls,Away,67.0,74.0,No,Incarnate Word,Nicholls,,,165.0,222.0,,221.0
 11/11,Incarnate Word,SW Christian U,Home,109.0,70.0,Yes,Incarnate Word,SW Christian U,,,165.0,,,
 11/20,Incarnate Word,So Indiana,Home,87.0,81.0,Yes,Incarnate Word,So Indiana,,,165.0,,,
@@ -1522,7 +1522,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/20,Indiana,Lindenwood,Home,73.0,53.0,Yes,Indiana,Lindenwood,33.0,,31.0,197.0,,232.0
 12/6,Indiana,Louisville,Away,78.0,87.0,No,Indiana,Louisville,33.0,,31.0,15.0,,13.0
 11/9,Indiana,Marquette,Away,100.0,77.0,Yes,Indiana,Marquette,33.0,,31.0,173.0,,113.0
-11/12,Indiana,Milwaukee,Home,101.0,70.0,Yes,Indiana,Milwaukee,33.0,,31.0,185.0,,201.0
+11/12,Indiana,Milwaukee,Home,101.0,70.0,Yes,Indiana,Milwaukee,33.0,,31.0,185.0,,200.0
 12/3,Indiana,Minnesota,Away,64.0,73.0,No,Indiana,Minnesota,33.0,,31.0,108.0,,101.0
 12/9,Indiana,Penn State,Home,113.0,72.0,Yes,Indiana,Penn State,33.0,,31.0,,,
 11/28,Indiana St,Alcorn St,Away,74.0,81.0,No,Indiana St,Alcorn St,,,,,,
@@ -1537,13 +1537,13 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/21,Iona,Akron,Away,75.0,96.0,No,Iona,Akron,165.0,,182.0,49.0,,56.0
 12/10,Iona,Bryant,Home,69.0,63.0,Yes,Iona,Bryant,165.0,,182.0,325.0,,319.0
 12/1,Iona,Delaware,Away,89.0,66.0,Yes,Iona,Delaware,165.0,,182.0,300.0,,296.0
-11/14,Iona,Fordham,Home,76.0,71.0,Yes,Iona,Fordham,165.0,,182.0,210.0,,196.0
+11/14,Iona,Fordham,Home,76.0,71.0,Yes,Iona,Fordham,165.0,,182.0,210.0,,197.0
 11/24,Iona,Green Bay,Home,75.0,80.0,No,Iona,Green Bay,165.0,,182.0,253.0,,282.0
 11/7,Iona,Hofstra,Home,81.0,73.0,Yes,Iona,Hofstra,165.0,,182.0,88.0,,103.0
 11/11,Iona,Kansas City,Away,105.0,91.0,Yes,Iona,Kansas City,165.0,,182.0,336.0,,337.0
 11/22,Iona,Oregon St,Away,91.0,84.0,Yes,Iona,Oregon St,165.0,,182.0,,,
-11/18,Iona,Princeton,Home,89.0,69.0,Yes,Iona,Princeton,165.0,,182.0,294.0,,264.0
-12/5,Iona,Quinnipiac,Home,68.0,89.0,No,Iona,Quinnipiac,165.0,,182.0,144.0,,151.0
+11/18,Iona,Princeton,Home,89.0,69.0,Yes,Iona,Princeton,165.0,,182.0,294.0,,257.0
+12/5,Iona,Quinnipiac,Home,68.0,89.0,No,Iona,Quinnipiac,165.0,,182.0,144.0,,153.0
 12/7,Iona,Sacred Heart,Away,81.0,69.0,Yes,Iona,Sacred Heart,165.0,,182.0,287.0,,287.0
 11/20,Iowa,Chicago St,Home,93.0,54.0,Yes,Iowa,Chicago St,13.0,,18.0,,,
 11/26,Iowa,Grand Canyon,Away,59.0,46.0,Yes,Iowa,Grand Canyon,13.0,,18.0,100.0,,96.0
@@ -1601,10 +1601,10 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/26,Jax State,N Dakota St,Home,43.0,56.0,No,Jax State,N Dakota St,,,,,,
 12/1,Jax State,North Alabama,Home,66.0,73.0,No,Jax State,North Alabama,,,,,,267.0
 11/10,Jax State,Reinhardt,Home,114.0,39.0,Yes,Jax State,Reinhardt,,,,,,
-11/19,Jax State,South Alabama,Home,65.0,71.0,No,Jax State,South Alabama,,,,191.0,,192.0
+11/19,Jax State,South Alabama,Home,65.0,71.0,No,Jax State,South Alabama,,,,191.0,,191.0
 11/7,Jessup,Sacramento St,Away,76.0,86.0,No,Jessup,Sacramento St,,,,,,
 11/8,John Brown,Oral Roberts,Away,50.0,84.0,No,John Brown,Oral Roberts,,,,292.0,,298.0
-11/13,John Jay,Princeton,Away,59.0,100.0,No,John Jay,Princeton,,,,294.0,,264.0
+11/13,John Jay,Princeton,Away,59.0,100.0,No,John Jay,Princeton,,,,294.0,,257.0
 11/14,Johnson C Smth,GA Southern,Away,79.0,98.0,No,Johnson C Smth,GA Southern,,,,,,
 11/30,Johnson Wales,C Connecticut,Away,57.0,122.0,No,Johnson Wales,C Connecticut,,,,,,
 11/21,Justice,Idaho St,Away,51.0,89.0,No,Justice,Idaho St,,,,,,
@@ -1617,7 +1617,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/7,Kansas,Missouri,Home,80.0,60.0,Yes,Kansas,Missouri,18.0,,17.0,93.0,,63.0
 11/7,Kansas,North Carolina,Away,74.0,87.0,No,Kansas,North Carolina,18.0,,17.0,16.0,,22.0
 11/24,Kansas,Notre Dame,Home,71.0,61.0,Yes,Kansas,Notre Dame,18.0,,17.0,76.0,,65.0
-11/15,Kansas,Princeton,Home,76.0,57.0,Yes,Kansas,Princeton,18.0,,17.0,294.0,,264.0
+11/15,Kansas,Princeton,Home,76.0,57.0,Yes,Kansas,Princeton,18.0,,17.0,294.0,,257.0
 11/25,Kansas,Syracuse,Home,71.0,60.0,Yes,Kansas,Syracuse,18.0,,17.0,89.0,,78.0
 11/26,Kansas,Tennessee,Away,81.0,76.0,Yes,Kansas,Tennessee,18.0,,17.0,26.0,,16.0
 11/11,Kansas,Texas A&M-CC,Home,77.0,46.0,Yes,Kansas,Texas A&M-CC,18.0,,17.0,,,
@@ -1649,8 +1649,8 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/12,Kennesaw St,Point,Home,111.0,60.0,Yes,Kennesaw St,Point,,,,,,
 11/24,Kennesaw St,Rice,Home,89.0,84.0,Yes,Kennesaw St,Rice,,,,237.0,,235.0
 12/8,Kennesaw St,S Wesleyan,Home,121.0,66.0,Yes,Kennesaw St,S Wesleyan,,,,,,
-11/16,Kennesaw St,South Florida,Home,89.0,108.0,No,Kennesaw St,South Florida,,,,,,85.0
-12/3,Kent State,Austin Peay,Home,96.0,84.0,Yes,Kent State,Austin Peay,,,,158.0,,193.0
+11/16,Kennesaw St,South Florida,Home,89.0,108.0,No,Kennesaw St,South Florida,,,,,,84.0
+12/3,Kent State,Austin Peay,Home,96.0,84.0,Yes,Kent State,Austin Peay,,,,158.0,,192.0
 11/15,Kent State,Cleveland St,Away,102.0,95.0,Yes,Kent State,Cleveland St,,,,,,
 11/22,Kent State,Cleveland St,Home,91.0,71.0,Yes,Kent State,Cleveland St,,,,,,
 11/7,Kent State,Cornell,Home,110.0,102.0,Yes,Kent State,Cornell,,,,151.0,,164.0
@@ -1672,7 +1672,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/29,Kentucky St,So Indiana,Away,56.0,93.0,No,Kentucky St,So Indiana,,,,,,
 12/1,LA Christian,Southern,Away,48.0,101.0,No,LA Christian,Southern,,,,,,242.0
 11/11,LIU,Air Force,Away,76.0,72.0,Yes,LIU,Air Force,190.0,,203.0,313.0,,324.0
-11/20,LIU,Fordham,Away,53.0,69.0,No,LIU,Fordham,190.0,,203.0,210.0,,196.0
+11/20,LIU,Fordham,Away,53.0,69.0,No,LIU,Fordham,190.0,,203.0,210.0,,197.0
 11/6,LIU,IU Indy,Away,94.0,90.0,Yes,LIU,IU Indy,190.0,,203.0,323.0,,344.0
 11/22,LIU,Illinois,Away,58.0,98.0,No,LIU,Illinois,190.0,,203.0,10.0,,9.0
 11/15,LIU,James Madison,Home,88.0,79.0,Yes,LIU,James Madison,190.0,,203.0,226.0,,217.0
@@ -1693,23 +1693,23 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/29,LSU,DePaul,Home,96.0,63.0,Yes,LSU,DePaul,34.0,,38.0,147.0,,121.0
 11/28,LSU,Drake,Away,71.0,62.0,Yes,LSU,Drake,34.0,,38.0,169.0,,156.0
 11/13,LSU,FIU,Home,98.0,81.0,Yes,LSU,FIU,34.0,,38.0,184.0,,177.0
-11/10,LSU,New Orleans,Home,93.0,58.0,Yes,LSU,New Orleans,34.0,,38.0,198.0,,190.0
+11/10,LSU,New Orleans,Home,93.0,58.0,Yes,LSU,New Orleans,34.0,,38.0,198.0,,189.0
 11/21,LSU,Omaha,Home,99.0,73.0,Yes,LSU,Omaha,34.0,,38.0,251.0,,
 11/5,LSU,Tarleton St,Home,96.0,60.0,Yes,LSU,Tarleton St,34.0,,38.0,,,
 12/7,LSU,Texas Tech,Away,58.0,82.0,No,LSU,Texas Tech,34.0,,38.0,20.0,,21.0
-11/5,La Salle,Coppin St.,Home,87.0,59.0,Yes,La Salle,Coppin St.,271.0,,262.0,365.0,,364.0
-12/6,La Salle,Drexel,Home,69.0,64.0,Yes,La Salle,Drexel,271.0,,262.0,296.0,,289.0
-11/28,La Salle,Hofstra,Home,58.0,63.0,No,La Salle,Hofstra,271.0,,262.0,88.0,,103.0
-11/22,La Salle,Lncstr Bible,Home,75.0,46.0,Yes,La Salle,Lncstr Bible,271.0,,262.0,,,
-11/30,La Salle,Merrimack,Home,60.0,66.0,No,La Salle,Merrimack,271.0,,262.0,257.0,,263.0
-11/8,La Salle,Monmouth,Home,73.0,60.0,Yes,La Salle,Monmouth,271.0,,262.0,238.0,,233.0
-11/29,La Salle,Penn,Away,71.0,73.0,No,La Salle,Penn,271.0,,262.0,220.0,,218.0
-11/15,La Salle,Penn State,Home,69.0,83.0,No,La Salle,Penn State,271.0,,262.0,,,
-11/11,La Salle,Temple,Away,63.0,90.0,No,La Salle,Temple,271.0,,262.0,171.0,,154.0
-11/19,La Salle,Villanova,Home,55.0,70.0,No,La Salle,Villanova,271.0,,262.0,21.0,,25.0
+11/5,La Salle,Coppin St.,Home,87.0,59.0,Yes,La Salle,Coppin St.,271.0,,263.0,365.0,,364.0
+12/6,La Salle,Drexel,Home,69.0,64.0,Yes,La Salle,Drexel,271.0,,263.0,296.0,,289.0
+11/28,La Salle,Hofstra,Home,58.0,63.0,No,La Salle,Hofstra,271.0,,263.0,88.0,,103.0
+11/22,La Salle,Lncstr Bible,Home,75.0,46.0,Yes,La Salle,Lncstr Bible,271.0,,263.0,,,
+11/30,La Salle,Merrimack,Home,60.0,66.0,No,La Salle,Merrimack,271.0,,263.0,257.0,,264.0
+11/8,La Salle,Monmouth,Home,73.0,60.0,Yes,La Salle,Monmouth,271.0,,263.0,238.0,,233.0
+11/29,La Salle,Penn,Away,71.0,73.0,No,La Salle,Penn,271.0,,263.0,220.0,,218.0
+11/15,La Salle,Penn State,Home,69.0,83.0,No,La Salle,Penn State,271.0,,263.0,,,
+11/11,La Salle,Temple,Away,63.0,90.0,No,La Salle,Temple,271.0,,263.0,171.0,,151.0
+11/19,La Salle,Villanova,Home,55.0,70.0,No,La Salle,Villanova,271.0,,263.0,21.0,,25.0
 11/5,LaGrange,Mercer,Away,62.0,101.0,No,LaGrange,Mercer,,,,134.0,,163.0
 12/6,LaGrange,Troy,Away,47.0,101.0,No,LaGrange,Troy,,,,135.0,,139.0
-11/29,Lady of Lake,Lamar,Away,46.0,90.0,No,Lady of Lake,Lamar,,,,,,237.0
+11/29,Lady of Lake,Lamar,Away,46.0,90.0,No,Lady of Lake,Lamar,,,,,,236.0
 11/29,Lafayette,Ball State,Home,55.0,37.0,Yes,Lafayette,Ball State,334.0,,323.0,,,
 11/13,Lafayette,Cornell,Home,78.0,97.0,No,Lafayette,Cornell,334.0,,323.0,151.0,,164.0
 11/5,Lafayette,Dicknsn PA,Home,79.0,44.0,Yes,Lafayette,Dicknsn PA,334.0,,323.0,,,
@@ -1720,14 +1720,14 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/21,Lafayette,Stonehill,Away,70.0,74.0,No,Lafayette,Stonehill,334.0,,323.0,346.0,,342.0
 11/8,Lafayette,Texas,Away,60.0,97.0,No,Lafayette,Texas,334.0,,323.0,54.0,,45.0
 11/17,Lafayette,West Virginia,Away,59.0,81.0,No,Lafayette,West Virginia,334.0,,323.0,92.0,,66.0
-11/29,Lamar,Lady of Lake,Home,90.0,46.0,Yes,Lamar,Lady of Lake,,,237.0,,,
-12/3,Lamar,Louisiana,Home,65.0,55.0,Yes,Lamar,Louisiana,,,237.0,330.0,,316.0
-11/23,Lamar,Montana,Away,68.0,63.0,Yes,Lamar,Montana,,,237.0,236.0,,211.0
-11/24,Lamar,Oakland,Home,68.0,83.0,No,Lamar,Oakland,,,237.0,149.0,,146.0
-12/10,Lamar,San Diego St,Away,71.0,89.0,No,Lamar,San Diego St,,,237.0,,,
-11/10,Lamar,TCU,Away,65.0,78.0,No,Lamar,TCU,,,237.0,51.0,,54.0
-12/6,Lamar,Texas A&M-CC,Home,49.0,57.0,No,Lamar,Texas A&M-CC,,,237.0,,,
-11/17,Lamar,UL Monroe,Away,79.0,66.0,Yes,Lamar,UL Monroe,,,237.0,,,
+11/29,Lamar,Lady of Lake,Home,90.0,46.0,Yes,Lamar,Lady of Lake,,,236.0,,,
+12/3,Lamar,Louisiana,Home,65.0,55.0,Yes,Lamar,Louisiana,,,236.0,330.0,,316.0
+11/23,Lamar,Montana,Away,68.0,63.0,Yes,Lamar,Montana,,,236.0,236.0,,211.0
+11/24,Lamar,Oakland,Home,68.0,83.0,No,Lamar,Oakland,,,236.0,149.0,,146.0
+12/10,Lamar,San Diego St,Away,71.0,89.0,No,Lamar,San Diego St,,,236.0,,,
+11/10,Lamar,TCU,Away,65.0,78.0,No,Lamar,TCU,,,236.0,51.0,,54.0
+12/6,Lamar,Texas A&M-CC,Home,49.0,57.0,No,Lamar,Texas A&M-CC,,,236.0,,,
+11/17,Lamar,UL Monroe,Away,79.0,66.0,Yes,Lamar,UL Monroe,,,236.0,,,
 11/7,Lane,North Alabama,Away,84.0,90.0,No,Lane,North Alabama,,,,,,267.0
 11/29,Lawrence,St Thomas (MN),Away,52.0,87.0,No,Lawrence,St Thomas (MN),,,,,,
 11/30,Le Moyne,Ball State,Away,85.0,96.0,No,Le Moyne,Ball State,298.0,,301.0,,,
@@ -1750,14 +1750,14 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/6,Lehigh,Valley Forge,Home,91.0,52.0,Yes,Lehigh,Valley Forge,314.0,,312.0,,,
 11/9,Lehigh,West Virginia,Away,47.0,69.0,No,Lehigh,West Virginia,314.0,,312.0,92.0,,66.0
 12/5,Lewis & Clark,Portland,Away,87.0,104.0,No,Lewis & Clark,Portland,,,,239.0,,234.0
-11/26,Liberty,Bradley,Away,64.0,74.0,No,Liberty,Bradley,107.0,,104.0,121.0,,119.0
-11/17,Liberty,Carolina U,Home,98.0,46.0,Yes,Liberty,Carolina U,107.0,,104.0,,,
-11/7,Liberty,Charleston,Home,90.0,75.0,Yes,Liberty,Charleston,107.0,,104.0,,,178.0
-12/6,Liberty,Coppin St.,Home,92.0,50.0,Yes,Liberty,Coppin St.,107.0,,104.0,365.0,,364.0
-11/9,Liberty,Florida Atlantic,Home,88.0,68.0,Yes,Liberty,Florida Atlantic,107.0,,104.0,,,111.0
-12/10,Liberty,N.C. State,Away,45.0,85.0,No,Liberty,N.C. State,107.0,,104.0,,,27.0
-11/25,Liberty,Towson,Home,69.0,72.0,No,Liberty,Towson,107.0,,104.0,143.0,,143.0
-11/24,Liberty,Vermont,Away,79.0,73.0,Yes,Liberty,Vermont,107.0,,104.0,181.0,,187.0
+11/26,Liberty,Bradley,Away,64.0,74.0,No,Liberty,Bradley,107.0,,105.0,121.0,,119.0
+11/17,Liberty,Carolina U,Home,98.0,46.0,Yes,Liberty,Carolina U,107.0,,105.0,,,
+11/7,Liberty,Charleston,Home,90.0,75.0,Yes,Liberty,Charleston,107.0,,105.0,,,178.0
+12/6,Liberty,Coppin St.,Home,92.0,50.0,Yes,Liberty,Coppin St.,107.0,,105.0,365.0,,364.0
+11/9,Liberty,Florida Atlantic,Home,88.0,68.0,Yes,Liberty,Florida Atlantic,107.0,,105.0,,,111.0
+12/10,Liberty,N.C. State,Away,45.0,85.0,No,Liberty,N.C. State,107.0,,105.0,,,27.0
+11/25,Liberty,Towson,Home,69.0,72.0,No,Liberty,Towson,107.0,,105.0,143.0,,143.0
+11/24,Liberty,Vermont,Away,79.0,73.0,Yes,Liberty,Vermont,107.0,,105.0,181.0,,194.0
 11/5,Life Pacific,Pacific,Away,56.0,83.0,No,Life Pacific,Pacific,,,,125.0,,138.0
 11/11,Lincoln U (CA),Pepperdine,Away,76.0,113.0,No,Lincoln U (CA),Pepperdine,,,,255.0,,255.0
 11/10,Lincoln U (CA),UC Irvine,Away,63.0,130.0,No,Lincoln U (CA),UC Irvine,,,,138.0,,130.0
@@ -1785,12 +1785,12 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/15,Little Rock,Ball State,Away,68.0,62.0,Yes,Little Rock,Ball State,337.0,,313.0,,,
 12/3,Little Rock,C Arkansas,Away,47.0,85.0,No,Little Rock,C Arkansas,337.0,,313.0,,,
 11/12,Little Rock,Marquette,Away,49.0,89.0,No,Little Rock,Marquette,337.0,,313.0,173.0,,113.0
-11/10,Little Rock,Milwaukee,Away,72.0,92.0,No,Little Rock,Milwaukee,337.0,,313.0,185.0,,201.0
+11/10,Little Rock,Milwaukee,Away,72.0,92.0,No,Little Rock,Milwaukee,337.0,,313.0,185.0,,200.0
 11/18,Little Rock,Murray St,Away,68.0,89.0,No,Little Rock,Murray St,337.0,,313.0,,,
 11/29,Little Rock,S Illinois,Away,65.0,74.0,No,Little Rock,S Illinois,337.0,,313.0,,,
 11/21,Little Rock,Texas St,Away,56.0,65.0,No,Little Rock,Texas St,337.0,,313.0,,,
 12/9,Little Rock,West Virginia,Away,58.0,90.0,No,Little Rock,West Virginia,337.0,,313.0,92.0,,66.0
-11/22,Lncstr Bible,La Salle,Away,46.0,75.0,No,Lncstr Bible,La Salle,,,,271.0,,262.0
+11/22,Lncstr Bible,La Salle,Away,46.0,75.0,No,Lncstr Bible,La Salle,,,,271.0,,263.0
 11/8,Long Beach St,Fresno St,Away,62.0,82.0,No,Long Beach St,Fresno St,,,,,,
 11/16,Long Beach St,Illinois St,Home,80.0,82.0,No,Long Beach St,Illinois St,,,,,,
 11/21,Long Beach St,Montana St,Home,72.0,78.0,No,Long Beach St,Montana St,,,,,,
@@ -1814,12 +1814,12 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/28,Longwood,Siena,Away,63.0,70.0,No,Longwood,Siena,317.0,,302.0,174.0,,174.0
 11/16,Loras,So Indiana,Away,74.0,91.0,No,Loras,So Indiana,,,,,,
 11/28,Louisiana,Jackson St,Home,45.0,51.0,No,Louisiana,Jackson St,330.0,,316.0,,,
-12/3,Louisiana,Lamar,Away,55.0,65.0,No,Louisiana,Lamar,330.0,,316.0,,,237.0
+12/3,Louisiana,Lamar,Away,55.0,65.0,No,Louisiana,Lamar,330.0,,316.0,,,236.0
 11/14,Louisiana,McNeese,Away,62.0,88.0,No,Louisiana,McNeese,330.0,,316.0,48.0,,69.0
 11/7,Louisiana,SE Louisiana,Home,58.0,52.0,Yes,Louisiana,SE Louisiana,330.0,,316.0,,,
 11/21,Louisiana,Santa Clara,Away,43.0,80.0,No,Louisiana,Santa Clara,330.0,,316.0,65.0,,58.0
 11/18,Louisiana,Stanford,Away,66.0,93.0,No,Louisiana,Stanford,330.0,,316.0,85.0,,87.0
-11/11,Louisiana,Tulane,Home,62.0,66.0,No,Louisiana,Tulane,330.0,,316.0,219.0,,194.0
+11/11,Louisiana,Tulane,Home,62.0,66.0,No,Louisiana,Tulane,330.0,,316.0,219.0,,193.0
 11/24,Louisiana,UC Davis,Away,56.0,77.0,No,Louisiana,UC Davis,330.0,,316.0,161.0,,166.0
 12/6,Louisiana,UNC Wilmington,Home,63.0,70.0,No,Louisiana,UNC Wilmington,330.0,,316.0,,,116.0
 11/29,Louisiana Tech,Alcorn St,Home,83.0,58.0,Yes,Louisiana Tech,Alcorn St,224.0,,176.0,,,
@@ -1845,7 +1845,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/21,Loyola Chicago,N Illinois,Home,59.0,76.0,No,Loyola Chicago,N Illinois,326.0,,297.0,,,
 11/9,Loyola Chicago,North Texas,Home,62.0,64.0,No,Loyola Chicago,North Texas,326.0,,297.0,175.0,,137.0
 11/25,Loyola Chicago,Northern Iowa,Home,51.0,72.0,No,Loyola Chicago,Northern Iowa,326.0,,297.0,,,92.0
-12/6,Loyola Chicago,Princeton,Home,73.0,68.0,Yes,Loyola Chicago,Princeton,326.0,,297.0,294.0,,264.0
+12/6,Loyola Chicago,Princeton,Home,73.0,68.0,Yes,Loyola Chicago,Princeton,326.0,,297.0,294.0,,257.0
 11/26,Loyola Chicago,San José St,Home,51.0,63.0,No,Loyola Chicago,San José St,326.0,,297.0,,,
 11/13,Loyola Chicago,Wichita St,Away,74.0,95.0,No,Loyola Chicago,Wichita St,326.0,,297.0,,,
 11/30,Loyola MD,Coppin St.,Home,95.0,84.0,Yes,Loyola MD,Coppin St.,,,329.0,365.0,,364.0
@@ -1886,17 +1886,17 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/8,MTSU,Webster,Home,109.0,56.0,Yes,MTSU,Webster,,,,,,
 11/28,Maine,American,Away,61.0,74.0,No,Maine,American,342.0,,349.0,267.0,,253.0
 12/10,Maine,Boston U,Away,69.0,59.0,Yes,Maine,Boston U,342.0,,349.0,,,
-11/23,Maine,Brown,Home,53.0,58.0,No,Maine,Brown,342.0,,349.0,265.0,,236.0
+11/23,Maine,Brown,Home,53.0,58.0,No,Maine,Brown,342.0,,349.0,265.0,,237.0
 11/29,Maine,Longwood,Away,61.0,65.0,No,Maine,Longwood,342.0,,349.0,317.0,,302.0
-11/19,Maine,Merrimack,Away,65.0,72.0,No,Maine,Merrimack,342.0,,349.0,257.0,,263.0
+11/19,Maine,Merrimack,Away,65.0,72.0,No,Maine,Merrimack,342.0,,349.0,257.0,,264.0
 12/6,Maine,Miami OH,Away,61.0,93.0,No,Maine,Miami OH,342.0,,349.0,,,112.0
 12/3,Maine,Ohio,Away,57.0,79.0,No,Maine,Ohio,342.0,,349.0,203.0,,202.0
-11/16,Maine,Quinnipiac,Home,64.0,70.0,No,Maine,Quinnipiac,342.0,,349.0,144.0,,151.0
+11/16,Maine,Quinnipiac,Home,64.0,70.0,No,Maine,Quinnipiac,342.0,,349.0,144.0,,153.0
 11/10,Maine,Rutgers,Away,60.0,72.0,No,Maine,Rutgers,342.0,,349.0,199.0,,161.0
 11/30,Maine,Siena,Home,60.0,64.0,No,Maine,Siena,342.0,,349.0,174.0,,174.0
 11/8,Maine,Stony Brook,Away,60.0,71.0,No,Maine,Stony Brook,342.0,,349.0,241.0,,248.0
 11/18,Maine-Augusta,Dartmouth,Away,68.0,113.0,No,Maine-Augusta,Dartmouth,,,,248.0,,251.0
-11/16,Manhatnvll,Fordham,Away,62.0,96.0,No,Manhatnvll,Fordham,,,,210.0,,196.0
+11/16,Manhatnvll,Fordham,Away,62.0,96.0,No,Manhatnvll,Fordham,,,,210.0,,197.0
 11/29,Manhattan,Army,Away,78.0,81.0,No,Manhattan,Army,307.0,,314.0,,,334.0
 12/5,Manhattan,Fairfield,Home,70.0,66.0,Yes,Manhattan,Fairfield,307.0,,314.0,249.0,,284.0
 11/14,Manhattan,Hawai’i,Away,56.0,86.0,No,Manhattan,Hawai’i,307.0,,314.0,,,
@@ -1958,7 +1958,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/7,McNeese,Santa Clara,Away,67.0,79.0,No,McNeese,Santa Clara,48.0,,69.0,65.0,,58.0
 12/6,Memphis,Baylor,Home,78.0,71.0,Yes,Memphis,Baylor,104.0,,70.0,41.0,,30.0
 11/11,Memphis,Mississippi,Away,77.0,83.0,No,Memphis,Mississippi,104.0,,70.0,,,57.0
-12/3,Memphis,New Orleans,Home,86.0,70.0,Yes,Memphis,New Orleans,104.0,,70.0,198.0,,190.0
+12/3,Memphis,New Orleans,Home,86.0,70.0,Yes,Memphis,New Orleans,104.0,,70.0,198.0,,189.0
 11/20,Memphis,Purdue,Away,71.0,80.0,No,Memphis,Purdue,104.0,,70.0,6.0,,5.0
 11/26,Memphis,S Illinois,Home,74.0,58.0,Yes,Memphis,S Illinois,104.0,,70.0,,,
 11/8,Memphis,San Francisco,Home,76.0,70.0,Yes,Memphis,San Francisco,104.0,,70.0,98.0,,94.0
@@ -1983,17 +1983,17 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/15,Mercyhurst,Morgan St,Home,86.0,72.0,Yes,Mercyhurst,Morgan St,310.0,,320.0,,,
 11/8,Mercyhurst,PSU New Kens,Home,94.0,43.0,Yes,Mercyhurst,PSU New Kens,310.0,,320.0,,,
 11/30,Mercyhurst,West Virginia,Away,38.0,70.0,No,Mercyhurst,West Virginia,310.0,,320.0,92.0,,66.0
-11/6,Merrimack,Auburn,Away,57.0,95.0,No,Merrimack,Auburn,257.0,,263.0,35.0,,33.0
-11/15,Merrimack,Boston U,Away,91.0,79.0,Yes,Merrimack,Boston U,257.0,,263.0,,,
-12/7,Merrimack,Fairfield,Home,74.0,63.0,Yes,Merrimack,Fairfield,257.0,,263.0,249.0,,284.0
-11/21,Merrimack,Florida,Away,45.0,80.0,No,Merrimack,Florida,257.0,,263.0,23.0,,12.0
-11/29,Merrimack,Hofstra,Away,58.0,78.0,No,Merrimack,Hofstra,257.0,,263.0,88.0,,103.0
-11/30,Merrimack,La Salle,Away,66.0,60.0,Yes,Merrimack,La Salle,257.0,,263.0,271.0,,262.0
-11/19,Merrimack,Maine,Home,72.0,65.0,Yes,Merrimack,Maine,257.0,,263.0,342.0,,349.0
-11/28,Merrimack,Penn,Away,65.0,77.0,No,Merrimack,Penn,257.0,,263.0,220.0,,218.0
-12/10,Merrimack,Princeton,Away,59.0,56.0,Yes,Merrimack,Princeton,257.0,,263.0,294.0,,264.0
-12/4,Merrimack,Rider,Home,68.0,66.0,Yes,Merrimack,Rider,257.0,,263.0,359.0,,350.0
-11/11,Merrimack,Tarleton St,Away,62.0,76.0,No,Merrimack,Tarleton St,257.0,,263.0,,,
+11/6,Merrimack,Auburn,Away,57.0,95.0,No,Merrimack,Auburn,257.0,,264.0,35.0,,33.0
+11/15,Merrimack,Boston U,Away,91.0,79.0,Yes,Merrimack,Boston U,257.0,,264.0,,,
+12/7,Merrimack,Fairfield,Home,74.0,63.0,Yes,Merrimack,Fairfield,257.0,,264.0,249.0,,284.0
+11/21,Merrimack,Florida,Away,45.0,80.0,No,Merrimack,Florida,257.0,,264.0,23.0,,12.0
+11/29,Merrimack,Hofstra,Away,58.0,78.0,No,Merrimack,Hofstra,257.0,,264.0,88.0,,103.0
+11/30,Merrimack,La Salle,Away,66.0,60.0,Yes,Merrimack,La Salle,257.0,,264.0,271.0,,263.0
+11/19,Merrimack,Maine,Home,72.0,65.0,Yes,Merrimack,Maine,257.0,,264.0,342.0,,349.0
+11/28,Merrimack,Penn,Away,65.0,77.0,No,Merrimack,Penn,257.0,,264.0,220.0,,218.0
+12/10,Merrimack,Princeton,Away,59.0,56.0,Yes,Merrimack,Princeton,257.0,,264.0,294.0,,257.0
+12/4,Merrimack,Rider,Home,68.0,66.0,Yes,Merrimack,Rider,257.0,,264.0,359.0,,350.0
+11/11,Merrimack,Tarleton St,Away,62.0,76.0,No,Merrimack,Tarleton St,257.0,,264.0,,,
 11/27,Miami,BYU,Home,62.0,72.0,No,Miami,BYU,,,,9.0,,10.0
 11/6,Miami,Bethune,Home,101.0,61.0,Yes,Miami,Bethune,,,,,,
 11/23,Miami,Delaware St,Home,97.0,41.0,Yes,Miami,Delaware St,,,,,,
@@ -2001,7 +2001,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/16,Miami,Florida,Away,68.0,82.0,No,Miami,Florida,,,,23.0,,12.0
 11/28,Miami,Georgetown,Away,78.0,65.0,Yes,Miami,Georgetown,,,,127.0,,102.0
 12/2,Miami,Mississippi,Away,75.0,66.0,Yes,Miami,Mississippi,,,,,,57.0
-12/6,Miami,Southern Miss,Home,88.0,64.0,Yes,Miami,Southern Miss,,,,,,197.0
+12/6,Miami,Southern Miss,Home,88.0,64.0,Yes,Miami,Southern Miss,,,,,,198.0
 11/10,Miami,Stetson,Home,102.0,61.0,Yes,Miami,Stetson,,,,349.0,,346.0
 11/3,Miami (FL),Jacksonville,Home,86.0,69.0,Yes,Miami (FL),Jacksonville,37.0,,,318.0,,317.0
 11/23,Miami OH,AR-Pine Bluff,Home,111.0,84.0,Yes,Miami OH,AR-Pine Bluff,,,112.0,,,
@@ -2036,14 +2036,14 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/3,Midway,Bellarmine,Away,60.0,99.0,No,Midway,Bellarmine,,,,250.0,,244.0
 11/6,Midway,E Kentucky,Away,60.0,122.0,No,Midway,E Kentucky,,,,,,
 11/5,Milligan,MTSU,Away,51.0,100.0,No,Milligan,MTSU,,,,,,
-11/29,Milwaukee,Akron,Away,81.0,105.0,No,Milwaukee,Akron,185.0,,201.0,49.0,,56.0
-11/25,Milwaukee,Dominican IL,Home,125.0,70.0,Yes,Milwaukee,Dominican IL,185.0,,201.0,,,
-11/12,Milwaukee,Indiana,Away,70.0,101.0,No,Milwaukee,Indiana,185.0,,201.0,33.0,,31.0
-11/10,Milwaukee,Little Rock,Home,92.0,72.0,Yes,Milwaukee,Little Rock,185.0,,201.0,337.0,,313.0
-12/6,Milwaukee,Robert Morris,Home,74.0,72.0,Yes,Milwaukee,Robert Morris,185.0,,201.0,176.0,,184.0
-11/14,Milwaukee,Texas Tech,Away,63.0,80.0,No,Milwaukee,Texas Tech,185.0,,201.0,20.0,,21.0
-11/22,Milwaukee,Wichita St,Away,58.0,75.0,No,Milwaukee,Wichita St,185.0,,201.0,,,
-11/8,Milwaukee,Wofford,Away,76.0,86.0,No,Milwaukee,Wofford,185.0,,201.0,211.0,,225.0
+11/29,Milwaukee,Akron,Away,81.0,105.0,No,Milwaukee,Akron,185.0,,200.0,49.0,,56.0
+11/25,Milwaukee,Dominican IL,Home,125.0,70.0,Yes,Milwaukee,Dominican IL,185.0,,200.0,,,
+11/12,Milwaukee,Indiana,Away,70.0,101.0,No,Milwaukee,Indiana,185.0,,200.0,33.0,,31.0
+11/10,Milwaukee,Little Rock,Home,92.0,72.0,Yes,Milwaukee,Little Rock,185.0,,200.0,337.0,,313.0
+12/6,Milwaukee,Robert Morris,Home,74.0,72.0,Yes,Milwaukee,Robert Morris,185.0,,200.0,176.0,,184.0
+11/14,Milwaukee,Texas Tech,Away,63.0,80.0,No,Milwaukee,Texas Tech,185.0,,200.0,20.0,,21.0
+11/22,Milwaukee,Wichita St,Away,58.0,75.0,No,Milwaukee,Wichita St,185.0,,200.0,,,
+11/8,Milwaukee,Wofford,Away,76.0,86.0,No,Milwaukee,Wofford,185.0,,200.0,211.0,,225.0
 11/8,Minnesota,Alcorn St,Home,95.0,50.0,Yes,Minnesota,Alcorn St,108.0,,101.0,,,
 11/18,Minnesota,Chicago St,Home,66.0,54.0,Yes,Minnesota,Chicago St,108.0,,101.0,,,
 11/3,Minnesota,GWEB,Home,87.0,60.0,Yes,Minnesota,GWEB,108.0,,101.0,,,
@@ -2066,7 +2066,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/3,Miss Valley St,UL Monroe,Away,52.0,66.0,No,Miss Valley St,UL Monroe,,,,,,
 11/14,Miss Valley St,Utah Tech,Home,75.0,81.0,No,Miss Valley St,Utah Tech,,,,221.0,,230.0
 11/5,Miss for Women,Miss Valley St,Away,61.0,97.0,No,Miss for Women,Miss Valley St,,,,,,
-11/18,Mississippi,Austin Peay,Home,72.0,65.0,Yes,Mississippi,Austin Peay,,,57.0,158.0,,193.0
+11/18,Mississippi,Austin Peay,Home,72.0,65.0,Yes,Mississippi,Austin Peay,,,57.0,158.0,,192.0
 11/14,Mississippi,Bakersfield,Home,82.0,60.0,Yes,Mississippi,Bakersfield,,,57.0,,,
 11/25,Mississippi,Iowa,Away,69.0,74.0,No,Mississippi,Iowa,,,57.0,13.0,,18.0
 11/11,Mississippi,Memphis,Home,83.0,77.0,Yes,Mississippi,Memphis,,,57.0,104.0,,70.0
@@ -2078,7 +2078,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/10,Mississippi St,Iowa State,Away,80.0,96.0,No,Mississippi St,Iowa State,,,,,,
 11/20,Mississippi St,Kansas St,Away,77.0,98.0,No,Mississippi St,Kansas St,,,,,,
 11/21,Mississippi St,New Mexico,Away,78.0,80.0,No,Mississippi St,New Mexico,,,,58.0,,67.0
-11/24,Mississippi St,New Orleans,Home,81.0,78.0,Yes,Mississippi St,New Orleans,,,,198.0,,190.0
+11/24,Mississippi St,New Orleans,Home,81.0,78.0,Yes,Mississippi St,New Orleans,,,,198.0,,189.0
 11/5,Mississippi St,North Alabama,Home,86.0,62.0,Yes,Mississippi St,North Alabama,,,,,,267.0
 11/15,Mississippi St,SE Louisiana,Home,75.0,68.0,Yes,Mississippi St,SE Louisiana,,,,,,
 11/28,Mississippi St,SMU,Home,81.0,87.0,No,Mississippi St,SMU,,,,31.0,,40.0
@@ -2092,7 +2092,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/17,Missouri,Prairie View,Home,91.0,73.0,Yes,Missouri,Prairie View,93.0,,63.0,293.0,,
 11/7,Missouri,SE Missouri,Home,89.0,84.0,Yes,Missouri,SE Missouri,93.0,,63.0,,,
 11/20,Missouri,South Dakota,Home,102.0,68.0,Yes,Missouri,South Dakota,93.0,,63.0,277.0,,281.0
-11/25,Missouri,USC Upstate,Home,98.0,66.0,Yes,Missouri,USC Upstate,93.0,,63.0,213.0,,260.0
+11/25,Missouri,USC Upstate,Home,98.0,66.0,Yes,Missouri,USC Upstate,93.0,,63.0,213.0,,261.0
 11/9,Missouri,VMI,Home,106.0,68.0,Yes,Missouri,VMI,93.0,,63.0,344.0,,333.0
 11/28,Missouri Bapt,SIUE,Away,55.0,92.0,No,Missouri Bapt,SIUE,,,,261.0,,250.0
 11/11,Missouri St,Arkansas St,Home,85.0,86.0,No,Missouri St,Arkansas St,,,,,,
@@ -2109,15 +2109,15 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/28,Monmouth,Ball State,Away,80.0,73.0,Yes,Monmouth,Ball State,238.0,,233.0,,,
 11/4,Monmouth,Caldwell,Home,96.0,68.0,Yes,Monmouth,Caldwell,238.0,,233.0,,,
 12/6,Monmouth,Georgia Tech,Away,67.0,79.0,No,Monmouth,Georgia Tech,238.0,,233.0,178.0,,134.0
-11/8,Monmouth,La Salle,Away,60.0,73.0,No,Monmouth,La Salle,238.0,,233.0,271.0,,262.0
+11/8,Monmouth,La Salle,Away,60.0,73.0,No,Monmouth,La Salle,238.0,,233.0,271.0,,263.0
 11/30,Monmouth,Lafayette,Away,88.0,74.0,Yes,Monmouth,Lafayette,238.0,,233.0,334.0,,323.0
 11/29,Monmouth,Le Moyne,Away,79.0,83.0,No,Monmouth,Le Moyne,238.0,,233.0,298.0,,301.0
-12/3,Monmouth,Princeton,Home,63.0,58.0,Yes,Monmouth,Princeton,238.0,,233.0,294.0,,264.0
+12/3,Monmouth,Princeton,Home,63.0,58.0,Yes,Monmouth,Princeton,238.0,,233.0,294.0,,257.0
 11/23,Monmouth,Robert Morris,Home,71.0,70.0,Yes,Monmouth,Robert Morris,238.0,,233.0,176.0,,184.0
 11/13,Monmouth,Seton Hall,Away,58.0,70.0,No,Monmouth,Seton Hall,238.0,,233.0,44.0,,47.0
 11/18,Monmouth,Syracuse,Away,73.0,78.0,No,Monmouth,Syracuse,238.0,,233.0,89.0,,78.0
 11/14,Montana,Cal Poly,Home,90.0,82.0,Yes,Montana,Cal Poly,236.0,,211.0,231.0,,243.0
-11/23,Montana,Lamar,Home,63.0,68.0,No,Montana,Lamar,236.0,,211.0,,,237.0
+11/23,Montana,Lamar,Home,63.0,68.0,No,Montana,Lamar,236.0,,211.0,,,236.0
 12/3,Montana,N Dakota St,Home,72.0,81.0,No,Montana,N Dakota St,236.0,,211.0,,,
 12/6,Montana,North Dakota,Away,79.0,75.0,Yes,Montana,North Dakota,236.0,,211.0,308.0,,322.0
 11/25,Montana,Oakland,Home,87.0,95.0,No,Montana,Oakland,236.0,,211.0,149.0,,146.0
@@ -2163,7 +2163,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/11,Mount St Marys,Saint Francis,Away,74.0,66.0,Yes,Mount St Marys,Saint Francis,,,,358.0,,359.0
 11/23,Mount St Marys,W Michigan,Away,60.0,83.0,No,Mount St Marys,W Michigan,,,,,,
 11/4,Mount St Marys,West Virginia,Away,54.0,70.0,No,Mount St Marys,West Virginia,,,,92.0,,66.0
-11/7,Mt Saint Mary,Fordham,Away,37.0,106.0,No,Mt Saint Mary,Fordham,,,,210.0,,196.0
+11/7,Mt Saint Mary,Fordham,Away,37.0,106.0,No,Mt Saint Mary,Fordham,,,,210.0,,197.0
 12/6,Murray St,Bellarmine,Home,81.0,68.0,Yes,Murray St,Bellarmine,,,,250.0,,244.0
 11/25,Murray St,G Washington,Away,96.0,95.0,Yes,Murray St,G Washington,,,,,,
 11/18,Murray St,Little Rock,Home,89.0,68.0,Yes,Murray St,Little Rock,,,,337.0,,313.0
@@ -2202,7 +2202,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/5,N Dakota St,UC Davis,Away,68.0,80.0,No,N Dakota St,UC Davis,,,,161.0,,166.0
 11/10,N Greenville,Gardner-Webb,Away,92.0,81.0,Yes,N Greenville,Gardner-Webb,,,,361.0,,
 11/19,N Greenville,The Citadel,Away,57.0,70.0,No,N Greenville,The Citadel,,,,357.0,,357.0
-11/25,N Illinois,Austin Peay,Away,59.0,77.0,No,N Illinois,Austin Peay,,,,158.0,,193.0
+11/25,N Illinois,Austin Peay,Away,59.0,77.0,No,N Illinois,Austin Peay,,,,158.0,,192.0
 11/29,N Illinois,Bellarmine,Home,0.0,0.0,No,N Illinois,Bellarmine,,,,250.0,,244.0
 11/13,N Illinois,Benedictne,Home,117.0,62.0,Yes,N Illinois,Benedictne,,,,,,
 12/6,N Illinois,Bradley,Away,55.0,84.0,No,N Illinois,Bradley,,,,121.0,,119.0
@@ -2231,7 +2231,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/29,N'Western St,Southern,Home,73.0,75.0,No,N'Western St,Southern,,,,,,242.0
 12/3,N.C. State,Auburn,Away,73.0,83.0,No,N.C. State,Auburn,,,27.0,35.0,,33.0
 11/25,N.C. State,Boise St,Away,81.0,70.0,Yes,N.C. State,Boise St,,,27.0,,,
-12/10,N.C. State,Liberty,Home,85.0,45.0,Yes,N.C. State,Liberty,,,27.0,107.0,,104.0
+12/10,N.C. State,Liberty,Home,85.0,45.0,Yes,N.C. State,Liberty,,,27.0,107.0,,105.0
 11/24,N.C. State,Seton Hall,Home,74.0,85.0,No,N.C. State,Seton Hall,,,27.0,44.0,,47.0
 11/26,N.C. State,Texas,Away,97.0,102.0,No,N.C. State,Texas,,,27.0,54.0,,45.0
 11/7,N.C. State,UAB,Home,94.0,70.0,Yes,N.C. State,UAB,,,27.0,119.0,,106.0
@@ -2244,7 +2244,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/18,NC A&T,Morgan St,Away,79.0,73.0,Yes,NC A&T,Morgan St,,,,,,
 12/6,NC A&T,North Carolina Central,Away,69.0,54.0,Yes,NC A&T,North Carolina Central,,,,,,351.0
 11/4,NC A&T,South Carolina,Away,72.0,91.0,No,NC A&T,South Carolina,,,,115.0,,90.0
-11/10,NC A&T,USC Upstate,Home,85.0,62.0,Yes,NC A&T,USC Upstate,,,,213.0,,260.0
+11/10,NC A&T,USC Upstate,Home,85.0,62.0,Yes,NC A&T,USC Upstate,,,,213.0,,261.0
 11/13,NC A&T,Wash Adventist,Home,89.0,83.0,Yes,NC A&T,Wash Adventist,,,,,,
 11/3,NC State,NC Central,Home,114.0,66.0,Yes,NC State,NC Central,32.0,,,,,
 11/24,NJIT,Cincinnati,Away,67.0,94.0,No,NJIT,Cincinnati,347.0,,354.0,95.0,,62.0
@@ -2252,7 +2252,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/28,NJIT,E Michigan,Away,55.0,73.0,No,NJIT,E Michigan,347.0,,354.0,,,
 11/8,NJIT,Fairfield,Home,53.0,74.0,No,NJIT,Fairfield,347.0,,354.0,249.0,,284.0
 11/15,NJIT,Fairleigh Dickinson,Home,93.0,81.0,Yes,NJIT,Fairleigh Dickinson,347.0,,354.0,,,358.0
-11/4,NJIT,Fordham,Away,72.0,61.0,Yes,NJIT,Fordham,347.0,,354.0,210.0,,196.0
+11/4,NJIT,Fordham,Away,72.0,61.0,Yes,NJIT,Fordham,347.0,,354.0,210.0,,197.0
 12/5,NJIT,High Point,Away,72.0,89.0,No,NJIT,High Point,347.0,,354.0,96.0,,95.0
 11/26,NJIT,Louisville,Away,47.0,104.0,No,NJIT,Louisville,347.0,,354.0,15.0,,13.0
 11/11,NJIT,Loyola MD,Away,66.0,64.0,Yes,NJIT,Loyola MD,347.0,,354.0,,,329.0
@@ -2272,7 +2272,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/29,Navy,SE Louisiana,Home,65.0,69.0,No,Navy,SE Louisiana,209.0,,199.0,,,
 11/28,Navy,UNC Wilmington,Away,57.0,87.0,No,Navy,UNC Wilmington,209.0,,199.0,,,116.0
 11/14,Navy,Wash Coll (MD),Home,97.0,64.0,Yes,Navy,Wash Coll (MD),209.0,,199.0,,,
-11/7,Navy,Yale,Home,68.0,97.0,No,Navy,Yale,209.0,,199.0,53.0,,84.0
+11/7,Navy,Yale,Home,68.0,97.0,No,Navy,Yale,209.0,,199.0,53.0,,85.0
 12/7,Nebraska,Creighton,Home,71.0,50.0,Yes,Nebraska,Creighton,11.0,,23.0,56.0,,44.0
 11/8,Nebraska,FIU,Home,96.0,66.0,Yes,Nebraska,FIU,11.0,,23.0,184.0,,177.0
 11/21,Nebraska,Kansas St,Home,86.0,85.0,Yes,Nebraska,Kansas St,11.0,,23.0,,,
@@ -2294,7 +2294,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/7,Nevada,Washington St,Away,78.0,64.0,Yes,Nevada,Washington St,72.0,,80.0,,,
 11/15,New College FL,North Florida,Away,67.0,122.0,No,New College FL,North Florida,,,,340.0,,339.0
 12/6,New Hampshire,Boston U,Home,88.0,82.0,Yes,New Hampshire,Boston U,324.0,,330.0,,,
-11/26,New Hampshire,Brown,Home,47.0,59.0,No,New Hampshire,Brown,324.0,,330.0,265.0,,236.0
+11/26,New Hampshire,Brown,Home,47.0,59.0,No,New Hampshire,Brown,324.0,,330.0,265.0,,237.0
 11/6,New Hampshire,Curry,Home,113.0,31.0,Yes,New Hampshire,Curry,324.0,,330.0,,,
 12/3,New Hampshire,Dartmouth,Away,68.0,69.0,No,New Hampshire,Dartmouth,324.0,,330.0,248.0,,251.0
 11/12,New Hampshire,Emmanuel (MA),Home,97.0,69.0,Yes,New Hampshire,Emmanuel (MA),324.0,,330.0,,,
@@ -2328,17 +2328,17 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/11,New Mexico St,NM Highlands,Home,74.0,58.0,Yes,New Mexico St,NM Highlands,,,,,,
 11/15,New Mexico St,New Mexico,Home,76.0,68.0,Yes,New Mexico St,New Mexico,,,,58.0,,67.0
 11/21,New Mexico St,Samford,Home,81.0,72.0,Yes,New Mexico St,Samford,,,,256.0,,241.0
-12/2,New Mexico St,South Alabama,Away,75.0,77.0,No,New Mexico St,South Alabama,,,,191.0,,192.0
+12/2,New Mexico St,South Alabama,Away,75.0,77.0,No,New Mexico St,South Alabama,,,,191.0,,191.0
 11/25,New Mexico St,UC Irvine,Away,57.0,45.0,Yes,New Mexico St,UC Irvine,,,,138.0,,130.0
-11/21,New Orleans,Fresno St,Away,76.0,85.0,No,New Orleans,Fresno St,198.0,,190.0,,,
-12/6,New Orleans,Hou Christian,Home,76.0,85.0,No,New Orleans,Hou Christian,198.0,,190.0,,,
-12/8,New Orleans,Incarnate Word,Home,84.0,83.0,Yes,New Orleans,Incarnate Word,198.0,,190.0,,,165.0
-11/10,New Orleans,LSU,Away,58.0,93.0,No,New Orleans,LSU,198.0,,190.0,34.0,,38.0
-12/3,New Orleans,Memphis,Away,70.0,86.0,No,New Orleans,Memphis,198.0,,190.0,104.0,,70.0
-11/24,New Orleans,Mississippi St,Away,78.0,81.0,No,New Orleans,Mississippi St,198.0,,190.0,,,
-11/18,New Orleans,Pepperdine,Away,79.0,90.0,No,New Orleans,Pepperdine,198.0,,190.0,255.0,,255.0
-11/26,New Orleans,Texas Tech,Away,50.0,82.0,No,New Orleans,Texas Tech,198.0,,190.0,20.0,,21.0
-11/14,New Orleans,Tulane,Away,85.0,63.0,Yes,New Orleans,Tulane,198.0,,190.0,219.0,,194.0
+11/21,New Orleans,Fresno St,Away,76.0,85.0,No,New Orleans,Fresno St,198.0,,189.0,,,
+12/6,New Orleans,Hou Christian,Home,76.0,85.0,No,New Orleans,Hou Christian,198.0,,189.0,,,
+12/8,New Orleans,Incarnate Word,Home,84.0,83.0,Yes,New Orleans,Incarnate Word,198.0,,189.0,,,165.0
+11/10,New Orleans,LSU,Away,58.0,93.0,No,New Orleans,LSU,198.0,,189.0,34.0,,38.0
+12/3,New Orleans,Memphis,Away,70.0,86.0,No,New Orleans,Memphis,198.0,,189.0,104.0,,70.0
+11/24,New Orleans,Mississippi St,Away,78.0,81.0,No,New Orleans,Mississippi St,198.0,,189.0,,,
+11/18,New Orleans,Pepperdine,Away,79.0,90.0,No,New Orleans,Pepperdine,198.0,,189.0,255.0,,255.0
+11/26,New Orleans,Texas Tech,Away,50.0,82.0,No,New Orleans,Texas Tech,198.0,,189.0,20.0,,21.0
+11/14,New Orleans,Tulane,Away,85.0,63.0,Yes,New Orleans,Tulane,198.0,,189.0,219.0,,193.0
 11/8,Niagara,Binghamton,Away,67.0,59.0,Yes,Niagara,Binghamton,356.0,,356.0,363.0,,363.0
 11/10,Niagara,Delaware St,Home,68.0,57.0,Yes,Niagara,Delaware St,356.0,,356.0,,,
 11/29,Niagara,Detroit Mercy,Home,66.0,70.0,No,Niagara,Detroit Mercy,356.0,,356.0,259.0,,279.0
@@ -2354,7 +2354,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/4,Nicholls,Kentucky,Away,51.0,77.0,No,Nicholls,Kentucky,222.0,,221.0,25.0,,19.0
 11/15,Nicholls,Murray St,Away,79.0,99.0,No,Nicholls,Murray St,222.0,,221.0,,,
 11/22,Nicholls,Oklahoma St,Away,81.0,95.0,No,Nicholls,Oklahoma St,222.0,,221.0,,,
-11/28,Nicholls,Tulane,Away,72.0,82.0,No,Nicholls,Tulane,222.0,,221.0,219.0,,194.0
+11/28,Nicholls,Tulane,Away,72.0,82.0,No,Nicholls,Tulane,222.0,,221.0,219.0,,193.0
 11/12,Nicholls,Valparaiso,Away,63.0,68.0,No,Nicholls,Valparaiso,222.0,,221.0,225.0,,207.0
 11/19,Nobel,Long Beach St,Away,54.0,87.0,No,Nobel,Long Beach St,,,,,,
 11/20,Nobel,Montana St,Away,55.0,92.0,No,Nobel,Montana St,,,,,,
@@ -2404,7 +2404,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/19,North Dakota,Creighton,Away,60.0,75.0,No,North Dakota,Creighton,308.0,,322.0,56.0,,44.0
 12/10,North Dakota,Crown,Home,89.0,43.0,Yes,North Dakota,Crown,308.0,,322.0,,,
 11/28,North Dakota,Hawai’i,Away,55.0,92.0,No,North Dakota,Hawai’i,308.0,,322.0,,,
-12/3,North Dakota,Idaho,Away,58.0,90.0,No,North Dakota,Idaho,308.0,,322.0,150.0,,189.0
+12/3,North Dakota,Idaho,Away,58.0,90.0,No,North Dakota,Idaho,308.0,,322.0,150.0,,188.0
 11/11,North Dakota,Mayville St,Home,128.0,58.0,Yes,North Dakota,Mayville St,308.0,,322.0,,,
 12/6,North Dakota,Montana,Home,75.0,79.0,No,North Dakota,Montana,308.0,,322.0,236.0,,211.0
 11/6,North Dakota,UC Riverside,Home,70.0,74.0,No,North Dakota,UC Riverside,308.0,,322.0,232.0,,259.0
@@ -2415,7 +2415,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/15,North Florida,New College FL,Home,122.0,67.0,Yes,North Florida,New College FL,340.0,,339.0,,,
 11/23,North Florida,Prairie View,Home,82.0,85.0,No,North Florida,Prairie View,340.0,,339.0,293.0,,
 12/2,North Florida,SIUE,Home,63.0,72.0,No,North Florida,SIUE,340.0,,339.0,261.0,,250.0
-11/22,North Florida,Southern Miss,Away,83.0,92.0,No,North Florida,Southern Miss,340.0,,339.0,,,197.0
+11/22,North Florida,Southern Miss,Away,83.0,92.0,No,North Florida,Southern Miss,340.0,,339.0,,,198.0
 11/12,North Florida,Tennessee,Away,66.0,99.0,No,North Florida,Tennessee,340.0,,339.0,26.0,,16.0
 11/29,North Florida,Trinity Co Jax,Home,111.0,67.0,Yes,North Florida,Trinity Co Jax,340.0,,339.0,,,
 11/19,North Florida,Wofford,Away,78.0,86.0,No,North Florida,Wofford,340.0,,339.0,211.0,,225.0
@@ -2433,8 +2433,8 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/22,Northeastern,Duquesne,Away,93.0,86.0,Yes,Northeastern,Duquesne,214.0,,212.0,168.0,,131.0
 11/11,Northeastern,Harvard,Away,77.0,60.0,Yes,Northeastern,Harvard,214.0,,212.0,195.0,,181.0
 12/3,Northeastern,Holy Cross,Away,59.0,76.0,No,Northeastern,Holy Cross,214.0,,212.0,311.0,,332.0
-11/20,Northeastern,Princeton,Away,57.0,70.0,No,Northeastern,Princeton,214.0,,212.0,294.0,,264.0
-11/15,Northeastern,Vermont,Home,74.0,85.0,No,Northeastern,Vermont,214.0,,212.0,181.0,,187.0
+11/20,Northeastern,Princeton,Away,57.0,70.0,No,Northeastern,Princeton,214.0,,212.0,294.0,,257.0
+11/15,Northeastern,Vermont,Home,74.0,85.0,No,Northeastern,Vermont,214.0,,212.0,181.0,,194.0
 11/28,Northeastern,Wake Forest,Away,73.0,86.0,No,Northeastern,Wake Forest,214.0,,212.0,67.0,,59.0
 11/30,Northeastern St,Missouri St,Away,71.0,92.0,No,Northeastern St,Missouri St,,,,,,
 11/6,Northern Iowa,CSU Northridge,Home,86.0,57.0,Yes,Northern Iowa,CSU Northridge,,,92.0,,,
@@ -2460,7 +2460,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/7,Notre Dame,Detroit Mercy,Home,102.0,70.0,Yes,Notre Dame,Detroit Mercy,76.0,,65.0,259.0,,279.0
 11/11,Notre Dame,E Illinois,Home,78.0,58.0,Yes,Notre Dame,E Illinois,76.0,,65.0,,,
 11/26,Notre Dame,Houston,Away,56.0,66.0,No,Notre Dame,Houston,76.0,,65.0,17.0,,11.0
-12/10,Notre Dame,Idaho,Home,80.0,65.0,Yes,Notre Dame,Idaho,76.0,,65.0,150.0,,189.0
+12/10,Notre Dame,Idaho,Home,80.0,65.0,Yes,Notre Dame,Idaho,76.0,,65.0,150.0,,188.0
 11/24,Notre Dame,Kansas,Away,61.0,71.0,No,Notre Dame,Kansas,76.0,,65.0,18.0,,17.0
 11/3,Notre Dame,Long Island,Home,89.0,67.0,Yes,Notre Dame,Long Island,76.0,,65.0,,,
 12/2,Notre Dame,Missouri,Home,76.0,71.0,Yes,Notre Dame,Missouri,76.0,,65.0,93.0,,63.0
@@ -2472,7 +2472,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/15,Oakland,Defiance,Home,113.0,47.0,Yes,Oakland,Defiance,149.0,,146.0,,,
 11/21,Oakland,E Michigan,Away,91.0,97.0,No,Oakland,E Michigan,149.0,,146.0,,,
 11/12,Oakland,Houston,Away,45.0,78.0,No,Oakland,Houston,149.0,,146.0,17.0,,11.0
-11/24,Oakland,Lamar,Away,83.0,68.0,Yes,Oakland,Lamar,149.0,,146.0,,,237.0
+11/24,Oakland,Lamar,Away,83.0,68.0,Yes,Oakland,Lamar,149.0,,146.0,,,236.0
 11/25,Oakland,Montana,Away,95.0,87.0,Yes,Oakland,Montana,149.0,,146.0,236.0,,211.0
 11/7,Oakland,Purdue,Away,77.0,87.0,No,Oakland,Purdue,149.0,,146.0,6.0,,5.0
 12/3,Oakland,Purdue FW,Home,101.0,92.0,Yes,Oakland,Purdue FW,149.0,,146.0,,,
@@ -2517,7 +2517,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/4,Oklahoma St,Oral Roberts,Home,95.0,71.0,Yes,Oklahoma St,Oral Roberts,,,,292.0,,298.0
 11/12,Oklahoma St,Prairie View,Home,94.0,67.0,Yes,Oklahoma St,Prairie View,,,,293.0,,
 12/2,Oklahoma St,Sam Houston,Home,93.0,83.0,Yes,Oklahoma St,Sam Houston,,,,90.0,,
-11/19,Oklahoma St,South Florida,Home,103.0,95.0,Yes,Oklahoma St,South Florida,,,,,,85.0
+11/19,Oklahoma St,South Florida,Home,103.0,95.0,Yes,Oklahoma St,South Florida,,,,,,84.0
 11/9,Oklahoma St,Texas A&M,Home,87.0,63.0,Yes,Oklahoma St,Texas A&M,,,,64.0,,48.0
 11/16,Oklahoma St,Texas A&M-CC,Home,85.0,69.0,Yes,Oklahoma St,Texas A&M-CC,,,,,,
 11/23,Old Dominion,Drexel,Away,71.0,75.0,No,Old Dominion,Drexel,247.0,,222.0,296.0,,289.0
@@ -2570,7 +2570,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/6,Oregon St,Southern Utah,Home,81.0,70.0,Yes,Oregon St,Southern Utah,,,,339.0,,327.0
 11/7,Oregon St,UIC,Home,76.0,73.0,Yes,Oregon St,UIC,,,,228.0,,
 11/24,Oregon St,UMass,Home,65.0,73.0,No,Oregon St,UMass,,,,,,
-12/3,Oregon St,Vermont,Home,80.0,58.0,Yes,Oregon St,Vermont,,,,181.0,,187.0
+12/3,Oregon St,Vermont,Home,80.0,58.0,Yes,Oregon St,Vermont,,,,181.0,,194.0
 11/5,Ottawa (AZ),Montana,Away,39.0,73.0,No,Ottawa (AZ),Montana,,,,236.0,,211.0
 11/9,Ozark Chrstn,South Dakota,Away,65.0,121.0,No,Ozark Chrstn,South Dakota,,,,277.0,,281.0
 11/6,PSU Abington,Loyola MD,Away,60.0,96.0,No,PSU Abington,Loyola MD,,,,,,329.0
@@ -2592,19 +2592,19 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/9,Penn,American,Away,78.0,84.0,No,Penn,American,220.0,,218.0,267.0,,253.0
 11/21,Penn,Drexel,Away,84.0,68.0,Yes,Penn,Drexel,220.0,,218.0,296.0,,289.0
 11/30,Penn,Hofstra,Home,60.0,77.0,No,Penn,Hofstra,220.0,,218.0,88.0,,103.0
-11/29,Penn,La Salle,Home,73.0,71.0,Yes,Penn,La Salle,220.0,,218.0,271.0,,262.0
+11/29,Penn,La Salle,Home,73.0,71.0,Yes,Penn,La Salle,220.0,,218.0,271.0,,263.0
 12/8,Penn,Lafayette,Home,74.0,72.0,Yes,Penn,Lafayette,220.0,,218.0,334.0,,323.0
-11/28,Penn,Merrimack,Home,77.0,65.0,Yes,Penn,Merrimack,220.0,,218.0,257.0,,263.0
+11/28,Penn,Merrimack,Home,77.0,65.0,Yes,Penn,Merrimack,220.0,,218.0,257.0,,264.0
 11/11,Penn,Providence,Away,81.0,106.0,No,Penn,Providence,220.0,,218.0,99.0,,75.0
 11/7,Penn,Rowan,Home,119.0,72.0,Yes,Penn,Rowan,220.0,,218.0,,,
-11/17,Penn,Saint Joseph's,Home,83.0,74.0,Yes,Penn,Saint Joseph's,220.0,,218.0,246.0,,198.0
+11/17,Penn,Saint Joseph's,Home,83.0,74.0,Yes,Penn,Saint Joseph's,220.0,,218.0,246.0,,196.0
 12/6,Penn,Villanova,Away,63.0,90.0,No,Penn,Villanova,220.0,,218.0,21.0,,25.0
 11/3,Penn St,Fairfield,Home,76.0,68.0,Yes,Penn St,Fairfield,,,,249.0,,284.0
 11/25,Penn State,Boston U,Home,96.0,87.0,Yes,Penn State,Boston U,,,,,,
 12/2,Penn State,Campbell,Home,87.0,76.0,Yes,Penn State,Campbell,,,,244.0,,227.0
 11/19,Penn State,Harvard,Home,84.0,80.0,Yes,Penn State,Harvard,,,,195.0,,181.0
 12/9,Penn State,Indiana,Away,72.0,113.0,No,Penn State,Indiana,,,,33.0,,31.0
-11/15,Penn State,La Salle,Away,83.0,69.0,Yes,Penn State,La Salle,,,,271.0,,262.0
+11/15,Penn State,La Salle,Away,83.0,69.0,Yes,Penn State,La Salle,,,,271.0,,263.0
 11/11,Penn State,Navy,Home,80.0,71.0,Yes,Penn State,Navy,,,,209.0,,199.0
 11/8,Penn State,New Haven,Away,87.0,43.0,Yes,Penn State,New Haven,,,,328.0,,348.0
 11/22,Penn State,Providence,Home,65.0,77.0,No,Penn State,Providence,,,,99.0,,75.0
@@ -2619,10 +2619,10 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/29,Pepperdine,Fullerton,Away,69.0,83.0,No,Pepperdine,Fullerton,255.0,,255.0,,,
 11/11,Pepperdine,Lincoln U (CA),Home,113.0,76.0,Yes,Pepperdine,Lincoln U (CA),255.0,,255.0,,,
 11/15,Pepperdine,N Colorado,Home,81.0,88.0,No,Pepperdine,N Colorado,255.0,,255.0,,,
-11/18,Pepperdine,New Orleans,Home,90.0,79.0,Yes,Pepperdine,New Orleans,255.0,,255.0,198.0,,190.0
+11/18,Pepperdine,New Orleans,Home,90.0,79.0,Yes,Pepperdine,New Orleans,255.0,,255.0,198.0,,189.0
 11/21,Pepperdine,SF Austin,Home,60.0,63.0,No,Pepperdine,SF Austin,255.0,,255.0,,,
 11/7,Pepperdine,UCLA,Away,63.0,74.0,No,Pepperdine,UCLA,255.0,,255.0,39.0,,32.0
-12/6,Pepperdine,Vermont,Home,56.0,65.0,No,Pepperdine,Vermont,255.0,,255.0,181.0,,187.0
+12/6,Pepperdine,Vermont,Home,56.0,65.0,No,Pepperdine,Vermont,255.0,,255.0,181.0,,194.0
 11/17,Peru State,S Dakota St,Away,46.0,94.0,No,Peru State,S Dakota St,,,,,,
 12/3,Pfeiffer,Longwood,Away,55.0,101.0,No,Pfeiffer,Longwood,,,,317.0,,302.0
 11/25,Piedmont,Charleston So,Away,81.0,93.0,No,Piedmont,Charleston So,,,,,,
@@ -2633,11 +2633,11 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/7,Pittsburgh,Hofstra,Home,73.0,80.0,No,Pittsburgh,Hofstra,120.0,,91.0,88.0,,103.0
 11/7,Pittsburgh,Longwood,Home,78.0,60.0,Yes,Pittsburgh,Longwood,120.0,,91.0,317.0,,302.0
 11/28,Pittsburgh,Ohio State,Home,67.0,66.0,Yes,Pittsburgh,Ohio State,120.0,,91.0,,,
-11/23,Pittsburgh,Quinnipiac,Home,75.0,83.0,No,Pittsburgh,Quinnipiac,120.0,,91.0,144.0,,151.0
+11/23,Pittsburgh,Quinnipiac,Home,75.0,83.0,No,Pittsburgh,Quinnipiac,120.0,,91.0,144.0,,153.0
 12/2,Pittsburgh,Texas A&M,Home,73.0,81.0,No,Pittsburgh,Texas A&M,120.0,,91.0,64.0,,48.0
 11/20,Pittsburgh,UCF,Away,67.0,77.0,No,Pittsburgh,UCF,120.0,,91.0,36.0,,46.0
 11/13,Pittsburgh,West Virginia,Away,49.0,71.0,No,Pittsburgh,West Virginia,120.0,,91.0,92.0,,66.0
-11/5,Plattsburgh,Vermont,Away,62.0,113.0,No,Plattsburgh,Vermont,,,,181.0,,187.0
+11/5,Plattsburgh,Vermont,Away,62.0,113.0,No,Plattsburgh,Vermont,,,,181.0,,194.0
 11/12,Point,Kennesaw St,Away,60.0,111.0,No,Point,Kennesaw St,,,,,,
 11/6,Portland,AR-Pine Bluff,Home,83.0,74.0,Yes,Portland,AR-Pine Bluff,239.0,,234.0,,,
 11/21,Portland,Fullerton,Home,103.0,85.0,Yes,Portland,Fullerton,239.0,,234.0,,,
@@ -2675,20 +2675,20 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/30,Presbyterian,The Citadel,Away,69.0,41.0,Yes,Presbyterian,The Citadel,283.0,,291.0,357.0,,357.0
 11/21,Presbyterian,UCLA,Away,46.0,86.0,No,Presbyterian,UCLA,283.0,,291.0,39.0,,32.0
 12/3,Presbyterian,Wofford,Away,56.0,63.0,No,Presbyterian,Wofford,283.0,,291.0,211.0,,225.0
-11/8,Princeton,Akron,Away,69.0,104.0,No,Princeton,Akron,294.0,,264.0,49.0,,56.0
-11/24,Princeton,Bradley,Away,64.0,88.0,No,Princeton,Bradley,294.0,,264.0,121.0,,119.0
-11/11,Princeton,Bucknell,Home,73.0,63.0,Yes,Princeton,Bucknell,294.0,,264.0,321.0,,303.0
-11/18,Princeton,Iona,Away,69.0,89.0,No,Princeton,Iona,294.0,,264.0,165.0,,182.0
-11/13,Princeton,John Jay,Home,100.0,59.0,Yes,Princeton,John Jay,294.0,,264.0,,,
-11/15,Princeton,Kansas,Away,57.0,76.0,No,Princeton,Kansas,294.0,,264.0,18.0,,17.0
-12/6,Princeton,Loyola Chicago,Away,68.0,73.0,No,Princeton,Loyola Chicago,294.0,,264.0,326.0,,297.0
-12/10,Princeton,Merrimack,Home,56.0,59.0,No,Princeton,Merrimack,294.0,,264.0,257.0,,263.0
-12/3,Princeton,Monmouth,Away,58.0,63.0,No,Princeton,Monmouth,294.0,,264.0,238.0,,233.0
-11/20,Princeton,Northeastern,Home,70.0,57.0,Yes,Princeton,Northeastern,294.0,,264.0,214.0,,212.0
-11/30,Princeton,Saint Joseph's,Home,58.0,60.0,No,Princeton,Saint Joseph's,294.0,,264.0,246.0,,198.0
-11/25,Princeton,Temple,Home,75.0,79.0,No,Princeton,Temple,294.0,,264.0,171.0,,154.0
-11/26,Princeton,Vermont,Home,74.0,79.0,No,Princeton,Vermont,294.0,,264.0,181.0,,187.0
-12/9,Providence,Brown,Home,86.0,79.0,Yes,Providence,Brown,99.0,,75.0,265.0,,236.0
+11/8,Princeton,Akron,Away,69.0,104.0,No,Princeton,Akron,294.0,,257.0,49.0,,56.0
+11/24,Princeton,Bradley,Away,64.0,88.0,No,Princeton,Bradley,294.0,,257.0,121.0,,119.0
+11/11,Princeton,Bucknell,Home,73.0,63.0,Yes,Princeton,Bucknell,294.0,,257.0,321.0,,303.0
+11/18,Princeton,Iona,Away,69.0,89.0,No,Princeton,Iona,294.0,,257.0,165.0,,182.0
+11/13,Princeton,John Jay,Home,100.0,59.0,Yes,Princeton,John Jay,294.0,,257.0,,,
+11/15,Princeton,Kansas,Away,57.0,76.0,No,Princeton,Kansas,294.0,,257.0,18.0,,17.0
+12/6,Princeton,Loyola Chicago,Away,68.0,73.0,No,Princeton,Loyola Chicago,294.0,,257.0,326.0,,297.0
+12/10,Princeton,Merrimack,Home,56.0,59.0,No,Princeton,Merrimack,294.0,,257.0,257.0,,264.0
+12/3,Princeton,Monmouth,Away,58.0,63.0,No,Princeton,Monmouth,294.0,,257.0,238.0,,233.0
+11/20,Princeton,Northeastern,Home,70.0,57.0,Yes,Princeton,Northeastern,294.0,,257.0,214.0,,212.0
+11/30,Princeton,Saint Joseph's,Home,58.0,60.0,No,Princeton,Saint Joseph's,294.0,,257.0,246.0,,196.0
+11/25,Princeton,Temple,Home,75.0,79.0,No,Princeton,Temple,294.0,,257.0,171.0,,151.0
+11/26,Princeton,Vermont,Home,74.0,79.0,No,Princeton,Vermont,294.0,,257.0,181.0,,194.0
+12/9,Providence,Brown,Home,86.0,79.0,Yes,Providence,Brown,99.0,,75.0,265.0,,237.0
 11/14,Providence,Colorado,Away,88.0,97.0,No,Providence,Colorado,99.0,,75.0,77.0,,86.0
 12/2,Providence,Fairleigh Dickinson,Home,94.0,64.0,Yes,Providence,Fairleigh Dickinson,99.0,,75.0,,,358.0
 11/28,Providence,Florida,Away,78.0,90.0,No,Providence,Florida,99.0,,75.0,23.0,,12.0
@@ -2729,24 +2729,24 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/20,Queens,UNC Greensboro,Home,101.0,94.0,Yes,Queens,UNC Greensboro,,,214.0,302.0,,293.0
 11/8,Queens,Villanova,Away,74.0,94.0,No,Queens,Villanova,,,214.0,21.0,,25.0
 11/28,Queens,Virginia,Away,69.0,94.0,No,Queens,Virginia,,,214.0,24.0,,24.0
-11/6,Quinnipiac,C Connecticut,Home,71.0,49.0,Yes,Quinnipiac,C Connecticut,144.0,,151.0,,,
-11/19,Quinnipiac,City (NY),Home,112.0,52.0,Yes,Quinnipiac,City (NY),144.0,,151.0,,,
-12/5,Quinnipiac,Iona,Away,89.0,68.0,Yes,Quinnipiac,Iona,144.0,,151.0,165.0,,182.0
-11/16,Quinnipiac,Maine,Away,70.0,64.0,Yes,Quinnipiac,Maine,144.0,,151.0,342.0,,349.0
-11/23,Quinnipiac,Pittsburgh,Away,83.0,75.0,Yes,Quinnipiac,Pittsburgh,144.0,,151.0,120.0,,91.0
-12/7,Quinnipiac,Rider,Home,72.0,58.0,Yes,Quinnipiac,Rider,144.0,,151.0,359.0,,350.0
-11/30,Quinnipiac,Stonehill,Home,76.0,62.0,Yes,Quinnipiac,Stonehill,144.0,,151.0,346.0,,342.0
-11/25,Quinnipiac,UCF,Away,91.0,102.0,No,Quinnipiac,UCF,144.0,,151.0,36.0,,46.0
-11/11,Quinnipiac,Yale,Home,60.0,97.0,No,Quinnipiac,Yale,144.0,,151.0,53.0,,84.0
+11/6,Quinnipiac,C Connecticut,Home,71.0,49.0,Yes,Quinnipiac,C Connecticut,144.0,,153.0,,,
+11/19,Quinnipiac,City (NY),Home,112.0,52.0,Yes,Quinnipiac,City (NY),144.0,,153.0,,,
+12/5,Quinnipiac,Iona,Away,89.0,68.0,Yes,Quinnipiac,Iona,144.0,,153.0,165.0,,182.0
+11/16,Quinnipiac,Maine,Away,70.0,64.0,Yes,Quinnipiac,Maine,144.0,,153.0,342.0,,349.0
+11/23,Quinnipiac,Pittsburgh,Away,83.0,75.0,Yes,Quinnipiac,Pittsburgh,144.0,,153.0,120.0,,91.0
+12/7,Quinnipiac,Rider,Home,72.0,58.0,Yes,Quinnipiac,Rider,144.0,,153.0,359.0,,350.0
+11/30,Quinnipiac,Stonehill,Home,76.0,62.0,Yes,Quinnipiac,Stonehill,144.0,,153.0,346.0,,342.0
+11/25,Quinnipiac,UCF,Away,91.0,102.0,No,Quinnipiac,UCF,144.0,,153.0,36.0,,46.0
+11/11,Quinnipiac,Yale,Home,60.0,97.0,No,Quinnipiac,Yale,144.0,,153.0,53.0,,85.0
 11/5,RIT,Binghamton,Away,56.0,66.0,No,RIT,Binghamton,,,,363.0,,363.0
-11/15,RIT,Buffalo,Away,64.0,80.0,No,RIT,Buffalo,,,,139.0,,179.0
+11/15,RIT,Buffalo,Away,64.0,80.0,No,RIT,Buffalo,,,,139.0,,180.0
 11/16,Radford,Cleveland St,Away,82.0,87.0,No,Radford,Cleveland St,288.0,,254.0,,,
 11/11,Radford,North Carolina,Away,74.0,89.0,No,Radford,North Carolina,288.0,,254.0,16.0,,22.0
 11/29,Radford,Notre Dame MD,Home,102.0,75.0,Yes,Radford,Notre Dame MD,288.0,,254.0,,,
 11/24,Radford,SMU,Away,72.0,89.0,No,Radford,SMU,288.0,,254.0,31.0,,40.0
 12/7,Radford,Saint Francis,Home,89.0,56.0,Yes,Radford,Saint Francis,288.0,,254.0,358.0,,359.0
 11/18,Radford,South Carolina,Away,58.0,87.0,No,Radford,South Carolina,288.0,,254.0,115.0,,90.0
-12/3,Radford,Southern Miss,Home,75.0,82.0,No,Radford,Southern Miss,288.0,,254.0,,,197.0
+12/3,Radford,Southern Miss,Home,75.0,82.0,No,Radford,Southern Miss,288.0,,254.0,,,198.0
 11/21,Radford,UNC Wilmington,Home,73.0,81.0,No,Radford,UNC Wilmington,288.0,,254.0,,,116.0
 11/7,Radford,WV Wesleyan,Home,99.0,61.0,Yes,Radford,WV Wesleyan,288.0,,254.0,,,
 11/15,Radford,Wright St,Home,59.0,92.0,No,Radford,Wright St,288.0,,254.0,,,
@@ -2757,16 +2757,16 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/9,Regis College,Holy Cross,Away,47.0,69.0,No,Regis College,Holy Cross,,,,311.0,,332.0
 11/29,Regis U,N Colorado,Away,63.0,104.0,No,Regis U,N Colorado,,,,,,
 11/10,Reinhardt,Jax State,Away,39.0,114.0,No,Reinhardt,Jax State,,,,,,
-12/2,Rhode Island,Brown,Home,66.0,56.0,Yes,Rhode Island,Brown,111.0,,108.0,265.0,,236.0
+12/2,Rhode Island,Brown,Home,66.0,56.0,Yes,Rhode Island,Brown,111.0,,108.0,265.0,,237.0
 12/9,Rhode Island,McNeese,Home,64.0,66.0,No,Rhode Island,McNeese,111.0,,108.0,48.0,,69.0
 12/6,Rhode Island,Providence,Away,71.0,90.0,No,Rhode Island,Providence,111.0,,108.0,99.0,,75.0
 11/11,Rhode Island,Stonehill,Home,80.0,57.0,Yes,Rhode Island,Stonehill,111.0,,108.0,346.0,,342.0
-11/26,Rhode Island,Temple,Away,90.0,75.0,Yes,Rhode Island,Temple,111.0,,108.0,171.0,,154.0
+11/26,Rhode Island,Temple,Away,90.0,75.0,Yes,Rhode Island,Temple,111.0,,108.0,171.0,,151.0
 11/24,Rhode Island,Towson,Away,55.0,62.0,No,Rhode Island,Towson,111.0,,108.0,143.0,,143.0
 11/7,Rhode Island,Tulsa,Home,65.0,82.0,No,Rhode Island,Tulsa,111.0,,108.0,45.0,,82.0
 11/14,Rhode Island,UAlbany,Home,80.0,61.0,Yes,Rhode Island,UAlbany,111.0,,108.0,309.0,,
-11/25,Rhode Island,Vermont,Away,80.0,65.0,Yes,Rhode Island,Vermont,111.0,,108.0,181.0,,187.0
-11/18,Rhode Island,Yale,Away,86.0,77.0,Yes,Rhode Island,Yale,111.0,,108.0,53.0,,84.0
+11/25,Rhode Island,Vermont,Away,80.0,65.0,Yes,Rhode Island,Vermont,111.0,,108.0,181.0,,194.0
+11/18,Rhode Island,Yale,Away,86.0,77.0,Yes,Rhode Island,Yale,111.0,,108.0,53.0,,85.0
 11/17,Rhodes,UAB,Away,56.0,112.0,No,Rhodes,UAB,,,,119.0,,106.0
 11/4,Rice,Biblical Stud,Home,109.0,38.0,Yes,Rice,Biblical Stud,237.0,,235.0,,,
 11/14,Rice,E Texas A&M,Home,71.0,64.0,Yes,Rice,E Texas A&M,237.0,,235.0,,,
@@ -2791,8 +2791,8 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/25,Rider,Coppin St.,Home,65.0,68.0,No,Rider,Coppin St.,359.0,,350.0,365.0,,364.0
 11/15,Rider,Eastern,Home,86.0,54.0,Yes,Rider,Eastern,359.0,,350.0,,,
 11/20,Rider,Houston,Away,45.0,91.0,No,Rider,Houston,359.0,,350.0,17.0,,11.0
-12/4,Rider,Merrimack,Away,66.0,68.0,No,Rider,Merrimack,359.0,,350.0,257.0,,263.0
-12/7,Rider,Quinnipiac,Away,58.0,72.0,No,Rider,Quinnipiac,359.0,,350.0,144.0,,151.0
+12/4,Rider,Merrimack,Away,66.0,68.0,No,Rider,Merrimack,359.0,,350.0,257.0,,264.0
+12/7,Rider,Quinnipiac,Away,58.0,72.0,No,Rider,Quinnipiac,359.0,,350.0,144.0,,153.0
 11/5,Rider,Rutgers,Away,53.0,81.0,No,Rider,Rutgers,359.0,,350.0,199.0,,161.0
 11/18,Rider,Texas,Away,65.0,99.0,No,Rider,Texas,359.0,,350.0,54.0,,45.0
 11/10,Ripon,Green Bay,Away,63.0,83.0,No,Ripon,Green Bay,,,,253.0,,282.0
@@ -2801,7 +2801,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/10,Robert Morris,Geneva,Home,93.0,47.0,Yes,Robert Morris,Geneva,176.0,,184.0,,,
 12/4,Robert Morris,Green Bay,Away,80.0,78.0,Yes,Robert Morris,Green Bay,176.0,,184.0,253.0,,282.0
 11/4,Robert Morris,Iowa,Away,69.0,101.0,No,Robert Morris,Iowa,176.0,,184.0,13.0,,18.0
-12/6,Robert Morris,Milwaukee,Away,72.0,74.0,No,Robert Morris,Milwaukee,176.0,,184.0,185.0,,201.0
+12/6,Robert Morris,Milwaukee,Away,72.0,74.0,No,Robert Morris,Milwaukee,176.0,,184.0,185.0,,200.0
 11/23,Robert Morris,Monmouth,Away,70.0,71.0,No,Robert Morris,Monmouth,176.0,,184.0,238.0,,233.0
 11/13,Robert Morris,Pit Greensburg,Home,81.0,57.0,Yes,Robert Morris,Pit Greensburg,176.0,,184.0,,,
 11/28,Robert Morris,Southern Utah,Home,61.0,54.0,Yes,Robert Morris,Southern Utah,176.0,,184.0,339.0,,327.0
@@ -2821,11 +2821,11 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/5,Rutgers,Rider,Home,81.0,53.0,Yes,Rutgers,Rider,199.0,,161.0,359.0,,350.0
 11/24,Rutgers,Tennessee,Away,60.0,85.0,No,Rutgers,Tennessee,199.0,,161.0,26.0,,16.0
 11/27,Rutgers,UNLV,Home,80.0,65.0,Yes,Rutgers,UNLV,199.0,,161.0,177.0,,142.0
-11/25,Rutgers-Camden,Saint Joseph's,Away,61.0,100.0,No,Rutgers-Camden,Saint Joseph's,,,,246.0,,198.0
+11/25,Rutgers-Camden,Saint Joseph's,Away,61.0,100.0,No,Rutgers-Camden,Saint Joseph's,,,,246.0,,196.0
 12/9,S Dakota St,Ball State,Away,68.0,64.0,Yes,S Dakota St,Ball State,,,,,,
 11/6,S Dakota St,Dakota St,Home,68.0,62.0,Yes,S Dakota St,Dakota St,,,,,,
 11/21,S Dakota St,Georgia St,Home,105.0,58.0,Yes,S Dakota St,Georgia St,,,,,,
-12/6,S Dakota St,Idaho,Home,81.0,84.0,No,S Dakota St,Idaho,,,,150.0,,189.0
+12/6,S Dakota St,Idaho,Home,81.0,84.0,No,S Dakota St,Idaho,,,,150.0,,188.0
 12/3,S Dakota St,N Arizona,Away,75.0,62.0,Yes,S Dakota St,N Arizona,,,,,,
 11/9,S Dakota St,Northern Iowa,Away,58.0,65.0,No,S Dakota St,Northern Iowa,,,,,,92.0
 11/12,S Dakota St,Oregon,Away,69.0,83.0,No,S Dakota St,Oregon,,,,97.0,,72.0
@@ -2901,7 +2901,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/6,SMU,Texas A&M-CC,Home,69.0,58.0,Yes,SMU,Texas A&M-CC,31.0,,40.0,,,
 12/3,SMU,Vanderbilt,Away,69.0,88.0,No,SMU,Vanderbilt,31.0,,40.0,7.0,,8.0
 11/11,SUNY Delhi,UAlbany,Away,52.0,115.0,No,SUNY Delhi,UAlbany,,,,309.0,,
-12/2,SUNY-Maritime,Yale,Away,53.0,117.0,No,SUNY-Maritime,Yale,,,,53.0,,84.0
+12/2,SUNY-Maritime,Yale,Away,53.0,117.0,No,SUNY-Maritime,Yale,,,,53.0,,85.0
 11/29,SUNY-Oneonta,Colgate,Away,50.0,85.0,No,SUNY-Oneonta,Colgate,,,,183.0,,185.0
 11/30,SUNY-Oneonta,UAlbany,Away,62.0,90.0,No,SUNY-Oneonta,UAlbany,,,,309.0,,
 11/11,SW Adventist,Abilene Chrstn,Away,63.0,104.0,No,SW Adventist,Abilene Chrstn,,,,,,
@@ -2936,15 +2936,15 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/6,Saint Francis,TCU,Away,63.0,104.0,No,Saint Francis,TCU,358.0,,359.0,51.0,,54.0
 11/26,Saint Francis,Troy,Away,64.0,74.0,No,Saint Francis,Troy,358.0,,359.0,135.0,,139.0
 12/1,Saint Francis,Xavier,Away,74.0,96.0,No,Saint Francis,Xavier,358.0,,359.0,116.0,,100.0
-12/9,Saint Joseph's,Coppin St.,Home,87.0,65.0,Yes,Saint Joseph's,Coppin St.,246.0,,198.0,365.0,,364.0
-11/8,Saint Joseph's,Drexel,Home,76.0,65.0,Yes,Saint Joseph's,Drexel,246.0,,198.0,296.0,,289.0
-11/17,Saint Joseph's,Penn,Away,74.0,83.0,No,Saint Joseph's,Penn,246.0,,198.0,220.0,,218.0
-11/30,Saint Joseph's,Princeton,Away,60.0,58.0,Yes,Saint Joseph's,Princeton,246.0,,198.0,294.0,,264.0
-11/25,Saint Joseph's,Rutgers-Camden,Home,100.0,61.0,Yes,Saint Joseph's,Rutgers-Camden,246.0,,198.0,,,
-12/11,Saint Joseph's,Syracuse,Away,63.0,71.0,No,Saint Joseph's,Syracuse,246.0,,198.0,89.0,,78.0
-12/6,Saint Joseph's,Temple,Away,70.0,69.0,Yes,Saint Joseph's,Temple,246.0,,198.0,171.0,,154.0
-11/20,Saint Joseph's,UNLV,Away,85.0,99.0,No,Saint Joseph's,UNLV,246.0,,198.0,177.0,,142.0
-11/12,Saint Joseph's,Virginia Tech,Away,59.0,94.0,No,Saint Joseph's,Virginia Tech,246.0,,198.0,63.0,,68.0
+12/9,Saint Joseph's,Coppin St.,Home,87.0,65.0,Yes,Saint Joseph's,Coppin St.,246.0,,196.0,365.0,,364.0
+11/8,Saint Joseph's,Drexel,Home,76.0,65.0,Yes,Saint Joseph's,Drexel,246.0,,196.0,296.0,,289.0
+11/17,Saint Joseph's,Penn,Away,74.0,83.0,No,Saint Joseph's,Penn,246.0,,196.0,220.0,,218.0
+11/30,Saint Joseph's,Princeton,Away,60.0,58.0,Yes,Saint Joseph's,Princeton,246.0,,196.0,294.0,,257.0
+11/25,Saint Joseph's,Rutgers-Camden,Home,100.0,61.0,Yes,Saint Joseph's,Rutgers-Camden,246.0,,196.0,,,
+12/11,Saint Joseph's,Syracuse,Away,63.0,71.0,No,Saint Joseph's,Syracuse,246.0,,196.0,89.0,,78.0
+12/6,Saint Joseph's,Temple,Away,70.0,69.0,Yes,Saint Joseph's,Temple,246.0,,196.0,171.0,,151.0
+11/20,Saint Joseph's,UNLV,Away,85.0,99.0,No,Saint Joseph's,UNLV,246.0,,196.0,177.0,,142.0
+11/12,Saint Joseph's,Virginia Tech,Away,59.0,94.0,No,Saint Joseph's,Virginia Tech,246.0,,196.0,63.0,,68.0
 12/10,Saint Leo,Florida Atlantic,Away,55.0,112.0,No,Saint Leo,Florida Atlantic,,,,,,111.0
 12/7,Saint Louis,C Michigan,Home,107.0,65.0,Yes,Saint Louis,C Michigan,27.0,,41.0,,,
 11/6,Saint Louis,Chicago St,Home,108.0,86.0,Yes,Saint Louis,Chicago St,27.0,,41.0,,,
@@ -2973,7 +2973,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/1,Saint Xavier,Chicago St,Away,62.0,85.0,No,Saint Xavier,Chicago St,,,,,,
 12/10,SalishKootenai,Montana,Away,46.0,102.0,No,SalishKootenai,Montana,,,,236.0,,211.0
 11/25,Salve Regina,New Haven,Away,47.0,78.0,No,Salve Regina,New Haven,,,,328.0,,348.0
-11/28,Sam Houston,Idaho,Away,94.0,68.0,Yes,Sam Houston,Idaho,90.0,,,150.0,,189.0
+11/28,Sam Houston,Idaho,Away,94.0,68.0,Yes,Sam Houston,Idaho,90.0,,,150.0,,188.0
 11/26,Sam Houston,Idaho St,Away,84.0,81.0,Yes,Sam Houston,Idaho St,90.0,,,,,
 12/2,Sam Houston,Oklahoma St,Away,83.0,93.0,No,Sam Houston,Oklahoma St,90.0,,,,,
 11/22,Sam Houston,Schreiner,Home,105.0,54.0,Yes,Sam Houston,Schreiner,90.0,,,,,
@@ -2988,12 +2988,12 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/25,Samford,Georgia St,Away,78.0,63.0,Yes,Samford,Georgia St,256.0,,241.0,,,
 11/21,Samford,New Mexico St,Away,72.0,81.0,No,Samford,New Mexico St,256.0,,241.0,,,
 11/12,Samford,Texas Southern,Away,93.0,90.0,Yes,Samford,Texas Southern,256.0,,241.0,343.0,,331.0
-11/7,Samford,USC Upstate,Home,82.0,72.0,Yes,Samford,USC Upstate,256.0,,241.0,213.0,,260.0
+11/7,Samford,USC Upstate,Home,82.0,72.0,Yes,Samford,USC Upstate,256.0,,241.0,213.0,,261.0
 11/26,Samford,Utah Valley,Away,45.0,89.0,No,Samford,Utah Valley,256.0,,241.0,57.0,,83.0
 12/5,Samford,VCU,Away,57.0,83.0,No,Samford,VCU,256.0,,241.0,59.0,,42.0
 11/25,San Diego,CA Baptist,Away,61.0,76.0,No,San Diego,CA Baptist,212.0,,213.0,,,
 11/18,San Diego,Grambling,Home,78.0,68.0,Yes,San Diego,Grambling,212.0,,213.0,217.0,,
-11/12,San Diego,Idaho,Home,78.0,74.0,Yes,San Diego,Idaho,212.0,,213.0,150.0,,189.0
+11/12,San Diego,Idaho,Home,78.0,74.0,Yes,San Diego,Idaho,212.0,,213.0,150.0,,188.0
 11/7,San Diego,Idaho St,Home,68.0,71.0,No,San Diego,Idaho St,212.0,,213.0,,,
 11/30,San Diego,Long Beach St,Away,72.0,76.0,No,San Diego,Long Beach St,212.0,,213.0,,,
 11/4,San Diego,Occidental,Home,88.0,59.0,Yes,San Diego,Occidental,212.0,,213.0,,,
@@ -3002,7 +3002,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/9,San Diego,USC,Home,81.0,94.0,No,San Diego,USC,212.0,,213.0,,,39.0
 11/26,San Diego St,Baylor,Home,81.0,91.0,No,San Diego St,Baylor,,,,41.0,,30.0
 11/9,San Diego St,Idaho St,Home,73.0,57.0,Yes,San Diego St,Idaho St,,,,,,
-12/10,San Diego St,Lamar,Home,89.0,71.0,Yes,San Diego St,Lamar,,,,,,237.0
+12/10,San Diego St,Lamar,Home,89.0,71.0,Yes,San Diego St,Lamar,,,,,,236.0
 11/4,San Diego St,Long Beach St,Home,77.0,45.0,Yes,San Diego St,Long Beach St,,,,,,
 11/24,San Diego St,Michigan,Away,54.0,94.0,No,San Diego St,Michigan,,,,1.0,,1.0
 11/25,San Diego St,Oregon,Away,97.0,80.0,Yes,San Diego St,Oregon,,,,97.0,,72.0
@@ -3071,7 +3071,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/26,Seton Hall,Washington St,Away,75.0,61.0,Yes,Seton Hall,Washington St,44.0,,47.0,,,
 11/23,Shaw,Charlotte,Away,79.0,83.0,No,Shaw,Charlotte,,,,179.0,,186.0
 11/29,Siena,American,Away,59.0,55.0,Yes,Siena,American,174.0,,174.0,267.0,,253.0
-11/7,Siena,Brown,Away,62.0,46.0,Yes,Siena,Brown,174.0,,174.0,265.0,,236.0
+11/7,Siena,Brown,Away,62.0,46.0,Yes,Siena,Brown,174.0,,174.0,265.0,,237.0
 12/7,Siena,Canisius,Home,74.0,52.0,Yes,Siena,Canisius,174.0,,174.0,338.0,,347.0
 11/17,Siena,Colgate,Home,69.0,72.0,No,Siena,Colgate,174.0,,174.0,183.0,,185.0
 11/24,Siena,Holy Cross,Away,73.0,69.0,Yes,Siena,Holy Cross,174.0,,174.0,311.0,,332.0
@@ -3091,22 +3091,22 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/7,So Indiana,VMI,Home,74.0,78.0,No,So Indiana,VMI,,,,344.0,,333.0
 11/26,So Indiana,Valparaiso,Away,64.0,56.0,Yes,So Indiana,Valparaiso,,,,225.0,,207.0
 12/3,So Indiana,W Michigan,Away,74.0,88.0,No,So Indiana,W Michigan,,,,,,
-11/6,South Alabama,Alcorn St,Home,76.0,70.0,Yes,South Alabama,Alcorn St,191.0,,192.0,,,
-11/13,South Alabama,C Michigan,Home,66.0,64.0,Yes,South Alabama,C Michigan,191.0,,192.0,,,
-11/15,South Alabama,Coppin St.,Away,72.0,62.0,Yes,South Alabama,Coppin St.,191.0,,192.0,365.0,,364.0
-12/5,South Alabama,ETSU,Away,65.0,91.0,No,South Alabama,ETSU,191.0,,192.0,145.0,,
-11/19,South Alabama,Jax State,Away,71.0,65.0,Yes,South Alabama,Jax State,191.0,,192.0,,,
-12/2,South Alabama,New Mexico St,Home,77.0,75.0,Yes,South Alabama,New Mexico St,191.0,,192.0,,,
-11/8,South Alabama,Spring Hill,Home,99.0,50.0,Yes,South Alabama,Spring Hill,191.0,,192.0,,,
-11/21,South Alabama,UAB,Away,72.0,80.0,No,South Alabama,UAB,191.0,,192.0,119.0,,106.0
-11/30,South Alabama,UTSA,Away,82.0,58.0,Yes,South Alabama,UTSA,191.0,,192.0,303.0,,285.0
+11/6,South Alabama,Alcorn St,Home,76.0,70.0,Yes,South Alabama,Alcorn St,191.0,,191.0,,,
+11/13,South Alabama,C Michigan,Home,66.0,64.0,Yes,South Alabama,C Michigan,191.0,,191.0,,,
+11/15,South Alabama,Coppin St.,Away,72.0,62.0,Yes,South Alabama,Coppin St.,191.0,,191.0,365.0,,364.0
+12/5,South Alabama,ETSU,Away,65.0,91.0,No,South Alabama,ETSU,191.0,,191.0,145.0,,
+11/19,South Alabama,Jax State,Away,71.0,65.0,Yes,South Alabama,Jax State,191.0,,191.0,,,
+12/2,South Alabama,New Mexico St,Home,77.0,75.0,Yes,South Alabama,New Mexico St,191.0,,191.0,,,
+11/8,South Alabama,Spring Hill,Home,99.0,50.0,Yes,South Alabama,Spring Hill,191.0,,191.0,,,
+11/21,South Alabama,UAB,Away,72.0,80.0,No,South Alabama,UAB,191.0,,191.0,119.0,,106.0
+11/30,South Alabama,UTSA,Away,82.0,58.0,Yes,South Alabama,UTSA,191.0,,191.0,303.0,,285.0
 11/21,South Carolina,Butler,Home,72.0,79.0,No,South Carolina,Butler,115.0,,90.0,42.0,,49.0
 11/28,South Carolina,Charleston So,Home,74.0,62.0,Yes,South Carolina,Charleston So,115.0,,90.0,,,
 11/4,South Carolina,NC A&T,Home,91.0,72.0,Yes,South Carolina,NC A&T,115.0,,90.0,,,
 11/23,South Carolina,Northwestern,Away,77.0,79.0,No,South Carolina,Northwestern,115.0,,90.0,69.0,,55.0
 11/12,South Carolina,Presbyterian,Home,81.0,61.0,Yes,South Carolina,Presbyterian,115.0,,90.0,283.0,,291.0
 11/18,South Carolina,Radford,Home,87.0,58.0,Yes,South Carolina,Radford,115.0,,90.0,288.0,,254.0
-11/9,South Carolina,Southern Miss,Home,83.0,79.0,Yes,South Carolina,Southern Miss,115.0,,90.0,,,197.0
+11/9,South Carolina,Southern Miss,Home,83.0,79.0,Yes,South Carolina,Southern Miss,115.0,,90.0,,,198.0
 12/6,South Carolina,Stetson,Home,82.0,51.0,Yes,South Carolina,Stetson,115.0,,90.0,349.0,,346.0
 12/2,South Carolina,Virginia Tech,Home,83.0,86.0,No,South Carolina,Virginia Tech,115.0,,90.0,63.0,,68.0
 11/29,South Dakota,Air Force,Home,80.0,63.0,Yes,South Dakota,Air Force,277.0,,281.0,313.0,,324.0
@@ -3116,18 +3116,18 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/9,South Dakota,Ozark Chrstn,Home,121.0,65.0,Yes,South Dakota,Ozark Chrstn,277.0,,281.0,,,
 12/3,South Dakota,Portland St,Home,71.0,77.0,No,South Dakota,Portland St,277.0,,281.0,,,
 11/12,South Dakota,So Indiana,Home,89.0,74.0,Yes,South Dakota,So Indiana,277.0,,281.0,,,
-11/23,South Dakota,USC Upstate,Home,82.0,81.0,Yes,South Dakota,USC Upstate,277.0,,281.0,213.0,,260.0
+11/23,South Dakota,USC Upstate,Home,82.0,81.0,Yes,South Dakota,USC Upstate,277.0,,281.0,213.0,,261.0
 11/16,South Dakota,W Michigan,Home,83.0,78.0,Yes,South Dakota,W Michigan,277.0,,281.0,,,
 12/9,South Dakota,Wyoming,Away,79.0,106.0,No,South Dakota,Wyoming,277.0,,281.0,80.0,,98.0
-12/10,South Florida,Charleston,Home,81.0,75.0,Yes,South Florida,Charleston,,,85.0,,,178.0
-11/28,South Florida,Colorado St,Home,68.0,83.0,No,South Florida,Colorado St,,,85.0,,,
-11/12,South Florida,Coppin St.,Home,100.0,50.0,Yes,South Florida,Coppin St.,,,85.0,365.0,,364.0
-11/8,South Florida,G Washington,Away,95.0,99.0,No,South Florida,G Washington,,,85.0,,,
-11/16,South Florida,Kennesaw St,Away,108.0,89.0,Yes,South Florida,Kennesaw St,,,85.0,,,
-11/19,South Florida,Oklahoma St,Away,95.0,103.0,No,South Florida,Oklahoma St,,,85.0,,,
-12/4,South Florida,Utah State,Home,74.0,61.0,Yes,South Florida,Utah State,,,85.0,,,
-11/26,South Florida,VCU,Away,66.0,78.0,No,South Florida,VCU,,,85.0,59.0,,42.0
-11/27,South Florida,Western KY,Away,97.0,91.0,Yes,South Florida,Western KY,,,85.0,,,
+12/10,South Florida,Charleston,Home,81.0,75.0,Yes,South Florida,Charleston,,,84.0,,,178.0
+11/28,South Florida,Colorado St,Home,68.0,83.0,No,South Florida,Colorado St,,,84.0,,,
+11/12,South Florida,Coppin St.,Home,100.0,50.0,Yes,South Florida,Coppin St.,,,84.0,365.0,,364.0
+11/8,South Florida,G Washington,Away,95.0,99.0,No,South Florida,G Washington,,,84.0,,,
+11/16,South Florida,Kennesaw St,Away,108.0,89.0,Yes,South Florida,Kennesaw St,,,84.0,,,
+11/19,South Florida,Oklahoma St,Away,95.0,103.0,No,South Florida,Oklahoma St,,,84.0,,,
+12/4,South Florida,Utah State,Home,74.0,61.0,Yes,South Florida,Utah State,,,84.0,,,
+11/26,South Florida,VCU,Away,66.0,78.0,No,South Florida,VCU,,,84.0,59.0,,42.0
+11/27,South Florida,Western KY,Away,97.0,91.0,Yes,South Florida,Western KY,,,84.0,,,
 11/15,Southern,Champ Chrstn,Home,129.0,64.0,Yes,Southern,Champ Chrstn,,,242.0,,,
 11/10,Southern,Ecclesia,Home,115.0,51.0,Yes,Southern,Ecclesia,,,242.0,,,
 12/1,Southern,LA Christian,Home,101.0,48.0,Yes,Southern,LA Christian,,,242.0,,,
@@ -3137,15 +3137,15 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/8,Southern,Texas,Away,69.0,95.0,No,Southern,Texas,,,242.0,54.0,,45.0
 12/10,Southern,Texas St,Away,83.0,86.0,No,Southern,Texas St,,,242.0,,,
 11/18,Southern,Washington,Away,93.0,99.0,No,Southern,Washington,,,242.0,52.0,,50.0
-11/13,Southern Miss,Grambling,Away,70.0,75.0,No,Southern Miss,Grambling,,,197.0,217.0,,
-12/8,Southern Miss,Grambling,Home,68.0,60.0,Yes,Southern Miss,Grambling,,,197.0,217.0,,
-12/6,Southern Miss,Miami,Away,64.0,88.0,No,Southern Miss,Miami,,,197.0,,,
-11/22,Southern Miss,North Florida,Home,92.0,83.0,Yes,Southern Miss,North Florida,,,197.0,340.0,,339.0
-12/3,Southern Miss,Radford,Away,82.0,75.0,Yes,Southern Miss,Radford,,,197.0,288.0,,254.0
-11/9,Southern Miss,South Carolina,Away,79.0,83.0,No,Southern Miss,South Carolina,,,197.0,115.0,,90.0
-11/6,Southern Miss,Tougaloo,Home,93.0,57.0,Yes,Southern Miss,Tougaloo,,,197.0,,,
-11/23,Southern Miss,UT Martin,Home,70.0,60.0,Yes,Southern Miss,UT Martin,,,197.0,162.0,,
-11/18,Southern Miss,William Carey,Home,82.0,59.0,Yes,Southern Miss,William Carey,,,197.0,,,
+11/13,Southern Miss,Grambling,Away,70.0,75.0,No,Southern Miss,Grambling,,,198.0,217.0,,
+12/8,Southern Miss,Grambling,Home,68.0,60.0,Yes,Southern Miss,Grambling,,,198.0,217.0,,
+12/6,Southern Miss,Miami,Away,64.0,88.0,No,Southern Miss,Miami,,,198.0,,,
+11/22,Southern Miss,North Florida,Home,92.0,83.0,Yes,Southern Miss,North Florida,,,198.0,340.0,,339.0
+12/3,Southern Miss,Radford,Away,82.0,75.0,Yes,Southern Miss,Radford,,,198.0,288.0,,254.0
+11/9,Southern Miss,South Carolina,Away,79.0,83.0,No,Southern Miss,South Carolina,,,198.0,115.0,,90.0
+11/6,Southern Miss,Tougaloo,Home,93.0,57.0,Yes,Southern Miss,Tougaloo,,,198.0,,,
+11/23,Southern Miss,UT Martin,Home,70.0,60.0,Yes,Southern Miss,UT Martin,,,198.0,162.0,,
+11/18,Southern Miss,William Carey,Home,82.0,59.0,Yes,Southern Miss,William Carey,,,198.0,,,
 11/4,Southern Utah,Arizona St,Away,64.0,81.0,No,Southern Utah,Arizona St,339.0,,327.0,,,
 11/11,Southern Utah,Bethesda,Home,118.0,60.0,Yes,Southern Utah,Bethesda,339.0,,327.0,,,
 11/17,Southern Utah,Gonzaga,Away,50.0,122.0,No,Southern Utah,Gonzaga,339.0,,327.0,2.0,,3.0
@@ -3157,9 +3157,9 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/8,Southern Utah,UT Rio Grande,Home,72.0,95.0,No,Southern Utah,UT Rio Grande,339.0,,327.0,,,
 11/19,Southern Utah,Washington St,Away,74.0,98.0,No,Southern Utah,Washington St,339.0,,327.0,,,
 12/1,Southern Utah,West Coast,Home,124.0,59.0,Yes,Southern Utah,West Coast,339.0,,327.0,,,
-11/8,Spring Hill,South Alabama,Away,50.0,99.0,No,Spring Hill,South Alabama,,,,191.0,,192.0
+11/8,Spring Hill,South Alabama,Away,50.0,99.0,No,Spring Hill,South Alabama,,,,191.0,,191.0
 12/3,St Bonaventure,Bloomsburg,Home,83.0,43.0,Yes,St Bonaventure,Bloomsburg,,,,,,
-12/6,St Bonaventure,Buffalo,Away,77.0,69.0,Yes,St Bonaventure,Buffalo,,,,139.0,,179.0
+12/6,St Bonaventure,Buffalo,Away,77.0,69.0,Yes,St Bonaventure,Buffalo,,,,139.0,,180.0
 11/8,St Bonaventure,Canisius,Home,89.0,70.0,Yes,St Bonaventure,Canisius,,,,338.0,,347.0
 12/10,St Bonaventure,Colgate,Home,85.0,77.0,Yes,St Bonaventure,Colgate,,,,183.0,,185.0
 11/27,St Bonaventure,East Carolina,Away,67.0,58.0,Yes,St Bonaventure,East Carolina,,,,299.0,,278.0
@@ -3222,18 +3222,18 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/17,Stonehill,Iowa State,Away,57.0,96.0,No,Stonehill,Iowa State,346.0,,342.0,,,
 11/21,Stonehill,Lafayette,Home,74.0,70.0,Yes,Stonehill,Lafayette,346.0,,342.0,334.0,,323.0
 11/15,Stonehill,Loyola MD,Home,63.0,74.0,No,Stonehill,Loyola MD,346.0,,342.0,,,329.0
-11/30,Stonehill,Quinnipiac,Away,62.0,76.0,No,Stonehill,Quinnipiac,346.0,,342.0,144.0,,151.0
+11/30,Stonehill,Quinnipiac,Away,62.0,76.0,No,Stonehill,Quinnipiac,346.0,,342.0,144.0,,153.0
 11/11,Stonehill,Rhode Island,Away,57.0,80.0,No,Stonehill,Rhode Island,346.0,,342.0,111.0,,108.0
 11/26,Stonehill,UMass Lowell,Home,64.0,75.0,No,Stonehill,UMass Lowell,346.0,,342.0,322.0,,308.0
 11/25,Stony Brook,Bethune,Away,61.0,54.0,Yes,Stony Brook,Bethune,241.0,,248.0,,,
-11/20,Stony Brook,Brown,Home,80.0,70.0,Yes,Stony Brook,Brown,241.0,,248.0,265.0,,236.0
+11/20,Stony Brook,Brown,Home,80.0,70.0,Yes,Stony Brook,Brown,241.0,,248.0,265.0,,237.0
 12/9,Stony Brook,Columbia,Home,77.0,73.0,Yes,Stony Brook,Columbia,241.0,,248.0,102.0,,133.0
 12/6,Stony Brook,Duquesne,Away,75.0,84.0,No,Stony Brook,Duquesne,241.0,,248.0,168.0,,131.0
 11/28,Stony Brook,LMU,Away,71.0,68.0,Yes,Stony Brook,LMU,241.0,,248.0,,,
 11/8,Stony Brook,Maine,Home,71.0,60.0,Yes,Stony Brook,Maine,241.0,,248.0,342.0,,349.0
 11/24,Stony Brook,Pacific,Away,58.0,86.0,No,Stony Brook,Pacific,241.0,,248.0,125.0,,138.0
 11/11,Stony Brook,St Joseph's LI,Home,107.0,43.0,Yes,Stony Brook,St Joseph's LI,241.0,,248.0,,,
-11/15,Stony Brook,Yale,Away,79.0,86.0,No,Stony Brook,Yale,241.0,,248.0,53.0,,84.0
+11/15,Stony Brook,Yale,Away,79.0,86.0,No,Stony Brook,Yale,241.0,,248.0,53.0,,85.0
 11/3,Syracuse,BING,Home,85.0,47.0,Yes,Syracuse,BING,89.0,,78.0,,,
 11/8,Syracuse,Delaware St,Home,83.0,43.0,Yes,Syracuse,Delaware St,89.0,,78.0,,,
 11/15,Syracuse,Drexel,Home,80.0,50.0,Yes,Syracuse,Drexel,89.0,,78.0,296.0,,289.0
@@ -3241,11 +3241,11 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/26,Syracuse,Iowa State,Away,64.0,95.0,No,Syracuse,Iowa State,89.0,,78.0,,,
 11/25,Syracuse,Kansas,Away,60.0,71.0,No,Syracuse,Kansas,89.0,,78.0,18.0,,17.0
 11/18,Syracuse,Monmouth,Home,78.0,73.0,Yes,Syracuse,Monmouth,89.0,,78.0,238.0,,233.0
-12/11,Syracuse,Saint Joseph's,Home,71.0,63.0,Yes,Syracuse,Saint Joseph's,89.0,,78.0,246.0,,198.0
+12/11,Syracuse,Saint Joseph's,Home,71.0,63.0,Yes,Syracuse,Saint Joseph's,89.0,,78.0,246.0,,196.0
 12/2,Syracuse,Tennessee,Home,62.0,60.0,Yes,Syracuse,Tennessee,89.0,,78.0,26.0,,16.0
 11/27,TCU,Florida,Away,84.0,80.0,Yes,TCU,Florida,51.0,,54.0,23.0,,12.0
 11/19,TCU,Kansas City,Home,81.0,45.0,Yes,TCU,Kansas City,51.0,,54.0,336.0,,337.0
-11/10,TCU,Lamar,Home,78.0,65.0,Yes,TCU,Lamar,51.0,,54.0,,,237.0
+11/10,TCU,Lamar,Home,78.0,65.0,Yes,TCU,Lamar,51.0,,54.0,,,236.0
 11/14,TCU,Michigan,Home,63.0,67.0,No,TCU,Michigan,51.0,,54.0,1.0,,1.0
 12/7,TCU,North Texas,Away,65.0,55.0,Yes,TCU,North Texas,51.0,,54.0,175.0,,137.0
 12/5,TCU,Notre Dame,Home,85.0,87.0,No,TCU,Notre Dame,51.0,,54.0,76.0,,65.0
@@ -3261,19 +3261,19 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/3,Tarleton St,Howard Payne,Home,119.0,54.0,Yes,Tarleton St,Howard Payne,,,,,,
 11/5,Tarleton St,LSU,Away,60.0,96.0,No,Tarleton St,LSU,,,,34.0,,38.0
 11/28,Tarleton St,MD West St,Home,67.0,57.0,Yes,Tarleton St,MD West St,,,,,,
-11/11,Tarleton St,Merrimack,Home,76.0,62.0,Yes,Tarleton St,Merrimack,,,,257.0,,263.0
+11/11,Tarleton St,Merrimack,Home,76.0,62.0,Yes,Tarleton St,Merrimack,,,,257.0,,264.0
 11/20,Tarleton St,Rice,Away,90.0,74.0,Yes,Tarleton St,Rice,,,,237.0,,235.0
 11/8,Tarleton St,Texas A&M-CC,Home,85.0,77.0,Yes,Tarleton St,Texas A&M-CC,,,,,,
-11/15,Temple,Boston College,Home,71.0,76.0,No,Temple,Boston College,171.0,,154.0,182.0,,157.0
-11/5,Temple,Delaware St,Home,83.0,65.0,Yes,Temple,Delaware St,171.0,,154.0,,,
-12/9,Temple,Georgian Court,Home,103.0,57.0,Yes,Temple,Georgian Court,171.0,,154.0,,,
-11/19,Temple,Hofstra,Home,81.0,76.0,Yes,Temple,Hofstra,171.0,,154.0,88.0,,103.0
-11/11,Temple,La Salle,Home,90.0,63.0,Yes,Temple,La Salle,171.0,,154.0,271.0,,262.0
-11/25,Temple,Princeton,Away,79.0,75.0,Yes,Temple,Princeton,171.0,,154.0,294.0,,264.0
-11/26,Temple,Rhode Island,Home,75.0,90.0,No,Temple,Rhode Island,171.0,,154.0,111.0,,108.0
-12/6,Temple,Saint Joseph's,Home,69.0,70.0,No,Temple,Saint Joseph's,171.0,,154.0,246.0,,198.0
-11/24,Temple,UC San Diego,Away,76.0,91.0,No,Temple,UC San Diego,171.0,,154.0,62.0,,89.0
-12/1,Temple,Villanova,Away,56.0,74.0,No,Temple,Villanova,171.0,,154.0,21.0,,25.0
+11/15,Temple,Boston College,Home,71.0,76.0,No,Temple,Boston College,171.0,,151.0,182.0,,157.0
+11/5,Temple,Delaware St,Home,83.0,65.0,Yes,Temple,Delaware St,171.0,,151.0,,,
+12/9,Temple,Georgian Court,Home,103.0,57.0,Yes,Temple,Georgian Court,171.0,,151.0,,,
+11/19,Temple,Hofstra,Home,81.0,76.0,Yes,Temple,Hofstra,171.0,,151.0,88.0,,103.0
+11/11,Temple,La Salle,Home,90.0,63.0,Yes,Temple,La Salle,171.0,,151.0,271.0,,263.0
+11/25,Temple,Princeton,Away,79.0,75.0,Yes,Temple,Princeton,171.0,,151.0,294.0,,257.0
+11/26,Temple,Rhode Island,Home,75.0,90.0,No,Temple,Rhode Island,171.0,,151.0,111.0,,108.0
+12/6,Temple,Saint Joseph's,Home,69.0,70.0,No,Temple,Saint Joseph's,171.0,,151.0,246.0,,196.0
+11/24,Temple,UC San Diego,Away,76.0,91.0,No,Temple,UC San Diego,171.0,,151.0,62.0,,89.0
+12/1,Temple,Villanova,Away,56.0,74.0,No,Temple,Villanova,171.0,,151.0,21.0,,25.0
 11/25,Tennessee,Houston,Away,76.0,73.0,Yes,Tennessee,Houston,26.0,,16.0,17.0,,11.0
 12/6,Tennessee,Illinois,Home,62.0,75.0,No,Tennessee,Illinois,26.0,,16.0,10.0,,9.0
 11/26,Tennessee,Kansas,Home,76.0,81.0,No,Tennessee,Kansas,26.0,,16.0,18.0,,17.0
@@ -3323,7 +3323,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/14,Texas A&M,UCF,Home,74.0,86.0,No,Texas A&M,UCF,64.0,,48.0,36.0,,46.0
 11/22,Texas A&M-CC,Howard Payne,Home,122.0,75.0,Yes,Texas A&M-CC,Howard Payne,,,,,,
 11/11,Texas A&M-CC,Kansas,Away,46.0,77.0,No,Texas A&M-CC,Kansas,,,,18.0,,17.0
-12/6,Texas A&M-CC,Lamar,Away,57.0,49.0,Yes,Texas A&M-CC,Lamar,,,,,,237.0
+12/6,Texas A&M-CC,Lamar,Away,57.0,49.0,Yes,Texas A&M-CC,Lamar,,,,,,236.0
 11/16,Texas A&M-CC,Oklahoma St,Away,69.0,85.0,No,Texas A&M-CC,Oklahoma St,,,,,,
 11/6,Texas A&M-CC,SMU,Away,58.0,69.0,No,Texas A&M-CC,SMU,,,,31.0,,40.0
 11/8,Texas A&M-CC,Tarleton St,Away,77.0,85.0,No,Texas A&M-CC,Tarleton St,,,,,,
@@ -3346,13 +3346,13 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/5,Texas St,Texas A&M-SA,Home,114.0,55.0,Yes,Texas St,Texas A&M-SA,,,,,,
 11/24,Texas St,Texas Lutheran,Home,93.0,41.0,Yes,Texas St,Texas Lutheran,,,,,,
 11/15,Texas St,Texas Southern,Home,77.0,67.0,Yes,Texas St,Texas Southern,,,,343.0,,331.0
-11/8,Texas St,Tulane,Away,71.0,79.0,No,Texas St,Tulane,,,,219.0,,194.0
+11/8,Texas St,Tulane,Away,71.0,79.0,No,Texas St,Tulane,,,,219.0,,193.0
 11/12,Texas St,UTSA,Home,80.0,69.0,Yes,Texas St,UTSA,,,,303.0,,285.0
 11/11,Texas Tech,Illinois,Away,77.0,81.0,No,Texas Tech,Illinois,20.0,,21.0,10.0,,9.0
 12/7,Texas Tech,LSU,Home,82.0,58.0,Yes,Texas Tech,LSU,20.0,,21.0,34.0,,38.0
 11/4,Texas Tech,Lindenwood,Home,98.0,60.0,Yes,Texas Tech,Lindenwood,20.0,,21.0,197.0,,232.0
-11/14,Texas Tech,Milwaukee,Home,80.0,63.0,Yes,Texas Tech,Milwaukee,20.0,,21.0,185.0,,201.0
-11/26,Texas Tech,New Orleans,Home,82.0,50.0,Yes,Texas Tech,New Orleans,20.0,,21.0,198.0,,190.0
+11/14,Texas Tech,Milwaukee,Home,80.0,63.0,Yes,Texas Tech,Milwaukee,20.0,,21.0,185.0,,200.0
+11/26,Texas Tech,New Orleans,Home,82.0,50.0,Yes,Texas Tech,New Orleans,20.0,,21.0,198.0,,189.0
 11/21,Texas Tech,Purdue,Away,56.0,86.0,No,Texas Tech,Purdue,20.0,,21.0,6.0,,5.0
 11/7,Texas Tech,Sam Houston,Home,98.0,77.0,Yes,Texas Tech,Sam Houston,20.0,,21.0,90.0,,
 11/20,Texas Tech,Wake Forest,Home,84.0,83.0,Yes,Texas Tech,Wake Forest,20.0,,21.0,67.0,,59.0
@@ -3378,12 +3378,12 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/24,Toledo,Troy,Away,75.0,68.0,Yes,Toledo,Troy,163.0,,162.0,135.0,,139.0
 11/11,Toledo,Wright St,Away,81.0,71.0,Yes,Toledo,Wright St,163.0,,162.0,,,
 11/19,Toledo,Youngstown St,Home,92.0,75.0,Yes,Toledo,Youngstown St,163.0,,162.0,,,
-11/6,Tougaloo,Southern Miss,Away,57.0,93.0,No,Tougaloo,Southern Miss,,,,,,197.0
-12/10,Tougaloo,Tulane,Away,72.0,84.0,No,Tougaloo,Tulane,,,,219.0,,194.0
+11/6,Tougaloo,Southern Miss,Away,57.0,93.0,No,Tougaloo,Southern Miss,,,,,,198.0
+12/10,Tougaloo,Tulane,Away,72.0,84.0,No,Tougaloo,Tulane,,,,219.0,,193.0
 12/3,Towson,Cornell,Home,93.0,80.0,Yes,Towson,Cornell,143.0,,143.0,151.0,,164.0
 11/8,Towson,Houston,Away,48.0,65.0,No,Towson,Houston,143.0,,143.0,17.0,,11.0
 11/18,Towson,James Madison,Away,75.0,81.0,No,Towson,James Madison,143.0,,143.0,226.0,,217.0
-11/25,Towson,Liberty,Away,72.0,69.0,Yes,Towson,Liberty,143.0,,143.0,107.0,,104.0
+11/25,Towson,Liberty,Away,72.0,69.0,Yes,Towson,Liberty,143.0,,143.0,107.0,,105.0
 11/14,Towson,Norfolk St,Home,51.0,41.0,Yes,Towson,Norfolk St,143.0,,143.0,,,
 11/24,Towson,Rhode Island,Home,62.0,55.0,Yes,Towson,Rhode Island,143.0,,143.0,111.0,,108.0
 11/26,Towson,UC San Diego,Away,73.0,87.0,No,Towson,UC San Diego,143.0,,143.0,62.0,,89.0
@@ -3403,17 +3403,17 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/24,Troy,Toledo,Home,68.0,75.0,No,Troy,Toledo,135.0,,139.0,163.0,,162.0
 11/20,Troy,USC,Away,106.0,107.0,No,Troy,USC,135.0,,139.0,,,39.0
 12/1,Troy,West Georgia,Home,89.0,93.0,No,Troy,West Georgia,135.0,,139.0,,,310.0
-12/6,Tulane,Akron,Home,71.0,88.0,No,Tulane,Akron,219.0,,194.0,49.0,,56.0
-11/23,Tulane,Boston College,Away,93.0,90.0,Yes,Tulane,Boston College,219.0,,194.0,182.0,,157.0
-12/2,Tulane,Grambling,Home,65.0,63.0,Yes,Tulane,Grambling,219.0,,194.0,217.0,,
-11/11,Tulane,Louisiana,Away,66.0,62.0,Yes,Tulane,Louisiana,219.0,,194.0,330.0,,316.0
-11/14,Tulane,New Orleans,Home,63.0,85.0,No,Tulane,New Orleans,219.0,,194.0,198.0,,190.0
-11/28,Tulane,Nicholls,Home,82.0,72.0,Yes,Tulane,Nicholls,219.0,,194.0,222.0,,221.0
-11/8,Tulane,Texas St,Home,79.0,71.0,Yes,Tulane,Texas St,219.0,,194.0,,,
-12/10,Tulane,Tougaloo,Home,84.0,72.0,Yes,Tulane,Tougaloo,219.0,,194.0,,,
-11/21,Tulane,Utah State,Home,75.0,96.0,No,Tulane,Utah State,219.0,,194.0,,,
+12/6,Tulane,Akron,Home,71.0,88.0,No,Tulane,Akron,219.0,,193.0,49.0,,56.0
+11/23,Tulane,Boston College,Away,93.0,90.0,Yes,Tulane,Boston College,219.0,,193.0,182.0,,157.0
+12/2,Tulane,Grambling,Home,65.0,63.0,Yes,Tulane,Grambling,219.0,,193.0,217.0,,
+11/11,Tulane,Louisiana,Away,66.0,62.0,Yes,Tulane,Louisiana,219.0,,193.0,330.0,,316.0
+11/14,Tulane,New Orleans,Home,63.0,85.0,No,Tulane,New Orleans,219.0,,193.0,198.0,,189.0
+11/28,Tulane,Nicholls,Home,82.0,72.0,Yes,Tulane,Nicholls,219.0,,193.0,222.0,,221.0
+11/8,Tulane,Texas St,Home,79.0,71.0,Yes,Tulane,Texas St,219.0,,193.0,,,
+12/10,Tulane,Tougaloo,Home,84.0,72.0,Yes,Tulane,Tougaloo,219.0,,193.0,,,
+11/21,Tulane,Utah State,Home,75.0,96.0,No,Tulane,Utah State,219.0,,193.0,,,
 12/10,Tulsa,AR-Pine Bluff,Home,117.0,84.0,Yes,Tulsa,AR-Pine Bluff,45.0,,82.0,,,
-11/21,Tulsa,Austin Peay,Home,84.0,75.0,Yes,Tulsa,Austin Peay,45.0,,82.0,158.0,,193.0
+11/21,Tulsa,Austin Peay,Home,84.0,75.0,Yes,Tulsa,Austin Peay,45.0,,82.0,158.0,,192.0
 11/17,Tulsa,Kansas St,Away,83.0,84.0,No,Tulsa,Kansas St,45.0,,82.0,,,
 12/6,Tulsa,Missouri St,Home,98.0,74.0,Yes,Tulsa,Missouri St,45.0,,82.0,,,
 12/2,Tulsa,Mnhttn Chrstn,Home,111.0,60.0,Yes,Tulsa,Mnhttn Chrstn,45.0,,82.0,,,
@@ -3429,18 +3429,18 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/7,UAB,N.C. State,Away,70.0,94.0,No,UAB,N.C. State,119.0,,106.0,,,27.0
 11/17,UAB,Rhodes,Home,112.0,56.0,Yes,UAB,Rhodes,119.0,,106.0,,,
 11/24,UAB,S Illinois,Away,81.0,73.0,Yes,UAB,S Illinois,119.0,,106.0,,,
-11/21,UAB,South Alabama,Home,80.0,72.0,Yes,UAB,South Alabama,119.0,,106.0,191.0,,192.0
+11/21,UAB,South Alabama,Home,80.0,72.0,Yes,UAB,South Alabama,119.0,,106.0,191.0,,191.0
 11/25,UAB,UTEP,Home,75.0,59.0,Yes,UAB,UTEP,119.0,,106.0,268.0,,226.0
 11/28,UAlbany,Colgate,Home,67.0,69.0,No,UAlbany,Colgate,309.0,,,183.0,,185.0
 12/6,UAlbany,Columbia,Away,65.0,93.0,No,UAlbany,Columbia,309.0,,,102.0,,133.0
-11/29,UAlbany,Fordham,Away,68.0,88.0,No,UAlbany,Fordham,309.0,,,210.0,,196.0
+11/29,UAlbany,Fordham,Away,68.0,88.0,No,UAlbany,Fordham,309.0,,,210.0,,197.0
 11/18,UAlbany,Paul Smith's,Home,106.0,57.0,Yes,UAlbany,Paul Smith's,309.0,,,,,
 11/14,UAlbany,Rhode Island,Away,61.0,80.0,No,UAlbany,Rhode Island,309.0,,,111.0,,108.0
 11/11,UAlbany,SUNY Delhi,Home,115.0,52.0,Yes,UAlbany,SUNY Delhi,309.0,,,,,
 11/30,UAlbany,SUNY-Oneonta,Home,90.0,62.0,Yes,UAlbany,SUNY-Oneonta,309.0,,,,,
 11/21,UAlbany,Siena,Away,63.0,73.0,No,UAlbany,Siena,309.0,,,174.0,,174.0
 11/8,UAlbany,UMass,Away,62.0,83.0,No,UAlbany,UMass,309.0,,,,,
-12/10,UAlbany,Yale,Away,82.0,93.0,No,UAlbany,Yale,309.0,,,53.0,,84.0
+12/10,UAlbany,Yale,Away,82.0,93.0,No,UAlbany,Yale,309.0,,,53.0,,85.0
 11/21,UC Davis,Colorado,Away,79.0,95.0,No,UC Davis,Colorado,161.0,,166.0,77.0,,86.0
 12/4,UC Davis,Hawai’i,Away,69.0,75.0,No,UC Davis,Hawai’i,161.0,,166.0,,,
 11/24,UC Davis,Louisiana,Home,77.0,56.0,Yes,UC Davis,Louisiana,161.0,,166.0,330.0,,316.0
@@ -3471,16 +3471,16 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/25,UC San Diego,Bradley,Away,87.0,77.0,Yes,UC San Diego,Bradley,62.0,,89.0,121.0,,119.0
 11/12,UC San Diego,Fresno St,Away,78.0,73.0,Yes,UC San Diego,Fresno St,62.0,,89.0,,,
 11/8,UC San Diego,Hou Christian,Home,78.0,60.0,Yes,UC San Diego,Hou Christian,62.0,,89.0,,,
-11/15,UC San Diego,Idaho,Home,75.0,67.0,Yes,UC San Diego,Idaho,62.0,,89.0,150.0,,189.0
+11/15,UC San Diego,Idaho,Home,75.0,67.0,Yes,UC San Diego,Idaho,62.0,,89.0,150.0,,188.0
 12/6,UC San Diego,Long Beach St,Away,80.0,74.0,Yes,UC San Diego,Long Beach St,62.0,,89.0,,,
 12/2,UC San Diego,Nevada,Away,70.0,76.0,No,UC San Diego,Nevada,62.0,,89.0,72.0,,80.0
-11/24,UC San Diego,Temple,Home,91.0,76.0,Yes,UC San Diego,Temple,62.0,,89.0,171.0,,154.0
+11/24,UC San Diego,Temple,Home,91.0,76.0,Yes,UC San Diego,Temple,62.0,,89.0,171.0,,151.0
 11/26,UC San Diego,Towson,Home,87.0,73.0,Yes,UC San Diego,Towson,62.0,,89.0,143.0,,143.0
 11/11,UCF,Florida A&M,Home,97.0,60.0,Yes,UCF,Florida A&M,36.0,,46.0,329.0,,341.0
 11/3,UCF,Hofstra,Home,82.0,78.0,Yes,UCF,Hofstra,36.0,,46.0,88.0,,103.0
 11/17,UCF,Oakland,Home,87.0,83.0,Yes,UCF,Oakland,36.0,,46.0,149.0,,146.0
 11/20,UCF,Pittsburgh,Home,77.0,67.0,Yes,UCF,Pittsburgh,36.0,,46.0,120.0,,91.0
-11/25,UCF,Quinnipiac,Home,102.0,91.0,Yes,UCF,Quinnipiac,36.0,,46.0,144.0,,151.0
+11/25,UCF,Quinnipiac,Home,102.0,91.0,Yes,UCF,Quinnipiac,36.0,,46.0,144.0,,153.0
 11/14,UCF,Texas A&M,Away,86.0,74.0,Yes,UCF,Texas A&M,36.0,,46.0,64.0,,48.0
 12/7,UCF,Towson,Home,86.0,61.0,Yes,UCF,Towson,36.0,,46.0,143.0,,143.0
 11/29,UCF,VMI,Home,82.0,57.0,Yes,UCF,VMI,36.0,,46.0,344.0,,333.0
@@ -3503,18 +3503,18 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/26,UIC,Robert Morris,Away,74.0,88.0,No,UIC,Robert Morris,228.0,,,176.0,,184.0
 11/22,UIC,So Indiana,Home,84.0,73.0,Yes,UIC,So Indiana,228.0,,,,,
 11/11,UIC,St. Francis IL,Home,98.0,55.0,Yes,UIC,St. Francis IL,228.0,,,,,
-12/7,UIC,Yale,Away,66.0,80.0,No,UIC,Yale,228.0,,,53.0,,84.0
+12/7,UIC,Yale,Away,66.0,80.0,No,UIC,Yale,228.0,,,53.0,,85.0
 12/9,UL Monroe,Ark Baptist,Home,79.0,69.0,Yes,UL Monroe,Ark Baptist,,,,,,
 11/23,UL Monroe,ETSU,Away,55.0,97.0,No,UL Monroe,ETSU,,,,145.0,,
 11/13,UL Monroe,Hou Christian,Away,61.0,72.0,No,UL Monroe,Hou Christian,,,,,,
-11/17,UL Monroe,Lamar,Home,66.0,79.0,No,UL Monroe,Lamar,,,,,,237.0
+11/17,UL Monroe,Lamar,Home,66.0,79.0,No,UL Monroe,Lamar,,,,,,236.0
 12/3,UL Monroe,Miss Valley St,Home,66.0,52.0,Yes,UL Monroe,Miss Valley St,,,,,,
 11/7,UL Monroe,Mississippi,Away,65.0,86.0,No,UL Monroe,Mississippi,,,,,,57.0
 11/22,UL Monroe,Morehead St,Home,80.0,83.0,No,UL Monroe,Morehead St,,,,,,
 11/10,UL Monroe,Rust,Home,88.0,55.0,Yes,UL Monroe,Rust,,,,,,
 12/7,UL Monroe,SF Austin,Away,76.0,96.0,No,UL Monroe,SF Austin,,,,,,
 12/6,UMBC,Bucknell,Away,73.0,66.0,Yes,UMBC,Bucknell,260.0,,270.0,321.0,,303.0
-12/9,UMBC,Buffalo,Home,79.0,83.0,No,UMBC,Buffalo,260.0,,270.0,139.0,,179.0
+12/9,UMBC,Buffalo,Home,79.0,83.0,No,UMBC,Buffalo,260.0,,270.0,139.0,,180.0
 11/8,UMBC,Dayton,Away,71.0,77.0,No,UMBC,Dayton,260.0,,270.0,87.0,,64.0
 11/29,UMBC,Delaware St,Home,71.0,57.0,Yes,UMBC,Delaware St,260.0,,270.0,,,
 11/19,UMBC,G Washington,Away,52.0,89.0,No,UMBC,G Washington,260.0,,270.0,,,
@@ -3553,7 +3553,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/2,UNC Asheville,UNC Greensboro,Home,82.0,77.0,Yes,UNC Asheville,UNC Greensboro,252.0,,252.0,302.0,,293.0
 11/19,UNC Asheville,W Carolina,Away,73.0,80.0,No,UNC Asheville,W Carolina,252.0,,252.0,,,
 11/4,UNC Asheville,Wichita St,Away,58.0,75.0,No,UNC Asheville,Wichita St,252.0,,252.0,,,
-11/15,UNC Greensboro,Austin Peay,Home,63.0,69.0,No,UNC Greensboro,Austin Peay,302.0,,293.0,158.0,,193.0
+11/15,UNC Greensboro,Austin Peay,Home,63.0,69.0,No,UNC Greensboro,Austin Peay,302.0,,293.0,158.0,,192.0
 11/25,UNC Greensboro,Delaware,Away,60.0,73.0,No,UNC Greensboro,Delaware,302.0,,293.0,300.0,,296.0
 12/6,UNC Greensboro,East Carolina,Away,82.0,78.0,Yes,UNC Greensboro,East Carolina,302.0,,293.0,299.0,,278.0
 11/8,UNC Greensboro,Elon,Home,90.0,92.0,No,UNC Greensboro,Elon,302.0,,293.0,142.0,,148.0
@@ -3578,7 +3578,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/16,UNLV,Memphis,Away,92.0,78.0,Yes,UNLV,Memphis,177.0,,142.0,104.0,,70.0
 11/11,UNLV,Montana,Home,93.0,102.0,No,UNLV,Montana,177.0,,142.0,236.0,,211.0
 11/27,UNLV,Rutgers,Away,65.0,80.0,No,UNLV,Rutgers,177.0,,142.0,199.0,,161.0
-11/20,UNLV,Saint Joseph's,Home,99.0,85.0,Yes,UNLV,Saint Joseph's,177.0,,142.0,246.0,,198.0
+11/20,UNLV,Saint Joseph's,Home,99.0,85.0,Yes,UNLV,Saint Joseph's,177.0,,142.0,246.0,,196.0
 12/7,UNLV,Stanford,Away,75.0,74.0,Yes,UNLV,Stanford,177.0,,142.0,85.0,,87.0
 11/4,UNLV,UT Martin,Home,81.0,86.0,No,UNLV,UT Martin,177.0,,142.0,162.0,,
 11/26,USC,Arizona St,Away,88.0,75.0,Yes,USC,Arizona St,,,39.0,,,
@@ -3591,15 +3591,15 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/25,USC,Seton Hall,Home,83.0,81.0,Yes,USC,Seton Hall,,,39.0,44.0,,47.0
 11/20,USC,Troy,Home,107.0,106.0,Yes,USC,Troy,,,39.0,135.0,,139.0
 12/6,USC,Washington,Home,76.0,84.0,No,USC,Washington,,,39.0,52.0,,50.0
-12/5,USC Upstate,Bethune,Away,59.0,80.0,No,USC Upstate,Bethune,213.0,,260.0,,,
-11/14,USC Upstate,Charleston,Away,61.0,88.0,No,USC Upstate,Charleston,213.0,,260.0,,,178.0
-12/8,USC Upstate,Charleston So,Away,44.0,84.0,No,USC Upstate,Charleston So,213.0,,260.0,,,
-11/19,USC Upstate,Chattanooga,Home,66.0,78.0,No,USC Upstate,Chattanooga,213.0,,260.0,281.0,,240.0
-11/25,USC Upstate,Missouri,Away,66.0,98.0,No,USC Upstate,Missouri,213.0,,260.0,93.0,,63.0
-11/10,USC Upstate,NC A&T,Away,62.0,85.0,No,USC Upstate,NC A&T,213.0,,260.0,,,
-11/7,USC Upstate,Samford,Away,72.0,82.0,No,USC Upstate,Samford,213.0,,260.0,256.0,,241.0
-11/23,USC Upstate,South Dakota,Away,81.0,82.0,No,USC Upstate,South Dakota,213.0,,260.0,277.0,,281.0
-11/29,USC Upstate,Winthrop,Away,79.0,101.0,No,USC Upstate,Winthrop,213.0,,260.0,141.0,,128.0
+12/5,USC Upstate,Bethune,Away,59.0,80.0,No,USC Upstate,Bethune,213.0,,261.0,,,
+11/14,USC Upstate,Charleston,Away,61.0,88.0,No,USC Upstate,Charleston,213.0,,261.0,,,178.0
+12/8,USC Upstate,Charleston So,Away,44.0,84.0,No,USC Upstate,Charleston So,213.0,,261.0,,,
+11/19,USC Upstate,Chattanooga,Home,66.0,78.0,No,USC Upstate,Chattanooga,213.0,,261.0,281.0,,240.0
+11/25,USC Upstate,Missouri,Away,66.0,98.0,No,USC Upstate,Missouri,213.0,,261.0,93.0,,63.0
+11/10,USC Upstate,NC A&T,Away,62.0,85.0,No,USC Upstate,NC A&T,213.0,,261.0,,,
+11/7,USC Upstate,Samford,Away,72.0,82.0,No,USC Upstate,Samford,213.0,,261.0,256.0,,241.0
+11/23,USC Upstate,South Dakota,Away,81.0,82.0,No,USC Upstate,South Dakota,213.0,,261.0,277.0,,281.0
+11/29,USC Upstate,Winthrop,Away,79.0,101.0,No,USC Upstate,Winthrop,213.0,,261.0,141.0,,128.0
 12/2,UT Arlington,Arkansas St,Away,63.0,83.0,No,UT Arlington,Arkansas St,148.0,,168.0,,,
 11/10,UT Arlington,Arlington Bapt,Home,117.0,61.0,Yes,UT Arlington,Arlington Bapt,148.0,,168.0,,,
 11/21,UT Arlington,Campbell,Home,67.0,71.0,No,UT Arlington,Campbell,148.0,,168.0,244.0,,227.0
@@ -3617,9 +3617,9 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/9,UT Martin,KCU,Home,97.0,42.0,Yes,UT Martin,KCU,162.0,,,,,
 11/22,UT Martin,Prairie View,Away,69.0,68.0,Yes,UT Martin,Prairie View,162.0,,,293.0,,
 12/10,UT Martin,S Illinois,Away,54.0,83.0,No,UT Martin,S Illinois,162.0,,,,,
-11/23,UT Martin,Southern Miss,Away,60.0,70.0,No,UT Martin,Southern Miss,162.0,,,,,197.0
+11/23,UT Martin,Southern Miss,Away,60.0,70.0,No,UT Martin,Southern Miss,162.0,,,,,198.0
 11/4,UT Martin,UNLV,Away,86.0,81.0,Yes,UT Martin,UNLV,162.0,,,177.0,,142.0
-12/7,UT Rio Grande,Austin Peay,Home,63.0,50.0,Yes,UT Rio Grande,Austin Peay,,,,158.0,,193.0
+12/7,UT Rio Grande,Austin Peay,Home,63.0,50.0,Yes,UT Rio Grande,Austin Peay,,,,158.0,,192.0
 11/11,UT Rio Grande,Boise St,Away,65.0,85.0,No,UT Rio Grande,Boise St,,,,,,
 11/24,UT Rio Grande,Illinois,Away,73.0,87.0,No,UT Rio Grande,Illinois,,,,10.0,,9.0
 11/22,UT Rio Grande,Missouri St,Away,67.0,74.0,No,UT Rio Grande,Missouri St,,,,,,
@@ -3642,7 +3642,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/25,UTSA,GA Southern,Away,77.0,64.0,Yes,UTSA,GA Southern,303.0,,285.0,,,
 11/7,UTSA,SIUE,Home,60.0,77.0,No,UTSA,SIUE,303.0,,285.0,261.0,,250.0
 11/18,UTSA,SW Christian U,Home,103.0,70.0,Yes,UTSA,SW Christian U,303.0,,285.0,,,
-11/30,UTSA,South Alabama,Home,58.0,82.0,No,UTSA,South Alabama,303.0,,285.0,191.0,,192.0
+11/30,UTSA,South Alabama,Home,58.0,82.0,No,UTSA,South Alabama,303.0,,285.0,191.0,,191.0
 11/12,UTSA,Texas St,Away,69.0,80.0,No,UTSA,Texas St,303.0,,285.0,,,
 12/6,Utah,CA Baptist,Home,91.0,85.0,Yes,Utah,CA Baptist,131.0,,123.0,,,
 11/20,Utah,Cal Poly,Home,85.0,92.0,No,Utah,Cal Poly,131.0,,123.0,231.0,,243.0
@@ -3657,8 +3657,8 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/7,Utah State,Charlotte,Away,79.0,53.0,Yes,Utah State,Charlotte,,,,179.0,,186.0
 11/23,Utah State,Davidson,Away,94.0,60.0,Yes,Utah State,Davidson,,,,118.0,,125.0
 11/29,Utah State,Montana St,Home,84.0,81.0,Yes,Utah State,Montana St,,,,,,
-12/4,Utah State,South Florida,Away,61.0,74.0,No,Utah State,South Florida,,,,,,85.0
-11/21,Utah State,Tulane,Away,96.0,75.0,Yes,Utah State,Tulane,,,,219.0,,194.0
+12/4,Utah State,South Florida,Away,61.0,74.0,No,Utah State,South Florida,,,,,,84.0
+11/21,Utah State,Tulane,Away,96.0,75.0,Yes,Utah State,Tulane,,,,219.0,,193.0
 11/15,Utah State,UTEP,Home,75.0,51.0,Yes,Utah State,UTEP,,,,268.0,,226.0
 11/7,Utah State,VCU,Home,80.0,77.0,Yes,Utah State,VCU,,,,59.0,,42.0
 11/12,Utah State,Weber St,Home,83.0,73.0,Yes,Utah State,Weber St,,,,,,
@@ -3695,12 +3695,12 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 12/10,VCU,New Mexico,Home,78.0,81.0,No,VCU,New Mexico,59.0,,42.0,58.0,,67.0
 11/12,VCU,Saint Peter's,Home,78.0,61.0,Yes,VCU,Saint Peter's,59.0,,42.0,290.0,,292.0
 12/5,VCU,Samford,Home,83.0,57.0,Yes,VCU,Samford,59.0,,42.0,256.0,,241.0
-11/26,VCU,South Florida,Home,78.0,66.0,Yes,VCU,South Florida,59.0,,42.0,,,85.0
+11/26,VCU,South Florida,Home,78.0,66.0,Yes,VCU,South Florida,59.0,,42.0,,,84.0
 11/7,VCU,Utah State,Away,77.0,80.0,No,VCU,Utah State,59.0,,42.0,,,
 11/27,VCU,Vanderbilt,Away,74.0,89.0,No,VCU,Vanderbilt,59.0,,42.0,7.0,,8.0
 11/28,VCU,Virginia Tech,Home,86.0,68.0,Yes,VCU,Virginia Tech,59.0,,42.0,63.0,,68.0
 11/26,VMI,Bowling Green,Home,48.0,81.0,No,VMI,Bowling Green,344.0,,333.0,82.0,,107.0
-11/24,VMI,Buffalo,Away,70.0,78.0,No,VMI,Buffalo,344.0,,333.0,139.0,,179.0
+11/24,VMI,Buffalo,Away,70.0,78.0,No,VMI,Buffalo,344.0,,333.0,139.0,,180.0
 12/5,VMI,Christendom,Home,89.0,36.0,Yes,VMI,Christendom,344.0,,333.0,,,
 11/15,VMI,Jacksonville,Home,67.0,69.0,No,VMI,Jacksonville,344.0,,333.0,318.0,,317.0
 12/9,VMI,Loyola MD,Home,86.0,70.0,Yes,VMI,Loyola MD,344.0,,333.0,,,329.0
@@ -3732,25 +3732,25 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/27,Vanderbilt,VCU,Home,89.0,74.0,Yes,Vanderbilt,VCU,7.0,,8.0,59.0,,42.0
 11/26,Vanderbilt,Western KY,Away,83.0,78.0,Yes,Vanderbilt,Western KY,7.0,,8.0,,,
 11/12,Vassar,Marist,Away,61.0,93.0,No,Vassar,Marist,,,,160.0,,155.0
-11/9,Vermont,Brown,Away,89.0,84.0,Yes,Vermont,Brown,181.0,,187.0,265.0,,236.0
-11/18,Vermont,Buffalo,Away,90.0,94.0,No,Vermont,Buffalo,181.0,,187.0,139.0,,179.0
-11/24,Vermont,Liberty,Home,73.0,79.0,No,Vermont,Liberty,181.0,,187.0,107.0,,104.0
-11/15,Vermont,Northeastern,Away,85.0,74.0,Yes,Vermont,Northeastern,181.0,,187.0,214.0,,212.0
-12/3,Vermont,Oregon St,Away,58.0,80.0,No,Vermont,Oregon St,181.0,,187.0,,,
-12/6,Vermont,Pepperdine,Away,65.0,56.0,Yes,Vermont,Pepperdine,181.0,,187.0,255.0,,255.0
-11/5,Vermont,Plattsburgh,Home,113.0,62.0,Yes,Vermont,Plattsburgh,181.0,,187.0,,,
-11/26,Vermont,Princeton,Away,79.0,74.0,Yes,Vermont,Princeton,181.0,,187.0,294.0,,264.0
-11/25,Vermont,Rhode Island,Home,65.0,80.0,No,Vermont,Rhode Island,181.0,,187.0,111.0,,108.0
-11/30,Vermont,Yale,Home,74.0,77.0,No,Vermont,Yale,181.0,,187.0,53.0,,84.0
+11/9,Vermont,Brown,Away,89.0,84.0,Yes,Vermont,Brown,181.0,,194.0,265.0,,237.0
+11/18,Vermont,Buffalo,Away,90.0,94.0,No,Vermont,Buffalo,181.0,,194.0,139.0,,180.0
+11/24,Vermont,Liberty,Home,73.0,79.0,No,Vermont,Liberty,181.0,,194.0,107.0,,105.0
+11/15,Vermont,Northeastern,Away,85.0,74.0,Yes,Vermont,Northeastern,181.0,,194.0,214.0,,212.0
+12/3,Vermont,Oregon St,Away,58.0,80.0,No,Vermont,Oregon St,181.0,,194.0,,,
+12/6,Vermont,Pepperdine,Away,65.0,56.0,Yes,Vermont,Pepperdine,181.0,,194.0,255.0,,255.0
+11/5,Vermont,Plattsburgh,Home,113.0,62.0,Yes,Vermont,Plattsburgh,181.0,,194.0,,,
+11/26,Vermont,Princeton,Away,79.0,74.0,Yes,Vermont,Princeton,181.0,,194.0,294.0,,257.0
+11/25,Vermont,Rhode Island,Home,65.0,80.0,No,Vermont,Rhode Island,181.0,,194.0,111.0,,108.0
+11/30,Vermont,Yale,Home,74.0,77.0,No,Vermont,Yale,181.0,,194.0,53.0,,85.0
 11/3,Villanova,BYU,Neutral,66.0,71.0,No,Villanova,BYU,21.0,,25.0,9.0,,10.0
 11/15,Villanova,Duquesne,Home,87.0,77.0,Yes,Villanova,Duquesne,21.0,,25.0,168.0,,131.0
-11/19,Villanova,La Salle,Away,70.0,55.0,Yes,Villanova,La Salle,21.0,,25.0,271.0,,262.0
+11/19,Villanova,La Salle,Away,70.0,55.0,Yes,Villanova,La Salle,21.0,,25.0,271.0,,263.0
 12/9,Villanova,Michigan,Away,61.0,89.0,No,Villanova,Michigan,21.0,,25.0,1.0,,1.0
 11/25,Villanova,Old Dominion,Home,89.0,75.0,Yes,Villanova,Old Dominion,21.0,,25.0,247.0,,222.0
 12/6,Villanova,Penn,Home,90.0,63.0,Yes,Villanova,Penn,21.0,,25.0,220.0,,218.0
 11/8,Villanova,Queens,Home,94.0,74.0,Yes,Villanova,Queens,21.0,,25.0,,,214.0
 11/11,Villanova,Sacred Heart,Home,94.0,60.0,Yes,Villanova,Sacred Heart,21.0,,25.0,287.0,,287.0
-12/1,Villanova,Temple,Home,74.0,56.0,Yes,Villanova,Temple,21.0,,25.0,171.0,,154.0
+12/1,Villanova,Temple,Home,74.0,56.0,Yes,Villanova,Temple,21.0,,25.0,171.0,,151.0
 11/23,Virginia,Butler,Home,73.0,80.0,No,Virginia,Butler,24.0,,24.0,42.0,,49.0
 12/6,Virginia,Dayton,Home,86.0,73.0,Yes,Virginia,Dayton,24.0,,24.0,87.0,,64.0
 11/11,Virginia,Hampton,Home,91.0,53.0,Yes,Virginia,Hampton,24.0,,24.0,264.0,,256.0
@@ -3768,7 +3768,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/26,Virginia Tech,Colorado St,Away,66.0,64.0,Yes,Virginia Tech,Colorado St,63.0,,68.0,,,
 12/6,Virginia Tech,George Mason,Home,73.0,62.0,Yes,Virginia Tech,George Mason,63.0,,68.0,84.0,,88.0
 11/8,Virginia Tech,Providence,Home,107.0,101.0,Yes,Virginia Tech,Providence,63.0,,68.0,99.0,,75.0
-11/12,Virginia Tech,Saint Joseph's,Home,94.0,59.0,Yes,Virginia Tech,Saint Joseph's,63.0,,68.0,246.0,,198.0
+11/12,Virginia Tech,Saint Joseph's,Home,94.0,59.0,Yes,Virginia Tech,Saint Joseph's,63.0,,68.0,246.0,,196.0
 11/27,Virginia Tech,Saint Mary's,Home,66.0,77.0,No,Virginia Tech,Saint Mary's,63.0,,68.0,,,34.0
 12/2,Virginia Tech,South Carolina,Away,86.0,83.0,Yes,Virginia Tech,South Carolina,63.0,,68.0,115.0,,90.0
 11/28,Virginia Tech,VCU,Away,68.0,86.0,No,Virginia Tech,VCU,63.0,,68.0,59.0,,42.0
@@ -3805,7 +3805,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/7,WV Wesleyan,Radford,Away,61.0,99.0,No,WV Wesleyan,Radford,,,,288.0,,254.0
 12/11,Wagner,Bloomfield,Home,95.0,93.0,Yes,Wagner,Bloomfield,240.0,,300.0,,,
 12/6,Wagner,Bryant Str-Alb,Home,92.0,36.0,Yes,Wagner,Bryant Str-Alb,240.0,,300.0,,,
-11/11,Wagner,Fordham,Away,61.0,63.0,No,Wagner,Fordham,240.0,,300.0,210.0,,196.0
+11/11,Wagner,Fordham,Away,61.0,63.0,No,Wagner,Fordham,240.0,,300.0,210.0,,197.0
 11/22,Wagner,Georgetown,Away,75.0,92.0,No,Wagner,Georgetown,240.0,,300.0,127.0,,102.0
 11/26,Wagner,Manhattan,Away,103.0,101.0,Yes,Wagner,Manhattan,240.0,,300.0,307.0,,314.0
 12/2,Wagner,Maryland,Away,63.0,89.0,No,Wagner,Maryland,240.0,,300.0,146.0,,99.0
@@ -3881,18 +3881,18 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/10,Western KY,E Kentucky,Away,87.0,79.0,Yes,Western KY,E Kentucky,,,,,,
 12/6,Western KY,Evansville,Home,80.0,79.0,Yes,Western KY,Evansville,,,,273.0,,271.0
 12/10,Western KY,Marshall,Away,61.0,77.0,No,Western KY,Marshall,,,,130.0,,158.0
-11/27,Western KY,South Florida,Home,91.0,97.0,No,Western KY,South Florida,,,,,,85.0
+11/27,Western KY,South Florida,Home,91.0,97.0,No,Western KY,South Florida,,,,,,84.0
 11/16,Western KY,Tennessee St,Home,95.0,82.0,Yes,Western KY,Tennessee St,,,,,,
 11/26,Western KY,Vanderbilt,Home,78.0,83.0,No,Western KY,Vanderbilt,,,,7.0,,8.0
 11/28,Western KY,Wichita St,Home,75.0,70.0,Yes,Western KY,Wichita St,,,,,,
 11/7,Western NM,UTEP,Away,70.0,107.0,No,Western NM,UTEP,,,,268.0,,226.0
 11/12,Westminster UT,Utah Valley,Away,60.0,91.0,No,Westminster UT,Utah Valley,,,,57.0,,83.0
-11/7,Whitman,Idaho,Away,49.0,94.0,No,Whitman,Idaho,,,,150.0,,189.0
+11/7,Whitman,Idaho,Away,49.0,94.0,No,Whitman,Idaho,,,,150.0,,188.0
 11/6,Whittier,Bakersfield,Away,61.0,83.0,No,Whittier,Bakersfield,,,,,,
 11/18,Wichita St,Boise St,Away,59.0,62.0,No,Wichita St,Boise St,,,,,,
 11/27,Wichita St,Colorado St,Away,70.0,76.0,No,Wichita St,Colorado St,,,,,,
 11/13,Wichita St,Loyola Chicago,Home,95.0,74.0,Yes,Wichita St,Loyola Chicago,,,,326.0,,297.0
-11/22,Wichita St,Milwaukee,Home,75.0,58.0,Yes,Wichita St,Milwaukee,,,,185.0,,201.0
+11/22,Wichita St,Milwaukee,Home,75.0,58.0,Yes,Wichita St,Milwaukee,,,,185.0,,200.0
 12/2,Wichita St,Mount Marty,Home,95.0,69.0,Yes,Wichita St,Mount Marty,,,,,,
 12/6,Wichita St,Northern Iowa,Away,74.0,69.0,Yes,Wichita St,Northern Iowa,,,,,,92.0
 11/8,Wichita St,Prairie View,Home,105.0,62.0,Yes,Wichita St,Prairie View,,,,293.0,,
@@ -3910,7 +3910,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/15,William & Mary,St John's,Away,60.0,93.0,No,William & Mary,St John's,71.0,,115.0,,,
 11/24,William & Mary,UTEP,Away,74.0,63.0,Yes,William & Mary,UTEP,71.0,,115.0,268.0,,226.0
 11/19,William Carey,SE Louisiana,Away,45.0,71.0,No,William Carey,SE Louisiana,,,,,,
-11/18,William Carey,Southern Miss,Away,59.0,82.0,No,William Carey,Southern Miss,,,,,,197.0
+11/18,William Carey,Southern Miss,Away,59.0,82.0,No,William Carey,Southern Miss,,,,,,198.0
 11/11,Wilson,Towson,Away,62.0,101.0,No,Wilson,Towson,,,,143.0,,143.0
 11/18,Winthrop,Arkansas,Away,83.0,84.0,No,Winthrop,Arkansas,141.0,,128.0,30.0,,28.0
 11/11,Winthrop,Coastal,Away,66.0,72.0,No,Winthrop,Coastal,141.0,,128.0,,,
@@ -3921,7 +3921,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/15,Winthrop,Mercer,Home,105.0,69.0,Yes,Winthrop,Mercer,141.0,,128.0,134.0,,163.0
 11/25,Winthrop,Nebraska,Away,73.0,80.0,No,Winthrop,Nebraska,141.0,,128.0,11.0,,23.0
 12/9,Winthrop,Toccoa Falls,Home,111.0,62.0,Yes,Winthrop,Toccoa Falls,141.0,,128.0,,,
-11/29,Winthrop,USC Upstate,Home,101.0,79.0,Yes,Winthrop,USC Upstate,141.0,,128.0,213.0,,260.0
+11/29,Winthrop,USC Upstate,Home,101.0,79.0,Yes,Winthrop,USC Upstate,141.0,,128.0,213.0,,261.0
 11/21,Wisconsin,BYU,Away,70.0,98.0,No,Wisconsin,BYU,66.0,,43.0,9.0,,10.0
 11/11,Wisconsin,Ball State,Home,86.0,55.0,Yes,Wisconsin,Ball State,66.0,,43.0,,,
 11/3,Wisconsin,Campbell,Home,96.0,64.0,Yes,Wisconsin,Campbell,66.0,,43.0,244.0,,227.0
@@ -3937,7 +3937,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/29,Wofford,E Kentucky,Away,83.0,77.0,Yes,Wofford,E Kentucky,211.0,,225.0,,,
 12/6,Wofford,Elon,Home,52.0,73.0,No,Wofford,Elon,211.0,,225.0,142.0,,148.0
 11/21,Wofford,Erskine,Home,81.0,57.0,Yes,Wofford,Erskine,211.0,,225.0,,,
-11/8,Wofford,Milwaukee,Home,86.0,76.0,Yes,Wofford,Milwaukee,211.0,,225.0,185.0,,201.0
+11/8,Wofford,Milwaukee,Home,86.0,76.0,Yes,Wofford,Milwaukee,211.0,,225.0,185.0,,200.0
 11/26,Wofford,N Kentucky,Away,83.0,93.0,No,Wofford,N Kentucky,211.0,,225.0,,,
 11/19,Wofford,North Florida,Home,86.0,78.0,Yes,Wofford,North Florida,211.0,,225.0,340.0,,339.0
 12/3,Wofford,Presbyterian,Home,63.0,56.0,Yes,Wofford,Presbyterian,211.0,,225.0,283.0,,291.0
@@ -3951,7 +3951,7 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/25,Wright St,Stetson,Away,79.0,62.0,Yes,Wright St,Stetson,,,,349.0,,346.0
 11/11,Wright St,Toledo,Home,71.0,81.0,No,Wright St,Toledo,,,,163.0,,162.0
 12/3,Wright St,Youngstown St,Away,68.0,69.0,No,Wright St,Youngstown St,,,,,,
-11/11,Wyoming,Austin Peay,Home,79.0,65.0,Yes,Wyoming,Austin Peay,80.0,,98.0,158.0,,193.0
+11/11,Wyoming,Austin Peay,Home,79.0,65.0,Yes,Wyoming,Austin Peay,80.0,,98.0,158.0,,192.0
 12/6,Wyoming,Dartmouth,Home,93.0,80.0,Yes,Wyoming,Dartmouth,80.0,,98.0,248.0,,251.0
 11/26,Wyoming,Denver,Home,101.0,59.0,Yes,Wyoming,Denver,80.0,,98.0,218.0,,266.0
 11/8,Wyoming,Fullerton,Home,92.0,82.0,Yes,Wyoming,Fullerton,80.0,,98.0,,,
@@ -3970,18 +3970,18 @@ Date,Team,Opponent,Location,Team_Score,Opponent_Score,Win?,Team_std,Opponent_std
 11/10,Xavier,Santa Clara,Home,68.0,87.0,No,Xavier,Santa Clara,116.0,,100.0,65.0,,58.0
 11/28,Xavier,Texas A&M-CC,Home,88.0,67.0,Yes,Xavier,Texas A&M-CC,116.0,,100.0,,,
 11/23,Xavier,West Virginia,Home,78.0,68.0,Yes,Xavier,West Virginia,116.0,,100.0,92.0,,66.0
-11/24,Yale,Akron,Away,97.0,94.0,Yes,Yale,Akron,53.0,,84.0,49.0,,56.0
-12/3,Yale,Brandeis,Home,79.0,61.0,Yes,Yale,Brandeis,53.0,,84.0,,,
-11/23,Yale,Charleston,Away,74.0,63.0,Yes,Yale,Charleston,53.0,,84.0,,,178.0
-11/21,Yale,Green Bay,Home,73.0,67.0,Yes,Yale,Green Bay,53.0,,84.0,253.0,,282.0
-11/7,Yale,Navy,Away,97.0,68.0,Yes,Yale,Navy,53.0,,84.0,209.0,,199.0
-11/11,Yale,Quinnipiac,Away,97.0,60.0,Yes,Yale,Quinnipiac,53.0,,84.0,144.0,,151.0
-11/18,Yale,Rhode Island,Home,77.0,86.0,No,Yale,Rhode Island,53.0,,84.0,111.0,,108.0
-12/2,Yale,SUNY-Maritime,Home,117.0,53.0,Yes,Yale,SUNY-Maritime,53.0,,84.0,,,
-11/15,Yale,Stony Brook,Home,86.0,79.0,Yes,Yale,Stony Brook,53.0,,84.0,241.0,,248.0
-12/10,Yale,UAlbany,Home,93.0,82.0,Yes,Yale,UAlbany,53.0,,84.0,309.0,,
-12/7,Yale,UIC,Home,80.0,66.0,Yes,Yale,UIC,53.0,,84.0,228.0,,
-11/30,Yale,Vermont,Away,77.0,74.0,Yes,Yale,Vermont,53.0,,84.0,181.0,,187.0
+11/24,Yale,Akron,Away,97.0,94.0,Yes,Yale,Akron,53.0,,85.0,49.0,,56.0
+12/3,Yale,Brandeis,Home,79.0,61.0,Yes,Yale,Brandeis,53.0,,85.0,,,
+11/23,Yale,Charleston,Away,74.0,63.0,Yes,Yale,Charleston,53.0,,85.0,,,178.0
+11/21,Yale,Green Bay,Home,73.0,67.0,Yes,Yale,Green Bay,53.0,,85.0,253.0,,282.0
+11/7,Yale,Navy,Away,97.0,68.0,Yes,Yale,Navy,53.0,,85.0,209.0,,199.0
+11/11,Yale,Quinnipiac,Away,97.0,60.0,Yes,Yale,Quinnipiac,53.0,,85.0,144.0,,153.0
+11/18,Yale,Rhode Island,Home,77.0,86.0,No,Yale,Rhode Island,53.0,,85.0,111.0,,108.0
+12/2,Yale,SUNY-Maritime,Home,117.0,53.0,Yes,Yale,SUNY-Maritime,53.0,,85.0,,,
+11/15,Yale,Stony Brook,Home,86.0,79.0,Yes,Yale,Stony Brook,53.0,,85.0,241.0,,248.0
+12/10,Yale,UAlbany,Home,93.0,82.0,Yes,Yale,UAlbany,53.0,,85.0,309.0,,
+12/7,Yale,UIC,Home,80.0,66.0,Yes,Yale,UIC,53.0,,85.0,228.0,,
+11/30,Yale,Vermont,Away,77.0,74.0,Yes,Yale,Vermont,53.0,,85.0,181.0,,194.0
 11/28,Youngstown St,Chicago St,Home,87.0,64.0,Yes,Youngstown St,Chicago St,,,,,,
 11/24,Youngstown St,GA Southern,Home,67.0,61.0,Yes,Youngstown St,GA Southern,,,,,,
 11/7,Youngstown St,Grand Canyon,Away,90.0,81.0,Yes,Youngstown St,Grand Canyon,,,,100.0,,96.0
