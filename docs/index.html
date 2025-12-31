@@ -1,246 +1,362 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>CBB Rankings Dashboard</title>
   <style>
     :root{
-      --border:#e9e9e9;
       --text:#111;
       --muted:#666;
-      --chip:#ddd;
-      --chipActive:#111;
-      table thead th:nth-child(1),
-      table tbody td:nth-child(1) {
-        text-align: center;
-}
-
+      --border:#eee;
+      --pill:#f4f4f4;
+      --pillActive:#111;
+      --pillActiveText:#fff;
     }
 
     body{
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      margin: 26px;
-      color: var(--text);
+      margin:0;
+      color:var(--text);
+      background:#fff;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:none;
+      margin:0;
+      padding:28px 24px 40px 24px;
+      box-sizing:border-box;
     }
 
     h1{
-      margin: 0 0 10px 0;
-      font-size: 34px;
-      letter-spacing: -0.3px;
+      margin:0 0 14px 0;
+      font-size:34px;
+      font-weight:800;
+      letter-spacing:-0.02em;
     }
 
-    .top{
+    .controls{
       display:flex;
-      gap:16px;
       align-items:center;
+      gap:12px;
       flex-wrap:wrap;
-      margin-bottom: 14px;
+      margin-bottom:18px;
     }
 
-    .tabs{
+    .pills{
       display:flex;
-      gap:10px;
       align-items:center;
+      gap:8px;
       flex-wrap:wrap;
     }
 
-    .tab{
-      border:1px solid var(--chip);
+    .pill{
+      border:1px solid #ddd;
       background:#fff;
-      padding:8px 12px;
+      color:#111;
+      padding:6px 10px;
       border-radius:999px;
+      font-size:12px;
       cursor:pointer;
-      font-size:14px;
-      line-height:1;
+      user-select:none;
     }
-    .tab.active{ border-color: var(--chipActive); }
+
+    .pill.active{
+      border-color:var(--pillActive);
+      background:var(--pillActive);
+      color:var(--pillActiveText);
+    }
 
     .meta{
-      font-size:14px;
+      font-size:12px;
       color:var(--muted);
-      margin-left: 4px;
-      white-space: nowrap;
+      white-space:nowrap;
     }
 
     .search{
-      width: 260px;
-      padding: 10px 12px;
-      border:1px solid var(--chip);
-      border-radius:10px;
-      font-size:15px;
+      height:34px;
+      width:240px;
+      max-width:70vw;
+      border:1px solid #ddd;
+      border-radius:8px;
+      padding:0 10px;
+      font-size:13px;
+      outline:none;
+    }
+
+    .tableWrap{
+      width:100%;
+      overflow-x:auto;
+      border-top:1px solid var(--border);
     }
 
     table{
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-      margin-top: 10px;
+      width:100%;
+      border-collapse:collapse;
+      table-layout:fixed;
+      min-width:980px;
     }
 
     thead th{
-      font-size: 15px;
-      color:#444;
+      font-size:12px;
+      letter-spacing:0.02em;
+      text-transform:none;
+      color:#333;
       font-weight:700;
-      padding: 12px 10px;
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
+      padding:12px 10px;
+      border-bottom:1px solid var(--border);
+      text-align:center;
     }
 
     tbody td{
-      font-size: 15px;
-      padding: 14px 10px;
-      border-bottom: 1px solid #f2f2f2;
-      vertical-align: middle;
+      padding:12px 10px;
+      border-bottom:1px solid #f3f3f3;
+      font-size:13px;
+      text-align:center;
+      vertical-align:middle;
     }
 
-    th.num, td.num{ text-align:right; }
-
-    /* Column sizing: keep Team+Record together, then evenly sized numeric columns */
-    col.col-team   { width: 34%; }
-    col.col-record { width: 10%; }
-    col.col-small  { width: 9%; }
-
-    /* Team cell styling */
-    td.team{
-      font-weight: 650;
-      letter-spacing: -0.1px;
+    tbody tr:hover{
+      background:#fafafa;
     }
 
-    /* Slightly tighter on small screens */
+    th.col-team, td.col-team{
+      width:220px;
+      text-align:left;
+      padding-left:6px;
+    }
+
+    th.col-record, td.col-record{
+      width:92px;
+      text-align:left;
+      padding-left:10px;
+    }
+
+    th.col-ap, td.col-ap,
+    th.col-net, td.col-net,
+    th.col-kenpom, td.col-kenpom,
+    th.col-bpi, td.col-bpi,
+    th.col-sos, td.col-sos{
+      width:78px;
+    }
+
+    .teamName{
+      font-weight:700;
+      color:#111;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      display:block;
+      max-width:100%;
+    }
+
+    .muted{
+      color:var(--muted);
+    }
+
     @media (max-width: 900px){
-      h1{ font-size: 28px; }
-      thead th, tbody td{ font-size: 14px; }
-      col.col-team{ width: 42%; }
-      col.col-record{ width: 12%; }
-      col.col-small{ width: 9%; }
+      .wrap{ padding:20px 14px 32px 14px; }
+      h1{ font-size:28px; }
+      .search{ width:200px; }
     }
   </style>
 </head>
-
 <body>
-  <h1>CBB Rankings Dashboard</h1>
+  <div class="wrap">
+    <h1>CBB Rankings Dashboard</h1>
 
-  <div class="top">
-    <div class="tabs">
-      <button class="tab active" data-sort="NET">NET</button>
-      <button class="tab" data-sort="SOS">SOS</button>
-      <button class="tab" data-sort="KenPom">KenPom</button>
-      <button class="tab" data-sort="BPI">BPI</button>
-      <button class="tab" data-sort="AP">AP</button>
-      <span class="meta" id="updated"></span>
+    <div class="controls">
+      <div class="pills" id="pills">
+        <button class="pill active" data-sort="NET">NET</button>
+        <button class="pill" data-sort="SoS">SOS</button>
+        <button class="pill" data-sort="KenPom">KenPom</button>
+        <button class="pill" data-sort="BPI">BPI</button>
+        <button class="pill" data-sort="AP">AP</button>
+      </div>
+
+      <div class="meta" id="updatedText">Updated: —</div>
+
+      <input id="search" class="search" type="text" placeholder="Search team..." autocomplete="off" />
     </div>
-    <input class="search" id="search" placeholder="Search team..." />
+
+    <div class="tableWrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="col-team">Team</th>
+            <th class="col-record">Record</th>
+            <th class="col-ap">AP</th>
+            <th class="col-net">NET</th>
+            <th class="col-kenpom">KenPom</th>
+            <th class="col-bpi">BPI</th>
+            <th class="col-sos">SoS</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
   </div>
 
-  <table>
-    <colgroup>
-      <col class="col-team">
-      <col class="col-record">
-      <col class="col-small">
-      <col class="col-small">
-      <col class="col-small">
-      <col class="col-small">
-      <col class="col-small">
-    </colgroup>
-    <thead>
-      <tr>
-        <th>Team</th>
-        <th class="num">Record</th>
-        <th class="num">AP</th>
-        <th class="num">NET</th>
-        <th class="num">KenPom</th>
-        <th class="num">BPI</th>
-        <th class="num">SoS</th>
-      </tr>
-    </thead>
-    <tbody id="tbody"></tbody>
-  </table>
+  <script>
+    const DATA_URL = "data/rankings_current.json";
 
-<script>
-  let rawRows = [];
-  let sortKey = "NET";
-  let query = "";
-
-  function toNum(v){
-    if (v === null || v === undefined) return null;
-    if (typeof v === "number") return v;
-    const s = String(v).trim();
-    if (!s || s.toUpperCase() === "NR") return null;
-    const n = Number(s);
-    return Number.isFinite(n) ? n : null;
-  }
-
-  function sortRows(rows, key){
-    const copy = rows.slice();
-    copy.sort((a,b) => {
-      const av = toNum(a[key]);
-      const bv = toNum(b[key]);
-      if (av === null && bv === null) return String(a.Team).localeCompare(String(b.Team));
-      if (av === null) return 1;
-      if (bv === null) return -1;
-      if (av !== bv) return av - bv;
-      return String(a.Team).localeCompare(String(b.Team));
-    });
-    return copy;
-  }
-
-  function filterRows(rows, q){
-    if (!q) return rows;
-    const t = q.toLowerCase();
-    return rows.filter(r => String(r.Team || "").toLowerCase().includes(t));
-  }
-
-  function render(){
     const tbody = document.getElementById("tbody");
-    tbody.innerHTML = "";
-    const rows = sortRows(filterRows(rawRows, query), sortKey);
+    const searchInput = document.getElementById("search");
+    const updatedText = document.getElementById("updatedText");
+    const pills = document.getElementById("pills");
 
-    for (const r of rows){
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td class="team">${r.Team ?? ""}</td>
-        <td class="num">${r.Record ?? ""}</td>
-        <td class="num">${r.AP ?? ""}</td>
-        <td class="num">${r.NET ?? ""}</td>
-        <td class="num">${r.KenPom ?? ""}</td>
-        <td class="num">${r.BPI ?? ""}</td>
-        <td class="num">${r.SOS ?? ""}</td>
-      `;
-      tbody.appendChild(tr);
+    let rawRows = [];
+    let sortKey = "NET";
+    let query = "";
+
+    function toIntOrNull(v){
+      if (v === null || v === undefined) return null;
+      const s = String(v).trim();
+      if (s === "" || s.toUpperCase() === "NR") return null;
+      const n = Number(s);
+      return Number.isFinite(n) ? n : null;
     }
-  }
 
-  function setActiveTab(key){
-    document.querySelectorAll(".tab").forEach(b => {
-      b.classList.toggle("active", b.dataset.sort === key);
-    });
-  }
+    function fmtRank(v){
+      const n = toIntOrNull(v);
+      return n === null ? "NR" : String(n);
+    }
 
-  document.getElementById("search").addEventListener("input", (e) => {
-    query = e.target.value || "";
-    render();
-  });
+    function normalizeTeam(t){
+      return String(t || "").toLowerCase();
+    }
 
-  document.querySelectorAll(".tab").forEach(btn => {
-    btn.addEventListener("click", () => {
+    function parseUpdated(payload){
+      const candidates = [
+        payload.updated,
+        payload.updated_time,
+        payload.last_updated,
+        payload.generated_at,
+        payload.timestamp
+      ].filter(Boolean);
+
+      let dt = null;
+
+      for (const c of candidates){
+        const tryDt = new Date(c);
+        if (!isNaN(tryDt.getTime())){
+          dt = tryDt;
+          break;
+        }
+      }
+
+      if (!dt){
+        dt = new Date();
+      }
+
+      const utcMs = dt.getTime() + (dt.getTimezoneOffset() * 60000);
+      const estMs = utcMs + (-5 * 60 * 60000);
+      const est = new Date(estMs);
+
+      let h = est.getHours();
+      const m = est.getMinutes().toString().padStart(2, "0");
+      const ampm = h >= 12 ? "PM" : "AM";
+      h = h % 12;
+      if (h === 0) h = 12;
+
+      const yyyy = est.getFullYear();
+      const mm = String(est.getMonth() + 1).padStart(2, "0");
+      const dd = String(est.getDate()).padStart(2, "0");
+
+      return `${yyyy}-${mm}-${dd} ${h}:${m} ${ampm} (UTC-5)`;
+    }
+
+    function getSortVal(row, key){
+      if (key === "Team") return normalizeTeam(row.Team);
+      if (key === "Record") return String(row.Record || "");
+      const n = toIntOrNull(row[key]);
+      return n === null ? 999999 : n;
+    }
+
+    function render(){
+      const q = query.trim().toLowerCase();
+
+      const rows = rawRows
+        .filter(r => normalizeTeam(r.Team).includes(q))
+        .sort((a, b) => {
+          const av = getSortVal(a, sortKey);
+          const bv = getSortVal(b, sortKey);
+          if (av < bv) return -1;
+          if (av > bv) return 1;
+          const at = normalizeTeam(a.Team);
+          const bt = normalizeTeam(b.Team);
+          if (at < bt) return -1;
+          if (at > bt) return 1;
+          return 0;
+        });
+
+      tbody.innerHTML = rows.map(r => {
+        const team = r.Team ?? "";
+        const record = r.Record ?? "";
+        return `
+          <tr>
+            <td class="col-team"><span class="teamName">${escapeHtml(team)}</span></td>
+            <td class="col-record">${escapeHtml(record)}</td>
+            <td class="col-ap">${fmtRank(r.AP)}</td>
+            <td class="col-net">${fmtRank(r.NET)}</td>
+            <td class="col-kenpom">${fmtRank(r.KenPom)}</td>
+            <td class="col-bpi">${fmtRank(r.BPI)}</td>
+            <td class="col-sos">${fmtRank(r.SoS)}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function setActivePill(key){
+      [...pills.querySelectorAll(".pill")].forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.sort === key);
+      });
+    }
+
+    async function load(){
+      const res = await fetch(DATA_URL, { cache: "no-store" });
+      const payload = await res.json();
+
+      updatedText.textContent = `Updated: ${parseUpdated(payload)}`;
+
+      const rows = payload.rows || payload.data || payload.rankings || payload.teams || [];
+      rawRows = rows.map(r => ({
+        Team: r.Team ?? r.team ?? r.name ?? "",
+        Record: r.Record ?? r.record ?? "",
+        AP: r.AP ?? r.ap ?? r.ap_rank ?? "NR",
+        NET: r.NET ?? r.net ?? r.net_rank ?? "NR",
+        KenPom: r.KenPom ?? r.kenpom ?? r.kenpom_rank ?? "NR",
+        BPI: r.BPI ?? r.bpi ?? r.bpi_rank ?? "NR",
+        SoS: r.SoS ?? r.sos ?? r.SOS ?? r.strength_of_schedule ?? "NR"
+      }));
+
+      render();
+    }
+
+    pills.addEventListener("click", (e) => {
+      const btn = e.target.closest(".pill");
+      if (!btn) return;
       sortKey = btn.dataset.sort;
-      setActiveTab(sortKey);
+      setActivePill(sortKey);
       render();
     });
-  });
 
-  fetch("data/rankings_current.json", { cache: "no-store" })
-    .then(r => r.json())
-    .then(data => {
-      const ts = data.updated || data.last_updated || "";
-      document.getElementById("updated").textContent = ts ? `Updated: ${ts}` : "";
-      rawRows = Array.isArray(data.rows) ? data.rows : [];
+    searchInput.addEventListener("input", (e) => {
+      query = e.target.value || "";
       render();
-    })
-    .catch(() => {
-      document.getElementById("updated").textContent = "Updated: (failed to load data)";
     });
-</script>
+
+    load();
+  </script>
 </body>
 </html>
