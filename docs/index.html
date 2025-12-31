@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-5" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>CBB Rankings Dashboard</title>
   <style>
@@ -95,7 +95,7 @@
       width:100%;
       border-collapse:collapse;
       table-layout:fixed;
-      min-width:980px;
+      min-width:1060px;
     }
 
     thead th{
@@ -131,6 +131,10 @@
       width:92px;
       text-align:left;
       padding-left:10px;
+    }
+
+    th.col-avg, td.col-avg{
+      width:110px;
     }
 
     th.col-ap, td.col-ap,
@@ -186,6 +190,7 @@
           <tr>
             <th class="col-team">Team</th>
             <th class="col-record">Record</th>
+            <th class="col-avg">Avg of Metrics</th>
             <th class="col-ap">AP</th>
             <th class="col-net">NET</th>
             <th class="col-kenpom">KenPom</th>
@@ -274,6 +279,62 @@
       return n === null ? 999999 : n;
     }
 
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function setActivePill(key){
+      [...pills.querySelectorAll(".pill")].forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.sort === key);
+      });
+    }
+
+    function computeAvgRank(rows){
+      const computed = rows.map(r => {
+        const net = toIntOrNull(r.NET);
+        const kp = toIntOrNull(r.KenPom);
+        const bpi = toIntOrNull(r.BPI);
+        const avg = (net === null || kp === null || bpi === null) ? null : (net + kp + bpi) / 3;
+        return { ...r, AvgVal: avg, AvgRank: null };
+      });
+
+      const sortable = computed
+        .filter(r => r.AvgVal !== null)
+        .sort((a, b) => {
+          if (a.AvgVal < b.AvgVal) return -1;
+          if (a.AvgVal > b.AvgVal) return 1;
+          const at = normalizeTeam(a.Team);
+          const bt = normalizeTeam(b.Team);
+          if (at < bt) return -1;
+          if (at > bt) return 1;
+          return 0;
+        });
+
+      let lastVal = null;
+      let lastRank = 0;
+
+      for (let i = 0; i < sortable.length; i++){
+        const v = sortable[i].AvgVal;
+        if (lastVal === null || v !== lastVal){
+          lastRank = i + 1;
+          lastVal = v;
+        }
+        sortable[i].AvgRank = lastRank;
+      }
+
+      const byTeam = new Map(sortable.map(r => [String(r.Team || ""), r.AvgRank]));
+
+      return computed.map(r => ({
+        ...r,
+        AvgRank: byTeam.get(String(r.Team || "")) ?? null
+      }));
+    }
+
     function render(){
       const q = query.trim().toLowerCase();
 
@@ -294,10 +355,12 @@
       tbody.innerHTML = rows.map(r => {
         const team = r.Team ?? "";
         const record = r.Record ?? "";
+        const avgRank = (r.AvgRank === null || r.AvgRank === undefined) ? "NR" : String(r.AvgRank);
         return `
           <tr>
             <td class="col-team"><span class="teamName">${escapeHtml(team)}</span></td>
             <td class="col-record">${escapeHtml(record)}</td>
+            <td class="col-avg">${escapeHtml(avgRank)}</td>
             <td class="col-ap">${fmtRank(r.AP)}</td>
             <td class="col-net">${fmtRank(r.NET)}</td>
             <td class="col-kenpom">${fmtRank(r.KenPom)}</td>
@@ -306,21 +369,6 @@
           </tr>
         `;
       }).join("");
-    }
-
-    function escapeHtml(str){
-      return String(str)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
-
-    function setActivePill(key){
-      [...pills.querySelectorAll(".pill")].forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.sort === key);
-      });
     }
 
     async function load(){
@@ -339,6 +387,8 @@
         BPI: r.BPI ?? r.bpi ?? r.bpi_rank ?? "NR",
         SoS: r.SoS ?? r.sos ?? r.SOS ?? r.strength_of_schedule ?? "NR"
       }));
+
+      rawRows = computeAvgRank(rawRows);
 
       render();
     }
