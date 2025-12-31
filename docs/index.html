@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-5" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>CBB Rankings Dashboard</title>
   <style>
@@ -177,6 +177,8 @@
         <button class="pill" data-sort="KenPom">KenPom</button>
         <button class="pill" data-sort="BPI">BPI</button>
         <button class="pill" data-sort="AP">AP</button>
+        <button class="pill" data-sort="AVG">AVG</button>
+        <button class="pill" data-sort="Record">Record</button>
       </div>
 
       <div class="meta" id="updatedText">Updated: —</div>
@@ -272,13 +274,6 @@
       return `${mm}-${dd}-${yyyy} ${h}:${m} ${ampm} (UTC-5)`;
     }
 
-    function getSortVal(row, key){
-      if (key === "Team") return normalizeTeam(row.Team);
-      if (key === "Record") return String(row.Record || "");
-      const n = toIntOrNull(row[key]);
-      return n === null ? 999999 : n;
-    }
-
     function escapeHtml(str){
       return String(str)
         .replaceAll("&", "&amp;")
@@ -335,22 +330,68 @@
       }));
     }
 
+    function parseRecord(rec){
+      const s = String(rec || "").trim();
+      const m = s.match(/^(\d+)\s*-\s*(\d+)/);
+      if (!m) return null;
+      const w = Number(m[1]);
+      const l = Number(m[2]);
+      if (!Number.isFinite(w) || !Number.isFinite(l)) return null;
+      const g = w + l;
+      const pct = g > 0 ? (w / g) : -1;
+      return { w, l, g, pct };
+    }
+
+    function getSortVal(row, key){
+      if (key === "Team") return normalizeTeam(row.Team);
+      if (key === "Record") return null;
+      if (key === "AVG") {
+        const n = toIntOrNull(row.AvgRank);
+        return n === null ? 999999 : n;
+      }
+      const n = toIntOrNull(row[key]);
+      return n === null ? 999999 : n;
+    }
+
+    function compareRows(a, b){
+      if (sortKey === "Record"){
+        const ar = parseRecord(a.Record);
+        const br = parseRecord(b.Record);
+
+        const ap = ar ? ar.pct : -1;
+        const bp = br ? br.pct : -1;
+        if (ap > bp) return -1;
+        if (ap < bp) return 1;
+
+        const aw = ar ? ar.w : -1;
+        const bw = br ? br.w : -1;
+        if (aw > bw) return -1;
+        if (aw < bw) return 1;
+
+        const al = ar ? ar.l : 999999;
+        const bl = br ? br.l : 999999;
+        if (al < bl) return -1;
+        if (al > bl) return 1;
+      } else {
+        const av = getSortVal(a, sortKey);
+        const bv = getSortVal(b, sortKey);
+        if (av < bv) return -1;
+        if (av > bv) return 1;
+      }
+
+      const at = normalizeTeam(a.Team);
+      const bt = normalizeTeam(b.Team);
+      if (at < bt) return -1;
+      if (at > bt) return 1;
+      return 0;
+    }
+
     function render(){
       const q = query.trim().toLowerCase();
 
       const rows = rawRows
         .filter(r => normalizeTeam(r.Team).includes(q))
-        .sort((a, b) => {
-          const av = getSortVal(a, sortKey);
-          const bv = getSortVal(b, sortKey);
-          if (av < bv) return -1;
-          if (av > bv) return 1;
-          const at = normalizeTeam(a.Team);
-          const bt = normalizeTeam(b.Team);
-          if (at < bt) return -1;
-          if (at > bt) return 1;
-          return 0;
-        });
+        .sort(compareRows);
 
       tbody.innerHTML = rows.map(r => {
         const team = r.Team ?? "";
