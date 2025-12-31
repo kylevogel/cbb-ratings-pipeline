@@ -1,117 +1,117 @@
+from __future__ import annotations
+
 from pathlib import Path
-from datetime import date
+from datetime import datetime, timezone, timedelta
 from io import StringIO
+
 import pandas as pd
 import requests
 
-URL = "https://kenpom.com/"
 
-def flatten_cols(df: pd.DataFrame) -> pd.DataFrame:
-    df = df.copy()
-    if isinstance(df.columns, pd.MultiIndex):
-        df.columns = [
-            " ".join([str(x) for x in tup if x and "Unnamed" not in str(x)]).strip()
-            for tup in df.columns
-        ]
-    df.columns = [str(c).replace("\n", " ").strip() for c in df.columns]
-    return df
+URL = "https://kenpom.com/index.php?y=2026"
 
-def normalize_colname(name: str) -> str:
-    parts = name.split()
-    if len(parts) >= 2 and all(p == parts[0] for p in parts):
-        return parts[0]
-    if len(parts) >= 3 and parts.count(parts[0]) >= len(parts) - 1:
-        return parts[0]
-    return name
 
-def find_team_and_rank_cols(df: pd.DataFrame):
-    norm_map = {}
-    for c in df.columns:
-        norm = normalize_colname(str(c)).strip().lower()
-        norm_map.setdefault(norm, c)
+def _pick_table(tables: list[pd.DataFrame]) -> pd.DataFrame:
+    for t in tables:
+        cols = []
+        for c in list(t.columns):
+            if isinstance(c, tuple):
+                c = " ".join(str(x) for x in c if str(x) != "nan").strip()
+            cols.append(str(c).strip())
+        low = [c.lower().strip() for c in cols]
+
+        has_team = any("team" in c for c in low)
+        has_rank = any(c in {"rk", "rank"} or c.startswith("rk ") or c.endswith(" rk") for c in low) or any("rk" == c for c in low)
+        has_wl = any("w-l" in c or "wl" == c.replace("-", "").replace(" ", "") for c in low)
+
+        if has_team and (has_rank or "rk" in low or "rank" in low) and has_wl:
+            t.columns = cols
+            return t
+
+    for t in tables:
+        cols = []
+        for c in list(t.columns):
+            if isinstance(c, tuple):
+                c = " ".join(str(x) for x in c if str(x) != "nan").strip()
+            cols.append(str(c).strip())
+        low = [c.lower().strip() for c in cols]
+        if any("team" in c for c in low) and any("w-l" in c for c in low):
+            t.columns = cols
+            return t
+
+    raise RuntimeError("Could not find KenPom table with Team and W-L.")
+
+
+def main() -> None:
+    headers = {
+        "User-Agent": "Mozilla/5.0",
+        "Accept-Language": "en-US,en;q=0.9",
+    }
+    r = requests.get(URL, headers=headers, timeout=45)
+    r.raise_for_status()
+
+    tables = pd.read_html(StringIO(r.text))
+    t = _pick_table(tables)
+
+    cols_low = {str(c).lower().strip(): c for c in t.columns}
 
     team_col = None
-    for norm, c in norm_map.items():
-        if norm == "team" or norm.startswith("team"):
-            team_col = c
+    for k, v in cols_low.items():
+        if "team" in k:
+            team_col = v
             break
+    if team_col is None:
+        raise RuntimeError("Could not locate Team column.")
 
-    rk_col = None
-    for norm, c in norm_map.items():
-        if norm in {"rk", "rank"} or norm.startswith("rk"):
-            rk_col = c
+    rank_col = None
+    for k in ["rk", "rank"]:
+        if k in cols_low:
+            rank_col = cols_low[k]
             break
+    if rank_col is None:
+        for c in t.columns:
+            cl = str(c).lower().strip()
+            if cl in {"rk", "rank"}:
+                rank_col = c
+                break
+    if rank_col is None:
+        raise RuntimeError("Could not locate rank column.")
 
-    return team_col, rk_col
+    wl_col = None
+    for c in t.columns:
+        cl = str(c).lower().strip()
+        if "w-l" in cl or cl.replace("-", "").replace(" ", "") == "wl":
+            wl_col = c
+            break
+    if wl_col is None:
+        raise RuntimeError("Could not locate W-L column.")
 
-def find_record_col(df: pd.DataFrame):
-    def norm(s: str) -> str:
-        s = s.lower().strip()
-        s = s.replace("–", "-").replace("—", "-").replace("-", "-")
-        s = s.replace(" ", "")
-        return s
+    out = t[[team_col, rank_col, wl_col]].copy()
+    out.columns = ["Team", "KenPom", "Record"]
 
-    candidates = []
-    for c in df.columns:
-        n = norm(normalize_colname(str(c)))
-        if n in {"w-l", "wl", "w_l"} or "w-l" in n:
-            candidates.append(c)
+    out["Team"] = out["Team"].astype(str).str.strip()
+    out["KenPom"] = pd.to_numeric(out["KenPom"], errors="coerce")
+    out = out.dropna(subset=["KenPom"])
+    out["KenPom"] = out["KenPom"].astype(int)
 
-    if candidates:
-        return candidates[0]
+    out["Record"] = out["Record"].astype(str).str.strip()
 
-    for c in df.columns:
-        n = norm(normalize_colname(str(c)))
-        if n in {"record"} or "record" in n:
-            return c
+    out = out.sort_values("KenPom").reset_index(drop=True)
 
-    return None
+    now_et = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=-5)))
+    out.insert(0, "snapshot_date", now_et.strftime("%Y-%m-%d"))
 
-def pick_kenpom_table(tables):
-    best = None
-    best_rows = -1
-    for t in tables:
-        t = flatten_cols(t)
-        team_col, rk_col = find_team_and_rank_cols(t)
-        if team_col is not None and rk_col is not None:
-            if len(t) > best_rows:
-                best = t
-                best_rows = len(t)
-    if best is None:
-        raise RuntimeError(f"Could not find a KenPom table with Team and Rk. Saw: {[tbl.columns.tolist() for tbl in tables]}")
-    return best
-
-def main():
     root = Path(__file__).resolve().parent
-    out_path = root / "data_raw" / "KenPom_Rank.csv"
-    out_path.parent.mkdir(exist_ok=True)
+    data_raw = root / "data_raw"
+    data_raw.mkdir(parents=True, exist_ok=True)
 
-    headers = {"User-Agent": "Mozilla/5.0"}
-    html = requests.get(URL, headers=headers, timeout=30).text
-    tables = pd.read_html(StringIO(html))
+    path = data_raw / "KenPom_Rank.csv"
+    out.to_csv(path, index=False)
 
-    df = pick_kenpom_table(tables)
-    team_col, rk_col = find_team_and_rank_cols(df)
-    record_col = find_record_col(df)
+    print(path.name)
+    print(",".join(out.columns.tolist()))
+    print(out.head(5).to_csv(index=False).strip())
 
-    if team_col is None or rk_col is None:
-        raise RuntimeError(f"Could not identify Team or Rk column. Columns: {df.columns.tolist()}")
-
-    out = pd.DataFrame({
-        "snapshot_date": date.today().isoformat(),
-        "Team": df[team_col].astype(str).str.strip(),
-        "KenPom_Rank": pd.to_numeric(df[rk_col], errors="coerce"),
-    }).dropna(subset=["KenPom_Rank"])
-
-    if record_col is not None:
-        rec = df.loc[out.index, record_col].astype(str).str.strip()
-        rec = rec.str.replace(r"\s+", "", regex=True)
-        out["Record"] = rec
-    else:
-        out["Record"] = ""
-
-    out.to_csv(out_path, index=False)
-    print(f"Wrote {len(out)} rows to {out_path}")
 
 if __name__ == "__main__":
     main()
