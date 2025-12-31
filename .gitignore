@@ -226,3 +226,4 @@ venv/
 # data_raw/*.csv
 # data_processed/*.csv
 *.bak
+data_raw/schedule_full.csv
