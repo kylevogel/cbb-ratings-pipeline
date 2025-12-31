@@ -241,13 +241,31 @@ def main():
     net = net.drop_duplicates(subset=["TeamKey"], keep="first")
 
     net_raw = _safe_read_csv(net_path)
+    kp_raw = _safe_read_csv(kp_path)
+
     rec = pd.DataFrame(columns=["TeamKey", "Record"])
-    if net_raw is not None and not net_raw.empty and "Team" in net_raw.columns and "Record" in net_raw.columns:
+
+    if kp_raw is not None and not kp_raw.empty and "Team" in kp_raw.columns and "Record" in kp_raw.columns:
+        tmp = kp_raw[["Team", "Record"]].copy()
+        tmp["Team"] = tmp["Team"].astype(str).map(lambda x: canon_team(x, alias_map))
+        tmp["TeamKey"] = tmp["Team"].map(_team_key)
+        tmp["Record"] = tmp["Record"].astype(str).str.strip()
+        tmp.loc[tmp["Record"].isin({"", "nan", "None"}), "Record"] = pd.NA
+        rec = tmp[["TeamKey", "Record"]].drop_duplicates(subset=["TeamKey"], keep="first")
+
+    if (rec.empty or rec["Record"].isna().all()) and net_raw is not None and not net_raw.empty and "Team" in net_raw.columns and "Record" in net_raw.columns:
         tmp = net_raw[["Team", "Record"]].copy()
         tmp["Team"] = tmp["Team"].astype(str).map(lambda x: canon_team(x, alias_map))
         tmp["TeamKey"] = tmp["Team"].map(_team_key)
         tmp["Record"] = tmp["Record"].astype(str).str.strip()
+        tmp.loc[tmp["Record"].isin({"", "nan", "None"}), "Record"] = pd.NA
         rec = tmp[["TeamKey", "Record"]].drop_duplicates(subset=["TeamKey"], keep="first")
+
+    fallback_rec = _load_records_completed_only(data_raw, alias_map)
+    rec = rec.merge(fallback_rec, on="TeamKey", how="outer", suffixes=("", "_fb"))
+    rec["Record"] = rec["Record"].fillna(rec["Record_fb"])
+    rec = rec[["TeamKey", "Record"]]
+
 
     fallback_rec = _load_records_completed_only(data_raw, alias_map)
     rec = rec.merge(fallback_rec, on="TeamKey", how="outer", suffixes=("", "_fb"))
