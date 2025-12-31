@@ -18,11 +18,21 @@ def main() -> None:
         "update_sos_rank.py",
     ]
 
+    failed = []
+
     for s in scripts:
         p = root / s
         if not p.exists():
             continue
-        subprocess.run([sys.executable, s], check=True, cwd=root)
+        try:
+            subprocess.run([sys.executable, s], check=True, cwd=root)
+        except subprocess.CalledProcessError as e:
+            failed.append((s, e.returncode))
+            print(f"FAILED: {s} (exit {e.returncode})", file=sys.stderr)
+
+    if failed:
+        msg = ", ".join([f"{s}:{rc}" for s, rc in failed])
+        print(f"Some update scripts failed (continuing anyway): {msg}", file=sys.stderr)
 
 
 if __name__ == "__main__":
