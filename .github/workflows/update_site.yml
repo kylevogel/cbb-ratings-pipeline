@@ -2,7 +2,7 @@ name: Update data + site
 
 on:
   schedule:
-    - cron: "30 * * * *"
+    - cron: "44 * * * *"
   workflow_dispatch:
 
 permissions:
