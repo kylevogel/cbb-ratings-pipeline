@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
+import csv
 import json
 import re
 import pandas as pd
@@ -20,40 +21,53 @@ def _load_alias_map(root: Path) -> dict[str, str]:
     if path is None:
         return {}
 
-    lines = path.read_text(encoding="utf-8", errors="ignore").splitlines()
-    if not lines:
-        return {}
-
-    header = [h.strip().lower() for h in lines[0].split(",")]
-    idx = {name: i for i, name in enumerate(header)}
-    standard_i = idx.get("standard_name", 0)
-
     m: dict[str, str] = {}
+    with path.open("r", encoding="utf-8", newline="") as f:
+        rdr = csv.reader(f)
+        header = next(rdr, None)
 
-    for line in lines[1:]:
-        if not line.strip():
-            continue
+        canon_idx = 0
+        if header:
+            h = [str(x).strip().lower() for x in header]
+            for i, name in enumerate(h):
+                if name in {"standard_name", "standard", "canonical", "canon", "team"}:
+                    canon_idx = i
+                    break
 
-        parts = [p.strip().strip('"').strip("'") for p in line.split(",")]
-        if len(parts) <= standard_i:
-            continue
-
-        standard = parts[standard_i].strip()
-        if not standard:
-            continue
-
-        aliases = set()
-        for i, v in enumerate(parts):
-            if i == standard_i:
+        for row in rdr:
+            if not row:
                 continue
-            v2 = v.strip()
-            if v2:
-                aliases.add(v2)
+            if canon_idx >= len(row):
+                continue
 
-        aliases.add(standard)
+            canon = str(row[canon_idx]).strip()
+            if not canon:
+                continue
 
-        for a in aliases:
-            m[a.lower()] = standard
+            parts = []
+            for i, v in enumerate(row):
+                if i == canon_idx:
+                    continue
+                parts.append(v)
+
+            extra = row[len(header) :] if header and len(row) > len(header) else []
+            if extra:
+                parts.extend(extra)
+
+            vals = [canon]
+            for p in parts:
+                s = str(p).strip()
+                if not s:
+                    continue
+                for tok in re.split(r"[|;/]", s):
+                    t = tok.strip()
+                    if t:
+                        vals.append(t)
+
+            for v in vals:
+                k = str(v).strip().lower()
+                if k:
+                    m[k] = canon
 
     return m
 
@@ -68,10 +82,9 @@ def _latest_snapshot(df: pd.DataFrame) -> pd.DataFrame:
     sd = cols.get("snapshot_date")
     if sd is None:
         return df
-
     try:
-        m = df[sd].astype(str).max()
-        return df[df[sd].astype(str) == m].copy()
+        mx = df[sd].astype(str).max()
+        return df[df[sd].astype(str) == mx].copy()
     except Exception:
         return df
 
@@ -100,7 +113,7 @@ def _load_rank_csv(path: Path, wanted_rank_names: list[str]) -> pd.DataFrame:
     if rank_col is None:
         for c in df.columns:
             cl = str(c).lower()
-            if "rank" in cl and "snapshot" not in cl:
+            if "rank" in cl and "snapshot" not in cl and "date" not in cl:
                 rank_col = c
                 break
 
@@ -110,9 +123,52 @@ def _load_rank_csv(path: Path, wanted_rank_names: list[str]) -> pd.DataFrame:
                 rank_col = c
                 break
 
+    if rank_col is None:
+        return pd.DataFrame(columns=["Team", "Rank"])
+
     out = df[[team_col, rank_col]].copy()
     out.columns = ["Team", "Rank"]
     return out
+
+
+def _load_record_from_kenpom(path: Path, alias_map: dict[str, str]) -> pd.DataFrame:
+    df = pd.read_csv(path)
+    df = _latest_snapshot(df)
+
+    cols = {c.lower().strip(): c for c in df.columns}
+
+    team_col = None
+    for k in ["team", "school", "name"]:
+        if k in cols:
+            team_col = cols[k]
+            break
+    if team_col is None:
+        team_col = df.columns[0]
+
+    rec_col = None
+    for k in ["w-l", "w_l", "wl", "record"]:
+        if k in cols:
+            rec_col = cols[k]
+            break
+    if rec_col is None:
+        for c in df.columns:
+            cl = str(c).lower().replace(" ", "")
+            if cl in {"w-l", "w_l", "wl"} or "w-l" in cl:
+                rec_col = c
+                break
+
+    if rec_col is None:
+        return pd.DataFrame(columns=["TeamKey", "Record"])
+
+    tmp = df[[team_col, rec_col]].copy()
+    tmp.columns = ["Team", "Record"]
+    tmp["TeamCanon"] = tmp["Team"].astype(str).map(lambda x: _canon_team(x, alias_map))
+    tmp["TeamKey"] = tmp["TeamCanon"].map(_team_key)
+    tmp["Record"] = tmp["Record"].astype(str).str.strip()
+    tmp = tmp[tmp["TeamKey"].astype(str).str.len() > 0]
+    tmp = tmp[tmp["Record"].astype(str).str.len() > 0]
+    tmp = tmp.drop_duplicates(subset=["TeamKey"], keep="first")
+    return tmp[["TeamKey", "Record"]]
 
 
 def _load_record_from_games(path: Path, alias_map: dict[str, str]) -> pd.DataFrame:
@@ -141,46 +197,6 @@ def _load_record_from_games(path: Path, alias_map: dict[str, str]) -> pd.DataFra
     rec = tmp.groupby("TeamKey", as_index=False)[["W", "L"]].sum()
     rec["Record"] = rec["W"].astype(int).astype(str) + "-" + rec["L"].astype(int).astype(str)
     return rec[["TeamKey", "Record"]]
-
-
-def _load_record_from_kenpom(path: Path, alias_map: dict[str, str]) -> pd.DataFrame:
-    df = pd.read_csv(path)
-    df = _latest_snapshot(df)
-
-    cols = {str(c).lower().strip(): c for c in df.columns}
-
-    team_col = None
-    for k in ["team", "school", "name"]:
-        if k in cols:
-            team_col = cols[k]
-            break
-    if team_col is None:
-        team_col = df.columns[0]
-
-    rec_col = None
-    for k in ["w-l", "wl", "w-l record", "record"]:
-        if k in cols:
-            rec_col = cols[k]
-            break
-
-    if rec_col is None:
-        for c in df.columns:
-            cl = str(c).lower().strip().replace(" ", "")
-            if cl in ["w-l", "wl", "w-lrecord"]:
-                rec_col = c
-                break
-
-    if rec_col is None:
-        return pd.DataFrame(columns=["TeamKey", "Record"])
-
-    out = df[[team_col, rec_col]].copy()
-    out.columns = ["Team", "Record"]
-    out["TeamCanon"] = out["Team"].astype(str).map(lambda x: _canon_team(x, alias_map))
-    out["TeamKey"] = out["TeamCanon"].map(_team_key)
-    out["Record"] = out["Record"].astype(str).str.strip()
-    out = out[out["TeamKey"].astype(str) != ""]
-    out = out.drop_duplicates(subset=["TeamKey"])
-    return out[["TeamKey", "Record"]]
 
 
 def _to_int_or_blank(x):
@@ -233,10 +249,8 @@ def main() -> None:
         cols = {c.lower().strip(): c for c in net.columns}
         team_col = cols.get("team", net.columns[0])
         rank_col = cols.get("net_rank") or cols.get("net") or (net.columns[1] if len(net.columns) > 1 else net.columns[0])
-        rec_col = cols.get("record")
-
-        net2 = net[[team_col, rank_col] + ([rec_col] if rec_col is not None else [])].copy()
-        net2.columns = ["Team", "NET"] + (["Record"] if rec_col is not None else [])
+        net2 = net[[team_col, rank_col]].copy()
+        net2.columns = ["Team", "NET"]
     else:
         net2 = pd.DataFrame(columns=["Team", "NET"])
 
@@ -253,9 +267,9 @@ def main() -> None:
     sos = sos.rename(columns={"Rank": "SOS"})
 
     def prep(df: pd.DataFrame, col: str) -> pd.DataFrame:
-        d = df.copy()
-        if "Team" not in d.columns:
+        if "Team" not in df.columns:
             return pd.DataFrame(columns=["TeamCanon", "TeamKey", col])
+        d = df.copy()
         d["TeamCanon"] = d["Team"].astype(str).map(lambda x: _canon_team(x, alias_map))
         d["TeamKey"] = d["TeamCanon"].map(_team_key)
         return d[["TeamCanon", "TeamKey", col]].copy()
@@ -287,18 +301,18 @@ def main() -> None:
     df = df.merge(ap_df[["TeamKey", "AP"]], on="TeamKey", how="left")
     df = df.merge(sos_df[["TeamKey", "SOS"]], on="TeamKey", how="left")
 
-    rec = pd.DataFrame(columns=["TeamKey", "Record"])
+    rec_games = pd.DataFrame(columns=["TeamKey", "Record"])
+    if games_path.exists():
+        rec_games = _load_record_from_games(games_path, alias_map)
+
+    rec_kp = pd.DataFrame(columns=["TeamKey", "Record"])
     if kp_path.exists():
-        rec = _load_record_from_kenpom(kp_path, alias_map)
+        rec_kp = _load_record_from_kenpom(kp_path, alias_map)
 
-    if rec.empty and games_path.exists():
-        rec = _load_record_from_games(games_path, alias_map)
+    df = df.merge(rec_games.rename(columns={"Record": "RecordGames"}), on="TeamKey", how="left")
+    df = df.merge(rec_kp.rename(columns={"Record": "RecordKP"}), on="TeamKey", how="left")
 
-    df = df.merge(rec, on="TeamKey", how="left")
-
-    if "Record" not in df.columns:
-        df["Record"] = ""
-
+    df["Record"] = df["RecordKP"].where(df["RecordKP"].notna() & (df["RecordKP"].astype(str).str.len() > 0), df["RecordGames"])
     df["Record"] = df["Record"].fillna("")
 
     df = df.sort_values("NET", na_position="last").reset_index(drop=True)
