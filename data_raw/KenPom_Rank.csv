@@ -24,8 +24,8 @@ snapshot_date,Team,KenPom_Rank,Record
 2025-12-31,North Carolina,23.0,13-1
 2025-12-31,Virginia,24.0,11-1
 2025-12-31,Villanova,25.0,10-2
-2025-12-31,Arkansas,26.0,10-3
-2025-12-31,N.C. State,27.0,9-4
+2025-12-31,N.C. State,26.0,9-4
+2025-12-31,Arkansas,27.0,10-3
 2025-12-31,Georgia,28.0,12-1
 2025-12-31,Indiana,29.0,10-3
 2025-12-31,Baylor,30.0,10-2
@@ -50,7 +50,7 @@ snapshot_date,Team,KenPom_Rank,Record
 2025-12-31,Washington,49.0,9-4
 2025-12-31,Texas A&M,50.0,10-3
 2025-12-31,San Diego St.,51.0,8-4
-2025-12-31,Boise St.,52.0,8-4
+2025-12-31,Boise St.,52.0,9-4
 2025-12-31,Oklahoma,53.0,10-3
 2025-12-31,TCU,54.0,10-3
 2025-12-31,Northwestern,55.0,8-5
@@ -65,10 +65,10 @@ snapshot_date,Team,KenPom_Rank,Record
 2025-12-31,Dayton,64.0,9-4
 2025-12-31,West Virginia,65.0,9-4
 2025-12-31,Nevada,66.0,10-3
-2025-12-31,New Mexico,67.0,10-2
-2025-12-31,Memphis,68.0,5-7
-2025-12-31,Virginia Tech,69.0,11-2
-2025-12-31,McNeese,70.0,10-3
+2025-12-31,Memphis,67.0,5-7
+2025-12-31,Virginia Tech,68.0,11-2
+2025-12-31,McNeese,69.0,10-3
+2025-12-31,New Mexico,70.0,10-3
 2025-12-31,Belmont,71.0,12-2
 2025-12-31,Oregon,72.0,7-6
 2025-12-31,California,73.0,12-2
@@ -79,8 +79,8 @@ snapshot_date,Team,KenPom_Rank,Record
 2025-12-31,Illinois St.,78.0,11-3
 2025-12-31,Mississippi St.,79.0,8-5
 2025-12-31,George Washington,80.0,9-4
-2025-12-31,Tulsa,81.0,12-1
-2025-12-31,Utah Valley,82.0,11-3
+2025-12-31,Utah Valley,81.0,11-3
+2025-12-31,Tulsa,82.0,12-1
 2025-12-31,Yale,83.0,11-2
 2025-12-31,South Florida,84.0,8-5
 2025-12-31,Colorado,85.0,10-3
@@ -167,8 +167,8 @@ snapshot_date,Team,KenPom_Rank,Record
 2025-12-31,Incarnate Word,166.0,7-6
 2025-12-31,Idaho St.,167.0,7-6
 2025-12-31,Tarleton St.,168.0,10-4
-2025-12-31,UT Arlington,169.0,8-5
-2025-12-31,Fresno St.,170.0,6-7
+2025-12-31,Fresno St.,169.0,6-7
+2025-12-31,UT Arlington,170.0,8-5
 2025-12-31,Montana St.,171.0,6-7
 2025-12-31,Youngstown St.,172.0,8-6
 2025-12-31,Louisiana Tech,173.0,8-4
@@ -192,19 +192,19 @@ snapshot_date,Team,KenPom_Rank,Record
 2025-12-31,Austin Peay,191.0,6-5
 2025-12-31,South Alabama,192.0,10-4
 2025-12-31,Charlotte,193.0,6-8
-2025-12-31,Vermont,194.0,8-7
-2025-12-31,San Diego,195.0,6-8
+2025-12-31,San Diego,194.0,6-8
+2025-12-31,Vermont,195.0,8-7
 2025-12-31,Tulane,196.0,9-4
 2025-12-31,Saint Joseph's,197.0,8-5
 2025-12-31,Southern Miss,198.0,7-7
 2025-12-31,Fordham,199.0,9-4
 2025-12-31,San Jose St.,200.0,5-8
-2025-12-31,Navy,201.0,8-5
-2025-12-31,Eastern Michigan,202.0,7-7
+2025-12-31,Eastern Michigan,201.0,7-7
+2025-12-31,Navy,202.0,8-5
 2025-12-31,UT Rio Grande Valley,203.0,5-7
 2025-12-31,LIU,204.0,6-7
-2025-12-31,Northern Kentucky,205.0,10-5
-2025-12-31,Milwaukee,206.0,7-7
+2025-12-31,Milwaukee,205.0,7-7
+2025-12-31,Northern Kentucky,206.0,10-5
 2025-12-31,Tennessee Martin,207.0,9-4
 2025-12-31,Illinois Chicago,208.0,5-8
 2025-12-31,Valparaiso,209.0,6-7
@@ -232,10 +232,10 @@ snapshot_date,Team,KenPom_Rank,Record
 2025-12-31,Utah Tech,231.0,8-7
 2025-12-31,Cal St. Fullerton,232.0,5-9
 2025-12-31,Texas A&M Corpus Chris,233.0,5-7
-2025-12-31,Monmouth,234.0,6-7
-2025-12-31,Lindenwood,235.0,8-5
-2025-12-31,Lamar,236.0,6-6
-2025-12-31,Central Arkansas,237.0,5-8
+2025-12-31,Lindenwood,234.0,8-5
+2025-12-31,Monmouth,235.0,6-7
+2025-12-31,Central Arkansas,236.0,5-8
+2025-12-31,Lamar,237.0,6-6
 2025-12-31,Brown,238.0,5-7
 2025-12-31,Rice,239.0,6-7
 2025-12-31,Chattanooga,240.0,6-7
@@ -255,8 +255,8 @@ snapshot_date,Team,KenPom_Rank,Record
 2025-12-31,American,254.0,7-6
 2025-12-31,Hampton,255.0,7-7
 2025-12-31,Princeton,256.0,4-11
-2025-12-31,UC Riverside,257.0,6-8
-2025-12-31,Long Beach St.,258.0,4-10
+2025-12-31,Long Beach St.,257.0,4-10
+2025-12-31,UC Riverside,258.0,6-8
 2025-12-31,Texas St.,259.0,8-6
 2025-12-31,Eastern Washington,260.0,2-11
 2025-12-31,La Salle,261.0,4-9
@@ -311,8 +311,8 @@ snapshot_date,Team,KenPom_Rank,Record
 2025-12-31,West Georgia,310.0,6-6
 2025-12-31,Lehigh,311.0,4-9
 2025-12-31,Little Rock,312.0,4-9
-2025-12-31,Albany,313.0,4-11
-2025-12-31,Manhattan,314.0,6-8
+2025-12-31,Manhattan,313.0,6-8
+2025-12-31,Albany,314.0,4-11
 2025-12-31,Ball St.,315.0,4-9
 2025-12-31,Louisiana,316.0,3-11
 2025-12-31,Jacksonville,317.0,5-8
