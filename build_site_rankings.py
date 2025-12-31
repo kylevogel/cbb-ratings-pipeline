@@ -2,42 +2,15 @@ from __future__ import annotations
 
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
+import csv
 import json
 import re
-import csv
 
 import pandas as pd
 
 
 def _team_key(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", str(s).strip().lower())
-
-
-def _read_alias_csv_loose(path: Path) -> pd.DataFrame:
-    with path.open("r", encoding="utf-8", newline="") as f:
-        rows = list(csv.reader(f))
-    if not rows:
-        return pd.DataFrame()
-
-    header = rows[0]
-    n = len(header)
-    out = []
-    for r in rows[1:]:
-        if len(r) < n:
-            r = r + [""] * (n - len(r))
-        elif len(r) > n:
-            r = r[: n - 1] + [",".join(r[n - 1 :])]
-        out.append(r)
-
-    return pd.DataFrame(out, columns=header)
-
-
-def _split_aliases(v: str) -> list[str]:
-    s = str(v).strip()
-    if not s:
-        return []
-    parts = [p.strip() for p in s.split(",")]
-    return [p for p in parts if p]
 
 
 def _load_alias_map(root: Path) -> dict[str, str]:
@@ -49,64 +22,47 @@ def _load_alias_map(root: Path) -> dict[str, str]:
     if path is None:
         return {}
 
-    try:
-        df = pd.read_csv(path)
-    except Exception:
-        df = _read_alias_csv_loose(path)
-
-    if df.empty:
-        return {}
-
-    cols = {str(c).strip().lower(): c for c in df.columns}
-
-    if "standard_name" in cols:
-        std_col = cols["standard_name"]
-        m: dict[str, str] = {}
-
-        for _, row in df.iterrows():
-            std_raw = row.get(std_col, "")
-            std = str(std_raw).strip()
-            if not std or std.lower() == "nan":
-                continue
-
-            m[std.lower()] = std
-
-            for c in df.columns:
-                if c == std_col:
-                    continue
-                v = row.get(c, "")
-                for a in _split_aliases(v):
-                    m[a.lower()] = std
-
-        return m
-
-    alias_col = None
-    canon_col = None
-
-    for k in ["alias", "from", "team", "name"]:
-        if k in cols:
-            alias_col = cols[k]
-            break
-
-    for k in ["canonical", "canon", "to", "standard"]:
-        if k in cols:
-            canon_col = cols[k]
-            break
-
-    if alias_col is None or canon_col is None:
-        if len(df.columns) >= 2:
-            alias_col = df.columns[0]
-            canon_col = df.columns[1]
-        else:
+    with path.open("r", encoding="utf-8", newline="") as f:
+        r = csv.reader(f)
+        try:
+            header = next(r)
+        except StopIteration:
             return {}
 
-    m: dict[str, str] = {}
-    for _, row in df.iterrows():
-        a = str(row.get(alias_col, "")).strip()
-        c = str(row.get(canon_col, "")).strip()
-        if a and c and a.lower() != "nan" and c.lower() != "nan":
-            for aa in _split_aliases(a):
-                m[aa.lower()] = c
+        header = [str(h).strip() for h in header]
+        header_l = [h.strip().lower() for h in header]
+        if not header_l:
+            return {}
+
+        std_idx = None
+        for k in ["standard_name", "standard", "canonical", "canon", "team"]:
+            if k in header_l:
+                std_idx = header_l.index(k)
+                break
+        if std_idx is None:
+            std_idx = 0
+
+        m: dict[str, str] = {}
+
+        for row in r:
+            if not row:
+                continue
+
+            if len(row) > len(header):
+                row = row[: len(header) - 1] + [",".join(row[len(header) - 1 :])]
+            if len(row) < len(header):
+                row = row + [""] * (len(header) - len(row))
+
+            standard = str(row[std_idx]).strip()
+            if not standard:
+                continue
+
+            for cell in row:
+                a = str(cell).strip()
+                if not a:
+                    continue
+                m[a.lower()] = standard
+
     return m
 
 
@@ -116,13 +72,13 @@ def _canon_team(name: str, alias_map: dict[str, str]) -> str:
 
 
 def _latest_snapshot(df: pd.DataFrame) -> pd.DataFrame:
-    cols = {str(c).lower().strip(): c for c in df.columns}
+    cols = {c.lower().strip(): c for c in df.columns}
     sd = cols.get("snapshot_date")
     if sd is None:
         return df
     try:
-        m = df[sd].astype(str).max()
-        return df[df[sd].astype(str) == m].copy()
+        mx = df[sd].astype(str).max()
+        return df[df[sd].astype(str) == mx].copy()
     except Exception:
         return df
 
@@ -131,7 +87,7 @@ def _load_rank_csv(path: Path, wanted_rank_names: list[str]) -> pd.DataFrame:
     df = pd.read_csv(path)
     df = _latest_snapshot(df)
 
-    cols = {str(c).lower().strip(): c for c in df.columns}
+    cols = {c.lower().strip(): c for c in df.columns}
 
     team_col = None
     for k in ["team", "school", "name"]:
@@ -166,20 +122,52 @@ def _load_rank_csv(path: Path, wanted_rank_names: list[str]) -> pd.DataFrame:
     return out
 
 
+def _load_kenpom(path: Path) -> pd.DataFrame:
+    df = pd.read_csv(path)
+    df = _latest_snapshot(df)
+
+    cols = {c.lower().strip(): c for c in df.columns}
+
+    team_col = None
+    for k in ["team", "school", "name"]:
+        if k in cols:
+            team_col = cols[k]
+            break
+    if team_col is None:
+        team_col = df.columns[0]
+
+    rank_col = None
+    for k in ["kenpom_rank", "kenpom", "rk", "rank"]:
+        if k in cols:
+            rank_col = cols[k]
+            break
+    if rank_col is None and len(df.columns) >= 2:
+        rank_col = df.columns[1]
+
+    rec_col = None
+    for k in ["w-l", "wl", "w_l", "record"]:
+        if k in cols:
+            rec_col = cols[k]
+            break
+
+    keep = [team_col, rank_col] + ([rec_col] if rec_col is not None else [])
+    out = df[keep].copy()
+    out.columns = ["Team", "KenPom"] + (["Record"] if rec_col is not None else [])
+    return out
+
+
 def _load_record_from_games(path: Path, alias_map: dict[str, str]) -> pd.DataFrame:
     g = pd.read_csv(path)
-    cols = {str(c).lower().strip(): c for c in g.columns}
-
+    cols = {c.lower().strip(): c for c in g.columns}
     team_col = cols.get("team")
     ts_col = cols.get("team_score")
     os_col = cols.get("opponent_score")
 
     if team_col is None or ts_col is None or os_col is None:
-        return pd.DataFrame(columns=["TeamKey", "Record"])
+        return pd.DataFrame(columns=["TeamKey", "Record_games"])
 
     tmp = g[[team_col, ts_col, os_col]].copy()
     tmp.columns = ["Team", "Team_Score", "Opponent_Score"]
-
     tmp["Team_Score"] = pd.to_numeric(tmp["Team_Score"], errors="coerce")
     tmp["Opponent_Score"] = pd.to_numeric(tmp["Opponent_Score"], errors="coerce")
     tmp = tmp.dropna(subset=["Team_Score", "Opponent_Score"])
@@ -191,8 +179,8 @@ def _load_record_from_games(path: Path, alias_map: dict[str, str]) -> pd.DataFra
     tmp["L"] = (tmp["Team_Score"] < tmp["Opponent_Score"]).astype(int)
 
     rec = tmp.groupby("TeamKey", as_index=False)[["W", "L"]].sum()
-    rec["Record"] = rec["W"].astype(int).astype(str) + "-" + rec["L"].astype(int).astype(str)
-    return rec[["TeamKey", "Record"]]
+    rec["Record_games"] = rec["W"].astype(int).astype(str) + "-" + rec["L"].astype(int).astype(str)
+    return rec[["TeamKey", "Record_games"]]
 
 
 def _to_int_or_blank(x):
@@ -242,7 +230,8 @@ def main() -> None:
 
     if net_path.exists():
         net = pd.read_csv(net_path)
-        cols = {str(c).lower().strip(): c for c in net.columns}
+        net = _latest_snapshot(net)
+        cols = {c.lower().strip(): c for c in net.columns}
         team_col = cols.get("team", net.columns[0])
         rank_col = cols.get("net_rank") or cols.get("net") or (net.columns[1] if len(net.columns) > 1 else net.columns[0])
         net2 = net[[team_col, rank_col]].copy()
@@ -250,15 +239,11 @@ def main() -> None:
     else:
         net2 = pd.DataFrame(columns=["Team", "NET"])
 
-    kp = _load_rank_csv(kp_path, ["kenpom_rank", "kenpom"]) if kp_path.exists() else pd.DataFrame(columns=["Team", "Rank"])
-    kp = kp.rename(columns={"Rank": "KenPom"})
-
+    kp_raw = _load_kenpom(kp_path) if kp_path.exists() else pd.DataFrame(columns=["Team", "KenPom"])
     bpi = _load_rank_csv(bpi_path, ["bpi_rank", "bpi"]) if bpi_path.exists() else pd.DataFrame(columns=["Team", "Rank"])
     bpi = bpi.rename(columns={"Rank": "BPI"})
-
     ap = _load_rank_csv(ap_path, ["ap_rank", "ap"]) if ap_path.exists() else pd.DataFrame(columns=["Team", "Rank"])
     ap = ap.rename(columns={"Rank": "AP"})
-
     sos = _load_rank_csv(sos_path, ["sos", "rank"]) if sos_path.exists() else pd.DataFrame(columns=["Team", "Rank"])
     sos = sos.rename(columns={"Rank": "SoS"})
 
@@ -271,24 +256,22 @@ def main() -> None:
         return d[["TeamCanon", "TeamKey", col]].copy()
 
     net_df = prep(net2, "NET")
-    kp_df = prep(kp, "KenPom")
-    bpi_df = prep(bpi, "BPI")
-    ap_df = prep(ap, "AP")
-    sos_df = prep(sos, "SoS")
+    kp_rank_df = kp_raw[["Team", "KenPom"]].copy() if "KenPom" in kp_raw.columns else pd.DataFrame(columns=["Team", "KenPom"])
+    kp_df = prep(kp_rank_df, "KenPom")
+    bpi_df = prep(bpi.rename(columns={"BPI": "BPI"}), "BPI") if "BPI" in bpi.columns else pd.DataFrame(columns=["TeamCanon", "TeamKey", "BPI"])
+    ap_df = prep(ap.rename(columns={"AP": "AP"}), "AP") if "AP" in ap.columns else pd.DataFrame(columns=["TeamCanon", "TeamKey", "AP"])
+    sos_df = prep(sos.rename(columns={"SoS": "SoS"}), "SoS") if "SoS" in sos.columns else pd.DataFrame(columns=["TeamCanon", "TeamKey", "SoS"])
 
-    base = (
-        pd.concat(
-            [
-                net_df[["TeamCanon", "TeamKey"]],
-                kp_df[["TeamCanon", "TeamKey"]],
-                bpi_df[["TeamCanon", "TeamKey"]],
-                ap_df[["TeamCanon", "TeamKey"]],
-                sos_df[["TeamCanon", "TeamKey"]],
-            ],
-            ignore_index=True,
-        )
-        .drop_duplicates(subset=["TeamKey"])
-    )
+    base = pd.concat(
+        [
+            net_df[["TeamCanon", "TeamKey"]],
+            kp_df[["TeamCanon", "TeamKey"]],
+            bpi_df[["TeamCanon", "TeamKey"]],
+            ap_df[["TeamCanon", "TeamKey"]],
+            sos_df[["TeamCanon", "TeamKey"]],
+        ],
+        ignore_index=True,
+    ).drop_duplicates(subset=["TeamKey"])
 
     df = base.copy()
     df = df.merge(net_df[["TeamKey", "NET"]], on="TeamKey", how="left")
@@ -297,14 +280,24 @@ def main() -> None:
     df = df.merge(ap_df[["TeamKey", "AP"]], on="TeamKey", how="left")
     df = df.merge(sos_df[["TeamKey", "SoS"]], on="TeamKey", how="left")
 
-    rec = pd.DataFrame(columns=["TeamKey", "Record"])
-    if games_path.exists():
-        rec = _load_record_from_games(games_path, alias_map)
-    df = df.merge(rec, on="TeamKey", how="left")
+    rec_games = _load_record_from_games(games_path, alias_map) if games_path.exists() else pd.DataFrame(columns=["TeamKey", "Record_games"])
+    df = df.merge(rec_games, on="TeamKey", how="left")
 
-    if "Record" not in df.columns:
-        df["Record"] = ""
-    df["Record"] = df["Record"].fillna("0-0")
+    if "Record" in kp_raw.columns:
+        kp_rec = kp_raw[["Team", "Record"]].copy()
+        kp_rec["TeamCanon"] = kp_rec["Team"].astype(str).map(lambda x: _canon_team(x, alias_map))
+        kp_rec["TeamKey"] = kp_rec["TeamCanon"].map(_team_key)
+        kp_rec = kp_rec[["TeamKey", "Record"]].copy()
+        kp_rec["Record"] = kp_rec["Record"].astype(str).str.strip()
+        kp_rec.loc[kp_rec["Record"] == "", "Record"] = pd.NA
+        df = df.merge(kp_rec.rename(columns={"Record": "Record_kp"}), on="TeamKey", how="left")
+    else:
+        df["Record_kp"] = pd.NA
+
+    df["Record_games"] = df["Record_games"].astype(str).str.strip()
+    df.loc[df["Record_games"] == "", "Record_games"] = pd.NA
+
+    df["Record"] = df["Record_kp"].fillna(df["Record_games"]).fillna("0-0")
 
     df = df.sort_values("NET", na_position="last").reset_index(drop=True)
 
