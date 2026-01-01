@@ -1,7 +1,7 @@
 snapshot_date,Team,SOS
 2026-01-01,Texas Tech,1
-2026-01-01,Kansas,2
-2026-01-01,Michigan,3
+2026-01-01,Michigan,2
+2026-01-01,Kansas,3
 2026-01-01,Auburn,4
 2026-01-01,Alabama,5
 2026-01-01,Duke,6
@@ -27,15 +27,15 @@ snapshot_date,Team,SOS
 2026-01-01,Florida,26
 2026-01-01,Boise State,27
 2026-01-01,Vanderbilt,28
-2026-01-01,Arizona State,29
-2026-01-01,Houston,30
-2026-01-01,Saint Mary's College,31
+2026-01-01,Houston,29
+2026-01-01,Saint Mary's College,30
+2026-01-01,Arizona State,31
 2026-01-01,Tennessee,32
 2026-01-01,Virginia Tech,33
-2026-01-01,Pittsburgh,34
-2026-01-01,Iowa,35
+2026-01-01,Mississippi State,34
+2026-01-01,Pittsburgh,35
 2026-01-01,Iowa State,36
-2026-01-01,Mississippi State,37
+2026-01-01,Iowa,37
 2026-01-01,Ohio State,38
 2026-01-01,Florida State,39
 2026-01-01,SMU,40
@@ -50,12 +50,12 @@ snapshot_date,Team,SOS
 2026-01-01,TCU,49
 2026-01-01,Villanova,50
 2026-01-01,Maryland,51
-2026-01-01,Utah,52
-2026-01-01,Utah State,53
+2026-01-01,Utah State,52
+2026-01-01,Utah,53
 2026-01-01,New Mexico,54
-2026-01-01,Oklahoma State,55
-2026-01-01,Ohio,56
-2026-01-01,Virginia,57
+2026-01-01,Virginia,55
+2026-01-01,Oklahoma State,56
+2026-01-01,Ohio,57
 2026-01-01,Stanford,58
 2026-01-01,Marquette,59
 2026-01-01,Rutgers,60
@@ -63,20 +63,20 @@ snapshot_date,Team,SOS
 2026-01-01,Northwestern,62
 2026-01-01,Santa Clara,63
 2026-01-01,Nebraska,64
-2026-01-01,UNLV,65
-2026-01-01,Toledo,66
-2026-01-01,Xavier,67
-2026-01-01,VCU,68
-2026-01-01,FAU,69
-2026-01-01,UCLA,70
-2026-01-01,Clemson,71
-2026-01-01,Texas,72
-2026-01-01,Saint Bonaventure,73
-2026-01-01,Washington,74
-2026-01-01,Evansville,75
-2026-01-01,Seton Hall,76
-2026-01-01,Notre Dame,77
-2026-01-01,Georgetown,78
+2026-01-01,VCU,65
+2026-01-01,UNLV,66
+2026-01-01,Toledo,67
+2026-01-01,Xavier,68
+2026-01-01,UCLA,69
+2026-01-01,Texas,70
+2026-01-01,FAU,71
+2026-01-01,Washington,72
+2026-01-01,Clemson,73
+2026-01-01,Evansville,74
+2026-01-01,Seton Hall,75
+2026-01-01,Saint Bonaventure,76
+2026-01-01,Georgetown,77
+2026-01-01,Notre Dame,78
 2026-01-01,Duquesne,79
 2026-01-01,George Washington,80
 2026-01-01,Northern Iowa,81
@@ -84,52 +84,52 @@ snapshot_date,Team,SOS
 2026-01-01,Providence,83
 2026-01-01,La Salle,84
 2026-01-01,San Francisco,85
-2026-01-01,Washington State,86
+2026-01-01,Missouri,86
 2026-01-01,Boston College,87
-2026-01-01,Missouri,88
+2026-01-01,Washington State,88
 2026-01-01,Penn State,89
 2026-01-01,Air Force,90
 2026-01-01,Gonzaga,91
-2026-01-01,Middle Tennessee,92
-2026-01-01,George Mason,93
-2026-01-01,Minnesota,94
-2026-01-01,Towson,95
-2026-01-01,Georgia Tech,96
+2026-01-01,Minnesota,92
+2026-01-01,Middle Tennessee,93
+2026-01-01,Tulane,94
+2026-01-01,George Mason,95
+2026-01-01,Towson,96
 2026-01-01,Butler,97
-2026-01-01,Tulane,98
+2026-01-01,Georgia Tech,98
 2026-01-01,Dayton,99
 2026-01-01,LSU,100
-2026-01-01,Princeton,101
-2026-01-01,UTEP,102
+2026-01-01,Cornell,101
+2026-01-01,Princeton,102
 2026-01-01,San Jose State,103
-2026-01-01,Cornell,104
+2026-01-01,UTEP,104
 2026-01-01,Georgia,105
 2026-01-01,Oakland,106
-2026-01-01,West Virginia,107
-2026-01-01,Drake,108
-2026-01-01,Fresno State,109
-2026-01-01,South Carolina,110
+2026-01-01,Drake,107
+2026-01-01,West Virginia,108
+2026-01-01,South Carolina,109
+2026-01-01,Fresno State,110
 2026-01-01,Akron,111
-2026-01-01,Saint Louis,112
+2026-01-01,Southern Illinois,112
 2026-01-01,Wichita State,113
-2026-01-01,Southern Illinois,114
-2026-01-01,Texas A&M,115
-2026-01-01,Loyola-Chicago,116
-2026-01-01,Bradley,117
-2026-01-01,Kent State,118
+2026-01-01,Saint Louis,114
+2026-01-01,Loyola-Chicago,115
+2026-01-01,Kent State,116
+2026-01-01,Texas A&M,117
+2026-01-01,Bradley,118
 2026-01-01,Utah Valley,119
 2026-01-01,Wyoming,120
 2026-01-01,Oregon State,121
-2026-01-01,Abilene Christian,122
-2026-01-01,Rhode Island,123
-2026-01-01,FIU,124
-2026-01-01,Yale,125
-2026-01-01,Liberty,126
-2026-01-01,Oklahoma,127
-2026-01-01,Western Kentucky,128
-2026-01-01,Colorado State,129
-2026-01-01,UC Irvine,130
-2026-01-01,UAB,131
+2026-01-01,Rhode Island,122
+2026-01-01,Abilene Christian,123
+2026-01-01,Oklahoma,124
+2026-01-01,FIU,125
+2026-01-01,Colorado State,126
+2026-01-01,Yale,127
+2026-01-01,Liberty,128
+2026-01-01,UAB,129
+2026-01-01,Western Kentucky,130
+2026-01-01,UC Irvine,131
 2026-01-01,California,132
 2026-01-01,Murray State,133
 2026-01-01,Belmont,134
@@ -137,94 +137,94 @@ snapshot_date,Team,SOS
 2026-01-01,UTSA,136
 2026-01-01,East Carolina,137
 2026-01-01,Charleston,138
-2026-01-01,DePaul,139
+2026-01-01,New Mexico State,139
 2026-01-01,Bowling Green,140
-2026-01-01,Illinois State,141
-2026-01-01,Loyola-Marymount,142
-2026-01-01,Jacksonville State,143
-2026-01-01,New Mexico State,144
-2026-01-01,Indiana State,145
-2026-01-01,Southern Utah,146
+2026-01-01,DePaul,141
+2026-01-01,Illinois State,142
+2026-01-01,Loyola-Marymount,143
+2026-01-01,Jacksonville State,144
+2026-01-01,Southern Utah,145
+2026-01-01,Indiana State,146
 2026-01-01,Utah Tech,147
 2026-01-01,Hofstra,148
 2026-01-01,Elon,149
 2026-01-01,Grand Canyon,150
-2026-01-01,San Diego,151
-2026-01-01,Old Dominion,152
-2026-01-01,Miami (FL),153
+2026-01-01,Miami (FL),151
+2026-01-01,San Diego,152
+2026-01-01,Old Dominion,153
 2026-01-01,Davidson,154
-2026-01-01,Eastern Kentucky,155
-2026-01-01,UNC Asheville,156
-2026-01-01,Western Michigan,157
-2026-01-01,Cal Poly,158
-2026-01-01,Sam Houston State,159
-2026-01-01,Northeastern,160
-2026-01-01,Troy,161
+2026-01-01,UNC Asheville,155
+2026-01-01,Western Michigan,156
+2026-01-01,Cal Poly,157
+2026-01-01,Sam Houston State,158
+2026-01-01,Northeastern,159
+2026-01-01,Eastern Michigan,160
+2026-01-01,Eastern Kentucky,161
 2026-01-01,Dartmouth,162
-2026-01-01,Eastern Michigan,163
+2026-01-01,Central Michigan,163
 2026-01-01,Green Bay,164
-2026-01-01,Central Michigan,165
-2026-01-01,Marshall,166
-2026-01-01,UIC,167
-2026-01-01,Fordham,168
-2026-01-01,Valparaiso,169
-2026-01-01,Pepperdine,170
-2026-01-01,Richmond,171
+2026-01-01,Valparaiso,165
+2026-01-01,Troy,166
+2026-01-01,Marshall,167
+2026-01-01,UIC,168
+2026-01-01,Fordham,169
+2026-01-01,Richmond,170
+2026-01-01,Pepperdine,171
 2026-01-01,Merrimack,172
 2026-01-01,Louisiana,173
 2026-01-01,Northern Illinois,174
 2026-01-01,James Madison,175
-2026-01-01,William & Mary,176
-2026-01-01,Saint Joseph's,177
+2026-01-01,Saint Joseph's,176
+2026-01-01,William & Mary,177
 2026-01-01,Rice,178
 2026-01-01,UMass,179
 2026-01-01,Harvard,180
-2026-01-01,Seattle University,181
-2026-01-01,Milwaukee,182
-2026-01-01,Missouri State,183
-2026-01-01,Penn,184
+2026-01-01,Missouri State,181
+2026-01-01,Penn,182
+2026-01-01,Milwaukee,183
+2026-01-01,Louisiana Tech,184
 2026-01-01,Gardner-Webb,185
-2026-01-01,Louisiana Tech,186
+2026-01-01,Seattle University,186
 2026-01-01,Campbell,187
-2026-01-01,Delaware,188
-2026-01-01,UC Riverside,189
-2026-01-01,North Texas,190
-2026-01-01,UTA,191
+2026-01-01,UC Riverside,188
+2026-01-01,Delaware,189
+2026-01-01,UTA,190
+2026-01-01,North Texas,191
 2026-01-01,Tarleton State,192
-2026-01-01,UC San Diego,193
-2026-01-01,Kennesaw State,194
-2026-01-01,Charlotte,195
-2026-01-01,Hampton,196
-2026-01-01,Cal State Fullerton,197
-2026-01-01,North Florida,198
+2026-01-01,Kennesaw State,193
+2026-01-01,Charlotte,194
+2026-01-01,UC San Diego,195
+2026-01-01,North Florida,196
+2026-01-01,Hampton,197
+2026-01-01,Cal State Fullerton,198
 2026-01-01,Arkansas State,199
 2026-01-01,Tulsa,200
-2026-01-01,Stony Brook,201
-2026-01-01,Western Carolina,202
+2026-01-01,Western Carolina,201
+2026-01-01,Wright State,202
 2026-01-01,Quinnipiac,203
 2026-01-01,Georgia State,204
-2026-01-01,Wright State,205
+2026-01-01,Stony Brook,205
 2026-01-01,Rider,206
 2026-01-01,McNeese,207
 2026-01-01,Mercer,208
 2026-01-01,UNCW,209
-2026-01-01,Winthrop,210
-2026-01-01,Cleveland State,211
+2026-01-01,Cleveland State,210
+2026-01-01,Winthrop,211
 2026-01-01,Furman,212
 2026-01-01,UC Davis,213
 2026-01-01,Pacific,214
 2026-01-01,Buffalo,215
 2026-01-01,New Orleans,216
-2026-01-01,Chattanooga,217
-2026-01-01,Texas A&M-Corpus Christi,218
+2026-01-01,Texas A&M-Corpus Christi,217
+2026-01-01,Chattanooga,218
 2026-01-01,Samford,219
 2026-01-01,Cal State Northridge,220
 2026-01-01,South Dakota State,221
 2026-01-01,Long Beach State,222
 2026-01-01,Canisius,223
-2026-01-01,Northwestern State,224
-2026-01-01,Lipscomb,225
-2026-01-01,Saint Peter's,226
+2026-01-01,Lipscomb,224
+2026-01-01,Saint Peter's,225
+2026-01-01,Northwestern State,226
 2026-01-01,Temple,227
 2026-01-01,Siena,228
 2026-01-01,California Baptist,229
@@ -232,106 +232,106 @@ snapshot_date,Team,SOS
 2026-01-01,Southern Miss,231
 2026-01-01,Miami (OH),232
 2026-01-01,Monmouth,233
-2026-01-01,UC Santa Barbara,234
-2026-01-01,Niagara,235
+2026-01-01,Niagara,234
+2026-01-01,UC Santa Barbara,235
 2026-01-01,Columbia,236
 2026-01-01,Sacramento State,237
-2026-01-01,Sacred Heart,238
-2026-01-01,Nicholls,239
-2026-01-01,Eastern Washington,240
-2026-01-01,Purdue Fort Wayne,241
+2026-01-01,Nicholls,238
+2026-01-01,Sacred Heart,239
+2026-01-01,Central Arkansas,240
+2026-01-01,Eastern Washington,241
 2026-01-01,Drexel,242
 2026-01-01,Colgate,243
-2026-01-01,Central Arkansas,244
-2026-01-01,North Carolina A&T,245
+2026-01-01,North Carolina A&T,244
+2026-01-01,Purdue Fort Wayne,245
 2026-01-01,Eastern Illinois,246
-2026-01-01,UTRGV,247
-2026-01-01,Ball State,248
-2026-01-01,Southeast Missouri,249
-2026-01-01,Montana,250
+2026-01-01,Montana,247
+2026-01-01,UTRGV,248
+2026-01-01,Ball State,249
+2026-01-01,Southeast Missouri,250
 2026-01-01,Omaha,251
 2026-01-01,South Alabama,252
-2026-01-01,Bellarmine,253
-2026-01-01,North Dakota,254
-2026-01-01,South Carolina Upstate,255
+2026-01-01,North Dakota,253
+2026-01-01,Bellarmine,254
+2026-01-01,East Texas A&M,255
 2026-01-01,Idaho State,256
 2026-01-01,Denver,257
-2026-01-01,UNCG,258
-2026-01-01,Marist,259
-2026-01-01,East Texas A&M,260
-2026-01-01,Northern Kentucky,261
-2026-01-01,Oral Roberts,262
-2026-01-01,Texas State,263
-2026-01-01,Northern Arizona,264
-2026-01-01,ULM,265
-2026-01-01,Incarnate Word,266
+2026-01-01,Marist,258
+2026-01-01,Oral Roberts,259
+2026-01-01,Northern Arizona,260
+2026-01-01,Texas State,261
+2026-01-01,Northern Kentucky,262
+2026-01-01,ULM,263
+2026-01-01,Incarnate Word,264
+2026-01-01,South Carolina Upstate,265
+2026-01-01,UNCG,266
 2026-01-01,Bucknell,267
-2026-01-01,IU Indianapolis,268
+2026-01-01,FGCU,268
 2026-01-01,Bethune-Cookman,269
-2026-01-01,East Tennessee State,270
+2026-01-01,IU Indianapolis,270
 2026-01-01,Southeastern Louisiana,271
-2026-01-01,Youngstown State,272
-2026-01-01,FGCU,273
-2026-01-01,Montana State,274
-2026-01-01,Coastal Carolina,275
-2026-01-01,Tennessee State,276
-2026-01-01,Queens,277
-2026-01-01,Iona,278
-2026-01-01,Houston Christian,279
-2026-01-01,Wofford,280
-2026-01-01,Detroit,281
+2026-01-01,East Tennessee State,272
+2026-01-01,Montana State,273
+2026-01-01,Youngstown State,274
+2026-01-01,Tennessee State,275
+2026-01-01,Coastal Carolina,276
+2026-01-01,Iona,277
+2026-01-01,Houston Christian,278
+2026-01-01,Wofford,279
+2026-01-01,Detroit,280
+2026-01-01,Queens,281
 2026-01-01,North Alabama,282
 2026-01-01,North Dakota State,283
-2026-01-01,Manhattan,284
-2026-01-01,Weber State,285
-2026-01-01,Lamar,286
-2026-01-01,Appalachian State,287
-2026-01-01,UMKC,288
-2026-01-01,Cal State Bakersfield,289
+2026-01-01,Lamar,284
+2026-01-01,Manhattan,285
+2026-01-01,Weber State,286
+2026-01-01,UMKC,287
+2026-01-01,Cal State Bakersfield,288
+2026-01-01,Appalachian State,289
 2026-01-01,Fairfield,290
 2026-01-01,UMass-Lowell,291
-2026-01-01,Idaho,292
-2026-01-01,Mount Saint Mary's,293
-2026-01-01,Albany,294
-2026-01-01,Army,295
-2026-01-01,Saint Francis (PA),296
-2026-01-01,Portland State,297
-2026-01-01,Radford,298
+2026-01-01,Mount Saint Mary's,292
+2026-01-01,Idaho,293
+2026-01-01,Portland State,294
+2026-01-01,Albany,295
+2026-01-01,Army,296
+2026-01-01,Radford,297
+2026-01-01,Saint Francis (PA),298
 2026-01-01,Jacksonville,299
-2026-01-01,Georgia Southern,300
-2026-01-01,Morehead State,301
-2026-01-01,Stetson,302
-2026-01-01,Bryant,303
+2026-01-01,Morehead State,300
+2026-01-01,Georgia Southern,301
+2026-01-01,Bryant,302
+2026-01-01,Robert Morris,303
 2026-01-01,Jackson State,304
-2026-01-01,American,305
-2026-01-01,Chicago State,306
-2026-01-01,Robert Morris,307
-2026-01-01,Saint Thomas,308
+2026-01-01,Stetson,305
+2026-01-01,American,306
+2026-01-01,Saint Thomas,307
+2026-01-01,Chicago State,308
 2026-01-01,Lindenwood,309
 2026-01-01,Lehigh,310
 2026-01-01,Little Rock,311
 2026-01-01,Hawaii,312
-2026-01-01,West Georgia,313
-2026-01-01,Tennessee Tech,314
-2026-01-01,Western Illinois,315
-2026-01-01,VMI,316
+2026-01-01,VMI,313
+2026-01-01,Western Illinois,314
+2026-01-01,Tennessee Tech,315
+2026-01-01,West Georgia,316
 2026-01-01,Stephen F. Austin,317
 2026-01-01,Vermont,318
 2026-01-01,Presbyterian College,319
 2026-01-01,Grambling State,320
 2026-01-01,New Hampshire,321
 2026-01-01,Longwood,322
-2026-01-01,The Citadel,323
-2026-01-01,Austin Peay,324
+2026-01-01,Austin Peay,323
+2026-01-01,The Citadel,324
 2026-01-01,Florida A&M,325
 2026-01-01,Holy Cross,326
 2026-01-01,Maine,327
 2026-01-01,Southern,328
 2026-01-01,Northern Colorado,329
 2026-01-01,High Point,330
-2026-01-01,Arkansas-Pine Bluff,331
+2026-01-01,Texas Southern,331
 2026-01-01,Loyola-Maryland,332
-2026-01-01,Texas Southern,333
+2026-01-01,Arkansas-Pine Bluff,333
 2026-01-01,Charleston Southern,334
 2026-01-01,Alabama A&M,335
 2026-01-01,North Carolina Central,336
@@ -342,9 +342,9 @@ snapshot_date,Team,SOS
 2026-01-01,New Haven,341
 2026-01-01,Stonehill,342
 2026-01-01,Southern Indiana,343
-2026-01-01,Lafayette,344
-2026-01-01,Norfolk State,345
-2026-01-01,South Carolina State,346
+2026-01-01,South Carolina State,344
+2026-01-01,Lafayette,345
+2026-01-01,Norfolk State,346
 2026-01-01,Navy,347
 2026-01-01,South Dakota,348
 2026-01-01,SIUE,349
@@ -357,8 +357,8 @@ snapshot_date,Team,SOS
 2026-01-01,Maryland Eastern Shore,356
 2026-01-01,Mississippi Valley State,357
 2026-01-01,Mercyhurst,358
-2026-01-01,Long Island,359
-2026-01-01,Howard,360
+2026-01-01,Howard,359
+2026-01-01,Long Island,360
 2026-01-01,Le Moyne,361
 2026-01-01,UMBC,362
 2026-01-01,Binghamton,363
