@@ -12,6 +12,18 @@ def _team_key(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", str(s).strip().lower())
 
 
+def _latest_snapshot(df: pd.DataFrame) -> pd.DataFrame:
+    cols = {c.lower().strip(): c for c in df.columns}
+    sd = cols.get("snapshot_date")
+    if sd is None:
+        return df
+    try:
+        mx = df[sd].astype(str).max()
+        return df[df[sd].astype(str) == mx].copy()
+    except Exception:
+        return df
+
+
 def _load_alias_map(root: Path) -> dict[str, str]:
     candidates = [
         root / "data_raw" / "team_alias.csv",
@@ -75,18 +87,6 @@ def _load_alias_map(root: Path) -> dict[str, str]:
 def _canon_team(name: str, alias_map: dict[str, str]) -> str:
     k = str(name).strip().lower()
     return alias_map.get(k, str(name).strip())
-
-
-def _latest_snapshot(df: pd.DataFrame) -> pd.DataFrame:
-    cols = {c.lower().strip(): c for c in df.columns}
-    sd = cols.get("snapshot_date")
-    if sd is None:
-        return df
-    try:
-        mx = df[sd].astype(str).max()
-        return df[df[sd].astype(str) == mx].copy()
-    except Exception:
-        return df
 
 
 def _load_rank_csv(path: Path, wanted_rank_names: list[str]) -> pd.DataFrame:
@@ -173,7 +173,6 @@ def _load_record_from_kenpom(path: Path, alias_map: dict[str, str]) -> pd.DataFr
 
 def _load_record_from_games(path: Path, alias_map: dict[str, str]) -> pd.DataFrame:
     g = pd.read_csv(path)
-
     cols = {c.lower().strip(): c for c in g.columns}
     team_col = cols.get("team")
     ts_col = cols.get("team_score")
@@ -244,78 +243,112 @@ def main() -> None:
     sos_path = data_raw / "SOS_Rank.csv"
     games_path = data_raw / "games_2024_clean_no_ids.csv"
 
-    if net_path.exists():
-        net = pd.read_csv(net_path)
-        cols = {c.lower().strip(): c for c in net.columns}
-        team_col = cols.get("team", net.columns[0])
-        rank_col = cols.get("net_rank") or cols.get("net") or (net.columns[1] if len(net.columns) > 1 else net.columns[0])
-        net2 = net[[team_col, rank_col]].copy()
-        net2.columns = ["Team", "NET"]
-    else:
-        net2 = pd.DataFrame(columns=["Team", "NET"])
+    if not net_path.exists():
+        raise SystemExit("Missing data_raw/NET_Rank.csv")
+
+    net = pd.read_csv(net_path)
+    net = _latest_snapshot(net)
+
+    net_cols = {c.lower().strip(): c for c in net.columns}
+    net_team_col = net_cols.get("team", net.columns[0])
+
+    net_rank_col = None
+    for k in ["net_rank", "rank", "net"]:
+        if k in net_cols:
+            net_rank_col = net_cols[k]
+            break
+    if net_rank_col is None:
+        if len(net.columns) > 1:
+            net_rank_col = net.columns[1]
+        else:
+            raise SystemExit("Could not locate NET rank column")
+
+    net2 = net[[net_team_col, net_rank_col]].copy()
+    net2.columns = ["Team", "NET"]
+    net2["NET"] = pd.to_numeric(net2["NET"], errors="coerce")
+    net2 = net2.dropna(subset=["NET"])
+    net2["NET"] = net2["NET"].astype(int)
+
+    net2["TeamCanon"] = net2["Team"].astype(str).map(lambda x: _canon_team(x, alias_map))
+    net2["TeamKey"] = net2["TeamCanon"].map(_team_key)
+    net2 = net2[net2["TeamKey"].astype(str).str.len() > 0]
+    net2 = net2.drop_duplicates(subset=["TeamKey"], keep="first")
+    net2 = net2.sort_values("NET").reset_index(drop=True)
+
+    base = net2[["TeamCanon", "TeamKey", "NET"]].copy()
 
     kp = _load_rank_csv(kp_path, ["kenpom_rank", "kenpom"]) if kp_path.exists() else pd.DataFrame(columns=["Team", "Rank"])
     kp = kp.rename(columns={"Rank": "KenPom"})
+    if not kp.empty:
+        kp["TeamCanon"] = kp["Team"].astype(str).map(lambda x: _canon_team(x, alias_map))
+        kp["TeamKey"] = kp["TeamCanon"].map(_team_key)
+        kp = kp[["TeamKey", "KenPom"]]
 
     bpi = _load_rank_csv(bpi_path, ["bpi_rank", "bpi"]) if bpi_path.exists() else pd.DataFrame(columns=["Team", "Rank"])
     bpi = bpi.rename(columns={"Rank": "BPI"})
+    if not bpi.empty:
+        bpi["TeamCanon"] = bpi["Team"].astype(str).map(lambda x: _canon_team(x, alias_map))
+        bpi["TeamKey"] = bpi["TeamCanon"].map(_team_key)
+        bpi = bpi[["TeamKey", "BPI"]]
 
     ap = _load_rank_csv(ap_path, ["ap_rank", "ap"]) if ap_path.exists() else pd.DataFrame(columns=["Team", "Rank"])
     ap = ap.rename(columns={"Rank": "AP"})
+    if not ap.empty:
+        ap["TeamCanon"] = ap["Team"].astype(str).map(lambda x: _canon_team(x, alias_map))
+        ap["TeamKey"] = ap["TeamCanon"].map(_team_key)
+        ap = ap[["TeamKey", "AP"]]
 
     sos = _load_rank_csv(sos_path, ["sos", "rank"]) if sos_path.exists() else pd.DataFrame(columns=["Team", "Rank"])
     sos = sos.rename(columns={"Rank": "SOS"})
-
-    def prep(df: pd.DataFrame, col: str) -> pd.DataFrame:
-        if "Team" not in df.columns:
-            return pd.DataFrame(columns=["TeamCanon", "TeamKey", col])
-        d = df.copy()
-        d["TeamCanon"] = d["Team"].astype(str).map(lambda x: _canon_team(x, alias_map))
-        d["TeamKey"] = d["TeamCanon"].map(_team_key)
-        return d[["TeamCanon", "TeamKey", col]].copy()
-
-    net_df = prep(net2, "NET")
-    kp_df = prep(kp, "KenPom")
-    bpi_df = prep(bpi, "BPI")
-    ap_df = prep(ap, "AP")
-    sos_df = prep(sos, "SOS")
-
-    base = (
-        pd.concat(
-            [
-                net_df[["TeamCanon", "TeamKey"]],
-                kp_df[["TeamCanon", "TeamKey"]],
-                bpi_df[["TeamCanon", "TeamKey"]],
-                ap_df[["TeamCanon", "TeamKey"]],
-                sos_df[["TeamCanon", "TeamKey"]],
-            ],
-            ignore_index=True,
-        )
-        .drop_duplicates(subset=["TeamKey"])
-    )
+    if not sos.empty:
+        sos["TeamCanon"] = sos["Team"].astype(str).map(lambda x: _canon_team(x, alias_map))
+        sos["TeamKey"] = sos["TeamCanon"].map(_team_key)
+        sos = sos[["TeamKey", "SOS"]]
 
     df = base.copy()
-    df = df.merge(net_df[["TeamKey", "NET"]], on="TeamKey", how="left")
-    df = df.merge(kp_df[["TeamKey", "KenPom"]], on="TeamKey", how="left")
-    df = df.merge(bpi_df[["TeamKey", "BPI"]], on="TeamKey", how="left")
-    df = df.merge(ap_df[["TeamKey", "AP"]], on="TeamKey", how="left")
-    df = df.merge(sos_df[["TeamKey", "SOS"]], on="TeamKey", how="left")
+    if not kp.empty:
+        df = df.merge(kp, on="TeamKey", how="left")
+    else:
+        df["KenPom"] = None
+
+    if not bpi.empty:
+        df = df.merge(bpi, on="TeamKey", how="left")
+    else:
+        df["BPI"] = None
+
+    if not ap.empty:
+        df = df.merge(ap, on="TeamKey", how="left")
+    else:
+        df["AP"] = None
+
+    if not sos.empty:
+        df = df.merge(sos, on="TeamKey", how="left")
+    else:
+        df["SOS"] = None
 
     rec_games = pd.DataFrame(columns=["TeamKey", "Record"])
     if games_path.exists():
-        rec_games = _load_record_from_games(games_path, alias_map)
+        rec_games = _load_record_from_games(games_path, alias_map).rename(columns={"Record": "RecordGames"})
 
     rec_kp = pd.DataFrame(columns=["TeamKey", "Record"])
     if kp_path.exists():
-        rec_kp = _load_record_from_kenpom(kp_path, alias_map)
+        rec_kp = _load_record_from_kenpom(kp_path, alias_map).rename(columns={"Record": "RecordKP"})
 
-    df = df.merge(rec_games.rename(columns={"Record": "RecordGames"}), on="TeamKey", how="left")
-    df = df.merge(rec_kp.rename(columns={"Record": "RecordKP"}), on="TeamKey", how="left")
+    if not rec_games.empty:
+        df = df.merge(rec_games, on="TeamKey", how="left")
+    else:
+        df["RecordGames"] = ""
 
-    df["Record"] = df["RecordKP"].where(df["RecordKP"].notna() & (df["RecordKP"].astype(str).str.len() > 0), df["RecordGames"])
-    df["Record"] = df["Record"].fillna("")
+    if not rec_kp.empty:
+        df = df.merge(rec_kp, on="TeamKey", how="left")
+    else:
+        df["RecordKP"] = ""
 
-    df = df.sort_values("NET", na_position="last").reset_index(drop=True)
+    df["RecordKP"] = df["RecordKP"].fillna("").astype(str).str.strip()
+    df["RecordGames"] = df["RecordGames"].fillna("").astype(str).str.strip()
+    df["Record"] = df["RecordKP"].where(df["RecordKP"].str.len() > 0, df["RecordGames"]).fillna("")
+
+    df = df.sort_values("NET").reset_index(drop=True)
 
     df_out = pd.DataFrame(
         {
