@@ -5,10 +5,6 @@ on:
     - cron: "44 * * * *"
   workflow_dispatch:
 
-concurrency:
-  group: update-data-and-site
-  cancel-in-progress: true
-
 permissions:
   contents: write
 
@@ -41,14 +37,10 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add -A
-
           if git diff --cached --quiet; then
             echo "No changes to commit."
-            exit 0
+          else
+            git commit -m "Auto update data + site"
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
-
-          git commit -m "Auto update data + site"
-
-          git pull --rebase origin main
-
-          git push origin HEAD:main
