@@ -1019,11 +1019,11 @@ Date,Team,Location,Opponent,Team_Score,Opponent_Score,Win?
 2026-01-01,Cal State Northridge Matadors,A,UC Davis Aggies,,,
 2026-01-01,California Baptist,A,UT Arlington,,,
 2026-01-01,California Baptist Lancers,A,UT Arlington Mavericks,,,
-2026-01-01,Central Arkansas,H,Florida Gulf Coast,,,
+2026-01-01,Central Arkansas,H,Florida Gulf Coast,85,83,1
 2026-01-01,Central Arkansas Bears,H,Florida Gulf Coast Eagles,,,
 2026-01-01,Chattanooga,A,UNC Greensboro,,,
 2026-01-01,Chattanooga Mocs,A,UNC Greensboro Spartans,,,
-2026-01-01,Coastal Carolina,H,Georgia Southern,,,
+2026-01-01,Coastal Carolina,H,Georgia Southern,81,82,0
 2026-01-01,Coastal Carolina Chanticleers,H,Georgia Southern Eagles,,,
 2026-01-01,Dartmouth,H,Elms College,107,43,1
 2026-01-01,Dartmouth Big Green,H,Elms College Blazers,,,
@@ -1031,51 +1031,51 @@ Date,Team,Location,Opponent,Team_Score,Opponent_Score,Win?
 2026-01-01,Elms College Blazers,A,Dartmouth Big Green,,,
 2026-01-01,Evansville,A,Illinois State,,,
 2026-01-01,Evansville Purple Aces,A,Illinois State Redbirds,,,
-2026-01-01,Florida Gulf Coast,A,Central Arkansas,,,
+2026-01-01,Florida Gulf Coast,A,Central Arkansas,83,85,0
 2026-01-01,Florida Gulf Coast Eagles,A,Central Arkansas Bears,,,
-2026-01-01,Georgia Southern,A,Coastal Carolina,,,
+2026-01-01,Georgia Southern,A,Coastal Carolina,82,81,1
 2026-01-01,Georgia Southern Eagles,A,Coastal Carolina Chanticleers,,,
-2026-01-01,Green Bay,A,Purdue Fort Wayne,,,
+2026-01-01,Green Bay,A,Purdue Fort Wayne,72,54,1
 2026-01-01,Green Bay Phoenix,A,Purdue Fort Wayne Mastodons,,,
-2026-01-01,IU Indianapolis,A,Northern Kentucky,,,
+2026-01-01,IU Indianapolis,A,Northern Kentucky,72,81,0
 2026-01-01,IU Indianapolis Jaguars,A,Northern Kentucky Norse,,,
 2026-01-01,Illinois State,H,Evansville,,,
 2026-01-01,Illinois State Redbirds,H,Evansville Purple Aces,,,
-2026-01-01,Jacksonville,A,Lipscomb,,,
+2026-01-01,Jacksonville,A,Lipscomb,57,76,0
 2026-01-01,Jacksonville Dolphins,A,Lipscomb Bisons,,,
 2026-01-01,Lindenwood,H,Morehead State,,,
 2026-01-01,Lindenwood Lions,H,Morehead State Eagles,,,
-2026-01-01,Lipscomb,H,Jacksonville,,,
+2026-01-01,Lipscomb,H,Jacksonville,76,57,1
 2026-01-01,Lipscomb Bisons,H,Jacksonville Dolphins,,,
 2026-01-01,Little Rock,H,Tennessee Tech,,,
 2026-01-01,Little Rock Trojans,H,Tennessee Tech Golden Eagles,,,
-2026-01-01,Milwaukee,A,Wright State,,,
+2026-01-01,Milwaukee,A,Wright State,70,76,0
 2026-01-01,Milwaukee Panthers,A,Wright State Raiders,,,
 2026-01-01,Montana,H,Northern Arizona,,,
 2026-01-01,Montana Grizzlies,H,Northern Arizona Lumberjacks,,,
 2026-01-01,Morehead State,A,Lindenwood,,,
 2026-01-01,Morehead State Eagles,A,Lindenwood Lions,,,
-2026-01-01,North Alabama,H,Stetson,,,
+2026-01-01,North Alabama,H,Stetson,67,70,0
 2026-01-01,North Alabama Lions,H,Stetson Hatters,,,
-2026-01-01,North Dakota,H,Oral Roberts,,,
+2026-01-01,North Dakota,H,Oral Roberts,72,61,1
 2026-01-01,North Dakota Fighting Hawks,H,Oral Roberts Golden Eagles,,,
 2026-01-01,Northern Arizona,A,Montana,,,
 2026-01-01,Northern Arizona Lumberjacks,A,Montana Grizzlies,,,
-2026-01-01,Northern Kentucky,H,IU Indianapolis,,,
+2026-01-01,Northern Kentucky,H,IU Indianapolis,81,72,1
 2026-01-01,Northern Kentucky Norse,H,IU Indianapolis Jaguars,,,
-2026-01-01,Oakland,A,Youngstown State,,,
+2026-01-01,Oakland,A,Youngstown State,85,83,1
 2026-01-01,Oakland Golden Grizzlies,A,Youngstown State Penguins,,,
 2026-01-01,Omaha,A,South Dakota State,,,
 2026-01-01,Omaha Mavericks,A,South Dakota State Jackrabbits,,,
-2026-01-01,Oral Roberts,A,North Dakota,,,
+2026-01-01,Oral Roberts,A,North Dakota,61,72,0
 2026-01-01,Oral Roberts Golden Eagles,A,North Dakota Fighting Hawks,,,
 2026-01-01,Portland State,A,Weber State,,,
 2026-01-01,Portland State Vikings,A,Weber State Wildcats,,,
-2026-01-01,Purdue Fort Wayne,H,Green Bay,,,
+2026-01-01,Purdue Fort Wayne,H,Green Bay,54,72,0
 2026-01-01,Purdue Fort Wayne Mastodons,H,Green Bay Phoenix,,,
 2026-01-01,SIU Edwardsville,H,Southern Indiana,,,
 2026-01-01,SIU Edwardsville Cougars,H,Southern Indiana Screaming Eagles,,,
-2026-01-01,Samford,A,VMI,,,
+2026-01-01,Samford,A,VMI,78,58,1
 2026-01-01,Samford Bulldogs,A,VMI Keydets,,,
 2026-01-01,South Dakota State,H,Omaha,,,
 2026-01-01,South Dakota State Jackrabbits,H,Omaha Mavericks,,,
@@ -1085,7 +1085,7 @@ Date,Team,Location,Opponent,Team_Score,Opponent_Score,Win?
 2026-01-01,Southern Indiana Screaming Eagles,A,SIU Edwardsville Cougars,,,
 2026-01-01,Southern Miss,A,UL Monroe,,,
 2026-01-01,Southern Miss Golden Eagles,A,UL Monroe Warhawks,,,
-2026-01-01,Stetson,A,North Alabama,,,
+2026-01-01,Stetson,A,North Alabama,70,67,1
 2026-01-01,Stetson Hatters,A,North Alabama Lions,,,
 2026-01-01,Tennessee Tech,A,Little Rock,,,
 2026-01-01,Tennessee Tech Golden Eagles,A,Little Rock Trojans,,,
@@ -1101,7 +1101,7 @@ Date,Team,Location,Opponent,Team_Score,Opponent_Score,Win?
 2026-01-01,UT Arlington Mavericks,H,California Baptist Lancers,,,
 2026-01-01,UT Martin,H,Western Illinois,,,
 2026-01-01,UT Martin Skyhawks,H,Western Illinois Leathernecks,,,
-2026-01-01,VMI,H,Samford,,,
+2026-01-01,VMI,H,Samford,58,78,0
 2026-01-01,VMI Keydets,H,Samford Bulldogs,,,
 2026-01-01,Valparaiso,A,Southern Illinois,,,
 2026-01-01,Valparaiso Beacons,A,Southern Illinois Salukis,,,
@@ -1109,9 +1109,9 @@ Date,Team,Location,Opponent,Team_Score,Opponent_Score,Win?
 2026-01-01,Weber State Wildcats,H,Portland State Vikings,,,
 2026-01-01,Western Illinois,A,UT Martin,,,
 2026-01-01,Western Illinois Leathernecks,A,UT Martin Skyhawks,,,
-2026-01-01,Wright State,H,Milwaukee,,,
+2026-01-01,Wright State,H,Milwaukee,76,70,1
 2026-01-01,Wright State Raiders,H,Milwaukee Panthers,,,
-2026-01-01,Youngstown State,H,Oakland,,,
+2026-01-01,Youngstown State,H,Oakland,83,85,0
 2026-01-01,Youngstown State Penguins,H,Oakland Golden Grizzlies,,,
 2026-01-02,Abilene Christian,H,Utah Tech,,,
 2026-01-02,Abilene Christian Wildcats,H,Utah Tech Trailblazers,,,
