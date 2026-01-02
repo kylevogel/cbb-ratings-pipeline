@@ -125,8 +125,8 @@ Indiana,Indiana,Indiana Hoosiers,Indiana,
 Indiana St.,Indiana St.,Indiana State Sycamores,Indiana St.,
 Iona,Iona,Iona Gaels,Iona,
 Iowa,Iowa,Iowa Hawkeyes,Iowa,
-Iowa St.,Iowa St.,"Iowa State Cyclones, Iowa State",Iowa St.,"Iowa St, Iowa State"
-IU Indy,IU Indy,"IU Indianapolis Jaguars, IU Indianapolis, IU Indy",IU Indy,"IU Indianapolis, IUPUI"
+Iowa St.,Iowa St.,Iowa State Cyclones,Iowa St.,"Iowa St|Iowa State"
+IU Indy,IU Indy,IU Indianapolis Jaguars,IU Indy,"IU Indy|IU Indianapolis|IUPUI"
 Jackson St.,Jackson St.,Jackson State Tigers,Jackson St.,JKST
 Jacksonville,Jacksonville,Jacksonville Dolphins,Jacksonville,
 Jacksonville St.,Jacksonville St.,Jacksonville State Gamecocks,Jacksonville St.,
@@ -173,7 +173,7 @@ Merrimack,Merrimack,Merrimack Warriors,Merrimack,
 Miami FL,Miami FL,Miami Hurricanes,Miami (FL),Miami (FL)
 Miami OH,Miami OH,Miami (OH) RedHawks,Miami (OH),
 Michigan,Michigan,Michigan Wolverines,Michigan,
-Michigan St.,Michigan St.,"Michigan State Spartans, Michigan State",Michigan St.,"Michigan St, Michigan State"
+Michigan St.,Michigan St.,Michigan State Spartans,Michigan St.,"Michigan St|Michigan State"
 Middle Tennessee,Middle Tennessee,Middle Tennessee Blue Raiders,Middle Tenn.,
 Milwaukee,Milwaukee,Milwaukee Panthers,Milwaukee,
 Minnesota,Minnesota,Minnesota Golden Gophers,Minnesota,
@@ -279,7 +279,7 @@ South Florida,South Florida,South Florida Bulls,South Fla.,
 Southeast Missouri,Southeast Missouri,Southeast Missouri State Redhawks,Southeast Mo. St.,
 Southeastern Louisiana,Southeastern Louisiana,SE Louisiana Lions,Southeastern La.,SELA
 Southern,Southern,Southern Jaguars,Southern U.,
-Southern California,USC,"USC Trojans, USC, Southern California",Southern California,"Southern California, Southern Cal, Southern Cal., USC"
+USC,USC,USC Trojans,Southern California,"USC|Southern California|Southern Cal|Southern Cal."
 Southern Illinois,Southern Illinois,Southern Illinois Salukis,Southern Ill.,
 Southern Indiana,Southern Indiana,Southern Indiana Screaming Eagles,Southern Ind.,
 Southern Miss,Southern Miss,Southern Miss Golden Eagles,Southern Miss.,
@@ -326,9 +326,9 @@ UNC Asheville,UNC Asheville,UNC Asheville Bulldogs,UNC Asheville,
 UNC Greensboro,UNC Greensboro,"UNC Greensboro Spartans, UNCG, UNC-Greensboro",UNC Greensboro,"UNC Greensboro, UNCG, UNC-Greensboro"
 UNC Wilmington,UNC Wilmington,UNC Wilmington Seahawks,UNCW,
 UNLV,UNLV,UNLV Rebels,UNLV,
-USC Upstate,USC Upstate,"South Carolina Upstate Spartans, USC Upstate, South Carolina Upstate",USC Upstate,"USC Upstate, South Carolina Upstate, SC Upstate"
+USC Upstate,USC Upstate,South Carolina Upstate Spartans,USC Upstate,"USC Upstate|SC Upstate|South Carolina Upstate"
 UT Arlington,UT Arlington,UT Arlington Mavericks,UT Arlington,"UT Arlington, UT-Arlington, Texas-Arlington"
-UT Rio Grande Valley,UT Rio Grande Valley,"UT Rio Grande Valley Vaqueros, UT Rio Grande Valley, UTRGV",UTRGV,"UTRGV, RGV, UT Rio Grande Valley"
+UT Rio Grande Valley,UT Rio Grande Valley,UT Rio Grande Valley Vaqueros,UTRGV,"UTRGV|RGV|UT Rio Grande Valley"
 Utah,Utah,Utah Utes,Utah,
 Utah St.,Utah St.,Utah State Aggies,Utah St.,
 Utah Tech,Utah Tech,Utah Tech Trailblazers,Utah Tech,
@@ -364,3 +364,4 @@ Wyoming,Wyoming,Wyoming Cowboys,Wyoming,
 Xavier,Xavier,Xavier Musketeers,Xavier,
 Yale,Yale,Yale Bulldogs,Yale,
 Youngstown St.,Youngstown St.,Youngstown State Penguins,Youngstown St.,YSU
+
