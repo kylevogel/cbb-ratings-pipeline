@@ -1,290 +1,200 @@
-import datetime as dt
-import io
+import os
 import re
-from difflib import SequenceMatcher
+import json
+import difflib
+import datetime as dt
+from io import StringIO
 from pathlib import Path
 
 import pandas as pd
 import requests
 
 
-SEASON = 2026
-SOURCE_URL = f"https://www.warrennolan.com/basketball/{SEASON}/sos-rpi-predict"
-
-
-def _root() -> Path:
-    return Path(__file__).resolve().parent
-
-
-def _data_raw(root: Path) -> Path:
-    p = root / "data_raw"
-    p.mkdir(parents=True, exist_ok=True)
-    return p
-
-
-def _session() -> requests.Session:
-    s = requests.Session()
-    s.headers.update(
-        {
-            "User-Agent": "Mozilla/5.0",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "Accept-Language": "en-US,en;q=0.9",
-            "Referer": "https://www.warrennolan.com/",
-        }
-    )
+def _fuzzy_key(s: str) -> str:
+    s = (s or "").lower().strip()
+    s = s.replace("&", " and ")
+    s = re.sub(r"[’']", "", s)
+    s = re.sub(r"[^a-z0-9\s]", " ", s)
+    s = re.sub(r"\b(university|college)\b", " ", s)
+    s = re.sub(r"\bsaint\b", " st ", s)
+    s = re.sub(r"\bstate\b", " st ", s)
+    s = re.sub(r"\bnorth carolina\b", " nc ", s)
+    s = re.sub(r"\bsouth carolina\b", " sc ", s)
+    s = re.sub(r"\bnorth dakota\b", " nd ", s)
+    s = re.sub(r"\bsouth dakota\b", " sd ", s)
+    s = re.sub(r"\bnorth carolina\b", " nc ", s)
+    s = re.sub(r"\bsouth carolina\b", " sc ", s)
+    s = re.sub(r"\s+", " ", s).strip()
     return s
 
 
-def _get(url: str, s: requests.Session, timeout: int = 25) -> str:
-    r = s.get(url, timeout=timeout)
-    if r.status_code != 200:
-        return ""
-    return r.text or ""
+def _best_match(src: str, standards_fk: list[tuple[str, str]]) -> tuple[str, float]:
+    fk = _fuzzy_key(src)
+    best_std = ""
+    best_score = 0.0
+    for std, std_fk in standards_fk:
+        score = difflib.SequenceMatcher(None, fk, std_fk).ratio()
+        if score > best_score:
+            best_score = score
+            best_std = std
+    return best_std, best_score
 
 
-def _discover_candidates(html: str) -> list[str]:
-    cands = []
-
-    for m in re.findall(r'["\'](\/_ajax\/[^"\']+)["\']', html or ""):
-        if "sos" in m and "predict" in m:
-            cands.append("https://www.warrennolan.com" + m)
-
-    guesses = [
-        f"https://www.warrennolan.com/_ajax/basketball/{SEASON}/sos-rpi-predict",
-        f"https://www.warrennolan.com/_ajax/basketball/{SEASON}/sos-rpi-predict/",
-        f"https://www.warrennolan.com/_ajax/basketball/{SEASON}/sos-rpi-predict?sort=rank",
-        f"https://www.warrennolan.com/_ajax/basketball/{SEASON}/sos-rpi-predict?view=all",
-    ]
-    cands.extend(guesses)
-
-    out = []
-    seen = set()
-    for u in cands:
-        u2 = u.strip()
-        if u2 and u2 not in seen:
-            seen.add(u2)
-            out.append(u2)
-    return out
-
-
-def _pick_table(html: str) -> pd.DataFrame:
-    if not html:
-        return pd.DataFrame()
-
-    try:
-        tables = pd.read_html(io.StringIO(html))
-    except Exception:
-        return pd.DataFrame()
-
-    best = pd.DataFrame()
-    best_rows = 0
-
-    for t in tables:
-        cols = [str(c).strip().lower() for c in t.columns]
-        if any("team" in c for c in cols) and any(c == "rank" or "rank" in c for c in cols):
-            if len(t) > best_rows:
-                best = t.copy()
-                best_rows = len(t)
-
-    return best
-
-
-def _norm(s: str) -> str:
-    x = (s or "").lower().strip()
-    x = x.replace("&", " and ")
-    x = re.sub(r"[\.\,\(\)\[\]\{\}\-\/']", " ", x)
-    x = re.sub(r"\s+", " ", x).strip()
-
-    x = re.sub(r"\bstate\b", "st", x)
-    x = re.sub(r"\bst\b", "st", x)
-    x = re.sub(r"\bsaint\b", "st", x)
-    x = re.sub(r"\bmt\b", "mount", x)
-
-    x = re.sub(r"\bnc\b", "north carolina", x)
-    x = re.sub(r"\bsc\b", "south carolina", x)
-    x = re.sub(r"\bnd\b", "north dakota", x)
-    x = re.sub(r"\bsd\b", "south dakota", x)
-    x = re.sub(r"\bnm\b", "new mexico", x)
-
-    x = re.sub(r"\s+", " ", x).strip()
-    return x
-
-
-def _ratio(a: str, b: str) -> float:
-    if not a or not b:
-        return 0.0
-    return SequenceMatcher(None, a, b).ratio()
-
-
-def _load_alias_df(root: Path) -> pd.DataFrame:
-    p = root / "team_alias.csv"
-    if not p.exists():
-        raise SystemExit("team_alias.csv not found")
-    df = pd.read_csv(p, dtype=str).fillna("")
+def _load_alias_map(team_alias_path: Path) -> tuple[dict[str, str], list[tuple[str, str]]]:
+    df = pd.read_csv(team_alias_path, dtype=str).fillna("")
     if "standard_name" not in df.columns:
-        raise SystemExit("team_alias.csv missing standard_name column")
-    if "sos_name" not in df.columns:
-        df["sos_name"] = ""
-    return df
+        raise SystemExit("team_alias.csv must contain a 'standard_name' column")
 
+    alias = {}
+    standards = []
+    seen_std = set()
 
-def _build_alias_maps(alias_df: pd.DataFrame) -> tuple[dict[str, str], dict[str, str]]:
-    alias_to_std = {}
-    std_norm_to_std = {}
-
-    for _, r in alias_df.iterrows():
+    for _, r in df.iterrows():
         std = str(r.get("standard_name", "")).strip()
         if not std:
             continue
-        std_norm = _norm(std)
-        std_norm_to_std[std_norm] = std
 
-        alias_to_std[_norm(std)] = std
+        if std not in seen_std:
+            standards.append(std)
+            seen_std.add(std)
 
-        sos = str(r.get("sos_name", "")).strip()
-        if sos:
-            alias_to_std[_norm(sos)] = std
+        for c in df.columns:
+            v = str(r.get(c, "")).strip()
+            if not v:
+                continue
+            alias[_fuzzy_key(v)] = std
 
-    return alias_to_std, std_norm_to_std
+    manual = {
+        "umkc": "Kansas City",
+        "uncg": "UNC Greensboro",
+        "uta": "UT Arlington",
+        "umass": "Massachusetts",
+        "iu indianapolis": "IU Indy",
+        "loyola maryland": "Loyola MD",
+        "loyola md": "Loyola MD",
+        "seattle u": "Seattle",
+        "seattle university": "Seattle",
+        "saint marys": "Saint Mary's",
+        "saint marys college": "Saint Mary's",
+        "mount saint marys": "Mount St. Mary's",
+        "st marys": "Saint Mary's",
+    }
+
+    for k, v in manual.items():
+        alias[_fuzzy_key(k)] = v
+
+    standards_fk = [(std, _fuzzy_key(std)) for std in standards]
+    return alias, standards_fk
 
 
-def _canon_team(name: str, alias_to_std: dict[str, str], std_norm_to_std: dict[str, str]) -> tuple[str, str, float]:
-    raw = (name or "").strip()
-    if not raw:
-        return "", "", 0.0
-
-    k = _norm(raw)
-    if k in alias_to_std:
-        return alias_to_std[k], raw, 1.0
-
-    best_std = ""
-    best_score = 0.0
-    for kk, std in std_norm_to_std.items():
-        sc = _ratio(k, kk)
-        if sc > best_score:
-            best_score = sc
-            best_std = std
-
-    if best_score >= 0.78:
-        return best_std, raw, best_score
-
-    return raw, raw, best_score
+def _pick_table(tables: list[pd.DataFrame]) -> pd.DataFrame:
+    for t in tables:
+        cols = [str(c).lower().strip() for c in t.columns]
+        has_team = any("team" in c for c in cols)
+        has_rank = any(c in ("rank", "rk", "#") or "rank" in c for c in cols)
+        if has_team and has_rank and len(t) > 200:
+            return t
+    for t in tables:
+        cols = [str(c).lower().strip() for c in t.columns]
+        has_team = any("team" in c for c in cols)
+        has_rank = any(c in ("rank", "rk", "#") or "rank" in c for c in cols)
+        if has_team and has_rank:
+            return t
+    raise SystemExit("Could not find a SoS table with Team + Rank columns")
 
 
-def _extract_rank_team(df: pd.DataFrame) -> pd.DataFrame:
-    if df is None or df.empty:
-        return pd.DataFrame(columns=["Team", "SoS"])
+def main():
+    root = Path(__file__).resolve().parent
+    data_raw = root / "data_raw"
+    data_raw.mkdir(parents=True, exist_ok=True)
 
-    cols = {str(c).strip(): str(c).strip().lower() for c in df.columns}
+    season = int(os.getenv("SEASON", "2026"))
+    url = f"https://www.warrennolan.com/basketball/{season}/sos-rpi-predict"
+
+    headers = {
+        "User-Agent": "Mozilla/5.0",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Referer": "https://www.warrennolan.com/",
+    }
+
+    r = requests.get(url, headers=headers, timeout=30)
+    if r.status_code != 200:
+        raise SystemExit(f"Failed to fetch SoS page: HTTP {r.status_code}")
+
+    tables = pd.read_html(StringIO(r.text))
+    t = _pick_table(tables)
+
+    cols = {str(c).lower().strip(): c for c in t.columns}
+    team_col = None
+    for k, v in cols.items():
+        if "team" in k:
+            team_col = v
+            break
+    if team_col is None:
+        raise SystemExit("Could not identify Team column")
 
     rank_col = None
-    team_col = None
-
-    for orig, low in cols.items():
-        if team_col is None and "team" in low:
-            team_col = orig
-        if rank_col is None and (low == "rank" or "rank" in low):
-            rank_col = orig
-
-    if rank_col is None or team_col is None:
-        return pd.DataFrame(columns=["Team", "SoS"])
-
-    out = df[[rank_col, team_col]].copy()
-    out.columns = ["SoS", "Team"]
-
-    out["Team"] = out["Team"].astype(str).str.strip()
-
-    out["SoS"] = (
-        out["SoS"]
-        .astype(str)
-        .str.replace(r"[^\d]+", "", regex=True)
-        .replace("", pd.NA)
-    )
-    out["SoS"] = pd.to_numeric(out["SoS"], errors="coerce")
-    out = out.dropna(subset=["SoS", "Team"])
-    out["SoS"] = out["SoS"].astype(int)
-
-    out = out[~out["Team"].eq("")].copy()
-    out = out.drop_duplicates(subset=["Team"], keep="first").copy()
-    out = out.sort_values("SoS").reset_index(drop=True)
-
-    return out[["Team", "SoS"]]
-
-
-def _fetch_best_table(s: requests.Session) -> pd.DataFrame:
-    html = _get(SOURCE_URL, s)
-    cands = [SOURCE_URL] + _discover_candidates(html)
-
-    best = pd.DataFrame()
-    best_n = 0
-
-    for u in cands:
-        h = html if u == SOURCE_URL else _get(u, s)
-        t = _pick_table(h)
-        e = _extract_rank_team(t)
-        if len(e) > best_n:
-            best = e
-            best_n = len(e)
-
-        if best_n >= 350:
+    for k, v in cols.items():
+        if k in ("rank", "rk", "#") or "rank" in k:
+            rank_col = v
             break
+    if rank_col is None:
+        rank_col = t.columns[0]
 
-    return best
+    df = t[[rank_col, team_col]].copy()
+    df.columns = ["SoS", "Team"]
 
+    df["Team"] = df["Team"].astype(str).str.strip()
+    df["SoS"] = pd.to_numeric(df["SoS"], errors="coerce")
+    df = df.dropna(subset=["SoS", "Team"])
+    df["SoS"] = df["SoS"].astype(int)
 
-def main() -> None:
-    root = _root()
-    data_raw = _data_raw(root)
+    team_alias_path = root / "team_alias.csv"
+    alias_map, standards_fk = _load_alias_map(team_alias_path)
 
-    alias_df = _load_alias_df(root)
-    alias_to_std, std_norm_to_std = _build_alias_maps(alias_df)
+    matched_rows = []
+    unmatched_rows = []
 
-    s = _session()
-    base = _fetch_best_table(s)
-    if base.empty:
-        raise SystemExit("SoS scrape failed: could not find a Rank/Team table.")
+    for _, row in df.iterrows():
+        src = str(row["Team"]).strip()
+        rk = int(row["SoS"])
 
-    mapped_team = []
-    src_team = []
-    suggested = []
-    score = []
+        fk = _fuzzy_key(src)
+        std = alias_map.get(fk, "")
+        best_std = ""
+        best_score = 0.0
 
-    for t in base["Team"].tolist():
-        std, src, sc = _canon_team(t, alias_to_std, std_norm_to_std)
-        mapped_team.append(std)
-        src_team.append(src)
-        score.append(sc)
-        suggested.append(std if sc < 1.0 else "")
+        if std:
+            matched_rows.append((std, rk))
+            continue
 
-    df = pd.DataFrame({"Team": mapped_team, "SoS": base["SoS"].astype(int).tolist()})
-    df = df.drop_duplicates(subset=["Team"], keep="first").copy()
-    df = df[~df["Team"].eq("")].copy()
+        best_std, best_score = _best_match(src, standards_fk)
 
+        if best_score >= 0.86:
+            matched_rows.append((best_std, rk))
+        else:
+            unmatched_rows.append((src, best_std, best_score))
+
+    out = pd.DataFrame(matched_rows, columns=["Team", "SoS"])
+    out = out.drop_duplicates(subset=["Team"], keep="first").copy()
     snapshot_date = dt.datetime.now(dt.timezone.utc).date().isoformat()
-    df.insert(0, "snapshot_date", snapshot_date)
+    out.insert(0, "snapshot_date", snapshot_date)
 
     out_path = data_raw / "SOS_Rank.csv"
-    df.to_csv(out_path, index=False)
+    out.to_csv(out_path, index=False)
 
-    unmatched_rows = []
-    for t, sc, src, sug in zip(mapped_team, score, src_team, suggested):
-        if not t or sc < 0.78:
-            unmatched_rows.append(
-                {
-                    "source_team": src,
-                    "suggested_standard": t if sc >= 0.60 else "",
-                    "match_score": float(sc),
-                }
-            )
-
-    unmatched_path = data_raw / "unmatched_sos_teams.csv"
-    pd.DataFrame(unmatched_rows).to_csv(unmatched_path, index=False)
+    um = pd.DataFrame(unmatched_rows, columns=["source_team", "suggested_standard", "match_score"])
+    um_path = data_raw / "unmatched_sos_teams.csv"
+    um.to_csv(um_path, index=False)
 
     print("SOS_Rank.csv")
     print("unmatched_sos_teams.csv")
-    print("rows", len(df))
-    if len(df) < 330:
-        raise SystemExit(f"SoS scrape returned only {len(df)} teams. The page may be paginated/JS-loaded; we may need the ajax endpoint.")
+    print(f"Pulled source teams: {len(df)}")
+    print(f"Matched: {len(out)}")
+    print(f"Unmatched: {len(um)}")
+
+    if len(um) > 0:
+        print(um.head(25).to_string(index=False))
 
 
 if __name__ == "__main__":
