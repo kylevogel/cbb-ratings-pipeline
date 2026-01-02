@@ -1,154 +1,210 @@
-from pathlib import Path
 import re
+from datetime import date
+from pathlib import Path
+
 import pandas as pd
 import requests
+from bs4 import BeautifulSoup
+from difflib import SequenceMatcher
+
+
+ROOT = Path(__file__).resolve().parent
+DATA_RAW = ROOT / "data_raw"
+TEAM_ALIAS_PATH = ROOT / "team_alias.csv"
+
+BASE_URL = "https://www.espn.com/mens-college-basketball/bpi"
+HEADERS = {
+    "User-Agent": "Mozilla/5.0"
+}
+
 
 def _norm(s: str) -> str:
     s = (s or "").strip().lower()
     s = s.replace("&", "and")
-    s = s.replace("’", "'")
-    s = re.sub(r"[^\w\s]", "", s)
+    s = re.sub(r"[^\w\s]", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
     return s
-    
-def _resolve_standard(raw: str, alias_map: dict) -> str:
-    raw = "" if raw is None else str(raw).strip()
-    if not raw:
-        return ""
-
-    candidates = [raw]
-
-    # Common: State <-> St.
-    candidates.append(re.sub(r"\bState\b", "St.", raw))
-    candidates.append(re.sub(r"\bSt\.?\b", "State", raw))
-
-    # California wording variants
-    candidates.append(re.sub(r"\bCal State\b", "Cal St.", raw))
-    candidates.append(re.sub(r"\bCal St\.?\b", "Cal State", raw))
-
-    # NC State variants
-    if _norm(raw) in (_norm("North Carolina State"), _norm("NC State"), _norm("N.C. State")):
-        candidates.extend(["N.C. State", "NC State", "North Carolina State"])
-
-    # Special one-offs (these show up a lot)
-    if "northridge" in raw.lower():
-        candidates.append("CSUN")
-    if raw.strip().lower() == "detroit":
-        candidates.append("Detroit Mercy")
-
-    # Try all candidates
-    for c in candidates:
-        std = _resolve_standard(raw, alias_map)
-        if std:
-            return std
-
-    return ""
 
 
-def _variants(cell: str) -> list[str]:
-    if cell is None:
+def _load_alias_maps():
+    df = pd.read_csv(TEAM_ALIAS_PATH, dtype=str).fillna("")
+    cols = ["standard_name", "kenpom_name", "bpi_name", "net_name", "game_log_name"]
+    for c in cols:
+        if c not in df.columns:
+            raise ValueError(f"team_alias.csv missing column: {c}")
+
+    alias_to_standard = {}
+    standard_names = []
+
+    for _, row in df.iterrows():
+        standard = row["standard_name"].strip()
+        if not standard:
+            continue
+        standard_names.append(standard)
+
+        for col in cols:
+            val = row[col].strip()
+            if not val:
+                continue
+
+            parts = [val]
+            if col == "game_log_name" or "," in val:
+                parts = [p.strip() for p in val.split(",")]
+
+            for p in parts:
+                if not p:
+                    continue
+                alias_to_standard[_norm(p)] = standard
+
+        alias_to_standard[_norm(standard)] = standard
+
+    return alias_to_standard, standard_names
+
+
+def _best_standard_suggestion(source_team: str, standard_names: list[str]):
+    src = _norm(source_team)
+    best_name = ""
+    best_score = 0.0
+    for st in standard_names:
+        score = SequenceMatcher(None, src, _norm(st)).ratio()
+        if score > best_score:
+            best_score = score
+            best_name = st
+    return best_name, best_score
+
+
+def _get_group_ids():
+    r = requests.get(BASE_URL, headers=HEADERS, timeout=30)
+    r.raise_for_status()
+    soup = BeautifulSoup(r.text, "html.parser")
+
+    ids = set()
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        m = re.search(r"/mens-college-basketball/bpi/_/group/(\d+)", href)
+        if m:
+            ids.add(int(m.group(1)))
+
+    return sorted(ids)
+
+
+def _extract_table_rows(html: str):
+    soup = BeautifulSoup(html, "html.parser")
+    tables = soup.find_all("table")
+    target = None
+
+    for t in tables:
+        text = t.get_text(" ", strip=True)
+        if "BPI RK" in text and "POWER INDEX PROJECTIONS" in text:
+            target = t
+            break
+
+    if target is None:
+        for t in tables:
+            if "BPI RK" in t.get_text(" ", strip=True):
+                target = t
+                break
+
+    if target is None:
         return []
-    s = str(cell).strip()
-    if not s:
+
+    thead = target.find("thead")
+    if not thead:
         return []
-    parts = [p.strip() for p in s.split(",")]
-    parts = [p for p in parts if p]
-    return parts if parts else []
 
-def _load_alias_maps(root: Path):
-    alias_path = root / "team_alias.csv"
-    alias_df = pd.read_csv(alias_path, dtype=str, keep_default_na=False).fillna("")
-    exact = {}
-    norm = {}
+    headers = [th.get_text(" ", strip=True) for th in thead.find_all("th")]
+    rk_idx = None
+    for i, h in enumerate(headers):
+        if h.strip().upper() == "BPI RK":
+            rk_idx = i
+            break
 
-    for _, row in alias_df.iterrows():
-        std = (row.get("standard_name") or "").strip()
-        if not std:
+    if rk_idx is None:
+        return []
+
+    tbody = target.find("tbody")
+    if not tbody:
+        return []
+
+    out = []
+    for tr in tbody.find_all("tr"):
+        tds = tr.find_all("td")
+        if len(tds) <= rk_idx:
             continue
 
-        cols = ["standard_name", "kenpom_name", "bpi_name", "net_name", "game_log_name"]
-        for c in cols:
-            val = row.get(c, "")
-            for v in _variants(val):
-                if v not in exact:
-                    exact[v] = std
-                nv = _norm(v)
-                if nv and nv not in norm:
-                    norm[nv] = std
+        team = ""
+        team_a = tr.find("a", href=True)
+        if team_a:
+            team = team_a.get_text(" ", strip=True)
 
-    return exact, norm
+        rk_txt = tds[rk_idx].get_text(" ", strip=True)
+        rk_txt = rk_txt.replace("th", "").replace("st", "").replace("nd", "").replace("rd", "")
+        rk_txt = rk_txt.strip()
 
-def _clean_team_text(x: str) -> str:
-    s = (x or "").strip()
-    s = re.sub(r"\s+\(\d+\)\s*$", "", s)
-    s = re.sub(r"\s+\d+\-\d+.*$", "", s)
-    s = re.sub(r"\s+\d+\-\d+\s*$", "", s)
-    return s.strip()
+        if not team or not rk_txt.isdigit():
+            continue
 
-def _fetch_bpi_table() -> pd.DataFrame:
-    url = "https://www.espn.com/mens-college-basketball/bpi"
-    headers = {
-        "User-Agent": "Mozilla/5.0",
-        "Accept-Language": "en-US,en;q=0.9",
-    }
-    r = requests.get(url, headers=headers, timeout=30)
-    r.raise_for_status()
-    tables = pd.read_html(r.text)
-    if not tables:
-        raise RuntimeError("No tables found on ESPN BPI page")
-    return tables[0]
+        out.append((team, int(rk_txt)))
+
+    return out
+
+
+def _scrape_all_bpi_ranks():
+    group_ids = _get_group_ids()
+    if not group_ids:
+        raise RuntimeError("Could not find any ESPN conference group ids on the BPI page.")
+
+    ranks = {}
+    for gid in group_ids:
+        url = f"{BASE_URL}/_/group/{gid}"
+        r = requests.get(url, headers=HEADERS, timeout=30)
+        r.raise_for_status()
+
+        rows = _extract_table_rows(r.text)
+        for team, rk in rows:
+            if team not in ranks or rk < ranks[team]:
+                ranks[team] = rk
+
+    return ranks
+
 
 def main():
-    root = Path(__file__).resolve().parent
-    exact_map, norm_map = _load_alias_maps(root)
+    DATA_RAW.mkdir(parents=True, exist_ok=True)
 
-    df = _fetch_bpi_table()
-    cols = [str(c) for c in df.columns]
+    alias_to_standard, standard_names = _load_alias_maps()
+    ranks = _scrape_all_bpi_ranks()
 
-    team_col = None
-    for c in cols:
-        if "team" in c.lower():
-            team_col = c
-            break
-    if team_col is None:
-        team_col = cols[0]
-
-    teams_raw = df[team_col].astype(str).tolist()
-    snapshot_date = pd.Timestamp.today().strftime("%Y-%m-%d")
-
+    snap = date.today().isoformat()
     out_rows = []
-    unmatched = []
+    unmatched_rows = []
 
-    rank = 0
-    for t in teams_raw:
-        t2 = _clean_team_text(t)
-        if not t2 or t2.lower() in {"nan", "none"}:
-            continue
-        rank += 1
+    for source_team, rk in sorted(ranks.items(), key=lambda x: x[1]):
+        key = _norm(source_team)
+        standard = alias_to_standard.get(key, "")
 
-        std = exact_map.get(t2)
-        if std is None:
-            std = norm_map.get(_norm(t2))
-
-        if std is None:
-            unmatched.append({"snapshot_date": snapshot_date, "Team": t2, "BPI": rank})
+        if not standard:
+            sugg, score = _best_standard_suggestion(source_team, standard_names)
+            unmatched_rows.append(
+                {"source_team": source_team, "suggested_standard": sugg, "match_score": round(score, 4)}
+            )
             continue
 
-        out_rows.append({"snapshot_date": snapshot_date, "Team": std, "BPI": rank})
+        out_rows.append({"snapshot_date": snap, "Team": standard, "BPI": int(rk)})
 
-    out_df = pd.DataFrame(out_rows)
-    out_path = root / "data_raw" / "BPI_Rank.csv"
-    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_df = pd.DataFrame(out_rows).sort_values("BPI", ascending=True)
+    out_path = DATA_RAW / "BPI_Rank.csv"
     out_df.to_csv(out_path, index=False)
 
-    unmatched_df = pd.DataFrame(unmatched)
-    unmatched_path = root / "unmatched_bpi_teams.csv"
-    unmatched_df.to_csv(unmatched_path, index=False)
+    unmatched_path = DATA_RAW / "unmatched_bpi_teams.csv"
+    if unmatched_rows:
+        pd.DataFrame(unmatched_rows).sort_values("match_score", ascending=False).to_csv(unmatched_path, index=False)
+    else:
+        pd.DataFrame(columns=["source_team", "suggested_standard", "match_score"]).to_csv(unmatched_path, index=False)
 
     print("BPI_Rank.csv")
-    print(unmatched_path.name)
-    if not unmatched_df.empty:
-        print(unmatched_df.head(25).to_csv(index=False).strip())
+    print("unmatched_bpi_teams.csv")
+    print(out_df.head().to_string(index=False))
+
 
 if __name__ == "__main__":
     main()
