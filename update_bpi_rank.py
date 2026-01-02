@@ -1,210 +1,191 @@
-import re
-from datetime import date
 from pathlib import Path
-
-import pandas as pd
+from datetime import date
+import re
+import csv
+import difflib
 import requests
+import pandas as pd
 from bs4 import BeautifulSoup
-from difflib import SequenceMatcher
 
-
-ROOT = Path(__file__).resolve().parent
-DATA_RAW = ROOT / "data_raw"
-TEAM_ALIAS_PATH = ROOT / "team_alias.csv"
-
-BASE_URL = "https://www.espn.com/mens-college-basketball/bpi"
-HEADERS = {
-    "User-Agent": "Mozilla/5.0"
-}
-
+BASE_URL = "https://www.espn.com.br/mens-college-basketball/bpi"
+OUT_CSV = Path("data_raw") / "BPI_Rank.csv"
+UNMATCHED_CSV = Path("data_raw") / "unmatched_bpi_teams.csv"
 
 def _norm(s: str) -> str:
-    s = (s or "").strip().lower()
-    s = s.replace("&", "and")
-    s = re.sub(r"[^\w\s]", " ", s)
+    if s is None:
+        return ""
+    s = str(s).strip().lower()
+    s = s.replace("&", " and ")
+    s = re.sub(r"[’']", "", s)
+    s = re.sub(r"[^a-z0-9\s]", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
     return s
 
-
-def _load_alias_maps():
-    df = pd.read_csv(TEAM_ALIAS_PATH, dtype=str).fillna("")
-    cols = ["standard_name", "kenpom_name", "bpi_name", "net_name", "game_log_name"]
-    for c in cols:
-        if c not in df.columns:
-            raise ValueError(f"team_alias.csv missing column: {c}")
-
-    alias_to_standard = {}
-    standard_names = []
-
-    for _, row in df.iterrows():
-        standard = row["standard_name"].strip()
-        if not standard:
-            continue
-        standard_names.append(standard)
-
-        for col in cols:
-            val = row[col].strip()
-            if not val:
-                continue
-
-            parts = [val]
-            if col == "game_log_name" or "," in val:
-                parts = [p.strip() for p in val.split(",")]
-
-            for p in parts:
-                if not p:
-                    continue
-                alias_to_standard[_norm(p)] = standard
-
-        alias_to_standard[_norm(standard)] = standard
-
-    return alias_to_standard, standard_names
-
-
-def _best_standard_suggestion(source_team: str, standard_names: list[str]):
-    src = _norm(source_team)
-    best_name = ""
-    best_score = 0.0
-    for st in standard_names:
-        score = SequenceMatcher(None, src, _norm(st)).ratio()
-        if score > best_score:
-            best_score = score
-            best_name = st
-    return best_name, best_score
-
-
-def _get_group_ids():
-    r = requests.get(BASE_URL, headers=HEADERS, timeout=30)
-    r.raise_for_status()
-    soup = BeautifulSoup(r.text, "html.parser")
-
-    ids = set()
-    for a in soup.find_all("a", href=True):
-        href = a["href"]
-        m = re.search(r"/mens-college-basketball/bpi/_/group/(\d+)", href)
-        if m:
-            ids.add(int(m.group(1)))
-
-    return sorted(ids)
-
-
-def _extract_table_rows(html: str):
-    soup = BeautifulSoup(html, "html.parser")
-    tables = soup.find_all("table")
-    target = None
-
-    for t in tables:
-        text = t.get_text(" ", strip=True)
-        if "BPI RK" in text and "POWER INDEX PROJECTIONS" in text:
-            target = t
-            break
-
-    if target is None:
-        for t in tables:
-            if "BPI RK" in t.get_text(" ", strip=True):
-                target = t
-                break
-
-    if target is None:
-        return []
-
-    thead = target.find("thead")
-    if not thead:
-        return []
-
-    headers = [th.get_text(" ", strip=True) for th in thead.find_all("th")]
-    rk_idx = None
-    for i, h in enumerate(headers):
-        if h.strip().upper() == "BPI RK":
-            rk_idx = i
-            break
-
-    if rk_idx is None:
-        return []
-
-    tbody = target.find("tbody")
-    if not tbody:
-        return []
-
-    out = []
-    for tr in tbody.find_all("tr"):
-        tds = tr.find_all("td")
-        if len(tds) <= rk_idx:
-            continue
-
-        team = ""
-        team_a = tr.find("a", href=True)
-        if team_a:
-            team = team_a.get_text(" ", strip=True)
-
-        rk_txt = tds[rk_idx].get_text(" ", strip=True)
-        rk_txt = rk_txt.replace("th", "").replace("st", "").replace("nd", "").replace("rd", "")
-        rk_txt = rk_txt.strip()
-
-        if not team or not rk_txt.isdigit():
-            continue
-
-        out.append((team, int(rk_txt)))
-
+def _candidate_norms(raw: str) -> set[str]:
+    raw = "" if raw is None else str(raw).strip()
+    out = set()
+    if not raw:
+        return out
+    out.add(_norm(raw))
+    parts = raw.split()
+    for k in range(1, min(4, len(parts))):
+        out.add(_norm(" ".join(parts[:-k])))
+    out.add(_norm(raw.replace(".", "")))
+    out.add(_norm(raw.replace("St.", "State")))
+    out.add(_norm(raw.replace("State", "St.")))
+    out.add(_norm(raw.replace("Univ.", "University")))
+    out.add(_norm(raw.replace("Univ", "University")))
+    out.add(_norm(raw.replace("Mt.", "Mount")))
+    out.add(_norm(raw.replace("Saint", "St.")))
+    out.add(_norm(raw.replace("St.", "Saint")))
+    out = {x for x in out if x}
     return out
 
+def _fetch(url: str) -> str:
+    r = requests.get(
+        url,
+        headers={
+            "User-Agent": "Mozilla/5.0",
+            "Accept-Language": "en-US,en;q=0.9",
+        },
+        timeout=30,
+    )
+    r.raise_for_status()
+    return r.text
 
-def _scrape_all_bpi_ranks():
-    group_ids = _get_group_ids()
-    if not group_ids:
-        raise RuntimeError("Could not find any ESPN conference group ids on the BPI page.")
+def _max_page(html: str) -> int:
+    nums = [int(x) for x in re.findall(r"/pagina/(\d+)", html)]
+    return max(nums) if nums else 1
 
-    ranks = {}
-    for gid in group_ids:
-        url = f"{BASE_URL}/_/group/{gid}"
-        r = requests.get(url, headers=HEADERS, timeout=30)
-        r.raise_for_status()
+def _parse_bpi_table(html: str) -> list[tuple[int, str]]:
+    soup = BeautifulSoup(html, "lxml")
+    table = soup.find("table")
+    if table is None:
+        return []
+    rows = table.find_all("tr")
+    out = []
+    for tr in rows:
+        tds = tr.find_all("td")
+        if len(tds) < 2:
+            continue
+        rk_txt = tds[0].get_text(" ", strip=True)
+        team_txt = tds[1].get_text(" ", strip=True)
+        rk_txt = rk_txt.replace("#", "").strip()
+        if not rk_txt.isdigit():
+            continue
+        rk = int(rk_txt)
+        team_txt = re.sub(r"\s+", " ", team_txt).strip()
+        if not team_txt:
+            continue
+        out.append((rk, team_txt))
+    return out
 
-        rows = _extract_table_rows(r.text)
-        for team, rk in rows:
-            if team not in ranks or rk < ranks[team]:
-                ranks[team] = rk
+def _find_alias_path(root: Path) -> Path:
+    p1 = root / "team_alias.csv"
+    p2 = root / "data_raw" / "team_alias.csv"
+    if p1.exists():
+        return p1
+    if p2.exists():
+        return p2
+    raise FileNotFoundError("Could not find team_alias.csv in repo root or data_raw/")
 
-    return ranks
+def _load_alias_map(root: Path) -> tuple[dict[str, str], list[str], dict[str, str]]:
+    alias_path = _find_alias_path(root)
+    df = pd.read_csv(alias_path, dtype=str).fillna("")
+    needed = {"standard_name", "bpi_name"}
+    missing = needed - set(df.columns)
+    if missing:
+        raise ValueError(f"team_alias.csv missing columns: {sorted(missing)}")
 
+    norm_to_standard = {}
+    standard_norms = []
+    norm_to_standard_primary = {}
 
-def main():
-    DATA_RAW.mkdir(parents=True, exist_ok=True)
-
-    alias_to_standard, standard_names = _load_alias_maps()
-    ranks = _scrape_all_bpi_ranks()
-
-    snap = date.today().isoformat()
-    out_rows = []
-    unmatched_rows = []
-
-    for source_team, rk in sorted(ranks.items(), key=lambda x: x[1]):
-        key = _norm(source_team)
-        standard = alias_to_standard.get(key, "")
-
-        if not standard:
-            sugg, score = _best_standard_suggestion(source_team, standard_names)
-            unmatched_rows.append(
-                {"source_team": source_team, "suggested_standard": sugg, "match_score": round(score, 4)}
-            )
+    for _, row in df.iterrows():
+        std = str(row["standard_name"]).strip()
+        bpi = str(row["bpi_name"]).strip()
+        if not std:
             continue
 
-        out_rows.append({"snapshot_date": snap, "Team": standard, "BPI": int(rk)})
+        std_norm = _norm(std)
+        if std_norm:
+            standard_norms.append(std_norm)
+            norm_to_standard_primary[std_norm] = std
 
-    out_df = pd.DataFrame(out_rows).sort_values("BPI", ascending=True)
-    out_path = DATA_RAW / "BPI_Rank.csv"
-    out_df.to_csv(out_path, index=False)
+        for cand in _candidate_norms(std):
+            norm_to_standard[cand] = std
 
-    unmatched_path = DATA_RAW / "unmatched_bpi_teams.csv"
-    if unmatched_rows:
-        pd.DataFrame(unmatched_rows).sort_values("match_score", ascending=False).to_csv(unmatched_path, index=False)
-    else:
-        pd.DataFrame(columns=["source_team", "suggested_standard", "match_score"]).to_csv(unmatched_path, index=False)
+        if bpi:
+            for cand in _candidate_norms(bpi):
+                norm_to_standard[cand] = std
+
+    return norm_to_standard, standard_norms, norm_to_standard_primary
+
+def _best_suggestion(src: str, standard_norms: list[str], norm_to_standard_primary: dict[str, str]) -> tuple[str, float]:
+    src_norm = _norm(src)
+    if not src_norm or not standard_norms:
+        return "", 0.0
+    matches = difflib.get_close_matches(src_norm, standard_norms, n=1, cutoff=0.0)
+    if not matches:
+        return "", 0.0
+    best = matches[0]
+    score = difflib.SequenceMatcher(None, src_norm, best).ratio()
+    return norm_to_standard_primary.get(best, ""), float(score)
+
+def main():
+    root = Path(__file__).resolve().parent
+    OUT_CSV.parent.mkdir(parents=True, exist_ok=True)
+
+    html1 = _fetch(BASE_URL)
+    maxp = _max_page(html1)
+
+    scraped = {}
+    for p in range(1, maxp + 1):
+        url = BASE_URL if p == 1 else f"{BASE_URL}/_/pagina/{p}"
+        html = html1 if p == 1 else _fetch(url)
+        pairs = _parse_bpi_table(html)
+        for rk, team in pairs:
+            if team not in scraped or rk < scraped[team]:
+                scraped[team] = rk
+
+    norm_to_standard, standard_norms, norm_to_standard_primary = _load_alias_map(root)
+
+    snapshot = date.today().isoformat()
+    out_rows = []
+    unmatched = []
+
+    for team, rk in sorted(scraped.items(), key=lambda x: x[1]):
+        std = ""
+        for cand in _candidate_norms(team):
+            if cand in norm_to_standard:
+                std = norm_to_standard[cand]
+                break
+
+        if not std:
+            sug, score = _best_suggestion(team, standard_norms, norm_to_standard_primary)
+            unmatched.append((team, sug, score))
+            continue
+
+        out_rows.append((snapshot, std, int(rk)))
+
+    out_rows = sorted(out_rows, key=lambda x: x[2])
+
+    with OUT_CSV.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["snapshot_date", "Team", "BPI"])
+        w.writerows(out_rows)
+
+    with UNMATCHED_CSV.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["source_team", "suggested_standard", "match_score"])
+        for a, b, c in unmatched:
+            w.writerow([a, b, f"{c:.3f}"])
 
     print("BPI_Rank.csv")
-    print("unmatched_bpi_teams.csv")
-    print(out_df.head().to_string(index=False))
-
+    print(str(UNMATCHED_CSV))
+    print("snapshot_date,Team,BPI")
+    for r in out_rows[:5]:
+        print(f"{r[0]},{r[1]},{r[2]}")
 
 if __name__ == "__main__":
     main()
