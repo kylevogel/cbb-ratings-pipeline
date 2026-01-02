@@ -22,8 +22,6 @@ def _fuzzy_key(s: str) -> str:
     s = re.sub(r"\bsouth carolina\b", " sc ", s)
     s = re.sub(r"\bnorth dakota\b", " nd ", s)
     s = re.sub(r"\bsouth dakota\b", " sd ", s)
-    s = re.sub(r"\bnorth carolina\b", " nc ", s)
-    s = re.sub(r"\bsouth carolina\b", " sc ", s)
     s = re.sub(r"\s+", " ", s).strip()
     return s
 
@@ -53,11 +51,9 @@ def _load_alias_map(team_alias_path: Path) -> tuple[dict[str, str], list[tuple[s
         std = str(r.get("standard_name", "")).strip()
         if not std:
             continue
-
         if std not in seen_std:
             standards.append(std)
             seen_std.add(std)
-
         for c in df.columns:
             v = str(r.get(c, "")).strip()
             if not v:
@@ -71,20 +67,110 @@ def _load_alias_map(team_alias_path: Path) -> tuple[dict[str, str], list[tuple[s
         "umass": "Massachusetts",
         "iu indianapolis": "IU Indy",
         "loyola maryland": "Loyola MD",
-        "loyola md": "Loyola MD",
-        "seattle u": "Seattle",
         "seattle university": "Seattle",
-        "saint marys": "Saint Mary's",
+        "seattle u": "Seattle",
         "saint marys college": "Saint Mary's",
         "mount saint marys": "Mount St. Mary's",
-        "st marys": "Saint Mary's",
+        "saint johns": "St. John's",
+        "nc state": "N.C. State",
     }
-
     for k, v in manual.items():
         alias[_fuzzy_key(k)] = v
 
     standards_fk = [(std, _fuzzy_key(std)) for std in standards]
     return alias, standards_fk
+
+
+def _extract_next_data(html: str) -> dict | None:
+    m = re.search(r'<script[^>]*id="__NEXT_DATA__"[^>]*>(.*?)</script>', html, flags=re.S)
+    if not m:
+        return None
+    raw = m.group(1).strip()
+    if not raw:
+        return None
+    try:
+        return json.loads(raw)
+    except Exception:
+        return None
+
+
+def _walk(obj):
+    stack = [obj]
+    while stack:
+        x = stack.pop()
+        yield x
+        if isinstance(x, dict):
+            for v in x.values():
+                stack.append(v)
+        elif isinstance(x, list):
+            for v in x:
+                stack.append(v)
+
+
+def _get_team_str(x):
+    if isinstance(x, str):
+        return x.strip()
+    if isinstance(x, dict):
+        for k in ["team", "teamName", "team_name", "name", "school", "displayName", "shortName"]:
+            v = x.get(k)
+            if isinstance(v, str) and v.strip():
+                return v.strip()
+        for v in x.values():
+            t = _get_team_str(v)
+            if t:
+                return t
+    if isinstance(x, list):
+        for v in x:
+            t = _get_team_str(v)
+            if t:
+                return t
+    return ""
+
+
+def _get_rank_int(d):
+    if not isinstance(d, dict):
+        return None
+    for k in ["rank", "rk", "sosRank", "sos_rank", "sosrank", "Rank", "Rk"]:
+        v = d.get(k)
+        try:
+            if v is None:
+                continue
+            iv = int(str(v).strip())
+            if iv > 0:
+                return iv
+        except Exception:
+            pass
+    for k, v in d.items():
+        if isinstance(k, str) and "rank" in k.lower():
+            try:
+                iv = int(str(v).strip())
+                if iv > 0:
+                    return iv
+            except Exception:
+                pass
+    return None
+
+
+def _candidate_rows_from_next_data(next_data: dict) -> list[tuple[int, str]]:
+    best = []
+    for x in _walk(next_data):
+        if not isinstance(x, list) or len(x) < 250:
+            continue
+        if not all(isinstance(v, dict) for v in x[:25]):
+            continue
+
+        rows = []
+        for d in x:
+            rk = _get_rank_int(d)
+            team = _get_team_str(d)
+            if rk is None or not team:
+                continue
+            rows.append((rk, team))
+
+        if len(rows) > len(best):
+            best = rows
+
+    return best
 
 
 def _pick_table(tables: list[pd.DataFrame]) -> pd.DataFrame:
@@ -121,33 +207,51 @@ def main():
     if r.status_code != 200:
         raise SystemExit(f"Failed to fetch SoS page: HTTP {r.status_code}")
 
-    tables = pd.read_html(StringIO(r.text))
-    t = _pick_table(tables)
+    source_rows = []
+    next_data = _extract_next_data(r.text)
+    if next_data is not None:
+        cand = _candidate_rows_from_next_data(next_data)
+        if cand:
+            source_rows = cand
 
-    cols = {str(c).lower().strip(): c for c in t.columns}
-    team_col = None
-    for k, v in cols.items():
-        if "team" in k:
-            team_col = v
-            break
-    if team_col is None:
-        raise SystemExit("Could not identify Team column")
+    if not source_rows:
+        tables = pd.read_html(StringIO(r.text))
+        t = _pick_table(tables)
+        cols = {str(c).lower().strip(): c for c in t.columns}
 
-    rank_col = None
-    for k, v in cols.items():
-        if k in ("rank", "rk", "#") or "rank" in k:
-            rank_col = v
-            break
-    if rank_col is None:
-        rank_col = t.columns[0]
+        team_col = None
+        for k, v in cols.items():
+            if "team" in k:
+                team_col = v
+                break
+        if team_col is None:
+            raise SystemExit("Could not identify Team column")
 
-    df = t[[rank_col, team_col]].copy()
-    df.columns = ["SoS", "Team"]
+        rank_col = None
+        for k, v in cols.items():
+            if k in ("rank", "rk", "#") or "rank" in k:
+                rank_col = v
+                break
+        if rank_col is None:
+            rank_col = t.columns[0]
 
+        tmp = t[[rank_col, team_col]].copy()
+        tmp.columns = ["SoS", "Team"]
+        tmp["Team"] = tmp["Team"].astype(str).str.strip()
+        tmp["SoS"] = pd.to_numeric(tmp["SoS"], errors="coerce")
+        tmp = tmp.dropna(subset=["SoS", "Team"])
+        tmp["SoS"] = tmp["SoS"].astype(int)
+        source_rows = [(int(a), str(b)) for a, b in zip(tmp["SoS"].tolist(), tmp["Team"].tolist())]
+
+    df = pd.DataFrame(source_rows, columns=["SoS", "Team"]).dropna()
     df["Team"] = df["Team"].astype(str).str.strip()
     df["SoS"] = pd.to_numeric(df["SoS"], errors="coerce")
     df = df.dropna(subset=["SoS", "Team"])
     df["SoS"] = df["SoS"].astype(int)
+    df = df[df["SoS"] > 0].copy()
+
+    if len(df) < 330:
+        raise SystemExit(f"SoS scrape too small ({len(df)} rows). Page is likely JS-loaded; scraper needs different extraction.")
 
     team_alias_path = root / "team_alias.csv"
     alias_map, standards_fk = _load_alias_map(team_alias_path)
@@ -158,18 +262,14 @@ def main():
     for _, row in df.iterrows():
         src = str(row["Team"]).strip()
         rk = int(row["SoS"])
-
         fk = _fuzzy_key(src)
-        std = alias_map.get(fk, "")
-        best_std = ""
-        best_score = 0.0
 
+        std = alias_map.get(fk, "")
         if std:
             matched_rows.append((std, rk))
             continue
 
         best_std, best_score = _best_match(src, standards_fk)
-
         if best_score >= 0.86:
             matched_rows.append((best_std, rk))
         else:
@@ -192,9 +292,6 @@ def main():
     print(f"Pulled source teams: {len(df)}")
     print(f"Matched: {len(out)}")
     print(f"Unmatched: {len(um)}")
-
-    if len(um) > 0:
-        print(um.head(25).to_string(index=False))
 
 
 if __name__ == "__main__":
