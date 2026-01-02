@@ -16,19 +16,17 @@ def main() -> None:
         "update_bpi_rank.py",
         "update_ap_rank.py",
         "update_sos_rank.py",
+        "merge_games_with_ranks.py",
     ]
 
     ran = 0
     failed = 0
-
     for s in scripts:
         p = root / s
         if not p.exists():
             continue
-
         ran += 1
         r = subprocess.run([sys.executable, s], cwd=root)
-
         if r.returncode != 0:
             failed += 1
             print(f"[WARN] {s} failed (exit {r.returncode}). Continuing...")
