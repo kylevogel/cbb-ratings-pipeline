@@ -38,7 +38,7 @@ def _resolve_standard(raw: str, alias_map: dict) -> str:
 
     # Try all candidates
     for c in candidates:
-        std = alias_map.get(_norm(c), "")
+        std = _resolve_standard(raw, alias_map)
         if std:
             return std
 
