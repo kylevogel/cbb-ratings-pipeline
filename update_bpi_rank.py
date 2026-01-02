@@ -199,4 +199,130 @@ def _paged_collect_json(s: requests.Session, base: str) -> List[Tuple[str, Optio
     return best
 
 
-def _discover_api_candidates(html: str) -> List[str]()_
+def _discover_api_candidates(html: str) -> List[str]:
+    html = (html or "").replace("\\u002F", "/")
+    urls = set(re.findall(r"https?://[^\s\"'<>]+", html))
+    rels = set(re.findall(r"/apis/[A-Za-z0-9_\-\/\.\?\=\&]+", html))
+    out = []
+    for u in urls:
+        if "espn.com" in u and ("bpi" in u.lower() or "powerindex" in u.lower()) and "apis" in u.lower():
+            out.append(u.split("#")[0])
+    for u in rels:
+        ul = u.lower()
+        if ("bpi" in ul or "powerindex" in ul) and "apis" in ul:
+            out.append("https://site.web.api.espn.com" + u.split("#")[0])
+    return list(dict.fromkeys(out))
+
+
+def _fetch_bpi_rows() -> List[Tuple[str, Optional[int], Optional[float]]]:
+    s = _session()
+    page_url = f"https://www.espn.com/mens-college-basketball/bpi/_/view/overview/season/{SEASON}/group/{GROUP}"
+    html = ""
+    try:
+        r = s.get(page_url, timeout=25, headers={"Referer": "https://www.espn.com/"})
+        if r.status_code == 200:
+            html = r.text or ""
+    except Exception:
+        html = ""
+
+    candidates = _discover_api_candidates(html)
+    candidates.extend(
+        [
+            "https://site.web.api.espn.com/apis/v2/sports/basketball/mens-college-basketball/bpi",
+            "https://site.web.api.espn.com/apis/v2/sports/basketball/mens-college-basketball/powerindex",
+            "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/bpi",
+        ]
+    )
+
+    best: List[Tuple[str, Optional[int], Optional[float]]] = []
+    seen = set()
+    cands = []
+    for c in candidates:
+        if c not in seen:
+            seen.add(c)
+            cands.append(c)
+
+    for base in cands:
+        rows = _paged_collect_json(s, base)
+        if len(rows) > len(best):
+            best = rows
+        if len(best) >= 360:
+            break
+
+    return best
+
+
+def _auto_match(source_team: str, alias_map: Dict[str, str], standard_variants: List[Tuple[str, str]]) -> Optional[str]:
+    fk = _key(source_team)
+    if not fk:
+        return None
+    if fk in alias_map:
+        return alias_map[fk]
+
+    best_std: Optional[str] = None
+    best_len = 0
+
+    for vkey, std in standard_variants:
+        if not vkey:
+            continue
+        if fk == vkey:
+            return std
+        if fk.startswith(vkey) or vkey in fk:
+            if len(vkey) > best_len:
+                best_len = len(vkey)
+                best_std = std
+
+    return best_std
+
+
+def main() -> None:
+    root = _root()
+    data_raw = _data_raw(root)
+
+    alias_df = _read_alias(root)
+    alias_map = _build_alias_map(alias_df)
+    standards = _standards(alias_df)
+
+    standard_variants: List[Tuple[str, str]] = []
+    for std in standards:
+        for v in _variants(std):
+            standard_variants.append((v, std))
+    standard_variants = sorted(set(standard_variants), key=lambda x: (-len(x[0]), x[1]))
+
+    source_rows = _fetch_bpi_rows()
+    source_rows = [(t, r, b) for (t, r, b) in source_rows if t and r is not None]
+
+    matched_rows: List[Tuple[str, int, Optional[float]]] = []
+    unmatched_rows: List[Tuple[str, str, float]] = []
+
+    for team, rank, rating in source_rows:
+        std = _auto_match(team, alias_map, standard_variants)
+        if std:
+            matched_rows.append((std, int(rank), rating))
+        else:
+            sug = _suggest(team, standards)
+            unmatched_rows.append((team, sug.standard, sug.score))
+
+    df = pd.DataFrame(matched_rows, columns=["Team", "BPI_Rank", "BPI"])
+    df = df.sort_values("BPI_Rank", ascending=True).drop_duplicates(subset=["Team"], keep="first").reset_index(drop=True)
+
+    snapshot_date = dt.datetime.now(dt.timezone.utc).date().isoformat()
+    df.insert(0, "snapshot_date", snapshot_date)
+
+    out_path = data_raw / "BPI_Rank.csv"
+    df.to_csv(out_path, index=False)
+
+    unmatched_path = data_raw / "unmatched_bpi_teams.csv"
+    pd.DataFrame(unmatched_rows, columns=["source_team", "suggested_standard", "match_score"]).to_csv(
+        unmatched_path, index=False
+    )
+
+    print(out_path.name)
+    print(unmatched_path.name)
+    print(f"Pulled source teams: {len(source_rows)}")
+    print(f"Matched: {len(df)}")
+    print(f"Unmatched: {len(unmatched_rows)}")
+
+
+if __name__ == "__main__":
+    main()
