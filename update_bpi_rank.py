@@ -1,218 +1,195 @@
-from __future__ import annotations
-
+from pathlib import Path
 import datetime as dt
 import re
-from dataclasses import dataclass
-from difflib import SequenceMatcher
-from io import StringIO
-from pathlib import Path
-from typing import Dict, List, Tuple
-
+import io
 import pandas as pd
 import requests
 
-
 SEASON = 2026
-TIMEOUT = 30
+GROUP = 50
 
-
-def _root() -> Path:
+def _root():
     return Path(__file__).resolve().parent
 
+def _data_raw(root: Path) -> Path:
+    p = root / "data_raw"
+    p.mkdir(parents=True, exist_ok=True)
+    return p
 
-def _data_raw_dir(root: Path) -> Path:
-    d = root / "data_raw"
-    d.mkdir(parents=True, exist_ok=True)
-    return d
-
-
-def _norm(s: str) -> str:
-    s = str(s or "").strip().lower()
-    s = s.replace("&", " and ")
-    s = s.replace("'", "")
-    s = re.sub(r"\bsaint\b", "st", s)
-    s = re.sub(r"\bst\.?\b", "st", s)
-    s = re.sub(r"\bstate\b", "st", s)
-    s = re.sub(r"[^a-z0-9]+", "", s)
+def _norm(s):
+    s = (s or "").strip().lower()
+    s = re.sub(r"[^\w\s]", "", s)
+    s = re.sub(r"\s+", " ", s)
     return s
 
+def _load_alias_map(path: Path):
+    alias_to_canon = {}
+    if not path.exists():
+        return alias_to_canon
+    with open(path, "r", encoding="utf-8") as f:
+        for raw in f:
+            raw = raw.strip()
+            if not raw:
+                continue
+            parts = [p.strip() for p in raw.split(",") if p.strip()]
+            if not parts:
+                continue
+            canon = parts[0]
+            for p in parts:
+                alias_to_canon[_norm(p)] = canon
+    return alias_to_canon
 
-def _load_alias_df(root: Path) -> pd.DataFrame:
-    p = root / "team_alias.csv"
-    if not p.exists():
-        raise FileNotFoundError(f"Missing team_alias.csv at {p}")
-    df = pd.read_csv(p, dtype=str, keep_default_na=False, na_filter=False)
-    for c in ["standard_name", "kenpom_name", "bpi_name", "net_name", "game_log_name"]:
-        if c not in df.columns:
-            raise ValueError(f"team_alias.csv missing column: {c}")
-    return df
+def _apply_alias(name: str, alias: dict):
+    k = _norm(name)
+    return alias.get(k, name)
 
-
-def _build_lookup(alias_df: pd.DataFrame) -> Dict[str, str]:
-    lookup: Dict[str, str] = {}
-
-    def add(v: str, standard: str) -> None:
-        k = _norm(v)
-        if k and k not in lookup:
-            lookup[k] = standard
-
-    for _, r in alias_df.iterrows():
-        standard = str(r.get("standard_name", "")).strip()
-        if not standard:
-            continue
-        add(standard, standard)
-        add(r.get("bpi_name", ""), standard)
-        add(r.get("net_name", ""), standard)
-        add(r.get("kenpom_name", ""), standard)
-        add(r.get("game_log_name", ""), standard)
-
-    return lookup
-
-
-@dataclass
-class MatchResult:
-    standard: str
-    score: float
-
-
-def _suggest(source: str, standards: List[str]) -> MatchResult:
-    s0 = _norm(source)
-    best = MatchResult("", 0.0)
-    for st in standards:
-        sc = SequenceMatcher(None, s0, _norm(st)).ratio()
-        if sc > best.score:
-            best = MatchResult(st, sc)
-    return best
-
-
-def _session() -> requests.Session:
+def _session():
     s = requests.Session()
     s.headers.update(
         {
             "User-Agent": "Mozilla/5.0",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
             "Accept-Language": "en-US,en;q=0.9",
+            "Referer": "https://www.espn.com/",
         }
     )
     return s
 
-
-def _fetch_html(season: int) -> str:
-    url = f"https://www.espn.com/mens-college-basketball/bpi/_/view/overview/season/{season}/group/50"
-    r = _session().get(url, timeout=TIMEOUT)
-    r.raise_for_status()
-    return r.text
-
-
-def _pick_table(tables: List[pd.DataFrame]) -> pd.DataFrame:
+def _pick_table(tables):
     best = None
     best_score = -1
     for t in tables:
         cols = [str(c).strip().lower() for c in t.columns]
-        score = 0
-        if any("team" in c for c in cols):
-            score += 3
-        if any(c == "bpi" or c.endswith("bpi") or "bpi" in c for c in cols):
-            score += 3
-        if any("rk" in c or c in {"rnk", "rank"} for c in cols):
-            score += 1
+        has_team = any("team" in c for c in cols)
+        has_rank = any(("bpi" in c and "rk" in c) or c == "bpi rk" for c in cols)
+        if not (has_team and has_rank):
+            continue
+        score = (1 if has_team else 0) + (1 if has_rank else 0) + len(t)
         if score > best_score:
-            best = t
             best_score = score
-    if best is None:
-        raise RuntimeError("Could not find a BPI table on the ESPN page.")
+            best = t
     return best
 
+def _extract_team_rank(df: pd.DataFrame) -> pd.DataFrame:
+    cols = [str(c).strip() for c in df.columns]
+    cols_l = [c.lower() for c in cols]
 
-def _clean_team_cell(x: str) -> str:
-    s = str(x or "").strip()
-    s = re.sub(r"\s*\([^)]*\)\s*$", "", s)
-    s = re.sub(r"\s+\d+\s*-\s*\d+\s*$", "", s)
-    s = re.sub(r"\s+\d+\s*-\s*\d+\s*\([^)]*\)\s*$", "", s)
-    return s.strip()
+    team_idx = None
+    rank_idx = None
 
-
-def _extract_rows(html: str) -> pd.DataFrame:
-    tables = pd.read_html(StringIO(html))
-    t = _pick_table(tables)
-
-    cols = {str(c).strip().lower(): c for c in t.columns}
-    team_col = None
-    for k in ["team", "school", "name"]:
-        if k in cols:
-            team_col = cols[k]
+    for i, c in enumerate(cols_l):
+        if "team" in c:
+            team_idx = i
             break
-    if team_col is None:
-        for c in t.columns:
-            if "team" in str(c).lower():
-                team_col = c
-                break
-    if team_col is None:
-        team_col = t.columns[0]
 
-    out = pd.DataFrame()
-    out["TeamSrc"] = t[team_col].astype(str).map(_clean_team_cell)
-
-    rk_col = None
-    for k in ["rk", "rnk", "rank"]:
-        if k in cols:
-            rk_col = cols[k]
+    for i, c in enumerate(cols_l):
+        if c == "bpi rk" or ("bpi" in c and "rk" in c):
+            rank_idx = i
             break
-    if rk_col is not None:
-        out["BPI_Rank"] = pd.to_numeric(t[rk_col], errors="coerce")
-    else:
-        out["BPI_Rank"] = range(1, len(out) + 1)
 
-    out = out.dropna(subset=["TeamSrc"]).copy()
-    out["TeamSrc"] = out["TeamSrc"].astype(str).str.strip()
-    out = out[out["TeamSrc"] != ""].copy()
+    if team_idx is None or rank_idx is None:
+        return pd.DataFrame(columns=["Team", "BPI_Rank"])
+
+    out = df.iloc[:, [team_idx, rank_idx]].copy()
+    out.columns = ["Team", "BPI_Rank"]
+
+    out["Team"] = out["Team"].astype(str).str.replace(r"\s*\(.*?\)\s*$", "", regex=True).str.strip()
     out["BPI_Rank"] = pd.to_numeric(out["BPI_Rank"], errors="coerce")
-    out = out.dropna(subset=["BPI_Rank"]).copy()
+    out = out.dropna(subset=["BPI_Rank"])
     out["BPI_Rank"] = out["BPI_Rank"].astype(int)
+    out = out.drop_duplicates(subset=["Team"], keep="first")
+    return out
 
-    return out[["TeamSrc", "BPI_Rank"]]
+def _page_urls(page: int):
+    urls = []
+    if page == 1:
+        urls += [
+            f"https://www.espn.com/mens-college-basketball/bpi/_/view/bpi/season/{SEASON}/group/{GROUP}",
+            f"https://www.espn.com/mens-college-basketball/bpi/_/view/bpi/season/{SEASON}",
+            "https://www.espn.com/mens-college-basketball/bpi/_/view/bpi",
+            "https://www.espn.com/mens-college-basketball/bpi",
+        ]
+    else:
+        urls += [
+            f"https://www.espn.com/mens-college-basketball/bpi/_/view/bpi/season/{SEASON}/group/{GROUP}/page/{page}",
+            f"https://www.espn.com/mens-college-basketball/bpi/_/view/bpi/season/{SEASON}/page/{page}",
+            f"https://www.espn.com/mens-college-basketball/bpi/_/view/bpi/page/{page}",
+            f"https://www.espn.com/mens-college-basketball/bpi/_/page/{page}/view/bpi",
+        ]
+    seen = set()
+    out = []
+    for u in urls:
+        if u not in seen:
+            seen.add(u)
+            out.append(u)
+    return out
 
-
-def main() -> None:
-    root = _root()
-    data_raw = _data_raw_dir(root)
-
-    alias_df = _load_alias_df(root)
-    lookup = _build_lookup(alias_df)
-    standards = alias_df["standard_name"].astype(str).tolist()
-
-    html = _fetch_html(SEASON)
-    raw = _extract_rows(html)
-
-    snapshot_date = dt.date.today().isoformat()
-
-    matched_rows: List[Tuple[str, str, int]] = []
-    unmatched_rows: List[Tuple[str, str, float]] = []
-
-    for _, r in raw.iterrows():
-        src = str(r["TeamSrc"]).strip()
-        rk = int(r["BPI_Rank"])
-        standard = lookup.get(_norm(src), "")
-        if not standard:
-            sug = _suggest(src, standards)
-            unmatched_rows.append((src, sug.standard, float(sug.score)))
+def _fetch_page(page: int, s: requests.Session) -> pd.DataFrame:
+    for url in _page_urls(page):
+        try:
+            r = s.get(url, timeout=25)
+            if r.status_code != 200 or not r.text:
+                continue
+            tables = pd.read_html(io.StringIO(r.text))
+            t = _pick_table(tables)
+            if t is None:
+                continue
+            out = _extract_team_rank(t)
+            if len(out) >= 20:
+                return out
+        except Exception:
             continue
-        matched_rows.append((snapshot_date, standard, rk))
+    return pd.DataFrame(columns=["Team", "BPI_Rank"])
+
+def main():
+    root = _root()
+    data_raw = _data_raw(root)
+
+    alias = _load_alias_map(root / "team_alias.csv")
+
+    s = _session()
+
+    all_rows = []
+    prev_len = 0
+    empty_streak = 0
+
+    for page in range(1, 25):
+        dfp = _fetch_page(page, s)
+        if dfp.empty:
+            empty_streak += 1
+            if empty_streak >= 3:
+                break
+            continue
+
+        empty_streak = 0
+        all_rows.append(dfp)
+
+        cur = pd.concat(all_rows, ignore_index=True)
+        cur = cur.drop_duplicates(subset=["Team"], keep="first")
+        if len(cur) == prev_len:
+            break
+        prev_len = len(cur)
+
+        if len(cur) >= 365:
+            break
+
+    if not all_rows:
+        raise SystemExit("BPI scrape failed: no tables found.")
+
+    df = pd.concat(all_rows, ignore_index=True)
+    df["Team"] = df["Team"].astype(str).map(lambda x: _apply_alias(x, alias))
+    df = df.sort_values("BPI_Rank").drop_duplicates(subset=["Team"], keep="first")
+    df = df.reset_index(drop=True)
+
+    snapshot_date = dt.datetime.now(dt.timezone.utc).date().isoformat()
+    df.insert(0, "snapshot_date", snapshot_date)
 
     out_path = data_raw / "BPI_Rank.csv"
-    pd.DataFrame(matched_rows, columns=["snapshot_date", "Team", "BPI_Rank"]).to_csv(out_path, index=False)
+    df.to_csv(out_path, index=False)
 
-    unmatched_path = data_raw / "unmatched_bpi_teams.csv"
-    pd.DataFrame(unmatched_rows, columns=["source_team", "suggested_standard", "match_score"]).to_csv(
-        unmatched_path, index=False
-    )
+    print(f"Wrote {out_path} with {len(df)} teams")
 
-    print(out_path.name)
-    print(unmatched_path.name)
-    print(f"ESPN rows scraped: {len(raw)}")
-    print(f"Matched: {len(matched_rows)}")
-    print(f"Unmatched: {len(unmatched_rows)}")
-
+    if len(df) < 300:
+        raise SystemExit(f"BPI scrape returned only {len(df)} teams. ESPN page structure may have changed.")
 
 if __name__ == "__main__":
     main()
