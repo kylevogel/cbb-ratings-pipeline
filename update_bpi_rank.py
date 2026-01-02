@@ -3,10 +3,9 @@ from __future__ import annotations
 import datetime as dt
 import json
 import re
-from dataclasses import dataclass
 from difflib import SequenceMatcher
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, List, Optional
 
 import pandas as pd
 import requests
@@ -63,11 +62,6 @@ def _build_lookup(alias_df: pd.DataFrame) -> Dict[str, str]:
     return lookup
 
 
-def _canon(name: str, lookup: Dict[str, str]) -> str:
-    k = _norm(name)
-    return lookup.get(k, str(name).strip())
-
-
 def _session() -> requests.Session:
     s = requests.Session()
     s.headers.update(
@@ -82,19 +76,6 @@ def _session() -> requests.Session:
 
 def _is_url(s: str) -> bool:
     return s.startswith("http://") or s.startswith("https://")
-
-
-def _extract_urls_from_html(html: str) -> List[str]:
-    urls = set(re.findall(r"https?://[^\s\"'<>]+", html))
-    out = []
-    for u in urls:
-        if "espn" not in u:
-            continue
-        if "/apis/" not in u:
-            continue
-        if "bpi" in u.lower() or "powerindex" in u.lower():
-            out.append(u)
-    return sorted(set(out))
 
 
 def _safe_json_loads(blob: str) -> Optional[Any]:
@@ -126,7 +107,7 @@ def _extract_embedded_json(html: str) -> List[Any]:
     return out
 
 
-def _walk(obj: Any) -> Iterable[Any]:
+def _walk(obj: Any):
     stack = [obj]
     while stack:
         x = stack.pop()
@@ -137,6 +118,19 @@ def _walk(obj: Any) -> Iterable[Any]:
         elif isinstance(x, list):
             for v in x:
                 stack.append(v)
+
+
+def _extract_urls_from_html(html: str) -> List[str]:
+    urls = set(re.findall(r"https?://[^\s\"'<>]+", html))
+    out = []
+    for u in urls:
+        if "espn" not in u:
+            continue
+        if "/apis/" not in u:
+            continue
+        if "bpi" in u.lower() or "powerindex" in u.lower():
+            out.append(u)
+    return sorted(set(out))
 
 
 def _discover_api_urls(html: str) -> List[str]:
@@ -176,7 +170,7 @@ def _coerce_int(x: Any) -> Optional[int]:
 
 def _pick_team_name(t: Any) -> Optional[str]:
     if isinstance(t, dict):
-        for k in ["displayName", "shortDisplayName", "name", "abbreviation"]:
+        for k in ["shortDisplayName", "displayName", "name", "abbreviation"]:
             v = t.get(k)
             if v:
                 return str(v).strip()
@@ -218,9 +212,7 @@ def _parse_bpi_payload(data: Any) -> List[Dict[str, Any]]:
         for it in data["items"]:
             if not isinstance(it, dict):
                 continue
-            team = _pick_team_name(it.get("team") or it.get("athlete") or it.get("franchise") or it.get("club"))
-            if not team:
-                team = _pick_team_name(it.get("name"))
+            team = _pick_team_name(it.get("team") or it.get("athlete") or it.get("franchise") or it.get("club")) or _pick_team_name(it.get("name"))
             rank = _coerce_int(it.get("rank") or it.get("currentRank") or it.get("seed"))
             rating = _pick_stat(it.get("stats") or it.get("values") or it.get("metrics"), ["bpi", "power", "rating"])
             add(team or "", rank, rating)
@@ -235,9 +227,9 @@ def _parse_bpi_payload(data: Any) -> List[Dict[str, Any]]:
             for it in ranks:
                 if not isinstance(it, dict):
                     continue
-                team = _pick_team_name(it.get("team"))
+                team = _pick_team_name(it.get("team")) or _pick_team_name(it.get("name"))
                 rank = _coerce_int(it.get("rank") or it.get("currentRank"))
-                rating = _pick_stat(it.get("stats") or it.get("values"), ["bpi", "power", "rating"])
+                rating = _pick_stat(it.get("stats") or it.get("values") or it.get("metrics"), ["bpi", "power", "rating"])
                 add(team or "", rank, rating)
 
     if not out:
@@ -245,7 +237,7 @@ def _parse_bpi_payload(data: Any) -> List[Dict[str, Any]]:
             if not isinstance(x, dict):
                 continue
             if "team" in x and any(k in x for k in ["rank", "currentRank", "stats", "values", "metrics"]):
-                team = _pick_team_name(x.get("team"))
+                team = _pick_team_name(x.get("team")) or _pick_team_name(x.get("name"))
                 rank = _coerce_int(x.get("rank") or x.get("currentRank"))
                 rating = _pick_stat(x.get("stats") or x.get("values") or x.get("metrics"), ["bpi", "power", "rating"])
                 if team:
@@ -353,9 +345,9 @@ def _fetch_bpi_rows(season: int, group: int) -> List[Dict[str, Any]]:
                         bpi_col = c
                 if team_col is not None and bpi_col is not None:
                     out = []
-                    for _, r in best.iterrows():
-                        team = str(r.get(team_col, "")).strip()
-                        rank = _coerce_int(r.get(bpi_col))
+                    for _, rr in best.iterrows():
+                        team = str(rr.get(team_col, "")).strip()
+                        rank = _coerce_int(rr.get(bpi_col))
                         if team and rank is not None:
                             out.append({"team": team, "rank": rank, "rating": None})
                     if len(out) >= 300:
@@ -366,25 +358,33 @@ def _fetch_bpi_rows(season: int, group: int) -> List[Dict[str, Any]]:
     return []
 
 
-@dataclass
-class Suggestion:
-    incoming: str
-    best_standard: str
-    ratio: float
+def _prefix_map(name: str, standard_keys: Dict[str, str]) -> Optional[str]:
+    k = _norm(name)
+    if not k:
+        return None
+    best = None
+    best_len = 0
+    for sk, std in standard_keys.items():
+        if k.startswith(sk) and len(sk) > best_len:
+            best = std
+            best_len = len(sk)
+    return best
 
 
-def _suggest(incoming: str, standards: List[str]) -> Optional[Suggestion]:
-    inc = str(incoming).strip()
+def _fuzzy_map(name: str, standards: List[str]) -> Optional[str]:
+    inc = str(name).strip()
     if not inc:
         return None
     inc_n = _norm(inc)
-    best = ("", 0.0)
+    best_s = None
+    best_r = 0.0
     for s in standards:
         r = SequenceMatcher(a=inc_n, b=_norm(s)).ratio()
-        if r > best[1]:
-            best = (s, r)
-    if best[0]:
-        return Suggestion(incoming=inc, best_standard=best[0], ratio=float(best[1]))
+        if r > best_r:
+            best_r = r
+            best_s = s
+    if best_s is not None and best_r >= 0.92:
+        return best_s
     return None
 
 
@@ -395,6 +395,7 @@ def main() -> None:
     alias_df = _load_alias_df(root)
     lookup = _build_lookup(alias_df)
     standards = alias_df["standard_name"].astype(str).tolist()
+    standard_keys = {_norm(s): s for s in standards if str(s).strip()}
 
     rows = _fetch_bpi_rows(SEASON, GROUP)
     df = _finalize_rows(rows)
@@ -402,24 +403,31 @@ def main() -> None:
     snapshot_date = dt.datetime.now(dt.timezone.utc).date().isoformat()
     df.insert(0, "snapshot_date", snapshot_date)
 
-    df["Team"] = df["Team"].astype(str).map(lambda x: _canon(x, lookup))
-
-    out_path = data_raw / "BPI_Rank.csv"
-    df.to_csv(out_path, index=False)
-
-    unmatched = []
-    known = set(_norm(s) for s in standards)
+    canon = []
+    leftover = []
     for t in df["Team"].astype(str).tolist():
-        if _norm(t) not in known:
-            s = _suggest(t, standards)
-            if s is not None:
-                unmatched.append({"incoming_team": s.incoming, "suggested_standard": s.best_standard, "similarity": s.ratio})
+        t0 = t.strip()
+        mapped = lookup.get(_norm(t0))
+        if mapped is None:
+            mapped = _prefix_map(t0, standard_keys)
+        if mapped is None:
+            mapped = _fuzzy_map(t0, standards)
+        if mapped is None:
+            mapped = t0
+            leftover.append(t0)
+        canon.append(mapped)
 
-    um_path = data_raw / "unmatched_bpi_teams.csv"
-    pd.DataFrame(unmatched).sort_values(["similarity", "incoming_team"], ascending=[False, True]).to_csv(um_path, index=False)
+    df["Team"] = canon
+    (data_raw / "BPI_Rank.csv").write_text(df.to_csv(index=False))
+
+    if leftover:
+        um = pd.DataFrame({"incoming_team": sorted(set(leftover))})
+        um.to_csv(data_raw / "unmatched_bpi_teams.csv", index=False)
+    else:
+        pd.DataFrame(columns=["incoming_team"]).to_csv(data_raw / "unmatched_bpi_teams.csv", index=False)
 
     if len(df) < 300:
-        raise SystemExit(f"BPI scrape returned only {len(df)} teams; expected ~364. See {out_path}.")
+        raise SystemExit(f"BPI scrape returned only {len(df)} teams; expected ~364.")
 
 
 if __name__ == "__main__":
