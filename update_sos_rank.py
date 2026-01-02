@@ -11,6 +11,39 @@ def _norm(s: str) -> str:
     s = re.sub(r"\s+", " ", s).strip()
     return s
 
+def _resolve_standard(raw: str, alias_map: dict) -> str:
+    raw = "" if raw is None else str(raw).strip()
+    if not raw:
+        return ""
+
+    candidates = [raw]
+
+    # Common: State <-> St.
+    candidates.append(re.sub(r"\bState\b", "St.", raw))
+    candidates.append(re.sub(r"\bSt\.?\b", "State", raw))
+
+    # California wording variants
+    candidates.append(re.sub(r"\bCal State\b", "Cal St.", raw))
+    candidates.append(re.sub(r"\bCal St\.?\b", "Cal State", raw))
+
+    # NC State variants
+    if _norm(raw) in (_norm("North Carolina State"), _norm("NC State"), _norm("N.C. State")):
+        candidates.extend(["N.C. State", "NC State", "North Carolina State"])
+
+    # Special one-offs (these show up a lot)
+    if "northridge" in raw.lower():
+        candidates.append("CSUN")
+    if raw.strip().lower() == "detroit":
+        candidates.append("Detroit Mercy")
+
+    # Try all candidates
+    for c in candidates:
+        std = alias_map.get(_norm(c), "")
+        if std:
+            return std
+
+    return ""
+
 def _variants(cell: str) -> list[str]:
     if cell is None:
         return []
