@@ -171,4 +171,62 @@ def _match_team(src_team, std_lower, cand_lower, canon_to_stds, all_candidates):
         if best[0]:
             return best[0], src, best[1]
 
-    guess, score = _best_guess(src
+    guess, score = _best_guess(src, all_candidates)
+    if guess and score >= 0.82:
+        return cand_lower.get(guess.lower(), None), guess, score
+
+    return None, guess, score
+
+def main():
+    DATA_RAW.mkdir(parents=True, exist_ok=True)
+
+    season = os.environ.get("SEASON", "").strip() or "2026"
+
+    alias_df = _load_alias()
+    std_lower, cand_lower, canon_to_stds, all_candidates = _alias_maps(alias_df)
+
+    s = _session()
+    src_df = _fetch_sos(season, s)
+
+    snapshot_date = dt.datetime.now(dt.timezone.utc).date().isoformat()
+
+    mapped = []
+    unmatched = []
+
+    for _, r in src_df.iterrows():
+        src_team = str(r["Team"]).strip()
+        rank = int(r["Rank"])
+        std, used, score = _match_team(src_team, std_lower, cand_lower, canon_to_stds, all_candidates)
+        if std:
+            mapped.append({"snapshot_date": snapshot_date, "Team": std, "SoS": rank, "source_team": src_team})
+        else:
+            unmatched.append({"source_team": src_team, "suggested_standard": (used or ""), "match_score": float(score)})
+
+    mapped_df = pd.DataFrame(mapped)
+
+    # Collision report: same standard team matched from multiple source rows
+    dup_mask = mapped_df.duplicated(subset=["Team"], keep=False)
+    collisions = mapped_df[dup_mask].sort_values(["Team", "SoS"]).reset_index(drop=True)
+    coll_path = DATA_RAW / "sos_collisions.csv"
+    collisions.to_csv(coll_path, index=False)
+
+    # Now create final output (keep best/lowest SoS rank for duplicates)
+    out = mapped_df.sort_values("SoS").drop_duplicates(subset=["Team"], keep="first").reset_index(drop=True)
+    out = out.drop(columns=["source_team"])
+
+    out_path = DATA_RAW / "SOS_Rank.csv"
+    out.to_csv(out_path, index=False)
+
+    um_path = DATA_RAW / "unmatched_sos_teams.csv"
+    pd.DataFrame(unmatched).to_csv(um_path, index=False)
+
+    print("SOS_Rank.csv")
+    print("unmatched_sos_teams.csv")
+    print("sos_collisions.csv")
+    print("Pulled source teams:", len(src_df))
+    print("Matched:", len(out))
+    print("Unmatched:", len(unmatched))
+    print("Collisions:", len(collisions))
+
+if __name__ == "__main__":
+    main()
