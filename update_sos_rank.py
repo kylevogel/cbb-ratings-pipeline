@@ -1,190 +1,185 @@
-from pathlib import Path
+import io
+import json
 from datetime import date
-from io import StringIO
 from difflib import SequenceMatcher
-import re
+from pathlib import Path
+
 import pandas as pd
 import requests
 
 SEASON = 2026
 URL = f"https://www.warrennolan.com/basketball/{SEASON}/sos-rpi-predict"
 
-DATA_RAW = Path("data_raw")
-ALIAS_PATH = Path("team_alias.csv")
+ROOT = Path(__file__).resolve().parent
+DATA_RAW = ROOT / "data_raw"
+TEAM_ALIAS = ROOT / "team_alias.csv"
+
+def clean(s):
+    return str(s).replace("\xa0", " ").strip()
 
 def norm(s):
-    if s is None:
-        return ""
-    s = str(s).replace("\xa0", " ").strip().casefold()
-    s = s.replace("’", "'")
-    s = re.sub(r"[\.']", "", s)
-    s = s.replace("&", " and ")
-    s = re.sub(r"[^a-z0-9 ]+", " ", s)
-    s = re.sub(r"\s+", " ", s).strip()
-    return s
+    return clean(s).lower()
 
-def ratio(a, b):
+def best_ratio(a, b):
     return SequenceMatcher(None, norm(a), norm(b)).ratio()
 
-def pick_table(tables):
+def load_source():
+    html = requests.get(URL, headers={"User-Agent": "Mozilla/5.0"}, timeout=30).text
+    tables = pd.read_html(io.StringIO(html))
+
+    tbl = None
     for t in tables:
-        cols = [norm(c) for c in list(t.columns)]
-        if "rank" in cols and ("team" in cols or "school" in cols):
-            return t
-    return None
+        cols = [str(c).strip().lower() for c in t.columns]
+        if "team" in cols and "rank" in cols:
+            tbl = t.copy()
+            break
+
+    if tbl is None:
+        raise SystemExit("Could not find a table with columns including Team and Rank")
+
+    team_col = [c for c in tbl.columns if str(c).strip().lower() == "team"][0]
+    rank_col = [c for c in tbl.columns if str(c).strip().lower() == "rank"][0]
+
+    tbl = tbl[[rank_col, team_col]].copy()
+    tbl[team_col] = tbl[team_col].astype(str).map(clean)
+
+    tbl[rank_col] = pd.to_numeric(tbl[rank_col], errors="coerce")
+    tbl = tbl.dropna(subset=[rank_col])
+    tbl[rank_col] = tbl[rank_col].astype(int)
+
+    src_team_to_rank = dict(zip(tbl[team_col].tolist(), tbl[rank_col].tolist()))
+    return src_team_to_rank
+
+def load_alias():
+    df = pd.read_csv(TEAM_ALIAS, dtype=str).fillna("")
+    if "sos_name" not in df.columns:
+        df["sos_name"] = ""
+        df.to_csv(TEAM_ALIAS, index=False)
+    return df
+
+def desired_for_row(r):
+    for k in ["sos_name", "net_name", "standard_name"]:
+        v = clean(r.get(k, ""))
+        if v:
+            return v
+    return ""
 
 def main():
     DATA_RAW.mkdir(parents=True, exist_ok=True)
 
-    alias = pd.read_csv(ALIAS_PATH, dtype=str).fillna("")
-    if "standard_name" not in alias.columns:
-        raise SystemExit("team_alias.csv missing standard_name column")
-    if "sos_name" not in alias.columns:
-        alias["sos_name"] = ""
-        alias.to_csv(ALIAS_PATH, index=False)
+    src_team_to_rank = load_source()
+    src_teams = list(src_team_to_rank.keys())
+    src_norm_to_src = {}
+    for s in src_teams:
+        src_norm_to_src.setdefault(norm(s), s)
 
-    r = requests.get(URL, timeout=30, headers={"User-Agent": "Mozilla/5.0"})
-    r.raise_for_status()
+    alias = load_alias()
+    alias = alias[alias["standard_name"].astype(str).map(clean).ne("")]
 
-    tables = pd.read_html(StringIO(r.text))
-    t = pick_table(tables)
-    if t is None:
-        raise SystemExit("Could not find SoS table on WarrenNolan page")
+// ensure unique
+    alias["standard_name"] = alias["standard_name"].map(clean)
+    alias["sos_name"] = alias["sos_name"].map(clean)
+    alias["net_name"] = alias["net_name"].map(clean)
 
-    cols_norm = {c: norm(c) for c in t.columns}
-    rank_col = None
-    team_col = None
-    for c, cn in cols_norm.items():
-        if cn == "rank":
-            rank_col = c
-        if cn in ("team", "school"):
-            team_col = c
+    standards = alias["standard_name"].tolist()
+    desired_map = {std: desired_for_row(alias.loc[i]) for i, std in enumerate(standards)}
 
-    if rank_col is None or team_col is None:
-        raise SystemExit("SoS table missing Rank/Team columns")
-
-    t = t[[rank_col, team_col]].copy()
-    t[rank_col] = pd.to_numeric(t[rank_col], errors="coerce")
-    t[team_col] = t[team_col].astype(str).str.replace("\xa0", " ").str.strip()
-    t = t.dropna(subset=[rank_col, team_col])
-    t[rank_col] = t[rank_col].astype(int)
-
-    src_norm_to_rank = {}
-    src_norm_to_orig = {}
-    for _, row in t.iterrows():
-        team = str(row[team_col]).replace("\xa0", " ").strip()
-        rk = int(row[rank_col])
-        k = norm(team)
-        if not k:
+    candidates = []
+    for std in standards:
+        desired = desired_map.get(std, "")
+        if not desired:
             continue
-        if k not in src_norm_to_rank:
-            src_norm_to_rank[k] = rk
-            src_norm_to_orig[k] = team
 
-    src_keys = list(src_norm_to_rank.keys())
+        if desired in src_team_to_rank:
+            candidates.append((2.0, std, desired, desired, "exact"))
+            continue
 
-    used = {}
-    matched_rows = []
-    unmatched_rows = []
+        dn = norm(desired)
+        if dn in src_norm_to_src:
+            s = src_norm_to_src[dn]
+            candidates.append((1.9, std, desired, s, "norm_exact"))
+            continue
+
+        best_s = None
+        best_sc = -1.0
+        for s in src_teams:
+            sc = best_ratio(desired, s)
+            if sc > best_sc:
+                best_sc = sc
+                best_s = s
+        candidates.append((best_sc, std, desired, best_s, "fuzzy"))
+
+    candidates.sort(reverse=True, key=lambda x: x[0])
+
+    assigned_std = set()
+    assigned_src = {}
+    chosen = {}
     collisions = []
 
-    snapshot_date = date.today().isoformat()
-
-    for _, ar in alias.iterrows():
-        std = str(ar.get("standard_name", "")).strip()
-        if not std:
+    for sc, std, desired, s, note in candidates:
+        if std in assigned_std:
             continue
-
-        desired = str(ar.get("sos_name", "")).strip() or std
-
-        k = norm(desired)
-        chosen = None
-        best_score = -1.0
-
-        if k in src_norm_to_rank and k not in used:
-            chosen = k
-            best_score = 1.0
-        else:
-            for sk in src_keys:
-                if sk in used:
-                    continue
-                sc = SequenceMatcher(None, norm(desired), sk).ratio()
-                if sc > best_score:
-                    best_score = sc
-                    chosen = sk
-
-            if best_score < 0.86:
-                chosen = None
-
-        if chosen is None:
-            best_any = None
-            best_any_score = -1.0
-            for sk in src_keys:
-                sc = SequenceMatcher(None, norm(desired), sk).ratio()
-                if sc > best_any_score:
-                    best_any_score = sc
-                    best_any = sk
-
-            suggested = src_norm_to_orig.get(best_any, "") if best_any else ""
-            unmatched_rows.append(
-                {
-                    "standard_name": std,
-                    "desired_source": desired,
-                    "suggested_source": suggested,
-                    "match_score": round(best_any_score if best_any_score >= 0 else 0.0, 6),
-                }
-            )
-            matched_rows.append({"snapshot_date": snapshot_date, "Team": std, "SoS": ""})
+        if s is None or not s:
             continue
-
-        if chosen in used:
+        if s in assigned_src:
             collisions.append(
                 {
                     "standard_name": std,
                     "desired_source": desired,
-                    "matched_source": src_norm_to_orig.get(chosen, ""),
-                    "matched_rank": src_norm_to_rank.get(chosen, ""),
-                    "match_score": round(best_score, 6),
-                    "note": f"already used by {used[chosen]}",
+                    "matched_source": s,
+                    "matched_rank": src_team_to_rank.get(s, ""),
+                    "match_score": sc,
+                    "note": f"already used by {assigned_src[s]}",
+                }
+            )
+            continue
+        assigned_std.add(std)
+        assigned_src[s] = std
+        chosen[std] = (s, sc, note)
+
+    unmatched_rows = []
+    matched_rows = []
+    snapshot_date = date.today().isoformat()
+
+    for std in standards:
+        if std in chosen:
+            s, sc, note = chosen[std]
+            matched_rows.append(
+                {"snapshot_date": snapshot_date, "Team": std, "SoS": int(src_team_to_rank[s])}
+            )
+        else:
+            desired = desired_map.get(std, "")
+            best_s = None
+            best_sc = -1.0
+            for s in src_teams:
+                sc = best_ratio(desired or std, s)
+                if sc > best_sc:
+                    best_sc = sc
+                    best_s = s
+            unmatched_rows.append(
+                {
+                    "standard_name": std,
+                    "desired_source": desired,
+                    "suggested_source": best_s,
+                    "match_score": best_sc,
                 }
             )
             matched_rows.append({"snapshot_date": snapshot_date, "Team": std, "SoS": ""})
-            continue
-
-        used[chosen] = std
-        matched_rows.append(
-            {"snapshot_date": snapshot_date, "Team": std, "SoS": int(src_norm_to_rank[chosen])}
-        )
 
     out_df = pd.DataFrame(matched_rows, columns=["snapshot_date", "Team", "SoS"])
     out_df.to_csv(DATA_RAW / "SOS_Rank.csv", index=False)
 
-    um_df = pd.DataFrame(
-        unmatched_rows,
-        columns=["standard_name", "desired_source", "suggested_source", "match_score"],
-    )
+    um_df = pd.DataFrame(unmatched_rows, columns=["standard_name", "desired_source", "suggested_source", "match_score"])
     um_df.to_csv(DATA_RAW / "unmatched_sos_teams.csv", index=False)
 
-    col_df = pd.DataFrame(
-        collisions,
-        columns=[
-            "standard_name",
-            "desired_source",
-            "matched_source",
-            "matched_rank",
-            "match_score",
-            "note",
-        ],
-    )
+    col_df = pd.DataFrame(collisions, columns=["standard_name", "desired_source", "matched_source", "matched_rank", "match_score", "note"])
     col_df.to_csv(DATA_RAW / "sos_collisions.csv", index=False)
-
-    matched_count = int(out_df["SoS"].astype(str).str.strip().replace("nan", "").ne("").sum())
 
     print("SOS_Rank.csv")
     print("unmatched_sos_teams.csv")
     print("sos_collisions.csv")
-    print(f"Pulled source teams: {len(src_norm_to_rank)}")
-    print(f"Matched: {matched_count}")
+    print(f"Pulled source teams: {len(src_team_to_rank)}")
+    print(f"Matched: {(out_df['SoS'].astype(str).str.strip().ne('') ).sum()}")
     print(f"Unmatched: {len(um_df)}")
     print(f"Collisions: {len(col_df)}")
 
