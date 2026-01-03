@@ -1,453 +1,206 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>CBB Rankings Dashboard</title>
-  <style>
-    :root{
-      --text:#111;
-      --muted:#666;
-      --border:#eee;
-      --pill:#f4f4f4;
-      --pillActive:#111;
-      --pillActiveText:#fff;
-    }
-
-    body{
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      margin:0;
-      color:var(--text);
-      background:#fff;
-    }
-
-    .wrap{
-      width:100%;
-      max-width:none;
-      margin:0;
-      padding:28px 24px 40px 24px;
-      box-sizing:border-box;
-    }
-
-    h1{
-      margin:0 0 14px 0;
-      font-size:34px;
-      font-weight:800;
-      letter-spacing:-0.02em;
-    }
-
-    .controls{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:18px;
-    }
-
-    .pills{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .pill{
-      border:1px solid #ddd;
-      background:#fff;
-      color:#111;
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:12px;
-      cursor:pointer;
-      user-select:none;
-    }
-
-    .pill.active{
-      border-color:var(--pillActive);
-      background:var(--pillActive);
-      color:var(--pillActiveText);
-    }
-
-    .meta{
-      font-size:12px;
-      color:var(--muted);
-      white-space:nowrap;
-    }
-
-    .search{
-      height:34px;
-      width:240px;
-      max-width:70vw;
-      border:1px solid #ddd;
-      border-radius:8px;
-      padding:0 10px;
-      font-size:13px;
-      outline:none;
-    }
-
-    .tableWrap{
-      width:100%;
-      overflow-x:auto;
-      border-top:1px solid var(--border);
-    }
-
-    table{
-      width:100%;
-      border-collapse:collapse;
-      table-layout:fixed;
-      min-width:1060px;
-    }
-
-    thead th{
-      font-size:12px;
-      letter-spacing:0.02em;
-      text-transform:none;
-      color:#333;
-      font-weight:700;
-      padding:12px 10px;
-      border-bottom:1px solid var(--border);
-      text-align:center;
-    }
-
-    tbody td{
-      padding:12px 10px;
-      border-bottom:1px solid #f3f3f3;
-      font-size:13px;
-      text-align:center;
-      vertical-align:middle;
-    }
-
-    tbody tr:hover{
-      background:#fafafa;
-    }
-
-    th.col-team, td.col-team{
-      width:220px;
-      text-align:left;
-      padding-left:6px;
-    }
-
-    th.col-record, td.col-record{
-      width:92px;
-      text-align:left;
-      padding-left:10px;
-    }
-
-    th.col-avg, td.col-avg{
-      width:110px;
-    }
-
-    th.col-ap, td.col-ap,
-    th.col-net, td.col-net,
-    th.col-kenpom, td.col-kenpom,
-    th.col-bpi, td.col-bpi,
-    th.col-sos, td.col-sos{
-      width:78px;
-    }
-
-    .teamName{
-      font-weight:700;
-      color:#111;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      display:block;
-      max-width:100%;
-    }
-
-    .muted{
-      color:var(--muted);
-    }
-
-    @media (max-width: 900px){
-      .wrap{ padding:20px 14px 32px 14px; }
-      h1{ font-size:28px; }
-      .search{ width:200px; }
-    }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <h1>CBB Rankings Dashboard</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CBB Rankings Dashboard</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        margin: 24px;
+      }
+      .topbar {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 14px;
+      }
+      h1 {
+        font-size: 20px;
+        margin: 0;
+      }
+      #updated {
+        font-size: 12px;
+        opacity: 0.75;
+        white-space: nowrap;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      thead th {
+        text-align: left;
+        font-size: 12px;
+        letter-spacing: 0.02em;
+        opacity: 0.9;
+        border-bottom: 1px solid #ddd;
+        padding: 10px 8px;
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 1;
+      }
+      tbody td {
+        border-bottom: 1px solid #f0f0f0;
+        padding: 9px 8px;
+        font-size: 13px;
+      }
+      td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      td.team {
+        width: 240px;
+        padding-left: 2px;
+      }
+      td.record {
+        width: 72px;
+      }
+      .controls {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin: 10px 0 14px;
+      }
+      input {
+        padding: 8px 10px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        width: 260px;
+        font-size: 13px;
+      }
+      .pill {
+        font-size: 12px;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <h1>CBB Rankings Dashboard</h1>
+      <div id="updated">Updated: —</div>
+    </div>
 
     <div class="controls">
-      <div class="pills" id="pills">
-        <button class="pill active" data-sort="NET">NET</button>
-        <button class="pill" data-sort="SoS">SoS</button>
-        <button class="pill" data-sort="KenPom">KenPom</button>
-        <button class="pill" data-sort="BPI">BPI</button>
-        <button class="pill" data-sort="AP">AP</button>
-        <button class="pill" data-sort="AVG">AVG</button>
-        <button class="pill" data-sort="Record">Record</button>
-      </div>
-
-      <div class="meta" id="updatedText">Updated: —</div>
-
-      <input id="search" class="search" type="text" placeholder="Search team..." autocomplete="off" />
+      <input id="search" placeholder="Search team…" />
+      <div class="pill" id="count"></div>
     </div>
 
-    <div class="tableWrap">
-      <table>
-        <thead>
-          <tr>
-            <th class="col-team">Team</th>
-            <th class="col-record">Record</th>
-            <th class="col-avg">Avg of Metrics</th>
-            <th class="col-ap">AP</th>
-            <th class="col-net">NET</th>
-            <th class="col-kenpom">KenPom</th>
-            <th class="col-bpi">BPI</th>
-            <th class="col-sos">SoS</th>
-          </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
-    </div>
-  </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Team</th>
+          <th>Record</th>
+          <th class="num">Avg of Metrics</th>
+          <th class="num">AP</th>
+          <th class="num">NET</th>
+          <th class="num">KenPom</th>
+          <th class="num">BPI</th>
+          <th class="num">SoSa</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
 
-  <script>
-    const DATA_URL = "data/rankings_current.json";
+    <script>
+      const asNum = (v) => {
+        if (v === null || v === undefined) return null;
+        const s = String(v).trim();
+        if (!s || s.toLowerCase() === "nr" || s.toLowerCase() === "na") return null;
+        const n = Number(s);
+        return Number.isFinite(n) ? n : null;
+      };
 
-    const tbody = document.getElementById("tbody");
-    const searchInput = document.getElementById("search");
-    const updatedText = document.getElementById("updatedText");
-    const pills = document.getElementById("pills");
+      const showRankOrNR = (v) => {
+        const n = asNum(v);
+        return n === null ? "NR" : String(n);
+      };
 
-    let rawRows = [];
-    let sortKey = "NET";
-    let query = "";
-
-    function toIntOrNull(v){
-      if (v === null || v === undefined) return null;
-      const s = String(v).trim();
-      if (s === "" || s.toUpperCase() === "NR") return null;
-      const n = Number(s);
-      return Number.isFinite(n) ? n : null;
-    }
-
-    function fmtRank(v){
-      const n = toIntOrNull(v);
-      return n === null ? "NR" : String(n);
-    }
-
-    function normalizeTeam(t){
-      return String(t || "").toLowerCase();
-    }
-
-    function parseUpdated(payload){
-      const candidates = [
-        payload.updated,
-        payload.updated_time,
-        payload.last_updated,
-        payload.generated_at,
-        payload.timestamp
-      ].filter(Boolean);
-
-      let dt = null;
-
-      for (const c of candidates){
-        const tryDt = new Date(c);
-        if (!isNaN(tryDt.getTime())){
-          dt = tryDt;
-          break;
-        }
-      }
-
-      if (!dt){
-        dt = new Date();
-      }
-
-      const utcMs = dt.getTime() + (dt.getTimezoneOffset() * 60000);
-      const estMs = utcMs + (-5 * 60 * 60000);
-      const est = new Date(estMs);
-
-      let h = est.getHours();
-      const m = est.getMinutes().toString().padStart(2, "0");
-      const ampm = h >= 12 ? "PM" : "AM";
-      h = h % 12;
-      if (h === 0) h = 12;
-
-      const yyyy = est.getFullYear();
-      const mm = String(est.getMonth() + 1).padStart(2, "0");
-      const dd = String(est.getDate()).padStart(2, "0");
-
-      return `${mm}-${dd}-${yyyy} ${h}:${m} ${ampm} (UTC-5)`;
-    }
-
-    function escapeHtml(str){
-      return String(str)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
-
-    function setActivePill(key){
-      [...pills.querySelectorAll(".pill")].forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.sort === key);
-      });
-    }
-
-    function computeAvgRank(rows){
-      const computed = rows.map(r => {
-        const net = toIntOrNull(r.NET);
-        const kp = toIntOrNull(r.KenPom);
-        const bpi = toIntOrNull(r.BPI);
-        const avg = (net === null || kp === null || bpi === null) ? null : (net + kp + bpi) / 3;
-        return { ...r, AvgVal: avg, AvgRank: null };
-      });
-
-      const sortable = computed
-        .filter(r => r.AvgVal !== null)
-        .sort((a, b) => {
-          if (a.AvgVal < b.AvgVal) return -1;
-          if (a.AvgVal > b.AvgVal) return 1;
-          const at = normalizeTeam(a.Team);
-          const bt = normalizeTeam(b.Team);
-          if (at < bt) return -1;
-          if (at > bt) return 1;
-          return 0;
+      const computeAvgRank = (rows) => {
+        const withAvg = rows.map((r) => {
+          const net = asNum(r.NET);
+          const kp = asNum(r.KenPom);
+          const bpi = asNum(r.BPI);
+          const ok = net !== null && kp !== null && bpi !== null;
+          const avg = ok ? (net + kp + bpi) / 3 : null;
+          return { ...r, _avg: avg };
         });
 
-      let lastVal = null;
-      let lastRank = 0;
+        const sorted = [...withAvg].sort((a, b) => {
+          if (a._avg === null && b._avg === null) return 0;
+          if (a._avg === null) return 1;
+          if (b._avg === null) return -1;
+          if (a._avg !== b._avg) return a._avg - b._avg;
+          return String(a.Team).localeCompare(String(b.Team));
+        });
 
-      for (let i = 0; i < sortable.length; i++){
-        const v = sortable[i].AvgVal;
-        if (lastVal === null || v !== lastVal){
-          lastRank = i + 1;
-          lastVal = v;
+        let rank = 0;
+        let seen = 0;
+        let last = null;
+
+        const avgToRank = new Map();
+        for (const r of sorted) {
+          if (r._avg === null) continue;
+          seen += 1;
+          if (last === null || r._avg !== last) rank = seen;
+          last = r._avg;
+          avgToRank.set(r.Team, rank);
         }
-        sortable[i].AvgRank = lastRank;
-      }
 
-      const byTeam = new Map(sortable.map(r => [String(r.Team || ""), r.AvgRank]));
+        return withAvg.map((r) => ({
+          ...r,
+          ["Avg of Metrics"]: avgToRank.has(r.Team) ? avgToRank.get(r.Team) : "NR",
+        }));
+      };
 
-      return computed.map(r => ({
-        ...r,
-        AvgRank: byTeam.get(String(r.Team || "")) ?? null
-      }));
-    }
+      const render = (rows) => {
+        const tbody = document.getElementById("tbody");
+        tbody.innerHTML = "";
 
-    function parseRecord(rec){
-      const s = String(rec || "").trim();
-      const m = s.match(/^(\d+)\s*-\s*(\d+)/);
-      if (!m) return null;
-      const w = Number(m[1]);
-      const l = Number(m[2]);
-      if (!Number.isFinite(w) || !Number.isFinite(l)) return null;
-      const g = w + l;
-      const pct = g > 0 ? (w / g) : -1;
-      return { w, l, g, pct };
-    }
+        for (const r of rows) {
+          const sos = r.SoSa ?? r.SoS ?? r.SOS ?? r.sos;
 
-    function getSortVal(row, key){
-      if (key === "Team") return normalizeTeam(row.Team);
-      if (key === "Record") return null;
-      if (key === "AVG") {
-        const n = toIntOrNull(row.AvgRank);
-        return n === null ? 999999 : n;
-      }
-      const n = toIntOrNull(row[key]);
-      return n === null ? 999999 : n;
-    }
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td class="team">${r.Team ?? ""}</td>
+            <td class="record">${r.Record ?? ""}</td>
+            <td class="num">${r["Avg of Metrics"] ?? "NR"}</td>
+            <td class="num">${showRankOrNR(r.AP)}</td>
+            <td class="num">${showRankOrNR(r.NET)}</td>
+            <td class="num">${showRankOrNR(r.KenPom)}</td>
+            <td class="num">${showRankOrNR(r.BPI)}</td>
+            <td class="num">${showRankOrNR(sos)}</td>
+          `;
+          tbody.appendChild(tr);
+        }
 
-    function compareRows(a, b){
-      if (sortKey === "Record"){
-        const ar = parseRecord(a.Record);
-        const br = parseRecord(b.Record);
+        document.getElementById("count").textContent = `${rows.length} teams`;
+      };
 
-        const ap = ar ? ar.pct : -1;
-        const bp = br ? br.pct : -1;
-        if (ap > bp) return -1;
-        if (ap < bp) return 1;
+      let allRows = [];
 
-        const aw = ar ? ar.w : -1;
-        const bw = br ? br.w : -1;
-        if (aw > bw) return -1;
-        if (aw < bw) return 1;
+      const applyFilter = () => {
+        const q = document.getElementById("search").value.trim().toLowerCase();
+        if (!q) return render(allRows);
+        render(allRows.filter((r) => String(r.Team ?? "").toLowerCase().includes(q)));
+      };
 
-        const al = ar ? ar.l : 999999;
-        const bl = br ? br.l : 999999;
-        if (al < bl) return -1;
-        if (al > bl) return 1;
-      } else {
-        const av = getSortVal(a, sortKey);
-        const bv = getSortVal(b, sortKey);
-        if (av < bv) return -1;
-        if (av > bv) return 1;
-      }
+      document.getElementById("search").addEventListener("input", applyFilter);
 
-      const at = normalizeTeam(a.Team);
-      const bt = normalizeTeam(b.Team);
-      if (at < bt) return -1;
-      if (at > bt) return 1;
-      return 0;
-    }
+      fetch("data/rankings_current.json", { cache: "no-store" })
+        .then((r) => r.json())
+        .then((data) => {
+          const updated = data.updated || data.last_updated || "—";
+          document.getElementById("updated").textContent = `Updated: ${updated}`;
 
-    function render(){
-      const q = query.trim().toLowerCase();
-
-      const rows = rawRows
-        .filter(r => normalizeTeam(r.Team).includes(q))
-        .sort(compareRows);
-
-      tbody.innerHTML = rows.map(r => {
-        const team = r.Team ?? "";
-        const record = r.Record ?? "";
-        const avgRank = (r.AvgRank === null || r.AvgRank === undefined) ? "NR" : String(r.AvgRank);
-        return `
-          <tr>
-            <td class="col-team"><span class="teamName">${escapeHtml(team)}</span></td>
-            <td class="col-record">${escapeHtml(record)}</td>
-            <td class="col-avg">${escapeHtml(avgRank)}</td>
-            <td class="col-ap">${fmtRank(r.AP)}</td>
-            <td class="col-net">${fmtRank(r.NET)}</td>
-            <td class="col-kenpom">${fmtRank(r.KenPom)}</td>
-            <td class="col-bpi">${fmtRank(r.BPI)}</td>
-            <td class="col-sos">${fmtRank(r.SoS)}</td>
-          </tr>
-        `;
-      }).join("");
-    }
-
-    async function load(){
-      const res = await fetch(DATA_URL, { cache: "no-store" });
-      const payload = await res.json();
-
-      updatedText.textContent = `Updated: ${parseUpdated(payload)}`;
-
-      const rows = payload.rows || payload.data || payload.rankings || payload.teams || [];
-      rawRows = rows.map(r => ({
-        Team: r.Team ?? r.team ?? r.name ?? "",
-        Record: r.Record ?? r.record ?? "",
-        AP: r.AP ?? r.ap ?? r.ap_rank ?? "NR",
-        NET: r.NET ?? r.net ?? r.net_rank ?? "NR",
-        KenPom: r.KenPom ?? r.kenpom ?? r.kenpom_rank ?? "NR",
-        BPI: r.BPI ?? r.bpi ?? r.bpi_rank ?? "NR",
-        SoS: r.SoS ?? r.sos ?? r.SOS ?? r.strength_of_schedule ?? "NR"
-      }));
-
-      rawRows = computeAvgRank(rawRows);
-
-      render();
-    }
-
-    pills.addEventListener("click", (e) => {
-      const btn = e.target.closest(".pill");
-      if (!btn) return;
-      sortKey = btn.dataset.sort;
-      setActivePill(sortKey);
-      render();
-    });
-
-    searchInput.addEventListener("input", (e) => {
-      query = e.target.value || "";
-      render();
-    });
-
-    load();
-  </script>
-</body>
+          const rows = Array.isArray(data.rows) ? data.rows : [];
+          allRows = computeAvgRank(rows);
+          render(allRows);
+        })
+        .catch(() => {
+          document.getElementById("updated").textContent = "Updated: (failed to load data)";
+        });
+    </script>
+  </body>
 </html>
