@@ -3,88 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CBB Rankings Dashboard</title>
+    <title>CBB Rankings</title>
     <style>
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-        margin: 24px;
-      }
-      .topbar {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 14px;
-      }
-      h1 {
-        font-size: 20px;
-        margin: 0;
-      }
-      #updated {
-        font-size: 12px;
-        opacity: 0.75;
-        white-space: nowrap;
-      }
-      table {
-        border-collapse: collapse;
-        width: 100%;
-      }
-      thead th {
-        text-align: left;
-        font-size: 12px;
-        letter-spacing: 0.02em;
-        opacity: 0.9;
-        border-bottom: 1px solid #ddd;
-        padding: 10px 8px;
-        position: sticky;
-        top: 0;
-        background: #fff;
-        z-index: 1;
-      }
-      tbody td {
-        border-bottom: 1px solid #f0f0f0;
-        padding: 9px 8px;
-        font-size: 13px;
-      }
-      td.num {
-        text-align: right;
-        font-variant-numeric: tabular-nums;
-      }
-      td.team {
-        width: 240px;
-        padding-left: 2px;
-      }
-      td.record {
-        width: 72px;
-      }
-      .controls {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        margin: 10px 0 14px;
-      }
-      input {
-        padding: 8px 10px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        width: 260px;
-        font-size: 13px;
-      }
-      .pill {
-        font-size: 12px;
-        opacity: 0.8;
-      }
+      body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; margin: 24px; }
+      .top { display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom: 12px; }
+      h1 { font-size: 20px; margin: 0; }
+      #updated { font-size: 12px; opacity: .75; white-space: nowrap; }
+      .controls { display:flex; gap:10px; align-items:center; margin: 10px 0 14px; }
+      input { padding: 8px 10px; border: 1px solid #ddd; border-radius: 10px; width: 260px; font-size: 13px; }
+      #count { font-size: 12px; opacity: .75; }
+      table { border-collapse: collapse; width: 100%; }
+      thead th { text-align:left; font-size:12px; letter-spacing:.02em; opacity:.9; border-bottom:1px solid #ddd; padding:10px 8px; position:sticky; top:0; background:#fff; }
+      tbody td { border-bottom: 1px solid #f0f0f0; padding: 9px 8px; font-size: 13px; }
+      td.num { text-align:right; font-variant-numeric: tabular-nums; }
+      td.team { width: 240px; padding-left: 2px; }
+      td.record { width: 72px; }
     </style>
   </head>
   <body>
-    <div class="topbar">
+    <div class="top">
       <h1>CBB Rankings Dashboard</h1>
       <div id="updated">Updated: —</div>
     </div>
 
     <div class="controls">
       <input id="search" placeholder="Search team…" />
-      <div class="pill" id="count"></div>
+      <div id="count"></div>
     </div>
 
     <table>
@@ -117,50 +61,11 @@
         return n === null ? "NR" : String(n);
       };
 
-      const computeAvgRank = (rows) => {
-        const withAvg = rows.map((r) => {
-          const net = asNum(r.NET);
-          const kp = asNum(r.KenPom);
-          const bpi = asNum(r.BPI);
-          const ok = net !== null && kp !== null && bpi !== null;
-          const avg = ok ? (net + kp + bpi) / 3 : null;
-          return { ...r, _avg: avg };
-        });
-
-        const sorted = [...withAvg].sort((a, b) => {
-          if (a._avg === null && b._avg === null) return 0;
-          if (a._avg === null) return 1;
-          if (b._avg === null) return -1;
-          if (a._avg !== b._avg) return a._avg - b._avg;
-          return String(a.Team).localeCompare(String(b.Team));
-        });
-
-        let rank = 0;
-        let seen = 0;
-        let last = null;
-
-        const avgToRank = new Map();
-        for (const r of sorted) {
-          if (r._avg === null) continue;
-          seen += 1;
-          if (last === null || r._avg !== last) rank = seen;
-          last = r._avg;
-          avgToRank.set(r.Team, rank);
-        }
-
-        return withAvg.map((r) => ({
-          ...r,
-          ["Avg of Metrics"]: avgToRank.has(r.Team) ? avgToRank.get(r.Team) : "NR",
-        }));
-      };
-
       const render = (rows) => {
         const tbody = document.getElementById("tbody");
         tbody.innerHTML = "";
 
         for (const r of rows) {
-          const sos = r.SoSa ?? r.SoS ?? r.SOS ?? r.sos;
-
           const tr = document.createElement("tr");
           tr.innerHTML = `
             <td class="team">${r.Team ?? ""}</td>
@@ -170,7 +75,7 @@
             <td class="num">${showRankOrNR(r.NET)}</td>
             <td class="num">${showRankOrNR(r.KenPom)}</td>
             <td class="num">${showRankOrNR(r.BPI)}</td>
-            <td class="num">${showRankOrNR(sos)}</td>
+            <td class="num">${showRankOrNR(r.SoSa)}</td>
           `;
           tbody.appendChild(tr);
         }
@@ -191,11 +96,8 @@
       fetch("data/rankings_current.json", { cache: "no-store" })
         .then((r) => r.json())
         .then((data) => {
-          const updated = data.updated || data.last_updated || "—";
-          document.getElementById("updated").textContent = `Updated: ${updated}`;
-
-          const rows = Array.isArray(data.rows) ? data.rows : [];
-          allRows = computeAvgRank(rows);
+          document.getElementById("updated").textContent = `Updated: ${data.updated ?? "—"}`;
+          allRows = Array.isArray(data.rows) ? data.rows : [];
           render(allRows);
         })
         .catch(() => {
