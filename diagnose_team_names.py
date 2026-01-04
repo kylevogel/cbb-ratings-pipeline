@@ -1,20 +1,22 @@
 """
-Team Name Diagnostic Tool for CBB Ratings Pipeline
+Team Name Diagnostic Tool for CBB Ratings Pipeline - Enhanced Version
 
 This script identifies team name mismatches across different ranking sources
 and suggests alias mappings to fix "NR" (Not Rated) issues.
 
-Usage:
-    python diagnose_team_names.py
+This version can work with existing processed data and also run the data
+collection if needed.
 
-Output:
-    - Prints unmatched teams from each ranking source
-    - Suggests alias mappings for team_alias.csv
-    - Creates diagnostic CSV files for review
+Usage:
+    python diagnose_team_names.py [--collect]
+    
+    --collect: Run data collection scripts first (optional)
 """
 
 import pandas as pd
 import os
+import sys
+import subprocess
 from collections import defaultdict
 from difflib import SequenceMatcher
 
@@ -27,7 +29,7 @@ def load_data_safely(filepath, source_name):
     try:
         if os.path.exists(filepath):
             df = pd.read_csv(filepath)
-            print(f"✓ Loaded {source_name}: {len(df)} teams")
+            print(f"✓ Loaded {source_name}: {len(df)} rows")
             return df
         else:
             print(f"⚠ File not found: {filepath}")
@@ -55,181 +57,244 @@ def find_closest_matches(target_name, candidate_names, threshold=0.6):
     
     return sorted(matches, key=lambda x: x[1], reverse=True)
 
+def run_data_collection():
+    """Run the data collection scripts"""
+    print()
+    print("=" * 80)
+    print("RUNNING DATA COLLECTION SCRIPTS")
+    print("=" * 80)
+    print()
+    
+    scripts = [
+        'update_net_rank.py',
+        'update_kenpom_rank.py',
+        'update_bpi_rank.py',
+        'update_ap_rank.py',
+        'update_sos_rank.py'
+    ]
+    
+    for script in scripts:
+        if os.path.exists(script):
+            print(f"Running {script}...")
+            try:
+                subprocess.run(['python', script], check=True)
+                print(f"✓ {script} completed")
+            except subprocess.CalledProcessError as e:
+                print(f"✗ {script} failed: {e}")
+        else:
+            print(f"⚠ Script not found: {script}")
+    
+    print()
+
+def analyze_processed_data(df_games):
+    """Analyze the processed games data for NR issues"""
+    print("=" * 80)
+    print("ANALYZING PROCESSED GAMES DATA")
+    print("=" * 80)
+    print()
+    
+    # Display column names
+    print("Available columns:")
+    for col in df_games.columns:
+        print(f"  • {col}")
+    print()
+    
+    # Find ranking columns
+    rank_columns = [col for col in df_games.columns if 'rank' in col.lower() or 'Rank' in col]
+    
+    if not rank_columns:
+        print("⚠ No ranking columns found in processed data")
+        return {}
+    
+    print(f"Found {len(rank_columns)} ranking columns:")
+    for col in rank_columns:
+        print(f"  • {col}")
+    print()
+    
+    # Analyze NR values
+    nr_analysis = {}
+    
+    for col in rank_columns:
+        nr_mask = df_games[col].astype(str).str.upper() == 'NR'
+        nr_count = nr_mask.sum()
+        
+        if nr_count > 0:
+            nr_teams = df_games[nr_mask]['Team'].unique()
+            nr_analysis[col] = {
+                'count': nr_count,
+                'teams': sorted(nr_teams)
+            }
+            
+            print(f"\n{col}:")
+            print(f"  Games with 'NR': {nr_count}")
+            print(f"  Unique teams affected: {len(nr_teams)}")
+            print(f"  Sample teams (first 10):")
+            for team in nr_teams[:10]:
+                print(f"    - {team}")
+            if len(nr_teams) > 10:
+                print(f"    ... and {len(nr_teams) - 10} more")
+    
+    if not nr_analysis:
+        print("✓ No 'NR' values found in ranking columns!")
+    
+    return nr_analysis
+
+def compare_with_rankings(base_teams, data_raw_dir):
+    """Compare base teams with ranking sources"""
+    print()
+    print("=" * 80)
+    print("COMPARING WITH RANKING SOURCES")
+    print("=" * 80)
+    print()
+    
+    ranking_files = {
+        'NET': 'NET_Rank.csv',
+        'KenPom': 'KenPom_Rank.csv',
+        'BPI': 'BPI_Rank.csv',
+        'AP Poll': 'AP_Rank.csv',
+        'SoS': 'SOS_Rank.csv'
+    }
+    
+    all_suggestions = []
+    
+    for source_name, filename in ranking_files.items():
+        filepath = os.path.join(data_raw_dir, filename)
+        
+        print(f"\n{source_name} ANALYSIS")
+        print("-" * 80)
+        
+        if not os.path.exists(filepath):
+            print(f"⚠ File not found: {filepath}")
+            continue
+        
+        df_rank = pd.read_csv(filepath)
+        print(f"Loaded: {len(df_rank)} teams")
+        print(f"Columns: {list(df_rank.columns)}")
+        
+        # Try to identify team name column
+        team_col = None
+        for col in ['Team', 'team', 'TeamName', 'School', 'school']:
+            if col in df_rank.columns:
+                team_col = col
+                break
+        
+        if team_col is None:
+            team_col = df_rank.columns[0]
+            print(f"Using first column as team name: {team_col}")
+        
+        ranking_teams = set(df_rank[team_col].dropna().unique())
+        print(f"Unique teams: {len(ranking_teams)}")
+        
+        # Find teams in rankings but not in base data
+        unmatched = ranking_teams - base_teams
+        
+        if unmatched:
+            print(f"\n⚠ {len(unmatched)} teams in {source_name} not found in game data:")
+            
+            for unmatched_team in sorted(unmatched)[:15]:
+                print(f"  • '{unmatched_team}'")
+                
+                # Find closest matches
+                matches = find_closest_matches(unmatched_team, base_teams, threshold=0.5)
+                if matches:
+                    best = matches[0]
+                    print(f"    → Suggested: '{best[0]}' (similarity: {best[1]:.2f})")
+                    all_suggestions.append({
+                        'source': source_name,
+                        'ranking_name': unmatched_team,
+                        'suggested_espn_name': best[0],
+                        'similarity': best[1]
+                    })
+            
+            if len(unmatched) > 15:
+                print(f"  ... and {len(unmatched) - 15} more")
+        else:
+            print("✓ All teams matched!")
+    
+    return all_suggestions
+
 def main():
     print("=" * 80)
     print("CBB RATINGS PIPELINE - TEAM NAME DIAGNOSTIC TOOL")
     print("=" * 80)
     print()
     
-    # Define file paths
+    # Check if we should collect data first
+    if '--collect' in sys.argv:
+        run_data_collection()
+    
+    # Define paths
     data_raw_dir = "data_raw"
     data_processed_dir = "data_processed"
+    games_file = os.path.join(data_processed_dir, 'games_with_ranks.csv')
     
-    files = {
-        'games': os.path.join(data_processed_dir, 'games_with_ranks.csv'),
-        'espn_games': os.path.join(data_raw_dir, 'espn_games.csv'),
-        'net': os.path.join(data_raw_dir, 'net_rankings.csv'),
-        'kenpom': os.path.join(data_raw_dir, 'kenpom_rankings.csv'),
-        'bpi': os.path.join(data_raw_dir, 'bpi_rankings.csv'),
-        'ap': os.path.join(data_raw_dir, 'ap_rankings.csv'),
-        'sos': os.path.join(data_raw_dir, 'sos_rankings.csv')
-    }
-    
-    # Load all data sources
-    print("LOADING DATA SOURCES")
+    # Load processed games data
+    print("LOADING PROCESSED GAMES DATA")
     print("-" * 80)
+    df_games = load_data_safely(games_file, 'games_with_ranks.csv')
     
-    data = {}
-    for key, filepath in files.items():
-        data[key] = load_data_safely(filepath, key.upper())
-    
-    print()
-    
-    # Load team alias if it exists
-    team_alias = None
-    if os.path.exists('team_alias.csv'):
-        team_alias = pd.read_csv('team_alias.csv')
-        print(f"✓ Loaded team_alias.csv: {len(team_alias)} mappings")
-    else:
-        print("⚠ team_alias.csv not found")
+    if df_games is None:
+        print("\n✗ Cannot proceed without games_with_ranks.csv")
+        print("Make sure you've run the pipeline at least once with: python update_all.py")
+        return
     
     print()
-    print("=" * 80)
-    print("ANALYZING TEAM NAME MISMATCHES")
-    print("=" * 80)
-    print()
     
-    # Get base team list from ESPN/games
+    # Get base team list
     base_teams = set()
-    if data['espn_games'] is not None:
-        team_cols = [col for col in data['espn_games'].columns if 'team' in col.lower()]
-        for col in team_cols:
-            base_teams.update(data['espn_games'][col].dropna().unique())
+    if 'Team' in df_games.columns:
+        base_teams.update(df_games['Team'].dropna().unique())
+    if 'Opponent' in df_games.columns:
+        base_teams.update(df_games['Opponent'].dropna().unique())
     
-    if data['games'] is not None:
-        if 'Team' in data['games'].columns:
-            base_teams.update(data['games']['Team'].dropna().unique())
-        if 'Opponent' in data['games'].columns:
-            base_teams.update(data['games']['Opponent'].dropna().unique())
-    
-    print(f"Found {len(base_teams)} unique teams in game data (ESPN baseline)")
+    print(f"Found {len(base_teams)} unique teams in game data")
     print()
     
-    # Analyze each ranking source
-    unmatched_summary = {}
-    suggested_aliases = []
+    # Analyze NR issues in processed data
+    nr_analysis = analyze_processed_data(df_games)
     
-    ranking_sources = {
-        'NET': ('net', 'Team'),
-        'KenPom': ('kenpom', 'Team'),
-        'BPI': ('bpi', 'Team'),
-        'AP Poll': ('ap', 'Team'),
-        'SoS': ('sos', 'Team')
-    }
+    # Compare with ranking sources if they exist
+    suggestions = compare_with_rankings(base_teams, data_raw_dir)
     
-    for source_name, (data_key, team_col) in ranking_sources.items():
-        print(f"\n{source_name} ANALYSIS")
-        print("-" * 80)
-        
-        if data[data_key] is None:
-            print(f"Skipping {source_name} - data not available")
-            continue
-        
-        df = data[data_key]
-        
-        # Check if team column exists
-        if team_col not in df.columns:
-            print(f"Available columns: {list(df.columns)}")
-            team_col = df.columns[0]  # Use first column as fallback
-            print(f"Using column: {team_col}")
-        
-        ranking_teams = set(df[team_col].dropna().unique())
-        print(f"Teams in {source_name}: {len(ranking_teams)}")
-        
-        # Find unmatched teams (in rankings but not in base game data)
-        unmatched = ranking_teams - base_teams
-        
-        if len(unmatched) > 0:
-            print(f"\n⚠ {len(unmatched)} unmatched teams in {source_name}:")
-            unmatched_summary[source_name] = list(unmatched)
-            
-            for unmatched_team in sorted(unmatched)[:20]:  # Show first 20
-                print(f"  • {unmatched_team}")
-                
-                # Find closest matches in base teams
-                matches = find_closest_matches(unmatched_team, base_teams, threshold=0.6)
-                if matches:
-                    best_match = matches[0]
-                    print(f"    → Possible match: '{best_match[0]}' (similarity: {best_match[1]:.2f})")
-                    
-                    # Suggest alias
-                    suggested_aliases.append({
-                        'source': source_name,
-                        'ranking_name': unmatched_team,
-                        'suggested_espn_name': best_match[0],
-                        'similarity': best_match[1]
-                    })
-            
-            if len(unmatched) > 20:
-                print(f"  ... and {len(unmatched) - 20} more")
-        else:
-            print(f"✓ All teams matched!")
-    
-    # Generate suggested aliases CSV
-    if suggested_aliases:
+    # Save suggestions
+    if suggestions:
         print()
         print("=" * 80)
-        print("SUGGESTED ALIASES")
+        print("SAVING SUGGESTIONS")
         print("=" * 80)
         print()
         
-        suggestions_df = pd.DataFrame(suggested_aliases)
-        suggestions_df = suggestions_df.sort_values('similarity', ascending=False)
+        df_suggestions = pd.DataFrame(suggestions)
+        df_suggestions = df_suggestions.sort_values('similarity', ascending=False)
         
         output_file = 'suggested_team_aliases.csv'
-        suggestions_df.to_csv(output_file, index=False)
-        print(f"✓ Saved {len(suggestions_df)} suggestions to: {output_file}")
+        df_suggestions.to_csv(output_file, index=False)
+        print(f"✓ Saved {len(df_suggestions)} suggestions to: {output_file}")
         print()
-        print("Top 10 suggestions:")
-        print(suggestions_df.head(10).to_string(index=False))
-        print()
-        print("Review this file and add confirmed mappings to team_alias.csv")
+        print("Top 10 highest confidence suggestions:")
+        print(df_suggestions.head(10).to_string(index=False))
     
-    # Check for teams in games showing NR
-    if data['games'] is not None:
-        print()
-        print("=" * 80)
-        print("TEAMS WITH 'NR' RANKINGS IN PROCESSED DATA")
-        print("=" * 80)
-        print()
-        
-        df_games = data['games']
-        rank_columns = [col for col in df_games.columns if 'Rank' in col or 'rank' in col]
-        
-        teams_with_nr = set()
-        for col in rank_columns:
-            if col in df_games.columns:
-                nr_teams = df_games[df_games[col] == 'NR']['Team'].unique()
-                if len(nr_teams) > 0:
-                    print(f"\n{col}: {len(nr_teams)} teams showing 'NR'")
-                    teams_with_nr.update(nr_teams)
-        
-        if teams_with_nr:
-            print(f"\nTotal unique teams with any 'NR': {len(teams_with_nr)}")
-            print("Sample teams (first 15):")
-            for team in sorted(list(teams_with_nr))[:15]:
-                print(f"  • {team}")
-    
+    # Summary
     print()
     print("=" * 80)
-    print("DIAGNOSTIC COMPLETE")
+    print("DIAGNOSTIC SUMMARY")
     print("=" * 80)
+    print()
+    
+    if nr_analysis:
+        print("Issues found:")
+        for col, info in nr_analysis.items():
+            print(f"  • {col}: {info['count']} games with 'NR' ({len(info['teams'])} unique teams)")
+    else:
+        print("✓ No 'NR' issues found in processed data")
+    
     print()
     print("Next steps:")
-    print("1. Review 'suggested_team_aliases.csv'")
-    print("2. Verify the suggested matches are correct")
+    print("1. If raw ranking files are missing, run: python update_all.py")
+    print("2. Review 'suggested_team_aliases.csv' if generated")
     print("3. Add confirmed mappings to 'team_alias.csv'")
-    print("4. Re-run your pipeline with: python update_all.py")
+    print("4. Format: espn_name,alternate_name,source")
+    print("5. Re-run pipeline: python update_all.py")
     print()
 
 if __name__ == "__main__":
