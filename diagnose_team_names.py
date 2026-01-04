@@ -4,9 +4,6 @@ Team Name Diagnostic Tool for CBB Ratings Pipeline - Enhanced Version
 This script identifies team name mismatches across different ranking sources
 and suggests alias mappings to fix "NR" (Not Rated) issues.
 
-This version can work with existing processed data and also run the data
-collection if needed.
-
 Usage:
     python diagnose_team_names.py [--collect]
     
