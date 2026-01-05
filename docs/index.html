@@ -97,7 +97,7 @@
           <th class="num">NET</th>
           <th class="num">KenPom</th>
           <th class="num">BPI</th>
-          <th class="num">SoSa</th>
+          <th class="num">SoS</th>
         </tr>
       </thead>
       <tbody id="tbody"></tbody>
@@ -159,7 +159,7 @@
         tbody.innerHTML = "";
 
         for (const r of rows) {
-          const sos = r.SoSa ?? r.SoS ?? r.SOS ?? r.sos;
+          const sos = r.SoS ?? r.SoSa ?? r.SOS ?? r.sos;
 
           const tr = document.createElement("tr");
           tr.innerHTML = `
