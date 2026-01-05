@@ -26,61 +26,59 @@ def scrape_ap_poll():
         
         rows = []
         
-        # Look for the AP Top 25 table
-        # ESPN uses various table structures, try multiple approaches
+        # Find all tables
         tables = soup.find_all('table')
         
-        for table in tables:
-            table_text = table.get_text().lower()
-            if 'ap' in table_text or 'associated press' in table_text or len(tables) == 1:
-                for tr in table.find_all('tr')[1:]:  # Skip header
-                    cells = tr.find_all(['td', 'th'])
-                    if len(cells) >= 2:
-                        # First cell is usually rank
-                        rank_text = cells[0].get_text(strip=True)
-                        
-                        # Second cell is usually team
-                        team_cell = cells[1]
-                        team_link = team_cell.find('a')
-                        if team_link:
-                            team = team_link.get_text(strip=True)
-                        else:
-                            team = team_cell.get_text(strip=True)
-                        
-                        # Clean the rank
-                        rank = re.sub(r'[^\d]', '', rank_text)
-                        
-                        # Clean team name (remove record in parentheses)
-                        team = re.sub(r'\s*\(\d+-\d+\)\s*$', '', team)
-                        team = re.sub(r'\s*\d+-\d+\s*$', '', team)
-                        
-                        if rank and team and rank.isdigit():
-                            rank_int = int(rank)
-                            if 1 <= rank_int <= 25:
-                                rows.append({
-                                    'ap_rank': rank_int,
-                                    'team_ap': team
-                                })
-                
-                if rows:
-                    break
-        
-        # Alternative: try to find div-based layout
-        if not rows:
-            divs = soup.find_all('div', class_=re.compile('Table'))
-            for div in divs:
-                for row_div in div.find_all('tr'):
-                    cells = row_div.find_all(['td', 'div'])
-                    if len(cells) >= 2:
-                        rank_text = cells[0].get_text(strip=True)
-                        team = cells[1].get_text(strip=True)
-                        
-                        rank = re.sub(r'[^\d]', '', rank_text)
-                        team = re.sub(r'\s*\(\d+-\d+\)\s*$', '', team)
-                        
-                        if rank and team and rank.isdigit():
-                            rank_int = int(rank)
-                            if 1 <= rank_int <= 25:
+        # The first table should be AP Poll
+        if tables:
+            table = tables[0]  # AP Poll is first table
+            
+            for tr in table.find_all('tr')[1:]:  # Skip header
+                cells = tr.find_all(['td', 'th'])
+                if len(cells) >= 2:
+                    # First cell is rank
+                    rank_text = cells[0].get_text(strip=True)
+                    rank = re.sub(r'[^\d]', '', rank_text)
+                    
+                    # Second cell contains team - find the LAST link with team URL
+                    # ESPN structure: [Logo] [ShortName] [FullName]
+                    team_cell = cells[1]
+                    team_links = team_cell.find_all('a', href=re.compile(r'/mens-college-basketball/team/'))
+                    
+                    team = None
+                    if team_links:
+                        # Get the last link text (usually the full team name)
+                        for link in team_links:
+                            link_text = link.get_text(strip=True)
+                            # Skip short abbreviations (less than 4 chars)
+                            if len(link_text) >= 3:
+                                team = link_text
+                    
+                    if not team:
+                        # Fallback: get all text and clean it
+                        team = team_cell.get_text(strip=True)
+                    
+                    # Clean team name
+                    # Remove records like (15-3) or 7-0
+                    team = re.sub(r'\s*\(\d+-\d+\)\s*', '', team)
+                    team = re.sub(r'\s+\d+-\d+\s*$', '', team)
+                    # Remove vote counts
+                    team = re.sub(r'\s*\(\d+\)\s*', '', team)
+                    
+                    # Handle duplicate names like "ARIZ Arizona"
+                    # Take the longer version if there's a space
+                    parts = team.split()
+                    if len(parts) >= 2:
+                        # Check if first part is an abbreviation (all caps, short)
+                        if parts[0].isupper() and len(parts[0]) <= 4:
+                            team = ' '.join(parts[1:])
+                    
+                    if rank and team and rank.isdigit():
+                        rank_int = int(rank)
+                        if 1 <= rank_int <= 25:
+                            # Clean common suffixes that might remain
+                            team = team.strip()
+                            if team:
                                 rows.append({
                                     'ap_rank': rank_int,
                                     'team_ap': team
@@ -89,6 +87,9 @@ def scrape_ap_poll():
         if rows:
             df = pd.DataFrame(rows)
             df = df.drop_duplicates(subset=['ap_rank']).sort_values('ap_rank')
+            print(f"Found {len(df)} AP ranked teams:")
+            for _, row in df.iterrows():
+                print(f"  {row['ap_rank']}: {row['team_ap']}")
             return df
         else:
             print("No AP Poll data found")
@@ -96,6 +97,8 @@ def scrape_ap_poll():
             
     except Exception as e:
         print(f"Error scraping AP Poll: {e}")
+        import traceback
+        traceback.print_exc()
         return None
 
 
