@@ -10,27 +10,33 @@ def _key(s: str) -> str:
 
 
 def _load_alias_lookup(root: Path) -> dict[str, str]:
+    """Load team name mappings from team_alias.csv"""
     for p in [root / "team_alias.csv", root / "data_raw" / "team_alias.csv"]:
         if p.exists():
             df = pd.read_csv(p, dtype=str).fillna("")
-            if "standard_name" not in df.columns:
+            if "espn_name" not in df.columns:
                 return {}
+            
             lookup: dict[str, str] = {}
 
-            def add(a: str, canon: str) -> None:
-                k = _key(a)
+            def add(alternate: str, espn: str) -> None:
+                k = _key(alternate)
                 if k and k not in lookup:
-                    lookup[k] = canon
+                    lookup[k] = espn
 
-            cols = ["standard_name", "kenpom_name", "bpi_name", "net_name", "game_log_name"]
+            # Add ESPN name as canonical
             for _, r in df.iterrows():
-                canon = str(r.get("standard_name", "")).strip()
-                if not canon:
+                espn = str(r.get("espn_name", "")).strip()
+                if not espn:
                     continue
-                for c in cols:
-                    v = str(r.get(c, "")).strip()
-                    if v:
-                        add(v, canon)
+                # Map ESPN name to itself
+                add(espn, espn)
+                
+                # Map alternate name to ESPN name
+                alt = str(r.get("alternate_name", "")).strip()
+                if alt:
+                    add(alt, espn)
+            
             return lookup
     return {}
 
@@ -133,36 +139,57 @@ def main() -> None:
     if "Team" not in games.columns or "Opponent" not in games.columns:
         raise RuntimeError(f"{games_path.name} must contain Team and Opponent columns.")
 
+    # Load rankings (these now have ESPN standard names already from the updated scripts)
     net = _load_rank(data_raw / "NET_Rank.csv", ["net_rank", "net", "net rank", "rank"])
     kp = _load_rank(data_raw / "KenPom_Rank.csv", ["kenpom_rank", "kenpom", "kenpom rank", "rank"])
     bpi = _load_rank(data_raw / "BPI_Rank.csv", ["bpi_rank", "bpi", "bpi rank", "rank"])
+    ap = _load_rank(data_raw / "AP_Rank.csv", ["ap_rank", "ap", "ap rank", "rank"])
+    sos = _load_rank(data_raw / "SOS_Rank.csv", ["sos", "sos rank", "rank"])
 
-    for df in (net, kp, bpi):
+    # Create merge keys for ranking dataframes
+    for df in (net, kp, bpi, ap, sos):
         df["TeamCanon"] = df["Team"].astype(str).map(lambda x: _canon(x, lookup))
         df["TeamKey"] = df["TeamCanon"].map(_key)
 
     net_m = net[["TeamKey", "Rank"]].rename(columns={"Rank": "NET"})
     kp_m = kp[["TeamKey", "Rank"]].rename(columns={"Rank": "KenPom"})
     bpi_m = bpi[["TeamKey", "Rank"]].rename(columns={"Rank": "BPI"})
+    ap_m = ap[["TeamKey", "Rank"]].rename(columns={"Rank": "AP"})
+    sos_m = sos[["TeamKey", "Rank"]].rename(columns={"Rank": "SoS"})
 
+    # Create merge keys for games
     games["TeamCanon"] = games["Team"].astype(str).map(lambda x: _canon(x, lookup))
     games["OpponentCanon"] = games["Opponent"].astype(str).map(lambda x: _canon(x, lookup))
     games["TeamKey"] = games["TeamCanon"].map(_key)
     games["OpponentKey"] = games["OpponentCanon"].map(_key)
 
+    # Merge team rankings
     out = games.merge(net_m, on="TeamKey", how="left")
     out = out.merge(kp_m, on="TeamKey", how="left")
     out = out.merge(bpi_m, on="TeamKey", how="left")
+    out = out.merge(ap_m, on="TeamKey", how="left")
+    out = out.merge(sos_m, on="TeamKey", how="left")
 
-    out = out.rename(columns={"NET": "Team_NET", "KenPom": "Team_KenPom", "BPI": "Team_BPI"})
+    out = out.rename(columns={
+        "NET": "Team_NET",
+        "KenPom": "Team_KenPom",
+        "BPI": "Team_BPI",
+        "AP": "Team_AP",
+        "SoS": "Team_SoS"
+    })
 
+    # Merge opponent rankings
     opp_net = net_m.rename(columns={"TeamKey": "OpponentKey", "NET": "Opponent_NET"})
     opp_kp = kp_m.rename(columns={"TeamKey": "OpponentKey", "KenPom": "Opponent_KenPom"})
     opp_bpi = bpi_m.rename(columns={"TeamKey": "OpponentKey", "BPI": "Opponent_BPI"})
+    opp_ap = ap_m.rename(columns={"TeamKey": "OpponentKey", "AP": "Opponent_AP"})
+    opp_sos = sos_m.rename(columns={"TeamKey": "OpponentKey", "SoS": "Opponent_SoS"})
 
     out = out.merge(opp_net, on="OpponentKey", how="left")
     out = out.merge(opp_kp, on="OpponentKey", how="left")
     out = out.merge(opp_bpi, on="OpponentKey", how="left")
+    out = out.merge(opp_ap, on="OpponentKey", how="left")
+    out = out.merge(opp_sos, on="OpponentKey", how="left")
 
     out = out.drop(columns=["TeamCanon", "OpponentCanon", "TeamKey", "OpponentKey"], errors="ignore")
 
