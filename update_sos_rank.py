@@ -8,11 +8,9 @@ import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 import os
-import re
 
 def scrape_sos_rankings():
     """Scrape SOS rankings from Warren Nolan."""
-    # Correct URL for 2025-26 season
     url = "https://www.warrennolan.com/basketball/2026/sos-rpi-predict"
     
     headers = {
@@ -27,49 +25,46 @@ def scrape_sos_rankings():
         
         rows = []
         
-        # Find the main table
-        tables = soup.find_all('table')
+        # Find the main data table
+        table = soup.find('table')
         
-        for table in tables:
-            # Find all rows
-            for tr in table.find_all('tr')[1:]:  # Skip header
-                cells = tr.find_all(['td', 'th'])
-                if len(cells) >= 2:
-                    # Get rank (first column)
-                    rank_text = cells[0].get_text(strip=True)
-                    
-                    # Get team name (second column, look for link)
-                    team_cell = cells[1]
+        if table:
+            for tr in table.find_all('tr')[1:]:  # Skip header row
+                cells = tr.find_all('td')
+                if len(cells) >= 3:
+                    # Column 0: Team name (with link)
+                    # Column 1: SOS value
+                    # Column 2: Rank
+                    team_cell = cells[0]
                     team_link = team_cell.find('a')
                     if team_link:
                         team = team_link.get_text(strip=True)
                     else:
                         team = team_cell.get_text(strip=True)
                     
-                    # Clean rank
-                    rank = re.sub(r'[^\d]', '', rank_text)
+                    # Get rank from column 2
+                    rank_text = cells[2].get_text(strip=True)
                     
-                    if rank and team and rank.isdigit():
-                        rank_int = int(rank)
-                        if 1 <= rank_int <= 400:
+                    if team and rank_text.isdigit():
+                        rank = int(rank_text)
+                        if 1 <= rank <= 400:
                             rows.append({
-                                'sos_rank': rank_int,
+                                'sos_rank': rank,
                                 'team_sos': team
                             })
-            
-            if len(rows) > 100:  # Found the right table
-                break
         
         if rows:
             df = pd.DataFrame(rows)
             df = df.drop_duplicates(subset=['sos_rank']).sort_values('sos_rank')
             return df
         else:
-            print("No SOS data found on page")
+            print("No SOS data found in table")
             return None
             
     except Exception as e:
         print(f"Error scraping SOS: {e}")
+        import traceback
+        traceback.print_exc()
         return None
 
 
