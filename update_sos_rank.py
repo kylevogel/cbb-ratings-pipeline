@@ -1,43 +1,63 @@
+import os
+import sys
+from datetime import datetime, timezone
+from io import StringIO
+
 import pandas as pd
 import requests
-import os
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-}
 
-def main():
-    url = "https://www.teamrankings.com/ncaa-basketball/ranking/schedule-strength-by-other"
-    print(f"Fetching SoS rankings from {url}...")
+def season_year(now_utc: datetime) -> int:
+    y = now_utc.year
+    return y + 1 if now_utc.month >= 9 else y
 
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=15)
-        r.raise_for_status()
-        
-        tables = pd.read_html(r.text)
-        if not tables:
-            print("No tables found for SoS.")
-            return
 
-        df = tables[0]
-        
-        # Headers: Rank, Team, Rating, Hi, Lo, Last
-        df = df.rename(columns={"Rank": "SOS_Rank", "Team": "Team"})
-        
-        # TeamRankings includes record in name: "Duke (15-2)"
-        df["Team"] = df["Team"].astype(str).str.replace(r"\s+\(\d+-\d+\).*", "", regex=True).str.strip()
-        
-        out_df = df[["Team", "SOS_Rank"]].copy()
-        out_df["snapshot_date"] = pd.Timestamp.now().strftime("%Y-%m-%d")
-        
-        os.makedirs("data_raw", exist_ok=True)
-        out_path = os.path.join("data_raw", "SOS_Rank.csv")
-        out_df.to_csv(out_path, index=False)
-        
-        print(f"Successfully wrote {len(out_df)} rows to {out_path}")
+def fetch(url: str) -> str:
+    headers = {
+        "User-Agent": "Mozilla/5.0",
+        "Accept-Language": "en-US,en;q=0.9",
+    }
+    r = requests.get(url, headers=headers, timeout=30)
+    r.raise_for_status()
+    return r.text
 
-    except Exception as e:
-        print(f"Error updating SoS: {e}")
+
+def main() -> int:
+    now = datetime.now(timezone.utc)
+    yr = season_year(now)
+    url = f"https://www.warrennolan.com/basketball/{yr}/sos-rpi-predict"
+
+    html = fetch(url)
+    tables = pd.read_html(StringIO(html))
+
+    target = None
+    for t in tables:
+        cols = [str(c).strip().lower() for c in t.columns]
+        if "rank" in cols and "team" in cols:
+            target = t
+            break
+    if target is None:
+        raise RuntimeError("Could not find WarrenNolan SOS table with Rank + Team columns")
+
+    col_map = {str(c).strip().lower(): c for c in target.columns}
+    out = pd.DataFrame(
+        {
+            "sos_name": target[col_map["team"]].astype(str).str.strip(),
+            "sos": pd.to_numeric(target[col_map["rank"]], errors="coerce").astype("Int64"),
+            "source_url": url,
+            "updated_at_utc": now.isoformat().replace("+00:00", "Z"),
+        }
+    ).dropna(subset=["sos_name", "sos"])
+
+    os.makedirs("data_raw", exist_ok=True)
+    out.to_csv("data_raw/sos.csv", index=False)
+    print(f"Wrote {len(out)} rows -> data_raw/sos.csv")
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    try:
+        raise SystemExit(main())
+    except Exception as e:
+        print(f"update_sos_rank failed: {e}", file=sys.stderr)
+        raise
