@@ -5,443 +5,371 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CBB Rankings Dashboard</title>
     <style>
-      :root {
-        --bg: #f7f7f8;
-        --panel: #ffffff;
-        --border: rgba(0, 0, 0, 0.08);
-        --text: #111;
-        --muted: rgba(0, 0, 0, 0.62);
-        --radius: 14px;
-        --shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 10px 28px rgba(0, 0, 0, 0.07);
-      }
-
       body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-        margin: 0;
-        background: var(--bg);
-        color: var(--text);
+        margin: 18px;
+        color: #111;
       }
-
-      .container {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 22px 16px 28px;
-      }
-
-      .header-card {
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        padding: 16px 16px 14px;
-        margin-bottom: 14px;
-      }
-
-      .header-top {
+      .topbar {
         display: flex;
-        align-items: flex-start;
+        align-items: baseline;
         justify-content: space-between;
-        gap: 14px;
+        gap: 16px;
         margin-bottom: 12px;
       }
-
-      .header-title {
+      h1 {
+        font-size: 18px;
         margin: 0;
-        font-size: 22px;
-        letter-spacing: -0.01em;
-        line-height: 1.15;
+        font-weight: 650;
       }
-
-      .header-subtitle {
-        margin-top: 6px;
+      .meta {
         font-size: 12px;
-        color: var(--muted);
+        color: #555;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
       }
-
-      .updated-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 10px;
-        border: 1px solid var(--border);
-        border-radius: 999px;
-        color: var(--muted);
-        font-size: 12px;
-        line-height: 1;
-        white-space: nowrap;
-        background: rgba(0, 0, 0, 0.02);
-      }
-
-      .header-controls {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-      }
-
-      .search-wrap {
-        flex: 1 1 520px;
+      .controls {
         display: flex;
         align-items: center;
         gap: 10px;
-        padding: 10px 12px;
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        background: #fff;
+        margin: 10px 0 14px 0;
       }
-
-      .search-icon {
-        width: 16px;
-        height: 16px;
-        opacity: 0.55;
-        flex: 0 0 auto;
-      }
-
-      #search {
-        width: 100%;
-        border: 0;
-        outline: none;
-        font-size: 14px;
-        background: transparent;
-        padding: 0;
-        margin: 0;
-      }
-
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
+      input[type="search"] {
+        width: 320px;
+        max-width: 70vw;
         padding: 8px 10px;
-        border: 1px solid var(--border);
-        border-radius: 999px;
-        font-size: 12px;
-        color: var(--muted);
-        background: rgba(255, 255, 255, 0.7);
-        white-space: nowrap;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        outline: none;
+        font-size: 13px;
       }
-
-      /* TABLE */
-      table {
-        border-collapse: collapse;
-        width: 100%;
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
+      .btn {
+        padding: 8px 10px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background: #fff;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .wrap {
+        border: 1px solid #eee;
+        border-radius: 14px;
         overflow: hidden;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-        table-layout: fixed; /* keep columns stable, but we control widths via colgroup */
       }
-
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
       thead th {
-        text-align: left;
-        font-size: 12px;
-        letter-spacing: 0.02em;
-        color: rgba(0, 0, 0, 0.72);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        padding: 10px 8px; /* tighter */
         position: sticky;
         top: 0;
-        background: rgba(255, 255, 255, 0.96);
-        backdrop-filter: blur(6px);
-        z-index: 1;
-        font-weight: 600;
+        background: #fafafa;
+        border-bottom: 1px solid #eee;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: #333;
+        padding: 10px 10px;
         cursor: pointer;
         user-select: none;
       }
-
-      /* Align numeric headers with numeric cells AND tighten padding */
-      thead th.num {
-        text-align: right;
-        padding-left: 6px;
-        padding-right: 6px;
-      }
-
-      thead th .sort-ind {
-        opacity: 0.5;
-        margin-left: 6px;
-        font-size: 11px;
-      }
-
       tbody td {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-        padding: 9px 8px; /* tighter */
+        padding: 9px 10px;
+        border-bottom: 1px solid #f2f2f2;
         font-size: 13px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-
-      tbody td.num {
-        text-align: right;
-        font-variant-numeric: tabular-nums;
-        padding-left: 6px;
-        padding-right: 6px; /* tighter numeric columns */
-      }
-
       tbody tr:hover td {
-        background: rgba(0, 0, 0, 0.02);
+        background: #fcfcfc;
       }
+      .col-team { width: 240px; }
+      .col-record { width: 80px; }
+      .col-ap { width: 60px; }
+      .col-avg { width: 70px; }
+      .col-net, .col-kenpom, .col-bpi, .col-sos { width: 70px; }
 
-      /* Make the left edge feel consistent */
-      thead th:first-child,
-      tbody td.team {
-        padding-left: 12px;
+      .num { text-align: right; }
+      .left { text-align: left; }
+
+      .sort-ind {
+        font-size: 10px;
+        color: #777;
+        margin-left: 6px;
       }
-
-      @media (max-width: 820px) {
-        .header-top {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .header-controls {
-          flex-direction: column;
-          align-items: stretch;
-        }
-        .pill {
-          align-self: flex-start;
-        }
+      .loading {
+        font-size: 13px;
+        color: #555;
+        padding: 12px 2px;
+      }
+      .error {
+        font-size: 13px;
+        color: #b00020;
+        padding: 12px 2px;
       }
     </style>
   </head>
-
   <body>
-    <div class="container">
-      <div class="header-card">
-        <div class="header-top">
-          <div style="min-width: 0">
-            <h1 class="header-title">CBB Rankings Dashboard</h1>
-            <div class="header-subtitle">Record • AVG • AP • NET • KenPom • BPI • SoS</div>
-          </div>
+    <div class="topbar">
+      <h1>CBB Rankings Dashboard</h1>
+      <div class="meta" id="meta"></div>
+    </div>
 
-          <div class="updated-pill">
-            <span>Updated:</span>
-            <span id="updated">—</span>
-          </div>
-        </div>
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search team…" />
+      <button class="btn" id="reset">Reset sort</button>
+    </div>
 
-        <div class="header-controls">
-          <div class="search-wrap">
-            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                fill="currentColor"
-                d="M10 4a6 6 0 1 1 0 12A6 6 0 0 1 10 4m0-2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2"
-              />
-            </svg>
-            <input id="search" placeholder="Search team…" autocomplete="off" />
-          </div>
-
-          <div class="pill" id="count"></div>
-        </div>
-      </div>
-
-      <table>
-        <!-- Key spacing fix: force extra width into Team, not between tiny numeric cols -->
-        <colgroup>
-          <col style="width: 38%" />
-          <col style="width: 10%" />
-          <col style="width: 18%" />
-          <col style="width: 6%" />
-          <col style="width: 6%" />
-          <col style="width: 10%" />
-          <col style="width: 6%" />
-          <col style="width: 6%" />
-        </colgroup>
-
+    <div class="wrap">
+      <table id="tbl">
         <thead>
           <tr>
-            <th data-key="Team">Team<span class="sort-ind" data-ind="Team"></span></th>
-            <th data-key="Record">Record<span class="sort-ind" data-ind="Record"></span></th>
-            <th class="num" data-key="AVG">Avg of Net/KenPom/BPI<span class="sort-ind" data-ind="AVG"></span></th>
-            <th class="num" data-key="AP">AP<span class="sort-ind" data-ind="AP"></span></th>
-            <th class="num" data-key="NET">NET<span class="sort-ind" data-ind="NET"></span></th>
-            <th class="num" data-key="KenPom">KenPom<span class="sort-ind" data-ind="KenPom"></span></th>
-            <th class="num" data-key="BPI">BPI<span class="sort-ind" data-ind="BPI"></span></th>
-            <th class="num" data-key="SoS">SoS<span class="sort-ind" data-ind="SoS"></span></th>
+            <th class="col-team left" data-key="team" data-type="text">Team<span class="sort-ind" id="ind-team"></span></th>
+            <th class="col-record num" data-key="record" data-type="record">Record<span class="sort-ind" id="ind-record"></span></th>
+            <th class="col-ap num" data-key="ap" data-type="num">AP<span class="sort-ind" id="ind-ap"></span></th>
+            <th class="col-avg num" data-key="avg" data-type="num">AVG<span class="sort-ind" id="ind-avg"></span></th>
+            <th class="col-net num" data-key="net" data-type="num">NET<span class="sort-ind" id="ind-net"></span></th>
+            <th class="col-kenpom num" data-key="kenpom" data-type="num">KenPom<span class="sort-ind" id="ind-kenpom"></span></th>
+            <th class="col-bpi num" data-key="bpi" data-type="num">BPI<span class="sort-ind" id="ind-bpi"></span></th>
+            <th class="col-sos num" data-key="sos" data-type="num">SoS<span class="sort-ind" id="ind-sos"></span></th>
           </tr>
         </thead>
-
-        <tbody id="tbody"></tbody>
+        <tbody id="body">
+          <tr><td colspan="8" class="loading">Loading…</td></tr>
+        </tbody>
       </table>
     </div>
 
     <script>
-      const asNum = (v) => {
-        if (v === null || v === undefined) return null;
-        const s = String(v).trim();
-        if (!s || s.toLowerCase() === "nr" || s.toLowerCase() === "na") return null;
-        const n = Number(s);
-        return Number.isFinite(n) ? n : null;
-      };
+      const state = {
+        rows: [],
+        filtered: [],
+        sortKey: "avg",
+        sortDir: "asc",
+        query: ""
+      }
 
-      const showRankOrNR = (v) => {
-        const n = asNum(v);
-        return n === null ? "NR" : String(n);
-      };
-
-      const computeAvgRank = (rows) => {
-        const withAvg = rows.map((r) => {
-          const net = asNum(r.NET);
-          const kp = asNum(r.KenPom);
-          const bpi = asNum(r.BPI);
-          const ok = net !== null && kp !== null && bpi !== null;
-          const avg = ok ? (net + kp + bpi) / 3 : null;
-          return { ...r, _avg: avg };
-        });
-
-        const sorted = [...withAvg].sort((a, b) => {
-          if (a._avg === null && b._avg === null) return 0;
-          if (a._avg === null) return 1;
-          if (b._avg === null) return -1;
-          if (a._avg !== b._avg) return a._avg - b._avg;
-          return String(a.Team).localeCompare(String(b.Team));
-        });
-
-        let rank = 0;
-        let seen = 0;
-        let last = null;
-
-        const avgToRank = new Map();
-        for (const r of sorted) {
-          if (r._avg === null) continue;
-          seen += 1;
-          if (last === null || r._avg !== last) rank = seen;
-          last = r._avg;
-          avgToRank.set(r.Team, rank);
-        }
-
-        return withAvg.map((r) => ({
-          ...r,
-          AVG: avgToRank.has(r.Team) ? avgToRank.get(r.Team) : "NR",
-        }));
-      };
-
-      const normalizeRowForSort = (r) => {
-        const sos = r.SoS ?? r.SoSa ?? r.SOS ?? r.sos;
-        return { ...r, SoS: sos };
-      };
-
-      const getSortValue = (row, key) => {
-        const r = normalizeRowForSort(row);
-
-        if (key === "AVG") {
-          const n = asNum(r.AVG);
-          return n === null ? "NR" : n;
-        }
-
-        if (key === "SoS") {
-          const n = asNum(r.SoS);
-          return n === null ? "NR" : n;
-        }
-
-        if (key === "AP" || key === "NET" || key === "KenPom" || key === "BPI") {
-          const n = asNum(r[key]);
-          return n === null ? "NR" : n;
-        }
-
-        return String(r[key] ?? "");
-      };
-
-      const isNumericKey = (key) =>
-        key === "AVG" || key === "AP" || key === "NET" || key === "KenPom" || key === "BPI" || key === "SoS";
-
-      const compare = (a, b, key) => {
-        const va = getSortValue(a, key);
-        const vb = getSortValue(b, key);
-
-        const aNR = va === "NR";
-        const bNR = vb === "NR";
-        if (aNR && bNR) return 0;
-        if (aNR) return 1;
-        if (bNR) return -1;
-
-        if (isNumericKey(key)) {
-          if (va !== vb) return va - vb;
-          return String(a.Team ?? "").localeCompare(String(b.Team ?? ""));
-        }
-
-        const c = String(va).localeCompare(String(vb), undefined, { numeric: true, sensitivity: "base" });
-        if (c !== 0) return c;
-        return String(a.Team ?? "").localeCompare(String(b.Team ?? ""));
-      };
-
-      const render = (rows) => {
-        const tbody = document.getElementById("tbody");
-        tbody.innerHTML = "";
-
-        for (const r of rows) {
-          const sos = r.SoS ?? r.SoSa ?? r.SOS ?? r.sos;
-
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td class="team">${r.Team ?? ""}</td>
-            <td>${r.Record ?? ""}</td>
-            <td class="num">${r.AVG ?? "NR"}</td>
-            <td class="num">${showRankOrNR(r.AP)}</td>
-            <td class="num">${showRankOrNR(r.NET)}</td>
-            <td class="num">${showRankOrNR(r.KenPom)}</td>
-            <td class="num">${showRankOrNR(r.BPI)}</td>
-            <td class="num">${showRankOrNR(sos)}</td>
-          `;
-          tbody.appendChild(tr);
-        }
-
-        document.getElementById("count").textContent = `${rows.length} teams`;
-      };
-
-      let allRows = [];
-      let sortKey = "Team";
-      let sortDir = "asc"; // asc | desc
-
-      const applyFilterAndSort = () => {
-        const q = document.getElementById("search").value.trim().toLowerCase();
-        const filtered = !q
-          ? [...allRows]
-          : allRows.filter((r) => String(r.Team ?? "").toLowerCase().includes(q));
-
-        filtered.sort((a, b) => compare(a, b, sortKey));
-        if (sortDir === "desc") filtered.reverse();
-
-        render(filtered);
-        document.getElementById("count").textContent = `${filtered.length} teams`;
-
-        document.querySelectorAll(".sort-ind").forEach((el) => (el.textContent = ""));
-        const ind = document.querySelector(`.sort-ind[data-ind="${sortKey}"]`);
-        if (ind) ind.textContent = sortDir === "asc" ? "▲" : "▼";
-      };
-
-      document.getElementById("search").addEventListener("input", applyFilterAndSort);
-
-      document.querySelectorAll("thead th[data-key]").forEach((th) => {
-        th.addEventListener("click", () => {
-          const key = th.getAttribute("data-key");
-          if (sortKey === key) sortDir = sortDir === "asc" ? "desc" : "asc";
-          else {
-            sortKey = key;
-            sortDir = "asc";
+      function parseCSV(text) {
+        const lines = text.trim().split(/\r?\n/)
+        const headers = lines[0].split(",").map(h => h.trim())
+        const out = []
+        for (let i = 1; i < lines.length; i++) {
+          const line = lines[i]
+          const cells = []
+          let cur = ""
+          let inQ = false
+          for (let j = 0; j < line.length; j++) {
+            const ch = line[j]
+            if (ch === '"' ) {
+              if (inQ && line[j + 1] === '"') {
+                cur += '"'
+                j++
+              } else {
+                inQ = !inQ
+              }
+            } else if (ch === "," && !inQ) {
+              cells.push(cur)
+              cur = ""
+            } else {
+              cur += ch
+            }
           }
-          applyFilterAndSort();
-        });
-      });
+          cells.push(cur)
+          const obj = {}
+          headers.forEach((h, idx) => obj[h] = (cells[idx] ?? "").trim())
+          out.push(obj)
+        }
+        return out
+      }
 
-      fetch("data/rankings_current.json", { cache: "no-store" })
-        .then((r) => r.json())
-        .then((data) => {
-          const updated = data.updated || data.last_updated || "—";
-          document.getElementById("updated").textContent = updated;
+      function toNum(v) {
+        if (v === null || v === undefined) return null
+        const s = String(v).trim()
+        if (!s) return null
+        const n = Number(s)
+        return Number.isFinite(n) ? n : null
+      }
 
-          const rows = Array.isArray(data.rows) ? data.rows : [];
-          allRows = computeAvgRank(rows);
+      function recordWinPct(rec) {
+        const s = String(rec || "").trim()
+        const m = s.match(/^(\d+)\-(\d+)$/)
+        if (!m) return null
+        const w = Number(m[1])
+        const l = Number(m[2])
+        const g = w + l
+        if (!g) return 0
+        return w / g
+      }
 
-          sortKey = "Team";
-          sortDir = "asc";
-          applyFilterAndSort();
+      function cmp(a, b, type) {
+        if (type === "num") {
+          const x = toNum(a)
+          const y = toNum(b)
+          if (x === null && y === null) return 0
+          if (x === null) return 1
+          if (y === null) return -1
+          return x - y
+        }
+        if (type === "record") {
+          const x = recordWinPct(a)
+          const y = recordWinPct(b)
+          if (x === null && y === null) return 0
+          if (x === null) return 1
+          if (y === null) return -1
+          return x - y
+        }
+        const x = String(a || "").toLowerCase()
+        const y = String(b || "").toLowerCase()
+        if (!x && !y) return 0
+        if (!x) return 1
+        if (!y) return -1
+        return x < y ? -1 : x > y ? 1 : 0
+      }
+
+      function applyFilterAndSort() {
+        const q = state.query.toLowerCase().trim()
+        const base = q ? state.rows.filter(r => String(r.team || "").toLowerCase().includes(q)) : [...state.rows]
+        const key = state.sortKey
+        const th = document.querySelector(`th[data-key="${key}"]`)
+        const type = th ? th.dataset.type : "text"
+        base.sort((r1, r2) => {
+          const c = cmp(r1[key], r2[key], type)
+          return state.sortDir === "asc" ? c : -c
         })
-        .catch(() => {
-          document.getElementById("updated").textContent = "(failed to load data)";
-        });
+        state.filtered = base
+      }
+
+      function render() {
+        const tbody = document.getElementById("body")
+        tbody.innerHTML = ""
+        for (const r of state.filtered) {
+          const tr = document.createElement("tr")
+
+          const tdTeam = document.createElement("td")
+          tdTeam.className = "left"
+          tdTeam.textContent = r.team || ""
+          tr.appendChild(tdTeam)
+
+          const tdRec = document.createElement("td")
+          tdRec.className = "num"
+          tdRec.textContent = r.record || ""
+          tr.appendChild(tdRec)
+
+          const tdAp = document.createElement("td")
+          tdAp.className = "num"
+          tdAp.textContent = r.ap || ""
+          tr.appendChild(tdAp)
+
+          const tdAvg = document.createElement("td")
+          tdAvg.className = "num"
+          tdAvg.textContent = r.avg || ""
+          tr.appendChild(tdAvg)
+
+          const tdNet = document.createElement("td")
+          tdNet.className = "num"
+          tdNet.textContent = r.net || ""
+          tr.appendChild(tdNet)
+
+          const tdKen = document.createElement("td")
+          tdKen.className = "num"
+          tdKen.textContent = r.kenpom || ""
+          tr.appendChild(tdKen)
+
+          const tdBpi = document.createElement("td")
+          tdBpi.className = "num"
+          tdBpi.textContent = r.bpi || ""
+          tr.appendChild(tdBpi)
+
+          const tdSos = document.createElement("td")
+          tdSos.className = "num"
+          tdSos.textContent = r.sos || ""
+          tr.appendChild(tdSos)
+
+          tbody.appendChild(tr)
+        }
+
+        document.querySelectorAll(".sort-ind").forEach(x => x.textContent = "")
+        const ind = document.getElementById(`ind-${state.sortKey}`)
+        if (ind) ind.textContent = state.sortDir === "asc" ? "▲" : "▼"
+      }
+
+      function wireSorting() {
+        document.querySelectorAll("thead th").forEach(th => {
+          th.addEventListener("click", () => {
+            const key = th.dataset.key
+            if (!key) return
+            if (state.sortKey === key) {
+              state.sortDir = state.sortDir === "asc" ? "desc" : "asc"
+            } else {
+              state.sortKey = key
+              state.sortDir = "asc"
+            }
+            applyFilterAndSort()
+            render()
+          })
+        })
+      }
+
+      async function load() {
+        try {
+          const res = await fetch(`rankings.csv?ts=${Date.now()}`)
+          if (!res.ok) throw new Error(`HTTP ${res.status}`)
+          const text = await res.text()
+          const rows = parseCSV(text)
+
+          state.rows = rows.map(r => ({
+            team: r.team || "",
+            record: r.record || "",
+            ap: r.ap || "",
+            avg: r.avg || "",
+            net: r.net || "",
+            kenpom: r.kenpom || "",
+            bpi: r.bpi || "",
+            sos: r.sos || ""
+          }))
+
+          state.query = ""
+          state.sortKey = "avg"
+          state.sortDir = "asc"
+
+          applyFilterAndSort()
+          render()
+
+          try {
+            const metaRes = await fetch(`last_updated.csv?ts=${Date.now()}`)
+            if (metaRes.ok) {
+              const mt = await metaRes.text()
+              const mrows = parseCSV(mt)
+              const when = mrows[0]?.updated_at_utc || ""
+              document.getElementById("meta").textContent = when ? `Last updated: ${when}` : ""
+            }
+          } catch (e) {
+            document.getElementById("meta").textContent = ""
+          }
+        } catch (e) {
+          const tbody = document.getElementById("body")
+          tbody.innerHTML = `<tr><td colspan="8" class="error">Failed to load rankings.csv: ${String(e)}</td></tr>`
+        }
+      }
+
+      document.getElementById("search").addEventListener("input", (ev) => {
+        state.query = ev.target.value || ""
+        applyFilterAndSort()
+        render()
+      })
+
+      document.getElementById("reset").addEventListener("click", () => {
+        state.sortKey = "avg"
+        state.sortDir = "asc"
+        state.query = ""
+        document.getElementById("search").value = ""
+        applyFilterAndSort()
+        render()
+      })
+
+      wireSorting()
+      load()
     </script>
   </body>
 </html>
