@@ -10,6 +10,7 @@ bpi_rank,team_bpi
 9,UConn
 10,Illinois
 11,Vanderbilt
+12,BYUBYU
 13,Florida
 14,Tennessee
 15,Alabama
@@ -22,7 +23,7 @@ bpi_rank,team_bpi
 22,Auburn
 23,Clemson
 24,Iowa
-25,UCL
+25,UCLAUCLA
 26,Nebraska
 27,Arkansas
 28,Virginia
@@ -39,13 +40,19 @@ bpi_rank,team_bpi
 39,Oklahoma
 40,Wisconsin
 41,Miami
+42,SMUSMU
 43,West Virginia
 44,Creighton
+45,LSULSU
 46,Texas
 47,Butler
+48,USCUSC
 49,Missouri
+50,VCUVCU
+51,UCFUCF
 52,Mississippi State
 53,Ole Miss
+54,TCUTCU
 55,Cincinnati
 56,Wake Forest
 57,Washington
@@ -85,10 +92,11 @@ bpi_rank,team_bpi
 91,Marquette
 92,Colorado
 93,Liberty
-94,Miami (OH)M-
+94,Miami (OH)M-OH
 95,San Francisco
 96,Georgetown
 97,Murray State
+98,UABUAB
 99,Florida State
 100,Arizona State
 101,Grand Canyon
@@ -102,7 +110,7 @@ bpi_rank,team_bpi
 109,Florida Atlantic
 110,Yale
 111,Hawai'i
-112,UNL
+112,UNLVUNLV
 113,Georgia Tech
 114,UNC Wilmington
 115,UC Irvine
@@ -171,6 +179,7 @@ bpi_rank,team_bpi
 178,Washington State
 179,Texas A&M-Corpus Christi
 180,UT Rio Grande Valley
+181,UICUIC
 182,South Dakota State
 183,Charleston
 184,Louisiana Tech
@@ -246,7 +255,7 @@ bpi_rank,team_bpi
 254,Southeast Missouri State
 255,Bethune-Cookman
 256,Saint Peter's
-257,UMB
+257,UMBCUMBC
 258,Jacksonville
 259,Fairfield
 260,Princeton
@@ -258,9 +267,9 @@ bpi_rank,team_bpi
 266,Grambling
 267,Howard
 268,Stony Brook
-269,UTE
+269,UTEPUTEP
 270,Eastern Washington
-271,UTS
+271,UTSAUTSA
 272,Idaho State
 273,Northern Arizona
 274,Green Bay
@@ -284,13 +293,13 @@ bpi_rank,team_bpi
 292,North Dakota
 293,Alabama State
 294,Manhattan
-295,North Carolina A&
+295,North Carolina A&TNCAT
 296,UMass Lowell
 297,North Alabama
 298,East Carolina
-299,Prairie View A&
+299,Prairie View A&MPV
 300,Mercyhurst
-301,East Texas A&
+301,East Texas A&METAM
 302,UAlbany
 303,Morehead State
 304,Detroit Mercy
@@ -317,15 +326,16 @@ bpi_rank,team_bpi
 325,Maine
 326,Fairleigh Dickinson
 327,West Georgia
-328,Loyola MarylandL-
+328,Loyola MarylandL-MD
 329,Stonehill
 330,North Florida
 331,Army
 332,Bucknell
-333,Florida A&
+333,Florida A&MFAMU
 334,Wagner
 335,Southern Utah
 336,New Hampshire
+337,VMIVMI
 338,Arkansas-Pine Bluff
 339,Kansas City
 340,Holy Cross
@@ -334,12 +344,12 @@ bpi_rank,team_bpi
 343,Southern Indiana
 344,Maryland Eastern Shore
 345,North Carolina Central
-346,Alabama A&
+346,Alabama A&MAAMU
 347,Canisius
 348,Chicago State
 349,Rider
 350,Jackson State
-351,NJI
+351,NJITNJIT
 352,Western Illinois
 353,UL Monroe
 354,Saint Francis
