@@ -149,7 +149,6 @@
         font-weight: 600;
       }
 
-      /* CRITICAL FIX: align numeric headers with numeric cells */
       thead th.num {
         text-align: right;
       }
@@ -172,7 +171,6 @@
         font-variant-numeric: tabular-nums;
       }
 
-      /* Column sizing so everything stays aligned */
       th.team-col,
       td.team {
         width: 260px;
@@ -185,7 +183,7 @@
 
       th.avg-col,
       td.avg {
-        width: 130px;
+        width: 180px;
       }
 
       th.ap-col,
@@ -235,7 +233,7 @@
         <div class="header-top">
           <div style="min-width: 0">
             <h1 class="header-title">CBB Rankings Dashboard</h1>
-            <div class="header-subtitle">NET • SoS • KenPom • BPI • AP • Avg • Record</div>
+            <div class="header-subtitle">Record • AVG • AP • NET • KenPom • BPI • SoS</div>
           </div>
 
           <div class="updated-pill">
@@ -264,7 +262,7 @@
           <tr>
             <th class="team-col">Team</th>
             <th class="record-col">Record</th>
-            <th class="num avg-col">Avg of Metrics</th>
+            <th class="num avg-col">Avg of Net/KenPom/BPI</th>
             <th class="num ap-col">AP</th>
             <th class="num net-col">NET</th>
             <th class="num kp-col">KenPom</th>
@@ -323,7 +321,7 @@
 
         return withAvg.map((r) => ({
           ...r,
-          ["Avg of Metrics"]: avgToRank.has(r.Team) ? avgToRank.get(r.Team) : "NR",
+          AVG: avgToRank.has(r.Team) ? avgToRank.get(r.Team) : "NR",
         }));
       };
 
@@ -338,7 +336,7 @@
           tr.innerHTML = `
             <td class="team">${r.Team ?? ""}</td>
             <td class="record">${r.Record ?? ""}</td>
-            <td class="num avg">${r["Avg of Metrics"] ?? "NR"}</td>
+            <td class="num avg">${r.AVG ?? "NR"}</td>
             <td class="num ap">${showRankOrNR(r.AP)}</td>
             <td class="num net">${showRankOrNR(r.NET)}</td>
             <td class="num kp">${showRankOrNR(r.KenPom)}</td>
