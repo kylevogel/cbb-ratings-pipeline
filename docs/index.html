@@ -5,103 +5,228 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CBB Rankings Dashboard</title>
     <style>
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-        margin: 24px;
+      :root{
+        --bg:#f7f7f8;
+        --panel:#ffffff;
+        --border:rgba(0,0,0,.08);
+        --text:#111;
+        --muted:rgba(0,0,0,.62);
+        --radius:14px;
+        --shadow: 0 1px 2px rgba(0,0,0,.06), 0 10px 28px rgba(0,0,0,.07);
       }
-      .topbar {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 16px;
+
+      body{
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .container{
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 22px 16px 28px;
+      }
+
+      /* HEADER CARD */
+      .header-card{
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 16px 16px 14px;
         margin-bottom: 14px;
       }
-      h1 {
-        font-size: 20px;
+
+      .header-top{
+        display:flex;
+        align-items:flex-start;
+        justify-content:space-between;
+        gap:14px;
+        margin-bottom: 12px;
+      }
+
+      .header-title{
+        margin:0;
+        font-size: 22px;
+        letter-spacing: -0.01em;
+        line-height: 1.15;
+      }
+
+      .header-subtitle{
+        margin-top: 6px;
+        font-size: 12px;
+        color: var(--muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .updated-pill{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        padding:8px 10px;
+        border:1px solid var(--border);
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1;
+        white-space: nowrap;
+        background: rgba(0,0,0,.02);
+      }
+
+      .header-controls{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+      }
+
+      .search-wrap{
+        flex: 1 1 520px;
+        display:flex;
+        align-items:center;
+        gap:10px;
+        padding: 10px 12px;
+        border:1px solid var(--border);
+        border-radius: 12px;
+        background: #fff;
+      }
+
+      .search-icon{
+        width:16px;
+        height:16px;
+        opacity:.55;
+        flex: 0 0 auto;
+      }
+
+      #search{
+        width:100%;
+        border:0;
+        outline:none;
+        font-size: 14px;
+        background: transparent;
+        padding: 0;
         margin: 0;
       }
-      #updated {
+
+      .pill{
+        display:inline-flex;
+        align-items:center;
+        gap:6px;
+        padding:8px 10px;
+        border:1px solid var(--border);
+        border-radius: 999px;
         font-size: 12px;
-        opacity: 0.75;
+        color: var(--muted);
+        background: rgba(255,255,255,.7);
         white-space: nowrap;
       }
-      table {
+
+      /* TABLE */
+      table{
         border-collapse: collapse;
         width: 100%;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 1px 2px rgba(0,0,0,.04);
       }
-      thead th {
+
+      thead th{
         text-align: left;
         font-size: 12px;
         letter-spacing: 0.02em;
-        opacity: 0.9;
-        border-bottom: 1px solid #ddd;
-        padding: 10px 8px;
+        color: rgba(0,0,0,.72);
+        border-bottom: 1px solid rgba(0,0,0,.08);
+        padding: 10px 10px;
         position: sticky;
         top: 0;
-        background: #fff;
+        background: rgba(255,255,255,.96);
+        backdrop-filter: blur(6px);
         z-index: 1;
       }
-      tbody td {
-        border-bottom: 1px solid #f0f0f0;
-        padding: 9px 8px;
+
+      tbody td{
+        border-bottom: 1px solid rgba(0,0,0,.06);
+        padding: 9px 10px;
         font-size: 13px;
       }
-      td.num {
+
+      tbody tr:hover td{
+        background: rgba(0,0,0,.02);
+      }
+
+      td.num{
         text-align: right;
         font-variant-numeric: tabular-nums;
       }
-      td.team {
+
+      td.team{
         width: 240px;
-        padding-left: 2px;
+        padding-left: 10px;
       }
-      td.record {
+
+      td.record{
         width: 72px;
       }
-      .controls {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        margin: 10px 0 14px;
-      }
-      input {
-        padding: 8px 10px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        width: 260px;
-        font-size: 13px;
-      }
-      .pill {
-        font-size: 12px;
-        opacity: 0.8;
+
+      @media (max-width: 700px){
+        .header-top{ flex-direction: column; align-items: flex-start; }
+        .header-controls{ flex-direction: column; align-items: stretch; }
+        .pill{ align-self: flex-start; }
       }
     </style>
   </head>
+
   <body>
-    <div class="topbar">
-      <h1>CBB Rankings Dashboard</h1>
-      <div id="updated">Updated: —</div>
-    </div>
+    <div class="container">
+      <div class="header-card">
+        <div class="header-top">
+          <div style="min-width:0;">
+            <h1 class="header-title">CBB Rankings Dashboard</h1>
+            <div class="header-subtitle">NET • SoS • KenPom • BPI • AP • Avg • Record</div>
+          </div>
 
-    <div class="controls">
-      <input id="search" placeholder="Search team…" />
-      <div class="pill" id="count"></div>
-    </div>
+          <div class="updated-pill">
+            <span>Updated:</span>
+            <span id="updated">—</span>
+          </div>
+        </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Team</th>
-          <th>Record</th>
-          <th class="num">Avg of Metrics</th>
-          <th class="num">AP</th>
-          <th class="num">NET</th>
-          <th class="num">KenPom</th>
-          <th class="num">BPI</th>
-          <th class="num">SoS</th>
-        </tr>
-      </thead>
-      <tbody id="tbody"></tbody>
-    </table>
+        <div class="header-controls">
+          <div class="search-wrap">
+            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M10 4a6 6 0 1 1 0 12A6 6 0 0 1 10 4m0-2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2"
+              />
+            </svg>
+            <input id="search" placeholder="Search team…" autocomplete="off" />
+          </div>
+
+          <div class="pill" id="count"></div>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Team</th>
+            <th>Record</th>
+            <th class="num">Avg of Metrics</th>
+            <th class="num">AP</th>
+            <th class="num">NET</th>
+            <th class="num">KenPom</th>
+            <th class="num">BPI</th>
+            <th class="num">SoS</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
 
     <script>
       const asNum = (v) => {
@@ -192,14 +317,14 @@
         .then((r) => r.json())
         .then((data) => {
           const updated = data.updated || data.last_updated || "—";
-          document.getElementById("updated").textContent = `Updated: ${updated}`;
+          document.getElementById("updated").textContent = updated;
 
           const rows = Array.isArray(data.rows) ? data.rows : [];
           allRows = computeAvgRank(rows);
           render(allRows);
         })
         .catch(() => {
-          document.getElementById("updated").textContent = "Updated: (failed to load data)";
+          document.getElementById("updated").textContent = "(failed to load data)";
         });
     </script>
   </body>
