@@ -23,7 +23,7 @@ URLS = [
 ]
 
 def norm(s):
-    return str(s or "").strip().casefold().replace("’", "'")
+    return str(s or "").strip().casefold().replace("'", "'")
 
 def ratio(a, b):
     return SequenceMatcher(None, norm(a), norm(b)).ratio()
@@ -117,12 +117,17 @@ def fetch_bpi():
 def main():
     DATA_RAW.mkdir(parents=True, exist_ok=True)
 
+    # Load alias file with actual column structure: espn_name, alternate_name, source
     alias = pd.read_csv(ALIAS_PATH, dtype=str).fillna("")
-    if "standard_name" not in alias.columns:
-        raise SystemExit("team_alias.csv missing standard_name column")
-    if "bpi_name" not in alias.columns:
-        alias["bpi_name"] = ""
-        alias.to_csv(ALIAS_PATH, index=False)
+    
+    # Build BPI mapping: BPI alternate_name -> espn_name (standard name)
+    bpi_map = {}
+    for _, row in alias.iterrows():
+        if str(row.get("source", "")).strip() == "BPI":
+            espn = str(row.get("espn_name", "")).strip()
+            alt = str(row.get("alternate_name", "")).strip()
+            if espn and alt:
+                bpi_map[alt] = espn
 
     src_team_to_rank = fetch_bpi()
 
@@ -145,25 +150,28 @@ def main():
 
     src_names = list(src_team_to_rank.keys())
 
-    for _, ar in alias.iterrows():
-        std = str(ar.get("standard_name", "")).strip()
-        if not std:
-            continue
+    # Get unique ESPN names from alias file
+    espn_names = alias[alias["espn_name"].str.strip() != ""]["espn_name"].str.strip().unique()
 
-        desired = str(ar.get("bpi_name", "")).strip() or std
-
-        exact = None
-        for nm in src_names:
-            if norm(nm) == norm(desired):
-                exact = nm
-                break
-
+    for espn_name in espn_names:
+        # Get all BPI alternate names for this ESPN name
+        bpi_alternates = [alt for alt, esp in bpi_map.items() if esp == espn_name]
+        
+        # Try exact match first
         chosen = None
-        score = -1.0
-        if exact is not None and exact not in used:
-            chosen = exact
-            score = 1.0
-        else:
+        for desired in bpi_alternates:
+            exact = None
+            for nm in src_names:
+                if norm(nm) == norm(desired):
+                    exact = nm
+                    break
+            if exact is not None and exact not in used:
+                chosen = exact
+                break
+        
+        # If no exact match, try fuzzy matching
+        if chosen is None and bpi_alternates:
+            desired = bpi_alternates[0]  # Use first alternate for fuzzy matching
             best_nm = None
             best_sc = -1.0
             for nm in src_names:
@@ -175,42 +183,44 @@ def main():
                     best_nm = nm
             if best_nm is not None and best_sc >= 0.86:
                 chosen = best_nm
-                score = best_sc
 
         if chosen is None:
-            best_nm = None
-            best_sc = -1.0
-            for nm in src_names:
-                sc = ratio(desired, nm)
-                if sc > best_sc:
-                    best_sc = sc
-                    best_nm = nm
-            unmatched_rows.append(
-                {
-                    "source_team": desired,
-                    "suggested_standard": std,
-                    "match_score": round(best_sc if best_sc >= 0 else 0.0, 6),
-                }
-            )
+            # Record as unmatched
+            if bpi_alternates:
+                desired = bpi_alternates[0]
+                best_nm = None
+                best_sc = -1.0
+                for nm in src_names:
+                    sc = ratio(desired, nm)
+                    if sc > best_sc:
+                        best_sc = sc
+                        best_nm = nm
+                unmatched_rows.append(
+                    {
+                        "source_team": desired,
+                        "suggested_standard": espn_name,
+                        "best_match_found": best_nm if best_nm else "",
+                        "match_score": round(best_sc if best_sc >= 0 else 0.0, 6),
+                    }
+                )
             continue
 
         used.add(chosen)
         matched_rows.append(
-            {"snapshot_date": snapshot_date, "Team": std, "BPI_Rank": int(src_team_to_rank[chosen])}
+            {"snapshot_date": snapshot_date, "Team": espn_name, "BPI_Rank": int(src_team_to_rank[chosen])}
         )
 
     out_df = pd.DataFrame(matched_rows, columns=["snapshot_date", "Team", "BPI_Rank"])
     out_df.to_csv(OUT_PATH, index=False)
 
-    um_df = pd.DataFrame(unmatched_rows, columns=["source_team", "suggested_standard", "match_score"])
+    um_df = pd.DataFrame(unmatched_rows, columns=["source_team", "suggested_standard", "best_match_found", "match_score"])
     um_df.to_csv(UNMATCHED_PATH, index=False)
 
-    print("BPI_Rank.csv")
-    print("unmatched_bpi_teams.csv")
+    print(f"BPI_Rank.csv written to {OUT_PATH}")
+    print(f"unmatched_bpi_teams.csv written to {UNMATCHED_PATH}")
     print(f"Pulled source teams: {len(src_team_to_rank)}")
     print(f"Matched: {len(out_df)}")
     print(f"Unmatched: {len(um_df)}")
-    print(f"BPI rows {len(out_df)}")
 
 if __name__ == "__main__":
     main()
