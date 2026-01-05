@@ -15,8 +15,6 @@ jobs:
     
     permissions:
       contents: write
-      pages: write
-      id-token: write
     
     steps:
       - name: Checkout repository
@@ -37,33 +35,11 @@ jobs:
       
       - name: Run pipeline
         run: python update_all.py
-        continue-on-error: false
-      
-      - name: Check for changes
-        id: check_changes
-        run: |
-          git diff --quiet docs/ data_raw/ data_processed/ || echo "changes=true" >> $GITHUB_OUTPUT
       
       - name: Commit and push changes
-        if: steps.check_changes.outputs.changes == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add docs/ data_raw/ data_processed/
-          git commit -m "Update rankings data $(date -u +'%Y-%m-%d %H:%M UTC')" || exit 0
+          git add -A
+          git diff --staged --quiet || git commit -m "Update rankings data $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push
-      
-      - name: Setup Pages
-        if: steps.check_changes.outputs.changes == 'true'
-        uses: actions/configure-pages@v4
-      
-      - name: Upload artifact
-        if: steps.check_changes.outputs.changes == 'true'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './docs'
-      
-      - name: Deploy to GitHub Pages
-        if: steps.check_changes.outputs.changes == 'true'
-        id: deployment
-        uses: actions/deploy-pages@v4
