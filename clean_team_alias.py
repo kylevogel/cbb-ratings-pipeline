@@ -9,7 +9,6 @@ import pandas as pd
 
 
 def load_team_alias():
-    """Load the team alias mapping file."""
     alias_path = os.path.join(os.path.dirname(__file__), "team_alias.csv")
     if os.path.exists(alias_path):
         return pd.read_csv(alias_path)
@@ -17,89 +16,76 @@ def load_team_alias():
 
 
 def normalize_team_name(name):
-    """Basic normalization of team names."""
     if pd.isna(name):
         return None
 
     name = str(name).strip()
-
-    # Remove common suffixes/prefixes
-    name = re.sub(r"\s*\(\d+-\d+\)\s*$", "", name)  # Remove records like (15-3)
-    name = re.sub(r"\s*#\d+\s*", "", name)          # Remove rankings like #5
-    name = re.sub(r"^\d+\s+", "", name)             # Remove leading numbers
-
-    # Standardize common variations
-    replacements = {
-        "St.": "State",
-        "Univ.": "",
-        "University": "",
-    }
-    for old, new in replacements.items():
-        name = name.replace(old, new)
-
+    name = re.sub(r"\s*\(\d+\-\d+\)\s*$", "", name)
+    name = re.sub(r"\s*#\d+\s*", "", name)
+    name = re.sub(r"^\d+\s+", "", name)
     name = re.sub(r"\s+", " ", name).strip()
+
     return name
 
 
-def _add_lookup_key(lookup: dict, key, canonical: str):
-    """Add multiple normalized variants of a key to the lookup dict."""
-    if key is None or pd.isna(key):
-        return
+def _clean_trailing_abbrev(s: str) -> str:
+    s = str(s).strip()
+    s = re.sub(r"\s+", " ", s)
 
-    key = str(key).strip()
-    if not key:
-        return
+    if re.fullmatch(r"[A-Z]{2,5}", s):
+        return s
 
-    lookup[key] = canonical
-    lookup[key.lower()] = canonical
+    m = re.match(r"^(.*?)([A-Z]{2,5})$", s)
+    if m:
+        left = m.group(1).strip()
+        right = m.group(2).strip()
+        if left and left != right:
+            return left
 
-    nk = normalize_team_name(key)
-    if nk:
-        lookup[nk] = canonical
-        lookup[nk.lower()] = canonical
+    m2 = re.match(r"^(.*)\s+([A-Z]{2,5})$", s)
+    if m2:
+        left = m2.group(1).strip()
+        right = m2.group(2).strip()
+        if left and left != right:
+            return left
+
+    return s
 
 
-def create_name_lookup(alias_df, source_columns):
-    """
-    Create a lookup dictionary from one or multiple source columns to canonical name.
-    Always includes canonical->canonical mapping too.
-    """
-    if alias_df is None or alias_df.empty:
+def create_name_lookup(alias_df, source_column):
+    if alias_df is None:
         return {}
 
-    if isinstance(source_columns, str):
-        source_columns = [source_columns]
-
     lookup = {}
-
     for _, row in alias_df.iterrows():
-        canonical = row.get("canonical")
+        canonical = row.get("canonical", "")
+        source_name = row.get(source_column, "")
+
         if pd.isna(canonical) or not str(canonical).strip():
             continue
-        canonical = str(canonical).strip()
+        if pd.isna(source_name) or not str(source_name).strip():
+            continue
 
-        # Always map canonical to itself
-        _add_lookup_key(lookup, canonical, canonical)
+        raw = str(source_name).strip()
+        low = raw.lower()
+        norm = normalize_team_name(raw)
+        norm_low = norm.lower() if norm else None
+        cleaned = _clean_trailing_abbrev(raw)
+        cleaned_low = cleaned.lower()
 
-        # Map each source column value to canonical
-        for col in source_columns:
-            _add_lookup_key(lookup, row.get(col, ""), canonical)
+        lookup[raw] = canonical
+        lookup[low] = canonical
+        if norm:
+            lookup[norm] = canonical
+            lookup[norm_low] = canonical
+        if cleaned:
+            lookup[cleaned] = canonical
+            lookup[cleaned_low] = canonical
 
     return lookup
 
 
 def standardize_team_names(df, team_column, source="espn"):
-    """
-    Standardize team names in a dataframe.
-
-    Args:
-        df: DataFrame containing team names
-        team_column: Name of the column containing team names
-        source: Source of the data ('espn', 'net', 'kenpom', 'bpi', 'ap', 'sos')
-
-    Returns:
-        DataFrame with standardized team names added in 'team' column
-    """
     alias_df = load_team_alias()
 
     source_col_map = {
@@ -113,16 +99,7 @@ def standardize_team_names(df, team_column, source="espn"):
     }
 
     source_col = source_col_map.get(source, source)
-
-    # Key fix:
-    # BPI comes from ESPN, but can appear as either ESPN-style short names or full mascot strings.
-    # Use both columns to maximize match rate.
-    if source == "bpi":
-        lookup_cols = ["bpi", "espn"]
-    else:
-        lookup_cols = [source_col]
-
-    lookup = create_name_lookup(alias_df, lookup_cols)
+    lookup = create_name_lookup(alias_df, source_col)
 
     def get_canonical(name):
         if pd.isna(name):
@@ -132,35 +109,36 @@ def standardize_team_names(df, team_column, source="espn"):
         if not name_str:
             return None
 
-        # Exact match
         if name_str in lookup:
             return lookup[name_str]
         if name_str.lower() in lookup:
             return lookup[name_str.lower()]
 
-        # Normalized match
-        normalized = normalize_team_name(name_str)
-        if normalized in lookup:
+        cleaned = _clean_trailing_abbrev(name_str)
+        if cleaned in lookup:
+            return lookup[cleaned]
+        if cleaned.lower() in lookup:
+            return lookup[cleaned.lower()]
+
+        normalized = normalize_team_name(cleaned)
+        if normalized and normalized in lookup:
             return lookup[normalized]
         if normalized and normalized.lower() in lookup:
             return lookup[normalized.lower()]
 
-        # Return original if no match found
         return name_str
 
-    df = df.copy()
-    df["team"] = df[team_column].apply(get_canonical)
-    return df
+    out = df.copy()
+    out["team"] = out[team_column].apply(get_canonical)
+    return out
 
 
 def get_unmatched_teams(df, team_column, source="espn"):
-    """Find teams that couldn't be matched to canonical names."""
     alias_df = load_team_alias()
     if alias_df is None:
         return df[team_column].unique().tolist()
 
     canonical_names = set(alias_df["canonical"].dropna().unique())
-
     standardized = standardize_team_names(df, team_column, source)
 
     unmatched = []
