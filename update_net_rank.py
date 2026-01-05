@@ -1,156 +1,68 @@
 import pandas as pd
 import requests
-from pathlib import Path
-from datetime import date
-from difflib import SequenceMatcher
+import os
+from datetime import datetime
 
-URL = "https://www.ncaa.com/rankings/basketball-men/d1/ncaa-mens-basketball-net-rankings"
-DATA_RAW = Path("data_raw")
-ALIAS_PATH = Path("team_alias.csv")
-OUT_PATH = DATA_RAW / "NET_Rank.csv"
-UNMATCHED_PATH = DATA_RAW / "unmatched_net_teams.csv"
-
-def norm(s):
-    return str(s or "").strip().casefold().replace("'", "'")
-
-def ratio(a, b):
-    return SequenceMatcher(None, norm(a), norm(b)).ratio()
+# Standardize headers to look like a browser
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+}
 
 def main():
-    DATA_RAW.mkdir(parents=True, exist_ok=True)
+    # WarrenNolan is a reliable source for NET
+    # We dynamically get the current season year (e.g. 2026 for the 2025-26 season)
+    year = datetime.now().year
+    if datetime.now().month > 10:
+        year += 1
     
-    r = requests.get(
-        URL,
-        headers={"User-Agent": "Mozilla/5.0"},
-        timeout=30,
-    )
-    r.raise_for_status()
-    
-    tables = pd.read_html(r.text)
-    df = None
-    for t in tables:
-        cols = {c.lower().strip(): c for c in t.columns}
-        if "rank" in cols and "school" in cols and "record" in cols:
-            df = t.rename(columns={cols["rank"]: "NET_Rank", cols["school"]: "Team", cols["record"]: "Record"}).copy()
-            break
-    
-    if df is None or df.empty:
-        raise RuntimeError("Could not find NET rankings table with Rank/School/Record columns.")
-    
-    df["Team"] = df["Team"].astype(str).str.strip()
-    df["Record"] = df["Record"].astype(str).str.strip()
-    df["NET_Rank"] = pd.to_numeric(df["NET_Rank"], errors="coerce")
-    df = df.dropna(subset=["NET_Rank"])
-    df["NET_Rank"] = df["NET_Rank"].astype(int)
-    df = df[["Team", "NET_Rank", "Record"]].drop_duplicates(subset=["Team"], keep="first")
-    
-    # Load alias file
-    alias = pd.read_csv(ALIAS_PATH, dtype=str).fillna("")
-    
-    # Build NET mapping: NET alternate_name -> espn_name (standard name)
-    net_map = {}
-    for _, row in alias.iterrows():
-        if str(row.get("source", "")).strip() == "NET":
-            espn = str(row.get("espn_name", "")).strip()
-            alt = str(row.get("alternate_name", "")).strip()
-            if espn and alt:
-                net_map[alt] = espn
-    
-    # Create source team to rank/record mapping
-    src_team_to_rank = {}
-    src_team_to_record = {}
-    for _, row in df.iterrows():
-        team = str(row["Team"]).strip()
-        rank = int(row["NET_Rank"])
-        record = str(row["Record"]).strip()
-        src_team_to_rank[team] = rank
-        src_team_to_record[team] = record
-    
-    snapshot_date = date.today().isoformat()
-    
-    used = set()
-    matched_rows = []
-    unmatched_rows = []
-    
-    src_names = list(src_team_to_rank.keys())
-    
-    # Get unique ESPN names from alias file
-    espn_names = alias[alias["espn_name"].str.strip() != ""]["espn_name"].str.strip().unique()
-    
-    for espn_name in espn_names:
-        # Get all NET alternate names for this ESPN name
-        net_alternates = [alt for alt, esp in net_map.items() if esp == espn_name]
+    url = f"https://www.warrennolan.com/basketball/{year}/net"
+    print(f"Fetching NET rankings from {url}...")
+
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=15)
+        r.raise_for_status()
         
-        # Try exact match first
-        chosen = None
-        for desired in net_alternates:
-            exact = None
-            for nm in src_names:
-                if norm(nm) == norm(desired):
-                    exact = nm
-                    break
-            if exact is not None and exact not in used:
-                chosen = exact
-                break
+        tables = pd.read_html(r.text)
+        if not tables:
+            print("No tables found for NET.")
+            return
+
+        # WarrenNolan usually has one main table
+        df = tables[0]
         
-        # If no exact match, try fuzzy matching
-        if chosen is None and net_alternates:
-            desired = net_alternates[0]  # Use first alternate for fuzzy matching
-            best_nm = None
-            best_sc = -1.0
-            for nm in src_names:
-                if nm in used:
-                    continue
-                sc = ratio(desired, nm)
-                if sc > best_sc:
-                    best_sc = sc
-                    best_nm = nm
-            if best_nm is not None and best_sc >= 0.86:
-                chosen = best_nm
+        # Standardize Columns
+        # Look for 'Team' and 'Rank' or 'NET'
+        # Usually headers are: Rank, Team, Record, ...
         
-        if chosen is None:
-            # Record as unmatched
-            if net_alternates:
-                desired = net_alternates[0]
-                best_nm = None
-                best_sc = -1.0
-                for nm in src_names:
-                    sc = ratio(desired, nm)
-                    if sc > best_sc:
-                        best_sc = sc
-                        best_nm = nm
-                unmatched_rows.append(
-                    {
-                        "source_team": desired,
-                        "suggested_standard": espn_name,
-                        "best_match_found": best_nm if best_nm else "",
-                        "match_score": round(best_sc if best_sc >= 0 else 0.0, 6),
-                    }
-                )
-            continue
+        # Find team column
+        team_col = next((c for c in df.columns if "Team" in str(c)), None)
+        # Find rank column (usually first column or named 'NET')
+        rank_col = next((c for c in df.columns if "Rank" in str(c) or "NET" in str(c)), df.columns[0])
+
+        if not team_col:
+            print("Could not find Team column in NET table.")
+            return
+
+        df = df.rename(columns={team_col: "Team", rank_col: "NET_Rank"})
         
-        used.add(chosen)
-        matched_rows.append(
-            {
-                "snapshot_date": snapshot_date,
-                "Team": espn_name,
-                "NET_Rank": int(src_team_to_rank[chosen]),
-                "Record": src_team_to_record[chosen]
-            }
-        )
-    
-    # Create output DataFrame
-    out_df = pd.DataFrame(matched_rows, columns=["snapshot_date", "Team", "NET_Rank", "Record"])
-    out_df.to_csv(OUT_PATH, index=False)
-    
-    um_df = pd.DataFrame(unmatched_rows, columns=["source_team", "suggested_standard", "best_match_found", "match_score"])
-    um_df.to_csv(UNMATCHED_PATH, index=False)
-    
-    print(f"NET_Rank.csv written to {OUT_PATH}")
-    print(f"unmatched_net_teams.csv written to {UNMATCHED_PATH}")
-    print(f"Pulled source teams: {len(src_team_to_rank)}")
-    print(f"Matched: {len(out_df)}")
-    print(f"Unmatched: {len(um_df)}")
+        # Clean Team Names (WarrenNolan includes record sometimes, e.g. "Duke (15-2)")
+        # We strip the record parenthesis if present
+        df["Team"] = df["Team"].astype(str).str.replace(r"\s+\(\d+-\d+\).*", "", regex=True).str.strip()
+        
+        # Keep only relevant columns
+        out_df = df[["Team", "NET_Rank"]].copy()
+        
+        # Add snapshot
+        out_df["snapshot_date"] = pd.Timestamp.now().strftime("%Y-%m-%d")
+        
+        os.makedirs("data_raw", exist_ok=True)
+        out_path = os.path.join("data_raw", "NET_Rank.csv")
+        out_df.to_csv(out_path, index=False)
+        
+        print(f"Successfully wrote {len(out_df)} rows to {out_path}")
+
+    except Exception as e:
+        print(f"Error updating NET: {e}")
 
 if __name__ == "__main__":
     main()
