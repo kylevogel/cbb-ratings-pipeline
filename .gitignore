@@ -186,7 +186,7 @@ cython_debug/
 #  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
 #  and can be added to the global gitignore or merged into this file. However, if you prefer, 
 #  you could uncomment the following to ignore the entire vscode folder
-# .vscode/
+.vscode/
 
 # Ruff stuff:
 .ruff_cache/
@@ -206,24 +206,30 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
+# ============================================================================
+# PROJECT-SPECIFIC IGNORES
+# ============================================================================
+
 # Debug HTML dumps
 data_raw/*.html
 data_raw/*debug*
 
-# Python
-__pycache__/
-*.pyc
-.venv/
-venv/
-
 # Mac
 .DS_Store
 
-# Jupyter
-.ipynb_checkpoints/
-
-# Data outputs (optional — see step 2)
-# data_raw/*.csv
-# data_processed/*.csv
+# Backup files
 *.bak
+
+# Cache directory (used by update_games_from_espn.py)
+.cache/
+
+# Auto-generated diagnostic files (regenerated on each run)
+data_raw/unmatched_*.csv
+data_raw/sos_source_snapshot.csv
+
+# Deprecated helper scripts output (from old workflow)
+suggested_team_aliases.csv
+new_aliases_to_add.csv
+
+# Optional: Large schedule file (can be regenerated)
 data_raw/schedule_full.csv
