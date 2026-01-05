@@ -121,54 +121,47 @@ def build_master_rankings(data):
 
     master["avg_value"] = master.apply(calc_avg_value, axis=1)
 
-    has_ranking = (
-        master["net_rank"].notna()
-        | master["kenpom_rank"].notna()
-        | master["bpi_rank"].notna()
-    )
+    has_ranking = master["net_rank"].notna() | master["kenpom_rank"].notna() | master["bpi_rank"].notna()
     master = master[has_ranking].reset_index(drop=True)
 
-    # THIS is what you asked for:
-    # avg_rank = ranking of avg_value across all teams (ties allowed)
-    master["avg_rank"] = (
-        master["avg_value"]
-        .rank(method="dense", ascending=True)
-        .astype("Int64")
-    )
+    master["avg_rank"] = master["avg_value"].rank(method="dense", ascending=True).astype("Int64")
 
     master = master.sort_values(["avg_rank", "avg_value", "team"], na_position="last").reset_index(drop=True)
     return master
 
 
-def _format_utc_minus_5(dt_utc: datetime) -> str:
-    dt = dt_utc.replace(tzinfo=timezone.utc) + timedelta(hours=-5)
-    hour = dt.hour % 12
-    hour = 12 if hour == 0 else hour
-    ampm = "AM" if dt.hour < 12 else "PM"
-    return f"{dt.month:02d}/{dt.day:02d}/{dt.year} {hour}:{dt.minute:02d} {ampm} UTC-5"
+_EST = timezone(timedelta(hours=-5))
+
+
+def _format_updated_est(dt_utc: datetime) -> str:
+    dt_est = dt_utc.astimezone(_EST)
+    s = dt_est.strftime("%d/%m/%Y at %I:%M %p")
+    s = s[:-2] + s[-2:].lower()
+    return f"Updated: {s} EST"
 
 
 def create_dashboard_json(master_df):
     records = []
     for _, row in master_df.iterrows():
-        record = {
-            "team": row["team"],
-            "record": row["record"] if pd.notna(row["record"]) else "",
-            "ap_rank": int(row["ap_rank"]) if pd.notna(row["ap_rank"]) else None,
-            "avg_rank": int(row["avg_rank"]) if pd.notna(row["avg_rank"]) else None,
-            "net_rank": int(row["net_rank"]) if pd.notna(row["net_rank"]) else None,
-            "kenpom_rank": int(row["kenpom_rank"]) if pd.notna(row["kenpom_rank"]) else None,
-            "bpi_rank": int(row["bpi_rank"]) if pd.notna(row["bpi_rank"]) else None,
-            "sos_rank": int(row["sos_rank"]) if pd.notna(row["sos_rank"]) else None,
-        }
-        records.append(record)
+        records.append(
+            {
+                "team": row["team"],
+                "record": row["record"] if pd.notna(row["record"]) else "",
+                "ap_rank": int(row["ap_rank"]) if pd.notna(row["ap_rank"]) else None,
+                "avg_rank": int(row["avg_rank"]) if pd.notna(row["avg_rank"]) else None,
+                "net_rank": int(row["net_rank"]) if pd.notna(row["net_rank"]) else None,
+                "kenpom_rank": int(row["kenpom_rank"]) if pd.notna(row["kenpom_rank"]) else None,
+                "bpi_rank": int(row["bpi_rank"]) if pd.notna(row["bpi_rank"]) else None,
+                "sos_rank": int(row["sos_rank"]) if pd.notna(row["sos_rank"]) else None,
+            }
+        )
 
-    updated_str = _format_utc_minus_5(datetime.utcnow())
+    updated_str = _format_updated_est(datetime.now(timezone.utc))
     return {"updated": updated_str, "teams": records}
 
 
 def create_dashboard_html():
-    html = '''<!DOCTYPE html>
+    return """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -257,7 +250,7 @@ def create_dashboard_html():
     <div class="container">
         <header>
             <h1>CBB Rankings Dashboard</h1>
-            <p class="updated">Updated (UTC-5): <span id="update-time">Loading...</span></p>
+            <p class="updated"><span id="update-time">Loading...</span></p>
         </header>
 
         <div class="search-container">
@@ -394,8 +387,7 @@ def create_dashboard_html():
         loadData();
     </script>
 </body>
-</html>'''
-    return html
+</html>"""
 
 
 def main():
