@@ -22,20 +22,17 @@ def main():
         # ESPN Rankings page usually has AP as table 0
         df = tables[0]
         
-        # Columns are usually: RK, Team, Rec, Pts...
-        # We rename the first two explicitly to be safe
+        # Rename columns safely
+        # We assume col 0 is Rank, Col 1 is Team
         df = df.rename(columns={df.columns[0]: "AP_Rank", df.columns[1]: "Team"})
         
-        # Clean Team Name (ESPN often puts "1 Kansas" or "Kansas (10-2)")
+        # Convert to string
         df["Team"] = df["Team"].astype(str)
         
-        # FIX: Use .str accessor for string methods
-        # Remove record if present (e.g. " (10-2)")
+        # FIX: The error happened here. We must use .str before .replace or .strip
         df["Team"] = df["Team"].str.replace(r"\s*\(\d+-\d+\).*", "", regex=True)
-        # Remove leading rank number if merged (e.g. "1 Kansas")
         df["Team"] = df["Team"].str.replace(r"^\d+\s+", "", regex=True)
-        # Strip whitespace
-        df["Team"] = df["Team"].str.strip()
+        df["Team"] = df["Team"].str.strip()  # <--- This is the fix
 
         out_df = df[["Team", "AP_Rank"]].copy()
         out_df["snapshot_date"] = pd.Timestamp.now().strftime("%Y-%m-%d")
