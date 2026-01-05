@@ -8,6 +8,7 @@ import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 import os
+import re
 
 def scrape_sos_rankings():
     """Scrape SOS rankings from Warren Nolan."""
@@ -21,20 +22,51 @@ def scrape_sos_rankings():
         response = requests.get(url, headers=headers, timeout=30)
         response.raise_for_status()
         
+        # Try using pandas read_html first (handles most table formats)
+        try:
+            tables = pd.read_html(response.text)
+            for df in tables:
+                # Look for table with Team and Rank columns
+                cols = [str(c).lower() for c in df.columns]
+                if any('team' in c for c in cols) and any('rank' in c for c in cols):
+                    # Find the right columns
+                    team_col = None
+                    rank_col = None
+                    for c in df.columns:
+                        c_lower = str(c).lower()
+                        if 'team' in c_lower:
+                            team_col = c
+                        elif c_lower == 'rank':
+                            rank_col = c
+                    
+                    if team_col and rank_col:
+                        result = df[[team_col, rank_col]].copy()
+                        result.columns = ['team_sos', 'sos_rank']
+                        result = result.dropna()
+                        result['sos_rank'] = pd.to_numeric(result['sos_rank'], errors='coerce')
+                        result = result.dropna()
+                        result['sos_rank'] = result['sos_rank'].astype(int)
+                        result = result[result['sos_rank'] > 0]
+                        result = result.drop_duplicates(subset=['sos_rank'])
+                        result = result.sort_values('sos_rank')
+                        if len(result) > 100:
+                            return result
+        except Exception as e:
+            print(f"pandas read_html failed: {e}")
+        
+        # Fallback to BeautifulSoup parsing
         soup = BeautifulSoup(response.text, 'html.parser')
         
         rows = []
         
-        # Find the main data table
+        # Try to find team links and their associated ranks
         table = soup.find('table')
-        
         if table:
-            for tr in table.find_all('tr')[1:]:  # Skip header row
-                cells = tr.find_all('td')
+            all_rows = table.find_all('tr')
+            for tr in all_rows[1:]:  # Skip header
+                cells = tr.find_all(['td', 'th'])
                 if len(cells) >= 3:
-                    # Column 0: Team name (with link)
-                    # Column 1: SOS value
-                    # Column 2: Rank
+                    # Team is in first cell
                     team_cell = cells[0]
                     team_link = team_cell.find('a')
                     if team_link:
@@ -42,11 +74,14 @@ def scrape_sos_rankings():
                     else:
                         team = team_cell.get_text(strip=True)
                     
-                    # Get rank from column 2
+                    # Rank is in third cell (index 2)
                     rank_text = cells[2].get_text(strip=True)
                     
-                    if team and rank_text.isdigit():
-                        rank = int(rank_text)
+                    # Clean up rank
+                    rank_clean = re.sub(r'[^\d]', '', rank_text)
+                    
+                    if team and rank_clean and rank_clean.isdigit():
+                        rank = int(rank_clean)
                         if 1 <= rank <= 400:
                             rows.append({
                                 'sos_rank': rank,
@@ -57,9 +92,9 @@ def scrape_sos_rankings():
             df = pd.DataFrame(rows)
             df = df.drop_duplicates(subset=['sos_rank']).sort_values('sos_rank')
             return df
-        else:
-            print("No SOS data found in table")
-            return None
+        
+        print("No SOS data found")
+        return None
             
     except Exception as e:
         print(f"Error scraping SOS: {e}")
