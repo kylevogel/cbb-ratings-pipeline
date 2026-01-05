@@ -1,65 +1,59 @@
-import re
-import sys
 import time
-from typing import Optional, Tuple, List
+from io import StringIO
 
 import pandas as pd
 import requests
 
+
 OUT_PATH = "data_raw/bpi.csv"
 
 
-def _clean_team(s: str) -> str:
-    s = re.sub(r"\s+", " ", str(s)).strip()
-    s = re.sub(r"\s*\(\d+\)\s*$", "", s).strip()
-    s = re.sub(r"^[A-Z]{2,6}\s+", "", s).strip()
-    return s
-
-
-def _pick_table(tables: List[pd.DataFrame]) -> Optional[pd.DataFrame]:
+def pick_bpi_table(tables):
+    best = None
+    best_score = -1
     for t in tables:
         cols = [str(c).strip().lower() for c in t.columns]
-        if any("team" in c for c in cols) and any("bpi" in c for c in cols):
-            return t
-    return None
+        score = 0
+        score += 2 if any("team" in c for c in cols) else 0
+        score += 2 if any("bpi" in c for c in cols) else 0
+        score += 1 if any(c in ["rk", "rank"] or "rk" in c for c in cols) else 0
+        if score > best_score:
+            best_score = score
+            best = t
+    return best if best_score >= 3 else None
 
 
-def _infer_cols(df: pd.DataFrame) -> Tuple[str, str, Optional[str]]:
+def infer_cols(df):
     cols = list(df.columns)
-
     team_col = None
+    rk_col = None
+    bpi_col = None
+
     for c in cols:
-        if "team" in str(c).strip().lower():
+        if "team" in str(c).lower():
             team_col = c
             break
-    if team_col is None:
-        raise RuntimeError("Could not identify TEAM column in BPI table")
 
-    rank_col = None
     for c in cols:
         lc = str(c).strip().lower()
-        if lc in {"rk", "rank"}:
-            rank_col = c
+        if lc in ["rk", "rank"]:
+            rk_col = c
             break
-        if "bpi" in lc and "rk" in lc:
-            rank_col = c
-            break
+        if "rk" in lc and "bpi" in lc:
+            rk_col = c
 
-    bpi_col = None
     for c in cols:
-        if str(c).strip().lower() == "bpi":
+        lc = str(c).strip().lower()
+        if lc == "bpi":
             bpi_col = c
             break
-        if "bpi" in str(c).strip().lower() and "rk" not in str(c).strip().lower():
+        if "bpi" in lc and "rk" not in lc:
             bpi_col = c
 
-    if rank_col is None:
-        raise RuntimeError("Could not identify BPI rank column in BPI table")
-
-    return team_col, rank_col, bpi_col
+    return team_col, rk_col, bpi_col
 
 
-def _fetch_page(page: int) -> pd.DataFrame:
+def fetch_page(page):
     if page == 1:
         url = "https://www.espn.com/mens-college-basketball/bpi/_/view/bpi"
     else:
@@ -68,65 +62,52 @@ def _fetch_page(page: int) -> pd.DataFrame:
     r = requests.get(url, timeout=30, headers={"User-Agent": "Mozilla/5.0"})
     r.raise_for_status()
 
-    tables = pd.read_html(r.text)
-    t = _pick_table(tables)
+    tables = pd.read_html(StringIO(r.text))
+    t = pick_bpi_table(tables)
     if t is None:
         return pd.DataFrame(columns=["bpi_name", "bpi_rank", "bpi"])
 
-    team_col, rank_col, bpi_col = _infer_cols(t)
+    team_col, rk_col, bpi_col = infer_cols(t)
+    if team_col is None or rk_col is None:
+        return pd.DataFrame(columns=["bpi_name", "bpi_rank", "bpi"])
 
     out = pd.DataFrame()
-    out["bpi_name"] = t[team_col].map(_clean_team)
-    out["bpi_rank"] = pd.to_numeric(t[rank_col], errors="coerce").astype("Int64")
-    if bpi_col is not None:
-        out["bpi"] = pd.to_numeric(t[bpi_col], errors="coerce")
-    else:
-        out["bpi"] = pd.NA
-
-    out = out.dropna(subset=["bpi_name"]).drop_duplicates(subset=["bpi_name"])
-    out = out[out["bpi_name"].astype(str).str.len() > 0]
+    out["bpi_name"] = t[team_col].astype(str).str.strip()
+    out["bpi_rank"] = pd.to_numeric(t[rk_col], errors="coerce").astype("Int64")
+    out["bpi"] = pd.to_numeric(t[bpi_col], errors="coerce") if bpi_col is not None else pd.NA
+    out = out.dropna(subset=["bpi_name", "bpi_rank"])
+    out = out.drop_duplicates(subset=["bpi_rank"])
     return out.reset_index(drop=True)
 
 
-def main() -> int:
+def main():
     all_rows = []
-    seen = set()
+    seen_ranks = set()
 
-    for page in range(1, 30):
-        try:
-            df = _fetch_page(page)
-        except Exception as e:
-            print(f"update_bpi_rank warning on page {page}: {e}", file=sys.stderr)
-            break
-
+    for page in range(1, 40):
+        df = fetch_page(page)
         if df.empty:
             break
 
-        df = df[~df["bpi_name"].isin(seen)]
+        df = df[~df["bpi_rank"].isin(seen_ranks)]
         if df.empty:
             break
 
-        for n in df["bpi_name"].tolist():
-            seen.add(n)
+        for r in df["bpi_rank"].tolist():
+            seen_ranks.add(int(r))
 
         all_rows.append(df)
 
-        time.sleep(0.3)
-
-        if len(seen) >= 365:
+        if len(seen_ranks) >= 365:
             break
 
-    if all_rows:
-        out = pd.concat(all_rows, ignore_index=True)
-        out = out.dropna(subset=["bpi_rank"])
-        out = out.sort_values("bpi_rank", kind="stable")
-    else:
-        out = pd.DataFrame(columns=["bpi_name", "bpi_rank", "bpi"])
+        time.sleep(0.25)
 
+    out = pd.concat(all_rows, ignore_index=True) if all_rows else pd.DataFrame(columns=["bpi_name", "bpi_rank", "bpi"])
+    out = out.sort_values("bpi_rank", kind="stable")
     out.to_csv(OUT_PATH, index=False)
     print(f"Wrote {len(out)} rows -> {OUT_PATH}")
-    return 0
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    main()
