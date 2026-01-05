@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CBB Rankings Dashboard</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
@@ -18,18 +13,8 @@
             color: #e0e0e0;
             padding: 20px;
         }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            padding: 30px 0;
-            margin-bottom: 30px;
-        }
-
+        .container { max-width: 1400px; margin: 0 auto; }
+        header { text-align: center; padding: 30px 0; margin-bottom: 30px; }
         h1 {
             font-size: 2.5rem;
             background: linear-gradient(90deg, #00d9ff, #00ff88);
@@ -38,18 +23,8 @@
             background-clip: text;
             margin-bottom: 10px;
         }
-
-        .updated {
-            color: #888;
-            font-size: 0.9rem;
-        }
-
-        .search-container {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
+        .updated { color: #888; font-size: 0.9rem; }
+        .search-container { margin-bottom: 20px; display: flex; justify-content: center; }
         #search {
             width: 100%;
             max-width: 400px;
@@ -62,34 +37,20 @@
             outline: none;
             transition: border-color 0.3s;
         }
-
-        #search:focus {
-            border-color: #00d9ff;
-        }
-
-        #search::placeholder {
-            color: #666;
-        }
-
+        #search:focus { border-color: #00d9ff; }
+        #search::placeholder { color: #666; }
         .table-container {
             overflow-x: auto;
             background: rgba(255, 255, 255, 0.03);
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 900px;
-        }
-
+        table { width: 100%; border-collapse: collapse; min-width: 900px; }
         th, td {
             padding: 15px 12px;
             text-align: left;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
         th {
             background: rgba(0, 217, 255, 0.1);
             cursor: pointer;
@@ -103,79 +64,22 @@
             top: 0;
             transition: background 0.2s;
         }
-
-        th:hover {
-            background: rgba(0, 217, 255, 0.2);
-        }
-
-        th.sort-asc::after {
-            content: ' \25B2';
-            font-size: 0.7rem;
-        }
-
-        th.sort-desc::after {
-            content: ' \25BC';
-            font-size: 0.7rem;
-        }
-
-        tr:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .team-name {
-            font-weight: 500;
-            color: #fff;
-        }
-
-        .rank-cell {
-            text-align: center;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-
-        .ap-rank {
-            background: rgba(255, 215, 0, 0.1);
-            color: #ffd700;
-            font-weight: bold;
-        }
-
-        .avg-rank {
-            color: #00ff88;
-            font-weight: bold;
-        }
-
-        .top-10 {
-            background: rgba(0, 255, 136, 0.1);
-        }
-
-        .top-25 {
-            background: rgba(0, 217, 255, 0.05);
-        }
-
-        .record-cell {
-            color: #aaa;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-
-        .empty {
-            color: #444;
-        }
-
-        .stats {
-            text-align: center;
-            margin-top: 20px;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
+        th:hover { background: rgba(0, 217, 255, 0.2); }
+        th.sort-asc::after { content: ' \25B2'; font-size: 0.7rem; }
+        th.sort-desc::after { content: ' \25BC'; font-size: 0.7rem; }
+        tr:hover { background: rgba(255, 255, 255, 0.05); }
+        .team-name { font-weight: 500; color: #fff; }
+        .rank-cell { text-align: center; font-family: 'Monaco', 'Consolas', monospace; }
+        .ap-rank { background: rgba(255, 215, 0, 0.1); color: #ffd700; font-weight: bold; }
+        .avg-rank { color: #00ff88; font-weight: bold; }
+        .top-10 { background: rgba(0, 255, 136, 0.1); }
+        .top-25 { background: rgba(0, 217, 255, 0.05); }
+        .record-cell { color: #aaa; font-family: 'Monaco', 'Consolas', monospace; }
+        .empty { color: #444; }
+        .stats { text-align: center; margin-top: 20px; color: #666; font-size: 0.9rem; }
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            th, td {
-                padding: 10px 8px;
-                font-size: 0.85rem;
-            }
+            h1 { font-size: 1.8rem; }
+            th, td { padding: 10px 8px; font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -250,18 +154,12 @@
                 if (currentSort.column === 'team' || currentSort.column === 'record') {
                     aVal = String(aVal).toLowerCase();
                     bVal = String(bVal).toLowerCase();
-                    if (currentSort.direction === 'asc') {
-                        return aVal.localeCompare(bVal);
-                    } else {
-                        return bVal.localeCompare(aVal);
-                    }
+                    if (currentSort.direction === 'asc') return aVal.localeCompare(bVal);
+                    return bVal.localeCompare(aVal);
                 }
 
-                if (currentSort.direction === 'asc') {
-                    return aVal - bVal;
-                } else {
-                    return bVal - aVal;
-                }
+                if (currentSort.direction === 'asc') return aVal - bVal;
+                return bVal - aVal;
             });
 
             const tbody = document.getElementById('rankings-body');
