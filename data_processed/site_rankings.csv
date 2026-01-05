@@ -1,86 +1,86 @@
 team,record,ap_rank,net_rank,kenpom_rank,bpi_rank,sos_rank,avg_rank
-Michigan,,,1,1,,,1.0
-Arizona,,,2,2,,,2.0
-Iowa State,,,3,3,,,3.0
-Gonzaga,,,4,5,,,4.5
-Purdue,,,6,4,,,5.0
-Vanderbilt,,,5,6,,,5.5
-Connecticut,,,8,7,,,7.5
-Duke,,,7,9,,,8.0
-Illinois,,,10,8,,,9.0
-BYU,,,9,10,,,9.5
-Alabama,,,12,13,,,12.5
-Houston,,,15,11,,,13.0
-Louisville,,,14,12,,,13.0
-Iowa,,,13,17,,,15.0
-Michigan State,,,16,15,,,15.5
-Nebraska,,,11,22,,,16.5
-Kansas,,,18,18,,,18.0
-Villanova,,,17,21,,,19.0
-Texas Tech,,,19,20,,,19.5
-Florida,,,27,14,,,20.5
-Tennessee,,,26,16,,,21.0
-Virginia,,,25,19,,,22.0
-Georgia,,,21,26,,,23.5
-Utah State,,,20,30,,,25.0
-Arkansas,,,28,23,,,25.5
-North Carolina,,,22,29,,,25.5
-Saint Mary's,,,23,28,,,25.5
-Kentucky,,,31,24,,,27.5
-SMU,,,24,31,,,27.5
-Indiana,,,30,27,,,28.5
-St. John's,,,33,25,,,29.0
-Clemson,,,34,35,,,34.5
-NC State,,,37,32,,,34.5
-Auburn,,,35,34,,,34.5
-Saint Louis,,,29,41,,,35.0
-Miami,,,36,38,,,37.0
-Baylor,,,42,33,,,37.5
+Michigan,,,1,1,1.0,,1.0
+Arizona,,,2,2,4.0,,2.7
+Iowa State,,,3,3,5.0,,3.7
+Gonzaga,,,4,5,2.0,,3.7
+Purdue,,,6,4,6.0,,5.3
+Duke,,,7,9,3.0,,6.3
+Vanderbilt,,,5,6,11.0,,7.3
+Connecticut,,,8,7,9.0,,8.0
+Illinois,,,10,8,10.0,,9.3
+BYU,,,9,10,12.0,,10.3
+Houston,,,15,11,7.0,,11.0
+Louisville,,,14,12,8.0,,11.3
+Alabama,,,12,13,15.0,,13.3
+Michigan State,,,16,15,20.0,,17.0
+Kansas,,,18,18,16.0,,17.3
+Florida,,,27,14,13.0,,18.0
+Iowa,,,13,17,24.0,,18.0
+Tennessee,,,26,16,14.0,,18.7
+Nebraska,,,11,22,26.0,,19.7
+Texas Tech,,,19,20,21.0,,20.0
+Villanova,,,17,21,30.0,,22.7
+Virginia,,,25,19,28.0,,24.0
+Kentucky,,,31,24,17.0,,24.0
+St. John's,,,33,25,18.0,,25.3
+Indiana,,,30,27,19.0,,25.3
+Arkansas,,,28,23,27.0,,26.0
+Georgia,,,21,26,32.0,,26.3
+Utah State,,,20,30,31.0,,27.0
+North Carolina,,,22,29,34.0,,28.3
+Saint Mary's,,,23,28,37.0,,29.3
+Auburn,,,35,34,22.0,,30.3
+Clemson,,,34,35,23.0,,30.7
+SMU,,,24,31,42.0,,32.3
+NC State,,,37,32,29.0,,32.7
+UCLA,,,41,36,25.0,,34.0
+Saint Louis,,,29,41,38.0,,36.0
+Baylor,,,42,33,33.0,,36.0
 UCF,,,32,43,,,37.5
-LSU,,,38,37,,,37.5
-UCLA,,,41,36,,,38.5
-USC,,,39,40,,,39.5
-Ohio State,,,43,39,,,41.0
+Miami,,,36,38,41.0,,38.3
+Ohio State,,,43,39,36.0,,39.3
+LSU,,,38,37,45.0,,40.0
+USC,,,39,40,48.0,,42.3
 Seton Hall,,,40,46,,,43.0
-VCU,,,52,42,,,47.0
+Texas A&M,,,53,47,35.0,,45.0
+Oklahoma,,,49,48,39.0,,45.3
+Creighton,,,51,44,44.0,,46.3
 Boise State,,,45,49,,,47.0
-Creighton,,,51,44,,,47.5
-Oklahoma,,,49,48,,,48.5
+VCU,,,52,42,50.0,,48.0
+Butler,,,46,54,47.0,,49.0
+Wisconsin,,,63,45,40.0,,49.3
 TCU,,,47,53,,,50.0
-Butler,,,46,54,,,50.0
-Texas A&M,,,53,47,,,50.0
 Akron,,,50,56,,,53.0
-Wisconsin,,,63,45,,,54.0
 Washington,,,60,51,,,55.5
+Texas,,,71,52,46.0,,56.3
 Virginia Tech,,,56,57,,,56.5
 New Mexico,,,54,59,,,56.5
-Tulsa,,,44,70,,,57.0
 McNeese,,,48,66,,,57.0
+Tulsa,,,44,70,,,57.0
 Santa Clara,,,62,55,,,58.5
 San Diego State,,,69,50,,,59.5
 Wake Forest,,,61,61,,,61.0
-Texas,,,71,52,,,61.5
 Notre Dame,,,68,58,,,63.0
+Missouri,,,84,60,49.0,,64.3
 George Washington,,,66,63,,,64.5
 California,,,58,74,,,66.0
 Illinois State,,,55,78,,,66.5
+West Virginia,,,89,71,43.0,,67.7
 Kansas State,,,65,73,,,69.0
 Nevada,,,67,72,,,69.5
-Missouri,,,84,60,,,72.0
 Yale,,,59,85,,,72.0
 Northwestern,,,83,62,,,72.5
 Belmont,,,73,75,,,74.0
-Providence,,,85,64,,,74.5
 Oklahoma State,,,82,67,,,74.5
+Providence,,,85,64,,,74.5
 Murray State,,,64,86,,,75.0
 Colorado,,,70,81,,,75.5
 Miami (OH),,,57,98,,,77.5
 Stanford,,,75,82,,,78.5
 Northern Iowa,,,72,87,,,79.5
 Colorado State,,,79,80,,,79.5
-Oregon,,,92,68,,,80.0
 Cincinnati,,,95,65,,,80.0
-West Virginia,,,89,71,,,80.0
+Oregon,,,92,68,,,80.0
 South Florida,,,76,89,,,82.5
 George Mason,,,77,88,,,82.5
 Ole Miss,,,100,69,,,84.5
