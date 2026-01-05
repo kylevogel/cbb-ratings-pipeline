@@ -1,5 +1,20 @@
 espn_name,alternate_name,source
-A&M-Corpus Christi,Texas A&M Corpus Chris,KenPom
+Southern California,USC,Manual_Fix
+UConn,Connecticut,Manual_Fix
+Ole Miss,Mississippi,Manual_Fix
+Saint Mary's (CA),Saint Mary's,Manual_Fix
+Saint Mary's (CA),Saint Mary's College,Manual_Fix
+Miami (FL),Miami,Manual_Fix
+NC State,North Carolina State,Manual_Fix
+NC State,N.C. State,Manual_Fix
+San Jose State,San José State,Manual_Fix
+St. Thomas (MN),St. Thomas,Manual_Fix
+UMass,Massachusetts,Manual_Fix
+Southern Miss,Southern Miss.,Manual_Fix
+UT Martin,Tenn-Martin,Manual_Fix
+FGCU,Florida Gulf Coast,Manual_Fix
+SIUE,SIU Edwardsville,Manual_Fix
+LMU (CA),Loyola Marymount,Manual_FixA&M-Corpus Christi,Texas A&M Corpus Chris,KenPom
 A&M-Corpus Christi,A&M-Corpus Christi,NET
 AR-Pine Bluff,Ark.-Pine Bluff,NET
 Abilene Christian,Abilene Christian,BPI
@@ -240,8 +255,6 @@ Columbia,Columbia,BPI
 Columbia,Columbia,KenPom
 Columbia,Columbia,NET
 Columbia,Columbia,SoS
-Connecticut,Connecticut,KenPom
-Connecticut,Connecticut,NET
 Coppin State,Coppin State,BPI
 Coppin State,Coppin State,KenPom
 Coppin State,Coppin State,NET
@@ -1041,8 +1054,6 @@ Saint Louis,Saint Louis,SoS
 Saint Mary's (CA),Saint Mary's Gaels,BPI
 Saint Mary's (CA),Saint Mary's,KenPom
 Saint Mary's (CA),Saint Mary's (CA),NET
-Saint Mary's College,Saint Mary's College,NET
-Saint Mary's College,Saint Mary's College,SoS
 Saint Peter's,Saint Peter's,BPI
 Saint Peter's,Saint Peter's,KenPom
 Saint Peter's,Saint Peter's,NET
@@ -1333,10 +1344,6 @@ UNCW,UNCW,NET
 UNCW,UNCW,SoS
 UNI,Northern Iowa Panthers,BPI
 UNI,UNI,NET
-USC,USC,AP
-USC,USC,KenPom
-USC,USC,NET
-USC,USC,SoS
 UT Arlington,UT Arlington Mavericks,BPI
 UT Arlington,UT Arlington,KenPom
 UT Arlington,UT Arlington,NET
@@ -1489,3 +1496,4 @@ Youngstown State,Youngstown State,BPI
 Youngstown State,Youngstown State,KenPom
 Youngstown State,Youngstown State,NET
 Youngstown State,Youngstown State,SoS
+
