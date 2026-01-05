@@ -16,7 +16,6 @@ from clean_team_alias import standardize_team_names, load_team_alias
 
 
 def load_and_standardize_data():
-    """Load all data sources and standardize team names."""
     data = {}
 
     net_path = "data_raw/net_rankings.csv"
@@ -74,15 +73,11 @@ def load_and_standardize_data():
 
 
 def build_master_rankings(data):
-    """Merge all data sources into a master rankings table."""
     alias_df = load_team_alias()
     if alias_df is not None:
         master = pd.DataFrame({"team": alias_df["canonical"].unique()})
     else:
-        if "net" in data:
-            master = data["net"][["team"]].copy()
-        else:
-            master = pd.DataFrame({"team": []})
+        master = data["net"][["team"]].copy() if "net" in data else pd.DataFrame({"team": []})
 
     if "records" in data:
         master = master.merge(data["records"], on="team", how="left")
@@ -114,7 +109,7 @@ def build_master_rankings(data):
     else:
         master["sos_rank"] = None
 
-    def calc_avg_rank(row):
+    def calc_avg_value(row):
         ranks = []
         for col in ["net_rank", "kenpom_rank", "bpi_rank"]:
             val = row.get(col)
@@ -124,11 +119,7 @@ def build_master_rankings(data):
             return round(sum(ranks) / len(ranks), 1)
         return None
 
-    master["avg_rank"] = master.apply(calc_avg_rank, axis=1)
-
-    master["sort_key"] = master["avg_rank"].fillna(9999)
-    master = master.sort_values("sort_key").reset_index(drop=True)
-    master = master.drop(columns=["sort_key"])
+    master["avg_value"] = master.apply(calc_avg_value, axis=1)
 
     has_ranking = (
         master["net_rank"].notna()
@@ -137,6 +128,15 @@ def build_master_rankings(data):
     )
     master = master[has_ranking].reset_index(drop=True)
 
+    # THIS is what you asked for:
+    # avg_rank = ranking of avg_value across all teams (ties allowed)
+    master["avg_rank"] = (
+        master["avg_value"]
+        .rank(method="dense", ascending=True)
+        .astype("Int64")
+    )
+
+    master = master.sort_values(["avg_rank", "avg_value", "team"], na_position="last").reset_index(drop=True)
     return master
 
 
@@ -149,14 +149,13 @@ def _format_utc_minus_5(dt_utc: datetime) -> str:
 
 
 def create_dashboard_json(master_df):
-    """Create JSON data for the dashboard."""
     records = []
     for _, row in master_df.iterrows():
         record = {
             "team": row["team"],
             "record": row["record"] if pd.notna(row["record"]) else "",
             "ap_rank": int(row["ap_rank"]) if pd.notna(row["ap_rank"]) else None,
-            "avg_rank": float(row["avg_rank"]) if pd.notna(row["avg_rank"]) else None,
+            "avg_rank": int(row["avg_rank"]) if pd.notna(row["avg_rank"]) else None,
             "net_rank": int(row["net_rank"]) if pd.notna(row["net_rank"]) else None,
             "kenpom_rank": int(row["kenpom_rank"]) if pd.notna(row["kenpom_rank"]) else None,
             "bpi_rank": int(row["bpi_rank"]) if pd.notna(row["bpi_rank"]) else None,
@@ -165,13 +164,10 @@ def create_dashboard_json(master_df):
         records.append(record)
 
     updated_str = _format_utc_minus_5(datetime.utcnow())
-
-    output = {"updated": updated_str, "teams": records}
-    return output
+    return {"updated": updated_str, "teams": records}
 
 
 def create_dashboard_html():
-    """Create the HTML dashboard page."""
     html = '''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -406,7 +402,6 @@ def main():
     print("Building site rankings...")
 
     data = load_and_standardize_data()
-
     if not data:
         print("No data loaded - cannot build rankings")
         return
