@@ -1,149 +1,180 @@
 #!/usr/bin/env python3
 """
-Scrape ESPN BPI (Basketball Power Index) rankings (full D1).
-Outputs: data_raw/bpi_rankings.csv
+Update ESPN BPI rankings.
+
+Outputs:
+  - data_raw/bpi_rankings.csv with columns: bpi_rank, team_bpi
 """
 
 import os
 import re
-import requests
+import time
+import unicodedata
 import pandas as pd
-from io import StringIO
+import requests
+
+OUTPUT_PATH = "data_raw/bpi_rankings.csv"
+BASE_URL = "https://www.espn.com/mens-college-basketball/bpi/_/view/bpi/page/{}"
+
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/120.0.0.0 Safari/537.36"
+    ),
+    "Accept-Language": "en-US,en;q=0.9",
+}
 
 
-BASE_URL = "https://www.espn.com.br/basquete/universitario-masculino/bpi/_/vs-division/overview/pagina/{}"
+def _flatten_columns(df: pd.DataFrame) -> pd.DataFrame:
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = [
+            " ".join([str(x) for x in col if str(x).lower() != "nan"]).strip()
+            for col in df.columns.to_list()
+        ]
+    df.columns = [str(c).strip() for c in df.columns]
+    return df
 
 
 def _clean_team_name(s: str) -> str:
     if s is None:
         return ""
+
     s = str(s).strip()
 
-    s = re.sub(r"\s+", " ", s)
+    # Normalize unicode (San José -> San Jose, fancy apostrophes, etc.)
+    s = unicodedata.normalize("NFKD", s)
+    s = "".join(ch for ch in s if not unicodedata.combining(ch))
 
-    m = re.match(r"^(.+?)([A-Z]{2,6})$", s)
+    # Collapse whitespace
+    s = re.sub(r"\s+", " ", s).strip()
+
+    # Fix common "duplicated acronym" cases with no separator: BYUBYU, UCLAUCLA, etc.
+    # If string is exactly two identical halves, keep one half.
+    if len(s) % 2 == 0:
+        half = len(s) // 2
+        if s[:half] == s[half:]:
+            s = s[:half]
+
+    # Fix common "duplicated acronym" with space: "BYU BYU"
+    parts = s.split(" ")
+    if len(parts) == 2 and parts[0] == parts[1]:
+        s = parts[0]
+
+    # Remove trailing appended abbreviation with NO separator, e.g.:
+    # "Texas A&MTA&M" -> "Texas A&M"
+    # "William & MaryW&M" -> "William & Mary"
+    # "Miami (OH)M-" -> "Miami (OH)"
+    # "Loyola MarylandL-" -> "Loyola Maryland"
+    #
+    # Heuristic: if the end looks like a short all-caps abbreviation and it's glued on, drop it.
+    m = re.match(r"^(.*?)([A-Z][A-Z&\-\.\']{1,6})$", s)
     if m:
         base, abbr = m.group(1), m.group(2)
+        # Only drop if it looks like a glued-on suffix (base does not end with space)
+        # and base is a plausible team name (contains lowercase OR space OR punctuation)
+        if base and not base.endswith(" ") and (
+            any(ch.islower() for ch in base) or (" " in base) or ("&" in base) or ("(" in base) or ("." in base)
+        ):
+            s = base.strip()
 
-        if base.upper().endswith(abbr):
-            s = base
-        elif any(ch.islower() for ch in base) or any(ch in base for ch in " .&'()-"):
-            s = base
-        elif len(s) > 8:
-            s = base
-
-    return s.strip()
+    # Final whitespace cleanup
+    s = re.sub(r"\s+", " ", s).strip()
+    return s
 
 
-def _extract_table_df(html: str) -> pd.DataFrame | None:
-    try:
-        tables = pd.read_html(StringIO(html))
-    except Exception:
-        return None
-
+def _pick_bpi_table(tables: list[pd.DataFrame]) -> pd.DataFrame | None:
     for t in tables:
-        cols = [str(c).strip().lower() for c in t.columns]
-        if any(c in ("rk", "rank") for c in cols) and any("team" in c for c in cols):
+        t = _flatten_columns(t.copy())
+        cols_upper = [c.upper() for c in t.columns]
+        has_team = any("TEAM" == c or c.startswith("TEAM") for c in cols_upper)
+        has_bpi_rk = any("BPI RK" in c for c in cols_upper)
+        if has_team and has_bpi_rk:
             return t
-
-    for t in tables:
-        cols = [str(c).strip().lower() for c in t.columns]
-        if any(c in ("rk", "rank") for c in cols):
-            if len(t.columns) >= 2:
-                return t
-
     return None
 
 
-def scrape_bpi_rankings(max_pages: int = 20) -> pd.DataFrame | None:
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    }
+def _pick_team_col(df: pd.DataFrame) -> str:
+    # Candidate columns that look like Team columns
+    team_cols = [c for c in df.columns if c.strip().upper().startswith("TEAM")]
+    if not team_cols:
+        raise RuntimeError("Could not find a TEAM column in the BPI table.")
 
-    rows = []
-    seen_ranks = set()
+    # If multiple, choose the one with longer average strings (usually the actual team name)
+    best_col = None
+    best_score = -1.0
+    for c in team_cols:
+        series = df[c].astype(str).fillna("")
+        avg_len = series.map(len).mean()
+        # Reward columns that contain spaces/apostrophes (more likely full names)
+        has_space = series.str.contains(r"\s").mean()
+        score = avg_len + 10 * has_space
+        if score > best_score:
+            best_score = score
+            best_col = c
 
-    print("Fetching ESPN BPI rankings (full D1)...")
+    return best_col if best_col is not None else team_cols[0]
+
+
+def fetch_all_bpi_pages(max_pages: int = 40, sleep_s: float = 0.35) -> pd.DataFrame:
+    all_rows: list[pd.DataFrame] = []
 
     for page in range(1, max_pages + 1):
         url = BASE_URL.format(page)
-        print(f"Fetching BPI page {page}: {url}")
+        resp = requests.get(url, headers=HEADERS, timeout=30)
+        resp.raise_for_status()
 
-        resp = requests.get(url, headers=headers, timeout=30)
-        if resp.status_code != 200:
-            print(f"  Non-200 status on page {page}: {resp.status_code}")
+        tables = pd.read_html(resp.text)
+        bpi_table = _pick_bpi_table(tables)
+        if bpi_table is None or bpi_table.empty:
             break
 
-        table = _extract_table_df(resp.text)
-        if table is None or table.empty:
-            print(f"  Could not parse BPI table on page {page}")
+        bpi_table = _flatten_columns(bpi_table)
+
+        # Columns
+        team_col = _pick_team_col(bpi_table)
+        rk_col = next(c for c in bpi_table.columns if "BPI RK" in c.upper())
+
+        page_df = bpi_table[[team_col, rk_col]].copy()
+        page_df.columns = ["team_bpi", "bpi_rank"]
+
+        page_df["bpi_rank"] = pd.to_numeric(page_df["bpi_rank"], errors="coerce")
+        page_df["team_bpi"] = page_df["team_bpi"].astype(str).map(_clean_team_name)
+
+        page_df = page_df.dropna(subset=["bpi_rank"])
+        page_df = page_df[page_df["team_bpi"].astype(bool)]
+        if page_df.empty:
             break
 
-        cols_lower = {str(c).strip().lower(): c for c in table.columns}
-        rank_col = cols_lower.get("rk") or cols_lower.get("rank") or list(table.columns)[0]
+        all_rows.append(page_df)
 
-        team_col = None
-        for c in table.columns:
-            if "team" in str(c).strip().lower():
-                team_col = c
-                break
-        if team_col is None:
-            team_col = list(table.columns)[1] if len(table.columns) >= 2 else list(table.columns)[0]
+        # be polite
+        time.sleep(sleep_s)
 
-        added_this_page = 0
+    if not all_rows:
+        raise RuntimeError("Failed to scrape any BPI pages from ESPN.")
 
-        for _, r in table.iterrows():
-            rank_raw = r.get(rank_col, "")
-            team_raw = r.get(team_col, "")
+    out = pd.concat(all_rows, ignore_index=True)
+    out = out.drop_duplicates(subset=["team_bpi"], keep="first")
+    out = out.sort_values("bpi_rank").reset_index(drop=True)
+    out["bpi_rank"] = out["bpi_rank"].astype(int)
 
-            rank_str = re.sub(r"[^\d]", "", str(rank_raw))
-            if not rank_str:
-                continue
-            rank = int(rank_str)
-
-            team = _clean_team_name(team_raw)
-            if not team:
-                continue
-
-            if rank not in seen_ranks:
-                seen_ranks.add(rank)
-                rows.append({"bpi_rank": rank, "team_bpi": team})
-                added_this_page += 1
-
-        print(f"  Parsed {len(table)} rows, added {added_this_page} new ranks (total now {len(rows)})")
-
-        if added_this_page == 0:
-            break
-
-        if len(rows) >= 365:
-            break
-
-    if not rows:
-        return None
-
-    df = pd.DataFrame(rows).drop_duplicates(subset=["bpi_rank"]).sort_values("bpi_rank")
-
-    if len(df) > 365:
-        df = df[df["bpi_rank"].between(1, 365)].copy().sort_values("bpi_rank")
-
-    return df
+    return out
 
 
 def main():
-    df = scrape_bpi_rankings(max_pages=20)
+    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+    df = fetch_all_bpi_pages()
 
-    os.makedirs("data_raw", exist_ok=True)
+    df.to_csv(OUTPUT_PATH, index=False)
+    print(f"Wrote {len(df)} rows to {OUTPUT_PATH}")
+    print(f"Rank range: {df['bpi_rank'].min()}–{df['bpi_rank'].max()}")
 
-    if df is None or df.empty:
-        print("Failed to fetch full BPI. Wrote empty data_raw/bpi_rankings.csv")
-        pd.DataFrame(columns=["bpi_rank", "team_bpi"]).to_csv("data_raw/bpi_rankings.csv", index=False)
-        raise SystemExit(1)
-
-    df.to_csv("data_raw/bpi_rankings.csv", index=False)
-    print(f"Saved {len(df)} BPI rankings to data_raw/bpi_rankings.csv")
-
-    if len(df) < 365:
-        print(f"Warning: expected ~365 teams, got {len(df)}")
+    # Quick sanity: show any still-suspicious names
+    weird = df[df["team_bpi"].str.contains(r"[A-Z]{2,}\1", regex=True)]
+    if len(weird) > 0:
+        print("\nSuspicious duplicated-acronym names (check these):")
+        print(weird.head(25).to_string(index=False))
 
 
 if __name__ == "__main__":
