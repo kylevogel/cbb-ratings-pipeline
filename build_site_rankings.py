@@ -284,6 +284,19 @@ def create_dashboard_html():
         let teamsData = [];
         let currentSort = { column: 'avg_rank', direction: 'asc' };
 
+        function parseRecord(rec) {
+            if (rec === null || rec === undefined) return null;
+            const s = String(rec).trim();
+            if (!s) return null;
+            const m = s.match(/(\\d+)\\s*-\\s*(\\d+)/);
+            if (!m) return null;
+            const w = parseInt(m[1], 10);
+            const l = parseInt(m[2], 10);
+            const g = w + l;
+            const pct = g > 0 ? (w / g) : -1;
+            return { w, l, pct };
+        }
+
         async function loadData() {
             try {
                 const response = await fetch('rankings.json');
@@ -314,11 +327,39 @@ def create_dashboard_html():
                 if (aVal === null) return 1;
                 if (bVal === null) return -1;
 
-                if (currentSort.column === 'team' || currentSort.column === 'record') {
+                if (currentSort.column === 'team') {
                     aVal = String(aVal).toLowerCase();
                     bVal = String(bVal).toLowerCase();
                     if (currentSort.direction === 'asc') return aVal.localeCompare(bVal);
                     return bVal.localeCompare(aVal);
+                }
+
+                if (currentSort.column === 'record') {
+                    const ar = parseRecord(aVal);
+                    const br = parseRecord(bVal);
+
+                    if (ar === null && br === null) return 0;
+                    if (ar === null) return 1;
+                    if (br === null) return -1;
+
+                    const cmpPct = br.pct - ar.pct;
+                    if (cmpPct !== 0) {
+                        return currentSort.direction === 'asc' ? cmpPct : -cmpPct;
+                    }
+
+                    const cmpW = br.w - ar.w;
+                    if (cmpW !== 0) {
+                        return currentSort.direction === 'asc' ? cmpW : -cmpW;
+                    }
+
+                    const cmpL = ar.l - br.l;
+                    if (cmpL !== 0) {
+                        return currentSort.direction === 'asc' ? cmpL : -cmpL;
+                    }
+
+                    const at = String(a.team || '').toLowerCase();
+                    const bt = String(b.team || '').toLowerCase();
+                    return at.localeCompare(bt);
                 }
 
                 if (currentSort.direction === 'asc') return aVal - bVal;
