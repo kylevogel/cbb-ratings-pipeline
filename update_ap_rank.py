@@ -19,19 +19,23 @@ def main():
             print("No tables found for AP Poll.")
             return
 
-        # ESPN Rankings page often has AP as table 0, Coaches as table 1
+        # ESPN Rankings page usually has AP as table 0
         df = tables[0]
         
         # Columns are usually: RK, Team, Rec, Pts...
-        # We rename to standard
+        # We rename the first two explicitly to be safe
         df = df.rename(columns={df.columns[0]: "AP_Rank", df.columns[1]: "Team"})
         
         # Clean Team Name (ESPN often puts "1 Kansas" or "Kansas (10-2)")
         df["Team"] = df["Team"].astype(str)
-        # Remove record if present
-        df["Team"] = df["Team"].str.replace(r"\s*\(\d+-\d+\).*", "", regex=True).strip()
+        
+        # FIX: Use .str accessor for string methods
+        # Remove record if present (e.g. " (10-2)")
+        df["Team"] = df["Team"].str.replace(r"\s*\(\d+-\d+\).*", "", regex=True)
         # Remove leading rank number if merged (e.g. "1 Kansas")
-        df["Team"] = df["Team"].str.replace(r"^\d+\s+", "", regex=True).strip()
+        df["Team"] = df["Team"].str.replace(r"^\d+\s+", "", regex=True)
+        # Strip whitespace
+        df["Team"] = df["Team"].str.strip()
 
         out_df = df[["Team", "AP_Rank"]].copy()
         out_df["snapshot_date"] = pd.Timestamp.now().strftime("%Y-%m-%d")
