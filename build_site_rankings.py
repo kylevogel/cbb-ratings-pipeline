@@ -135,7 +135,7 @@ _EST = timezone(timedelta(hours=-5))
 
 def _format_updated_est(dt_utc: datetime) -> str:
     dt_est = dt_utc.astimezone(_EST)
-    s = dt_est.strftime("%d/%m/%Y at %I:%M %p")
+    s = dt_est.strftime("%m/%d/%Y at %I:%M %p")
     s = s[:-2] + s[-2:].lower()
     return f"Updated: {s} EST"
 
