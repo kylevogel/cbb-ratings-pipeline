@@ -1,74 +1,134 @@
 import os
 import sys
-from datetime import datetime, timezone
-from io import StringIO
-
-import pandas as pd
+import tempfile
 import requests
+import pandas as pd
+from bs4 import BeautifulSoup
 
 
-def fetch(url: str) -> str:
+URL = "https://www.espn.com/mens-college-basketball/bpi"
+
+
+def _atomic_write_csv(df: pd.DataFrame, out_path: str) -> None:
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    d = os.path.dirname(out_path) or "."
+    with tempfile.NamedTemporaryFile("w", delete=False, dir=d, suffix=".csv", newline="") as f:
+        tmp = f.name
+        df.to_csv(tmp, index=False)
+    os.replace(tmp, out_path)
+
+
+def _fetch_html(url: str) -> str:
     headers = {
         "User-Agent": "Mozilla/5.0",
+        "Accept": "text/html,application/xhtml+xml",
         "Accept-Language": "en-US,en;q=0.9",
+        "Referer": "https://www.espn.com/",
     }
     r = requests.get(url, headers=headers, timeout=30)
     r.raise_for_status()
     return r.text
 
 
+def _clean_tokens(soup: BeautifulSoup) -> list[str]:
+    text = soup.get_text("\n")
+    toks = []
+    for ln in text.splitlines():
+        t = ln.replace("\xa0", " ").strip()
+        if not t:
+            continue
+        toks.append(t)
+    return toks
+
+
+def _idx(tokens: list[str], target: str) -> int:
+    tl = target.strip().lower()
+    for i, t in enumerate(tokens):
+        if t.strip().lower() == tl:
+            return i
+    raise ValueError(f"Token not found: {target}")
+
+
 def main() -> int:
-    now = datetime.now(timezone.utc)
-    url = "https://www.espn.com/mens-college-basketball/bpi"
+    out_path = os.path.join("data_raw", "bpi.csv")
 
-    html = fetch(url)
-    tables = pd.read_html(StringIO(html))
+    try:
+        html = _fetch_html(URL)
+        soup = BeautifulSoup(html, "lxml")
+        tokens = _clean_tokens(soup)
 
-    target = None
-    for t in tables:
-        cols = [str(c).strip().upper() for c in t.columns]
-        if "TEAM" in cols and any("BPI" == c or "BPI" in c for c in cols):
-            target = t
-            break
-    if target is None:
-        raise RuntimeError("Could not find BPI table with TEAM and BPI columns")
+        a = _idx(tokens, "Team CONF") + 1
+        b = _idx(tokens, "POWER INDEX PROJECTIONS")
+        seg = tokens[a:b]
 
-    upper_map = {str(c).strip().upper(): c for c in target.columns}
-    team_col = upper_map["TEAM"]
+        teams = []
+        i = 0
+        while i + 1 < len(seg):
+            team = seg[i]
+            conf = seg[i + 1]
 
-    bpi_rank_col = None
-    for c in target.columns:
-        s = str(c).strip().upper().replace(" ", "")
-        if s in ["RK", "RANK", "BPIRK", "BPIRANK", "BPI_RK", "BPI_RANK"]:
-            bpi_rank_col = c
-            break
-    if bpi_rank_col is None:
-        for c in target.columns:
-            s = str(c).strip().upper()
-            if "RK" in s and ("BPI" in s or s == "RK"):
-                bpi_rank_col = c
-                break
-    if bpi_rank_col is None:
-        raise RuntimeError("Could not locate a rank column on ESPN BPI table")
+            if team.startswith("Image:"):
+                team = team.replace("Image:", "").strip()
 
-    out = pd.DataFrame(
-        {
-            "bpi_name": target[team_col].astype(str).str.strip(),
-            "bpi": pd.to_numeric(target[bpi_rank_col], errors="coerce").astype("Int64"),
-            "source_url": url,
-            "updated_at_utc": now.isoformat().replace("+00:00", "Z"),
-        }
-    ).dropna(subset=["bpi_name", "bpi"])
+            if team and conf:
+                teams.append(team)
 
-    os.makedirs("data_raw", exist_ok=True)
-    out.to_csv("data_raw/bpi.csv", index=False)
-    print(f"Wrote {len(out)} rows -> data_raw/bpi.csv")
-    return 0
+            i += 2
+
+        if len(teams) < 300:
+            raise RuntimeError(f"Could not extract team list (got {len(teams)})")
+
+        header_end = _idx(tokens, "REM SOS RK") + 1
+        data = tokens[header_end:]
+
+        cols_per_team = 10
+        need = len(teams) * cols_per_team
+        if len(data) < need:
+            data = data[: (len(data) // cols_per_team) * cols_per_team]
+            teams = teams[: len(data) // cols_per_team]
+
+        rows = []
+        j = 0
+        for team in teams:
+            chunk = data[j : j + cols_per_team]
+            j += cols_per_team
+
+            wl = chunk[0]
+            bpi_val = chunk[1]
+            bpi_rk = chunk[2]
+
+            try:
+                bpi_rk_i = int(str(bpi_rk).replace("#", "").strip())
+            except Exception:
+                continue
+
+            try:
+                bpi_f = float(str(bpi_val).replace("+", "").strip())
+            except Exception:
+                bpi_f = None
+
+            rows.append((team, bpi_rk_i, bpi_f, wl))
+
+        df = pd.DataFrame(rows, columns=["bpi_name", "bpi_rank", "bpi", "wl"]).drop_duplicates("bpi_rank")
+        df = df.sort_values("bpi_rank").reset_index(drop=True)
+
+        if len(df) < 300:
+            raise RuntimeError(f"Parsed too few BPI rows ({len(df)})")
+
+        _atomic_write_csv(df[["bpi_name", "bpi_rank", "bpi"]], out_path)
+        print(f"Wrote {len(df)} rows -> {out_path}")
+        return 0
+
+    except Exception as e:
+        print(f"update_bpi_rank failed: {e}", file=sys.stderr)
+        if os.path.exists(out_path):
+            print(f"Keeping existing file -> {out_path}")
+            return 0
+        empty = pd.DataFrame(columns=["bpi_name", "bpi_rank", "bpi"])
+        _atomic_write_csv(empty, out_path)
+        print(f"Wrote 0 rows -> {out_path}")
+        return 0
 
 
 if __name__ == "__main__":
-    try:
-        raise SystemExit(main())
-    except Exception as e:
-        print(f"update_bpi_rank failed: {e}", file=sys.stderr)
-        raise
+    raise SystemExit(main())
