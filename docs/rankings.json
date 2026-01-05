@@ -1,10 +1,10 @@
 {
-  "updated": "01/05/2026 12:55 PM UTC-5",
+  "updated": "01/05/2026 1:05 PM UTC-5",
   "teams": [
     {
       "team": "Michigan",
       "record": "13-0",
-      "ap_rank": 1,
+      "ap_rank": null,
       "avg_rank": 1.0,
       "net_rank": 1,
       "kenpom_rank": 1,
@@ -14,7 +14,7 @@
     {
       "team": "Arizona",
       "record": "14-0",
-      "ap_rank": 2,
+      "ap_rank": null,
       "avg_rank": 2.7,
       "net_rank": 2,
       "kenpom_rank": 2,
@@ -24,7 +24,7 @@
     {
       "team": "Iowa State",
       "record": "14-0",
-      "ap_rank": 3,
+      "ap_rank": null,
       "avg_rank": 3.7,
       "net_rank": 3,
       "kenpom_rank": 3,
@@ -34,7 +34,7 @@
     {
       "team": "Gonzaga",
       "record": "16-1",
-      "ap_rank": 7,
+      "ap_rank": null,
       "avg_rank": 3.7,
       "net_rank": 4,
       "kenpom_rank": 5,
@@ -44,7 +44,7 @@
     {
       "team": "Purdue",
       "record": "13-1",
-      "ap_rank": 6,
+      "ap_rank": null,
       "avg_rank": 5.3,
       "net_rank": 6,
       "kenpom_rank": 4,
@@ -54,7 +54,7 @@
     {
       "team": "Duke",
       "record": "13-1",
-      "ap_rank": 5,
+      "ap_rank": null,
       "avg_rank": 6.3,
       "net_rank": 7,
       "kenpom_rank": 9,
@@ -64,7 +64,7 @@
     {
       "team": "Vanderbilt",
       "record": "14-0",
-      "ap_rank": 11,
+      "ap_rank": null,
       "avg_rank": 7.3,
       "net_rank": 5,
       "kenpom_rank": 6,
@@ -74,7 +74,7 @@
     {
       "team": "Connecticut",
       "record": "14-1",
-      "ap_rank": 4,
+      "ap_rank": null,
       "avg_rank": 8.0,
       "net_rank": 8,
       "kenpom_rank": 7,
@@ -84,7 +84,7 @@
     {
       "team": "Illinois",
       "record": "11-3",
-      "ap_rank": 19,
+      "ap_rank": null,
       "avg_rank": 9.3,
       "net_rank": 10,
       "kenpom_rank": 8,
@@ -94,7 +94,7 @@
     {
       "team": "BYU",
       "record": "13-1",
-      "ap_rank": 10,
+      "ap_rank": null,
       "avg_rank": 10.3,
       "net_rank": 9,
       "kenpom_rank": 10,
@@ -104,7 +104,7 @@
     {
       "team": "Houston",
       "record": "13-1",
-      "ap_rank": 8,
+      "ap_rank": null,
       "avg_rank": 11.0,
       "net_rank": 15,
       "kenpom_rank": 11,
@@ -114,7 +114,7 @@
     {
       "team": "Louisville",
       "record": "11-3",
-      "ap_rank": 13,
+      "ap_rank": null,
       "avg_rank": 11.3,
       "net_rank": 14,
       "kenpom_rank": 12,
@@ -124,7 +124,7 @@
     {
       "team": "Alabama",
       "record": "11-3",
-      "ap_rank": 15,
+      "ap_rank": null,
       "avg_rank": 13.3,
       "net_rank": 12,
       "kenpom_rank": 13,
@@ -134,7 +134,7 @@
     {
       "team": "Michigan State",
       "record": "12-2",
-      "ap_rank": 9,
+      "ap_rank": null,
       "avg_rank": 17.0,
       "net_rank": 16,
       "kenpom_rank": 15,
@@ -144,7 +144,7 @@
     {
       "team": "Kansas",
       "record": "10-4",
-      "ap_rank": 17,
+      "ap_rank": null,
       "avg_rank": 17.3,
       "net_rank": 18,
       "kenpom_rank": 18,
@@ -154,7 +154,7 @@
     {
       "team": "Florida",
       "record": "9-5",
-      "ap_rank": 22,
+      "ap_rank": null,
       "avg_rank": 18.0,
       "net_rank": 27,
       "kenpom_rank": 14,
@@ -164,7 +164,7 @@
     {
       "team": "Iowa",
       "record": "12-2",
-      "ap_rank": 23,
+      "ap_rank": null,
       "avg_rank": 18.0,
       "net_rank": 13,
       "kenpom_rank": 17,
@@ -174,7 +174,7 @@
     {
       "team": "Tennessee",
       "record": "10-4",
-      "ap_rank": 20,
+      "ap_rank": null,
       "avg_rank": 18.7,
       "net_rank": 26,
       "kenpom_rank": 16,
@@ -184,7 +184,7 @@
     {
       "team": "Nebraska",
       "record": "14-0",
-      "ap_rank": 13,
+      "ap_rank": null,
       "avg_rank": 19.7,
       "net_rank": 11,
       "kenpom_rank": 22,
@@ -194,7 +194,7 @@
     {
       "team": "Texas Tech",
       "record": "11-3",
-      "ap_rank": 16,
+      "ap_rank": null,
       "avg_rank": 20.0,
       "net_rank": 19,
       "kenpom_rank": 20,
@@ -214,7 +214,7 @@
     {
       "team": "Virginia",
       "record": "12-2",
-      "ap_rank": 21,
+      "ap_rank": null,
       "avg_rank": 24.0,
       "net_rank": 25,
       "kenpom_rank": 19,
@@ -234,7 +234,7 @@
     {
       "team": "St. John's",
       "record": "9-5",
-      "ap_rank": 25,
+      "ap_rank": null,
       "avg_rank": 25.3,
       "net_rank": 33,
       "kenpom_rank": 25,
@@ -254,7 +254,7 @@
     {
       "team": "Arkansas",
       "record": "11-3",
-      "ap_rank": 18,
+      "ap_rank": null,
       "avg_rank": 26.0,
       "net_rank": 28,
       "kenpom_rank": 23,
@@ -264,7 +264,7 @@
     {
       "team": "Georgia",
       "record": "13-1",
-      "ap_rank": 24,
+      "ap_rank": null,
       "avg_rank": 26.3,
       "net_rank": 21,
       "kenpom_rank": 26,
@@ -284,7 +284,7 @@
     {
       "team": "North Carolina",
       "record": "13-2",
-      "ap_rank": 12,
+      "ap_rank": null,
       "avg_rank": 28.3,
       "net_rank": 22,
       "kenpom_rank": 29,
