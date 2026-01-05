@@ -15,9 +15,55 @@ UT Martin,Tenn-Martin,Manual_Fix
 FGCU,Florida Gulf Coast,Manual_Fix
 SIUE,SIU Edwardsville,Manual_Fix
 LMU (CA),Loyola Marymount,Manual_Fix
-A&M-Corpus Christi,Texas A&M Corpus Chris,KenPom
-A&M-Corpus Christi,A&M-Corpus Christi,NET
-AR-Pine Bluff,Ark.-Pine Bluff,NET
+South Fla.,South Florida,Manual_Fix
+Fla. Atlantic,Florida Atlantic,Manual_Fix
+Middle Tenn.,Middle Tennessee,Manual_Fix
+N.C. A&T,North Carolina A&T,Manual_Fix
+N.C. Central,North Carolina Central,Manual_Fix
+East Texas A&M,Texas A&M-Commerce,Manual_Fix
+East Texas A&M,TAMU Commerce,Manual_Fix
+IU Indy,IUPUI,Manual_Fix
+Little Rock,Ark.-Little Rock,Manual_Fix
+McNeese,McNeese State,Manual_Fix
+Grambling,Grambling St.,Manual_Fix
+UAlbany,Albany,Manual_Fix
+Kansas City,UMKC,Manual_Fix
+App State,Appalachian State,Manual_Fix
+Arizona St,Arizona State,Manual_Fix
+Arkansas St,Arkansas State,Manual_Fix
+Boise St,Boise State,Manual_Fix
+Chicago St,Chicago State,Manual_Fix
+Cleveland St.,Cleveland State,Manual_Fix
+Coppin St.,Coppin State,Manual_Fix
+Delaware St.,Delaware State,Manual_Fix
+Florida St.,Florida State,Manual_Fix
+Fresno St.,Fresno State,Manual_Fix
+Georgia St.,Georgia State,Manual_Fix
+Idaho St.,Idaho State,Manual_Fix
+Illinois St.,Illinois State,Manual_Fix
+Indiana St.,Indiana State,Manual_Fix
+Iowa St.,Iowa State,Manual_Fix
+Jackson St.,Jackson State,Manual_Fix
+Kansas St.,Kansas State,Manual_Fix
+Kennesaw St.,Kennesaw State,Manual_Fix
+Kent St.,Kent State,Manual_Fix
+Michigan St.,Michigan State,Manual_Fix
+Mississippi Valley St.,Miss Valley St,Manual_Fix
+Montana St.,Montana State,Manual_Fix
+Morgan St.,Morgan State,Manual_Fix
+Murray St.,Murray State,Manual_Fix
+Norfolk St.,Norfolk State,Manual_Fix
+Ohio St.,Ohio State,Manual_Fix
+Oklahoma St.,Oklahoma State,Manual_Fix
+Oregon St.,Oregon State,Manual_Fix
+Penn St.,Penn State,Manual_Fix
+Portland St.,Portland State,Manual_Fix
+San Diego St.,San Diego State,Manual_Fix
+Utah St.,Utah State,Manual_Fix
+Washington St.,Washington State,Manual_Fix
+Weber St.,Weber State,Manual_Fix
+Wichita St.,Wichita State,Manual_Fix
+Wright St.,Wright State,Manual_Fix
 Abilene Christian,Abilene Christian,BPI
 Abilene Christian,Abilene Christian,KenPom
 Abilene Christian,Abilene Christian,NET
@@ -42,8 +88,6 @@ Alabama St,Alabama State Hornets,BPI
 Alabama St,Alabama St.,KenPom
 Alabama St,Alabama St.,NET
 Alabama St,Alabama State,SoS
-Albany,Albany,NET
-Albany,Albany,SoS
 Alcorn St,Alcorn State Braves,BPI
 Alcorn St,Alcorn St.,KenPom
 Alcorn St,Alcorn,NET
@@ -256,6 +300,8 @@ Columbia,Columbia,BPI
 Columbia,Columbia,KenPom
 Columbia,Columbia,NET
 Columbia,Columbia,SoS
+Connecticut,Connecticut,KenPom
+Connecticut,Connecticut,NET
 Coppin State,Coppin State,BPI
 Coppin State,Coppin State,KenPom
 Coppin State,Coppin State,NET
@@ -1055,6 +1101,8 @@ Saint Louis,Saint Louis,SoS
 Saint Mary's (CA),Saint Mary's Gaels,BPI
 Saint Mary's (CA),Saint Mary's,KenPom
 Saint Mary's (CA),Saint Mary's (CA),NET
+Saint Mary's College,Saint Mary's College,NET
+Saint Mary's College,Saint Mary's College,SoS
 Saint Peter's,Saint Peter's,BPI
 Saint Peter's,Saint Peter's,KenPom
 Saint Peter's,Saint Peter's,NET
@@ -1345,6 +1393,10 @@ UNCW,UNCW,NET
 UNCW,UNCW,SoS
 UNI,Northern Iowa Panthers,BPI
 UNI,UNI,NET
+USC,USC,AP
+USC,USC,KenPom
+USC,USC,NET
+USC,USC,SoS
 UT Arlington,UT Arlington Mavericks,BPI
 UT Arlington,UT Arlington,KenPom
 UT Arlington,UT Arlington,NET
@@ -1497,5 +1549,3 @@ Youngstown State,Youngstown State,BPI
 Youngstown State,Youngstown State,KenPom
 Youngstown State,Youngstown State,NET
 Youngstown State,Youngstown State,SoS
-
-
