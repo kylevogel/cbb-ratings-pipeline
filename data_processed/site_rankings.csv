@@ -62,7 +62,7 @@ San Diego State,9-4,,69,50,,24,59.5
 Wake Forest,10-5,,61,61,,15,61.0
 Notre Dame,10-5,,68,58,,76,63.0
 Missouri,11-3,,84,60,49.0,75,64.3
-George Washington,11-4,,66,63,,78,64.5
+George Washington,,,66,63,,78,64.5
 California,13-2,,58,74,,118,66.0
 Illinois State,12-3,,55,78,,151,66.5
 West Virginia,9-5,,89,71,43.0,104,67.7
@@ -75,7 +75,7 @@ Oklahoma State,12-2,,82,67,,57,74.5
 Providence,8-6,,85,64,,86,74.5
 Murray State,13-3,,64,86,,124,75.0
 Colorado,11-3,,70,81,,37,75.5
-Miami (OH),15-0,,57,98,,223,77.5
+Miami (OH),,,57,98,,223,77.5
 Stanford,12-3,,75,82,,47,78.5
 Northern Iowa,12-3,,72,87,,87,79.5
 Colorado State,10-4,,79,80,,128,79.5
@@ -99,20 +99,20 @@ Hofstra,11-4,,90,100,,144,95.0
 William & Mary,11-3,,80,114,,174,97.0
 South Carolina,9-5,,107,90,,108,98.5
 Wyoming,10-4,,97,103,,126,100.0
-Pittsburgh,7-8,,112,94,,38,103.0
-Florida Atlantic,9-6,,103,105,,72,104.0
+Pittsburgh,,,112,94,,38,103.0
+Florida Atlantic,,,103,105,,72,104.0
 San Francisco,11-6,,110,99,,82,104.5
 UAB,10-5,,109,102,,117,105.5
 Bowling Green,11-4,,99,112,,136,105.5
-Stephen F. Austin,12-2,,98,117,,323,107.5
+Stephen F. Austin,,,98,117,,323,107.5
 Saint Bonaventure,11-3,,104,113,,77,108.5
 Florida State,7-8,,114,104,,33,109.0
 Seattle,12-5,,108,111,,195,109.5
 Liberty,11-3,,111,108,,143,109.5
 Grand Canyon,8-5,,119,101,,156,110.0
-Middle Tennessee,9-5,,101,123,,94,112.0
+Middle Tennessee,,,101,123,,94,112.0
 Xavier,9-6,,118,107,,56,112.5
-Southern Illinois,8-8,,113,115,,100,114.0
+Southern Illinois,,,113,115,,100,114.0
 Sam Houston,8-6,,106,124,,153,115.0
 Richmond,11-4,,117,116,,147,116.5
 DePaul,9-6,,125,110,,145,117.5
@@ -126,12 +126,12 @@ UC Irvine,11-5,,128,126,,141,127.0
 Oakland,8-8,,122,132,,107,127.0
 Davidson,9-5,,126,130,,152,128.0
 Troy,10-5,,123,134,,169,128.5
-St. Thomas,,,120,140,,309,130.0
+St. Thomas,12-4,,120,140,,309,130.0
 Bradley,10-6,,127,135,,111,131.0
-Cal Baptist,10-6,,121,141,,239,131.0
+Cal Baptist,,,121,141,,239,131.0
 Rhode Island,9-6,,142,120,,115,131.0
 Georgia Tech,10-5,,148,118,,84,133.0
-Loyola Marymount,10-7,,141,125,,154,133.0
+Loyola Marymount,,,141,125,,154,133.0
 Maryland,7-7,,160,109,,52,134.5
 Arkansas State,10-5,,133,138,,184,135.5
 Wright State,9-7,,129,142,,213,135.5
@@ -141,12 +141,12 @@ UT Arlington,10-5,,131,149,,192,140.0
 North Texas,10-5,,153,133,,179,143.0
 Marquette,5-10,,168,119,,59,143.5
 Duquesne,9-6,,158,131,,80,144.5
-Western Kentucky,9-5,,139,150,,139,144.5
+Western Kentucky,,,139,150,,139,144.5
 New Mexico State,8-5,,143,146,,129,144.5
 Lipscomb,9-6,,145,145,,246,145.0
 Montana State,8-7,,138,156,,263,147.0
 Marshall,10-5,,134,162,,146,148.0
-North Dakota State,12-5,,149,147,,283,148.0
+North Dakota State,,,149,147,,283,148.0
 UNLV,7-6,,161,136,,71,148.5
 Kent State,11-3,,157,143,,123,150.0
 Buffalo,13-2,,132,168,,190,150.0
@@ -160,14 +160,14 @@ Quinnipiac,11-5,,155,158,,198,156.5
 Portland State,8-5,,147,167,,284,157.0
 Drake,8-7,,163,154,,120,158.5
 Cornell,7-6,,152,166,,109,159.0
-FIU,,,159,159,,125,159.0
+FIU,9-5,,159,159,,125,159.0
 Winthrop,9-8,,171,148,,188,159.5
-Northern Colorado,10-5,,150,170,,324,160.0
+Northern Colorado,,,150,170,,324,160.0
 Furman,10-5,,166,163,,205,164.5
 Fresno State,6-8,,167,164,,116,165.5
 Incarnate Word,8-6,,178,153,,255,165.5
 UC Davis,8-6,,165,171,,219,168.0
-UC Santa Barbara,9-6,,175,165,,241,170.0
+UC Santa Barbara,,,175,165,,241,170.0
 Idaho,9-5,,151,189,,294,170.0
 Boston College,7-7,,187,155,,85,171.0
 Toledo,8-6,,170,173,,55,171.5
@@ -176,19 +176,19 @@ LIU,,,169,182,,352,175.5
 Rutgers,7-7,,195,157,,69,176.0
 Towson,8-8,,184,172,,105,178.0
 Colgate,8-7,,177,180,,261,178.5
-South Dakota State,8-9,,174,184,,222,179.0
+South Dakota State,,,174,184,,222,179.0
 Charlotte,7-8,,179,179,,196,179.0
 Charleston,9-6,,185,175,,135,180.0
 Florida Gulf Coast,7-8,,193,169,,252,181.0
 Austin Peay,8-5,,164,199,,329,181.5
-Massachusetts,9-6,,191,177,,170,184.0
+Massachusetts,,,191,177,,170,184.0
 Robert Morris,11-6,,176,195,,304,185.5
 Southern Miss,9-7,,182,192,,238,187.0
 Harvard,7-7,,194,181,,200,187.5
 Vermont,9-7,,189,186,,322,187.5
 Kennesaw State,8-6,,198,178,,215,188.0
-Texas A&M-CC,,,180,201,,212,190.5
-Northern Kentucky,12-5,,190,193,,281,191.5
+Texas A&M-CC,7-7,,180,201,,212,190.5
+Northern Kentucky,,,190,193,,281,191.5
 Tulane,11-4,,201,183,,96,192.0
 Ohio,8-7,,197,188,,62,192.5
 Nicholls,6-8,,186,200,,233,193.0
@@ -196,41 +196,41 @@ Utah Tech,9-7,,183,206,,140,194.5
 Montana,8-7,,204,185,,229,194.5
 Youngstown State,8-8,,199,191,,279,195.0
 UT Martin,11-4,,173,219,,334,196.0
-Eastern Michigan,7-8,,188,207,,183,197.5
+Eastern Michigan,,,188,207,,183,197.5
 Weber State,7-8,,181,215,,277,198.0
 Milwaukee,7-8,,192,204,,194,198.0
 Indiana State,8-8,,210,187,,162,198.5
 South Alabama,11-5,,196,202,,274,199.0
 Missouri State,9-5,,203,198,,189,200.5
 Valparaiso,7-8,,216,190,,172,203.0
-Cal State Northridge,9-7,,212,197,,216,204.5
+Cal State Northridge,,,212,197,,216,204.5
 Navy,10-5,,209,203,,345,206.0
-Georgia Southern,12-5,,207,211,,313,209.0
+Georgia Southern,,,207,211,,313,209.0
 Fordham,9-6,,222,196,,148,209.0
 Iona,10-6,,202,217,,260,209.5
-Abilene Christian,9-6,,211,214,,138,212.5
+Abilene Christian,,,211,214,,138,212.5
 Campbell,8-8,,221,205,,168,213.0
 UTRGV,,,208,218,,236,213.0
-Penn,,,215,213,,173,214.0
+Penn,7-6,,215,213,,173,214.0
 James Madison,8-7,,219,209,,159,214.0
 San Jose State,,,234,194,,106,214.0
 San Diego,6-10,,218,212,,166,215.0
 Lindenwood,10-5,,200,232,,299,216.0
-Charleston Southern,11-6,,205,229,,331,217.0
+Charleston Southern,,,205,229,,331,217.0
 Monmouth,7-8,,217,220,,244,218.5
 Queens,7-8,,232,208,,269,220.0
-Southeast Missouri State,8-7,,213,228,,248,220.5
+Southeast Missouri State,,,213,228,,248,220.5
 Wofford,10-5,,214,227,,286,220.5
 Tennessee State,9-5,,206,236,,295,221.0
-Central Arkansas,7-8,,220,224,,262,222.0
+Central Arkansas,,,220,224,,262,222.0
 UIC,5-10,,235,210,,161,222.5
 Oregon State,8-9,,224,223,,134,223.5
 New Orleans,4-10,,227,221,,208,224.0
 Northeastern,5-9,,223,225,,150,224.0
 Saint Joseph's,8-7,,243,216,,181,229.5
-Cal State Fullerton,6-10,,226,234,,191,230.0
+Cal State Fullerton,,,226,234,,191,230.0
 Lamar,7-7,,231,231,,289,231.0
-Jacksonville State,7-7,,239,226,,180,232.5
+Jacksonville State,,,239,226,,180,232.5
 Cal Poly,6-10,,228,237,,155,232.5
 Portland,7-10,,236,230,,130,233.0
 Appalachian State,9-7,,233,238,,275,235.5
@@ -245,14 +245,14 @@ Dartmouth,6-7,,242,244,,175,243.0
 Merrimack,9-7,,246,247,,182,246.5
 Hampton,8-8,,250,243,,204,246.5
 Stony Brook,9-7,,241,256,,201,248.5
-Central Connecticut,7-6,,237,262,,359,249.5
+Central Connecticut,,,237,262,,359,249.5
 Brown,6-7,,261,239,,230,250.0
 UNC Asheville,6-10,,247,253,,137,250.0
 Radford,8-8,,260,241,,297,250.5
-Coastal Carolina,8-8,,248,261,,282,254.5
-Purdue Fort Wayne,9-8,,253,257,,273,255.0
+Coastal Carolina,,,248,261,,282,254.5
+Purdue Fort Wayne,,,253,257,,273,255.0
 Saint Peter's,7-5,,252,258,,214,255.0
-Eastern Washington,2-12,,267,245,,227,256.0
+Eastern Washington,,,267,245,,227,256.0
 La Salle,4-11,,263,251,,70,257.0
 Pepperdine,5-12,,262,255,,167,258.5
 Rice,6-9,,265,254,,185,259.5
@@ -260,7 +260,7 @@ UMBC,7-6,,255,265,,361,260.0
 Fairfield,9-7,,245,277,,287,261.0
 Old Dominion,4-12,,272,250,,157,261.0
 Princeton,4-11,,271,252,,102,261.5
-Western Carolina,5-8,,259,267,,202,263.0
+Western Carolina,,,259,267,,202,263.0
 Bellarmine,5-9,,264,263,,251,263.5
 USC Upstate,,,251,276,,247,263.5
 SIU Edwardsville,9-6,,269,259,,346,264.0
@@ -270,11 +270,11 @@ Omaha,7-10,,270,270,,226,270.0
 Texas State,9-7,,275,268,,259,271.5
 Southern,5-9,,301,242,,330,271.5
 Howard,9-7,,266,279,,362,272.5
-Eastern Kentucky,4-11,,276,273,,158,274.5
-Western Michigan,6-8,,283,269,,165,276.0
+Eastern Kentucky,,,276,273,,158,274.5
+Western Michigan,,,283,269,,165,276.0
 Delaware,5-9,,281,271,,176,276.0
 Evansville,4-12,,273,280,,79,276.5
-Bethune-Cookman,4-10,,288,266,,264,277.0
+Bethune-Cookman,,,288,266,,264,277.0
 UTEP,4-10,,294,260,,99,277.0
 Detroit Mercy,6-8,,268,286,,285,277.0
 West Georgia,8-6,,257,298,,317,277.5
@@ -282,40 +282,40 @@ Alabama State,4-10,,280,278,,341,279.0
 Sacramento State,4-10,,274,288,,242,281.0
 South Dakota,8-8,,278,290,,339,284.0
 Wagner,6-7,,258,310,,354,284.0
-Houston Christian,5-9,,284,284,,278,284.0
+Houston Christian,,,284,284,,278,284.0
 Chattanooga,6-9,,305,264,,228,284.5
 Southeastern Louisiana,,,296,274,,271,285.0
 UNC Greensboro,6-9,,297,275,,249,286.0
-Northern Arizona,6-9,,282,291,,253,286.5
+Northern Arizona,,,282,291,,253,286.5
 Longwood,9-8,,290,289,,320,289.5
 Oral Roberts,5-12,,286,293,,243,289.5
 Loyola Chicago,5-10,,309,272,,121,290.5
 Prairie View A&M,5-9,,287,295,,351,291.0
 Norfolk State,6-11,,298,285,,348,291.5
-Boston University,5-10,,293,292,,338,292.5
+Boston University,,,293,292,,338,292.5
 Drexel,6-10,,299,287,,266,293.0
-Cal State Bakersfield,7-9,,292,294,,280,293.0
+Cal State Bakersfield,,,292,294,,280,293.0
 Tennessee Tech,6-9,,279,308,,303,293.5
-North Carolina A&T,7-7,,277,312,,235,294.5
+North Carolina A&T,,,277,312,,235,294.5
 Morehead State,7-8,,285,304,,290,294.5
 East Carolina,5-9,,308,283,,113,295.5
 Georgia State,5-11,,291,305,,220,298.0
 Le Moyne,6-9,,304,299,,360,301.5
 Alabama A&M,7-7,,302,301,,336,301.5
 Sacred Heart,5-11,,307,296,,245,301.5
-East Texas A&M,6-9,,289,321,,234,305.0
+East Texas A&M,,,289,321,,234,305.0
 UMass Lowell,6-10,,312,300,,298,306.0
 Manhattan,7-9,,303,309,,267,306.0
 North Alabama,5-8,,316,297,,288,306.5
 North Dakota,8-10,,300,315,,254,307.5
-Northwestern State,4-10,,320,302,,224,311.0
+Northwestern State,,,320,302,,224,311.0
 UTSA,4-10,,319,303,,133,311.0
-Arkansas-Pine Bluff,4-10,,295,331,,328,313.0
-Eastern Illinois,4-10,,310,317,,240,313.5
-Mount St. Mary's,5-11,,321,307,,308,314.0
+Arkansas-Pine Bluff,,,295,331,,328,313.0
+Eastern Illinois,,,310,317,,240,313.5
+Mount St. Mary's,,,321,307,,308,314.0
 Jacksonville,5-10,,311,319,,291,315.0
 Bryant,5-10,,317,314,,312,315.5
-Northern Illinois,5-9,,313,318,,171,315.5
+Northern Illinois,,,313,318,,171,315.5
 Little Rock,5-10,,327,306,,300,316.5
 Army,7-8,,306,327,,296,316.5
 Mercyhurst,6-9,,314,320,,358,317.0
@@ -330,10 +330,10 @@ Air Force,3-11,,322,334,,90,328.0
 New Haven,6-9,,318,339,,340,328.5
 Louisiana,3-13,,338,322,,186,330.0
 Cleveland State,5-11,,337,324,,221,330.5
-IUPUI,,,325,340,,270,332.5
-Central Michigan,4-11,,336,330,,177,333.0
+IUPUI,4-13,,325,340,,270,332.5
+Central Michigan,,,336,330,,177,333.0
 New Hampshire,4-10,,331,337,,319,334.0
-Southern Indiana,3-11,,339,329,,342,334.0
+Southern Indiana,,,339,329,,342,334.0
 Canisius,7-8,,330,338,,231,334.0
 Maryland-Eastern Shore,,,334,336,,350,335.0
 Florida A&M,3-9,,332,341,,325,336.5
@@ -346,21 +346,21 @@ Stonehill,4-11,,340,347,,344,343.5
 Stetson,5-10,,342,346,,302,344.0
 Alcorn State,1-12,,350,342,,347,346.0
 Maine,2-14,,345,348,,315,346.5
-North Carolina Central,5-11,,348,349,,337,348.5
-Loyola Maryland,4-11,,352,345,,335,348.5
+North Carolina Central,,,348,349,,337,348.5
+Loyola Maryland,,,352,345,,335,348.5
 Fairleigh Dickinson,4-11,,346,352,,356,349.0
 NJIT,6-10,,347,353,,353,350.0
 Jackson State,2-12,,356,344,,327,350.0
-Western Illinois,4-11,,351,355,,305,353.0
+Western Illinois,,,351,355,,305,353.0
 Rider,1-12,,357,350,,187,353.5
 ULM,,,353,354,,276,353.5
 Niagara,4-10,,354,356,,268,355.0
 Delaware State,5-11,,355,357,,364,356.0
 Gardner-Webb,2-15,,358,359,,164,358.5
 The Citadel,3-12,,360,358,,321,359.0
-South Carolina State,2-14,,359,360,,349,359.5
+South Carolina State,,,359,360,,349,359.5
 Morgan State,3-12,,362,361,,365,361.5
 Saint Francis (PA),3-12,,361,362,,310,361.5
 Binghamton,4-12,,363,363,,363,363.0
 Coppin State,3-15,,364,364,,357,364.0
-Mississippi Valley State,1-14,,365,365,,355,365.0
+Mississippi Valley State,,,365,365,,355,365.0
