@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Scrape ESPN BPI (Basketball Power Index) rankings (all pages).
+Scrape ESPN BPI (Basketball Power Index) rankings (full D1).
 Outputs: data_raw/bpi_rankings.csv
 """
 
@@ -12,137 +12,121 @@ import pandas as pd
 import requests
 
 
-BASE_URL = "https://www.espn.com/mens-college-basketball/bpi/_/view/bpi/page/{}"
-
-
-def _pick_rank_team_table(tables):
-    """
-    ESPN returns multiple tables sometimes. Pick the one that looks like the BPI table:
-    - Has a Team-ish column
-    - Has a Rank/RK-ish column OR first column is numeric ranks
-    """
-    for df in tables:
-        if df is None or df.empty:
-            continue
-
-        # Flatten MultiIndex columns if present
-        if isinstance(df.columns, pd.MultiIndex):
-            df.columns = [" ".join([str(x) for x in col if str(x) != "nan"]).strip() for col in df.columns]
-        else:
-            df.columns = [str(c).strip() for c in df.columns]
-
-        cols_l = [c.lower() for c in df.columns]
-
-        team_candidates = [c for c in df.columns if "team" in c.lower()]
-        if not team_candidates:
-            continue
-
-        rank_candidates = [
-            c for c in df.columns
-            if c.lower() in {"rk", "rank", "rnk"} or "rk" == c.lower().strip() or c.lower().strip() == "rank"
-        ]
-
-        # If there is no explicit rank col, we can still accept if first col looks numeric
-        if rank_candidates:
-            return df, rank_candidates[0], team_candidates[0]
-
-        first_col = df.columns[0]
-        sample = df[first_col].astype(str).head(10).str.extract(r"(\d+)")[0]
-        if sample.notna().sum() >= 6:  # enough numeric-looking entries
-            return df, first_col, team_candidates[0]
-
-    return None, None, None
-
-
-def scrape_bpi_rankings_all_pages(max_pages=25):
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    }
-
-    all_rows = []
-    seen_ranks = set()
-
-    for page in range(1, max_pages + 1):
-        url = BASE_URL.format(page)
-        print(f"Fetching BPI page {page}: {url}")
-
-        resp = requests.get(url, headers=headers, timeout=30)
-        resp.raise_for_status()
-
-        # IMPORTANT: avoid pandas FutureWarning by wrapping with StringIO
-        try:
-            tables = pd.read_html(StringIO(resp.text))
-        except ValueError:
-            tables = []
-
-        df, rank_col, team_col = _pick_rank_team_table(tables)
-        if df is None:
-            # If ESPN changes markup, this will trigger
-            print(f"Could not locate BPI table on page {page}")
-            break
-
-        # Clean rank + team
-        ranks = (
-            df[rank_col]
-            .astype(str)
-            .str.extract(r"(\d+)")[0]
-        )
-        teams = df[team_col].astype(str).str.strip()
-
-        page_rows = []
-        for r, t in zip(ranks, teams):
-            if pd.isna(r) or not str(r).isdigit():
-                continue
-            r_int = int(r)
-            if r_int <= 0 or r_int > 400:
-                continue
-            if not t or t.lower() in {"nan", "none"}:
-                continue
-
-            # Deduplicate across pages
-            if r_int in seen_ranks:
-                continue
-
-            seen_ranks.add(r_int)
-            page_rows.append({"bpi_rank": r_int, "team_bpi": t})
-
-        if not page_rows:
-            # No new ranks found -> we're done
-            print(f"No new BPI rows found on page {page}; stopping.")
-            break
-
-        all_rows.extend(page_rows)
-
-        # If we already got basically all D1 teams, we can stop early
-        if len(seen_ranks) >= 360:
-            break
-
-    if not all_rows:
+def _extract_rank_team_table(html: str) -> pd.DataFrame | None:
+    try:
+        tables = pd.read_html(StringIO(html))
+    except Exception:
         return None
 
-    out = pd.DataFrame(all_rows).drop_duplicates(subset=["bpi_rank"]).sort_values("bpi_rank")
-    return out
+    for t in tables:
+        if t is None or t.empty:
+            continue
+
+        cols = [str(c).strip() for c in t.columns]
+        cols_l = [c.lower() for c in cols]
+
+        if not any(c in ("rk", "rank") for c in cols_l):
+            continue
+        if not any("team" in c for c in cols_l):
+            continue
+
+        rank_col = None
+        team_col = None
+
+        for c, cl in zip(cols, cols_l):
+            if cl in ("rk", "rank"):
+                rank_col = c
+                break
+
+        for c, cl in zip(cols, cols_l):
+            if "team" in cl:
+                team_col = c
+                break
+
+        if rank_col is None or team_col is None:
+            continue
+
+        out = t[[rank_col, team_col]].copy()
+        out.columns = ["bpi_rank", "team_bpi"]
+
+        out["bpi_rank"] = (
+            out["bpi_rank"]
+            .astype(str)
+            .apply(lambda x: re.sub(r"[^\d]", "", x))
+        )
+        out["bpi_rank"] = pd.to_numeric(out["bpi_rank"], errors="coerce")
+
+        out["team_bpi"] = out["team_bpi"].astype(str).str.strip()
+
+        out = out.dropna(subset=["bpi_rank", "team_bpi"])
+        out["bpi_rank"] = out["bpi_rank"].astype(int)
+
+        out = out[out["bpi_rank"] > 0]
+        out = out[out["team_bpi"].str.len() > 0]
+
+        if len(out) >= 20:
+            return out[["bpi_rank", "team_bpi"]]
+
+    return None
+
+
+def scrape_bpi_rankings(max_pages: int = 12) -> pd.DataFrame | None:
+    base_url = "https://www.espn.com.br/basquete/universitario-masculino/bpi/_/vs-division/overview/pagina/{}"
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept-Language": "en-US,en;q=0.9",
+    }
+
+    frames = []
+    for page in range(1, max_pages + 1):
+        url = base_url.format(page)
+        print(f"Fetching BPI page {page}: {url}")
+
+        try:
+            resp = requests.get(url, headers=headers, timeout=30)
+            resp.raise_for_status()
+        except Exception as e:
+            print(f"Request failed on page {page}: {e}")
+            break
+
+        df_page = _extract_rank_team_table(resp.text)
+        if df_page is None or df_page.empty:
+            print(f"Could not parse BPI table on page {page}")
+            break
+
+        frames.append(df_page)
+
+    if not frames:
+        return None
+
+    df = pd.concat(frames, ignore_index=True)
+    df = df.drop_duplicates(subset=["bpi_rank"]).sort_values("bpi_rank")
+
+    df = df[df["bpi_rank"].between(1, 400)]
+    df = df.drop_duplicates(subset=["bpi_rank"]).sort_values("bpi_rank").reset_index(drop=True)
+
+    return df
 
 
 def main():
-    print("Fetching ESPN BPI rankings (all pages)...")
-
-    try:
-        df = scrape_bpi_rankings_all_pages()
-    except Exception as e:
-        print(f"Failed to fetch BPI rankings: {e}")
-        df = None
+    print("Fetching ESPN BPI rankings (full D1)...")
+    df = scrape_bpi_rankings()
 
     os.makedirs("data_raw", exist_ok=True)
+    out_path = "data_raw/bpi_rankings.csv"
 
-    if df is None or df.empty or len(df) < 300:
-        # Overwrite stale file so you don't silently keep the old “top 50” forever
-        pd.DataFrame(columns=["bpi_rank", "team_bpi"]).to_csv("data_raw/bpi_rankings.csv", index=False)
-        print("Failed to fetch full BPI (expected ~365). Wrote empty data_raw/bpi_rankings.csv")
-        raise SystemExit(1)
+    if df is not None and not df.empty and len(df) >= 300:
+        df.to_csv(out_path, index=False)
+        print(f"Saved {len(df)} BPI rankings to {out_path}")
+        return
 
-    df.to_csv("data_raw/bpi_rankings.csv", index=False)
-    print(f"Saved {len(df)} BPI rankings to data_raw/bpi_rankings.csv")
+    print("Failed to fetch full BPI (expected ~365).")
+    if os.path.exists(out_path):
+        print(f"Keeping existing {out_path} (not overwriting).")
+    else:
+        pd.DataFrame(columns=["bpi_rank", "team_bpi"]).to_csv(out_path, index=False)
+        print(f"Wrote empty {out_path}.")
 
 
 if __name__ == "__main__":
