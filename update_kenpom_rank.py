@@ -1,59 +1,65 @@
+import os
+import sys
+from datetime import datetime, timezone
+from io import StringIO
+
 import pandas as pd
 import requests
-import os
 
-# Header to look like a real browser
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-}
 
-def main():
-    url = "https://kenpom.com/"
-    print(f"Fetching KenPom data from {url}...")
-    
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=15)
-        r.raise_for_status()
-        
-        # Parse tables
-        tables = pd.read_html(r.text, attrs={"id": "ratings-table"})
-        if not tables:
-            print("Could not find ratings-table in HTML.")
-            return
+def season_year(now_utc: datetime) -> int:
+    y = now_utc.year
+    return y + 1 if now_utc.month >= 9 else y
 
-        df = tables[0]
-        
-        # Clean messy headers (KenPom repeats headers every ~40 rows)
-        df.columns = [c[1] if isinstance(c, tuple) else c for c in df.columns]
-        df = df[df["Team"] != "Team"].copy()
-        
-        # Clean Team names (remove seed numbers like '1 Kansas')
-        df["Team"] = df["Team"].astype(str).str.replace(r"^\d+\s+", "", regex=True)
-        df["Team"] = df["Team"].str.replace(r"\s+\d+$", "", regex=True)
-        
-        # Rename columns (KenPom uses 'Rank', 'Team', 'AdjEM', etc.)
-        # The rank column is often unnamed or the first column
-        rename_map = {df.columns[0]: "Rank", "Team": "Team"}
-        df = df.rename(columns=rename_map)
-        
-        # Ensure Rank is numeric
-        df["Rank"] = pd.to_numeric(df["Rank"], errors="coerce")
-        df = df.dropna(subset=["Rank"])
-        df["Rank"] = df["Rank"].astype(int)
-        
-        out_df = df[["Team", "Rank"]].copy()
-        out_df.columns = ["Team", "KenPom_Rank"]
-        
-        # Add snapshot date
-        out_df["snapshot_date"] = pd.Timestamp.now().strftime("%Y-%m-%d")
-        
-        os.makedirs("data_raw", exist_ok=True)
-        out_path = os.path.join("data_raw", "KenPom_Rank.csv")
-        out_df.to_csv(out_path, index=False)
-        print(f"Successfully wrote {len(out_df)} rows to {out_path}")
-        
-    except Exception as e:
-        print(f"Error updating KenPom: {e}")
+
+def fetch(url: str) -> str:
+    headers = {
+        "User-Agent": "Mozilla/5.0",
+        "Accept-Language": "en-US,en;q=0.9",
+    }
+    r = requests.get(url, headers=headers, timeout=30)
+    r.raise_for_status()
+    return r.text
+
+
+def main() -> int:
+    now = datetime.now(timezone.utc)
+    yr = season_year(now)
+    url = f"https://kenpom.com/index.php?y={yr}"
+
+    html = fetch(url)
+    tables = pd.read_html(StringIO(html))
+
+    target = None
+    for t in tables:
+        cols = [str(c).strip().lower() for c in t.columns]
+        if ("rk" in cols or "rank" in cols) and "team" in cols:
+            target = t
+            break
+    if target is None:
+        raise RuntimeError("Could not find KenPom table with Rk/Rank + Team columns")
+
+    col_map = {str(c).strip().lower(): c for c in target.columns}
+    rk_col = col_map.get("rk") or col_map.get("rank")
+
+    out = pd.DataFrame(
+        {
+            "kenpom_name": target[col_map["team"]].astype(str).str.strip(),
+            "kenpom": pd.to_numeric(target[rk_col], errors="coerce").astype("Int64"),
+            "source_url": url,
+            "updated_at_utc": now.isoformat().replace("+00:00", "Z"),
+        }
+    ).dropna(subset=["kenpom_name", "kenpom"])
+
+    os.makedirs("data_raw", exist_ok=True)
+    out.to_csv("data_raw/kenpom.csv", index=False)
+    print(f"Wrote {len(out)} rows -> data_raw/kenpom.csv")
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    try:
+        raise SystemExit(main())
+    except Exception as e:
+        print(f"update_kenpom_rank failed: {e}", file=sys.stderr)
+        raise
