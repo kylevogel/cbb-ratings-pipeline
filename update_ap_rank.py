@@ -1,65 +1,121 @@
 import os
 import sys
-from datetime import datetime, timezone
-from io import StringIO
-
-import pandas as pd
+import json
+import tempfile
 import requests
+import pandas as pd
 
 
-def fetch(url: str) -> str:
+URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/rankings"
+
+
+def _atomic_write_csv(df: pd.DataFrame, out_path: str) -> None:
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    d = os.path.dirname(out_path) or "."
+    with tempfile.NamedTemporaryFile("w", delete=False, dir=d, suffix=".csv", newline="") as f:
+        tmp = f.name
+        df.to_csv(tmp, index=False)
+    os.replace(tmp, out_path)
+
+
+def _fetch_json(url: str) -> dict:
     headers = {
         "User-Agent": "Mozilla/5.0",
+        "Accept": "application/json,text/plain,*/*",
         "Accept-Language": "en-US,en;q=0.9",
+        "Referer": "https://www.espn.com/",
     }
     r = requests.get(url, headers=headers, timeout=30)
     r.raise_for_status()
-    return r.text
+    return r.json()
+
+
+def _find_ap_entries(obj):
+    if isinstance(obj, dict):
+        t = str(obj.get("type", "")).lower()
+        name = str(obj.get("name", "")).lower()
+        short = str(obj.get("shortName", "")).lower()
+
+        if (t == "ap") or ("ap" in name) or ("ap" in short):
+            for k in ("ranks", "entries", "rankings", "items"):
+                v = obj.get(k)
+                if isinstance(v, list) and v:
+                    return v
+
+        for v in obj.values():
+            found = _find_ap_entries(v)
+            if found:
+                return found
+
+    if isinstance(obj, list):
+        for v in obj:
+            found = _find_ap_entries(v)
+            if found:
+                return found
+
+    return None
+
+
+def _team_name(entry: dict) -> str | None:
+    team = entry.get("team")
+    if isinstance(team, dict):
+        for k in ("displayName", "shortDisplayName", "name", "location"):
+            v = team.get(k)
+            if isinstance(v, str) and v.strip():
+                return v.strip()
+    for k in ("displayName", "shortDisplayName", "name"):
+        v = entry.get(k)
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    return None
+
+
+def _rank(entry: dict) -> int | None:
+    for k in ("current", "rank", "rnk"):
+        v = entry.get(k)
+        if isinstance(v, int):
+            return v
+        if isinstance(v, str) and v.strip().isdigit():
+            return int(v.strip())
+    return None
 
 
 def main() -> int:
-    now = datetime.now(timezone.utc)
-    url = "https://www.espn.com/mens-college-basketball/rankings"
+    out_path = os.path.join("data_raw", "ap.csv")
 
-    html = fetch(url)
-    tables = pd.read_html(StringIO(html))
+    try:
+        data = _fetch_json(URL)
+        entries = _find_ap_entries(data)
+        if not entries:
+            raise RuntimeError("Could not locate AP entries in ESPN rankings JSON")
 
-    target = None
-    best_score = -1
-    for t in tables:
-        cols = [str(c).strip().lower() for c in t.columns]
-        score = 0
-        score += 2 if ("rk" in cols or "rank" in cols) else 0
-        score += 2 if ("team" in cols or "school" in cols) else 0
-        score += 1 if "record" in cols else 0
-        if score > best_score:
-            best_score = score
-            target = t
-    if target is None or best_score < 3:
-        raise RuntimeError("Could not find AP-style table on ESPN rankings page")
+        rows = []
+        for e in entries:
+            if not isinstance(e, dict):
+                continue
+            rk = _rank(e)
+            nm = _team_name(e)
+            if rk is None or nm is None:
+                continue
+            rows.append((nm, rk))
 
-    col_map = {str(c).strip().lower(): c for c in target.columns}
-    rk_col = col_map.get("rk") or col_map.get("rank")
-    team_col = col_map.get("team") or col_map.get("school")
+        df = pd.DataFrame(rows, columns=["ap_name", "ap_rank"]).drop_duplicates("ap_rank").sort_values("ap_rank")
+        df = df[df["ap_rank"].between(1, 25)].reset_index(drop=True)
 
-    out = pd.DataFrame(
-        {
-            "ap_name": target[team_col].astype(str).str.strip(),
-            "ap": pd.to_numeric(target[rk_col], errors="coerce").astype("Int64"),
-            "source_url": url,
-            "updated_at_utc": now.isoformat().replace("+00:00", "Z"),
-        }
-    ).dropna(subset=["ap_name", "ap"])
+        _atomic_write_csv(df, out_path)
+        print(f"Wrote {len(df)} rows -> {out_path}")
+        return 0
 
-    os.makedirs("data_raw", exist_ok=True)
-    out.to_csv("data_raw/ap.csv", index=False)
-    print(f"Wrote {len(out)} rows -> data_raw/ap.csv")
-    return 0
+    except Exception as e:
+        print(f"update_ap_rank failed: {e}", file=sys.stderr)
+        if os.path.exists(out_path):
+            print(f"Keeping existing file -> {out_path}")
+            return 0
+        empty = pd.DataFrame(columns=["ap_name", "ap_rank"])
+        _atomic_write_csv(empty, out_path)
+        print(f"Wrote 0 rows -> {out_path}")
+        return 0
 
 
 if __name__ == "__main__":
-    try:
-        raise SystemExit(main())
-    except Exception as e:
-        print(f"update_ap_rank failed: {e}", file=sys.stderr)
-        raise
+    raise SystemExit(main())
