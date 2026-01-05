@@ -11,39 +11,35 @@ Outputs:
 import pandas as pd
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from clean_team_alias import standardize_team_names, load_team_alias
+
 
 def load_and_standardize_data():
     """Load all data sources and standardize team names."""
-    
     data = {}
-    
-    # Load NET rankings
+
     net_path = 'data_raw/net_rankings.csv'
     if os.path.exists(net_path):
         net_df = pd.read_csv(net_path)
         net_df = standardize_team_names(net_df, 'team_net', 'net')
         data['net'] = net_df[['team', 'net_rank']].drop_duplicates(subset=['team'])
         print(f"Loaded {len(data['net'])} NET rankings")
-    
-    # Load KenPom rankings
+
     kenpom_path = 'data_raw/kenpom_rankings.csv'
     if os.path.exists(kenpom_path):
         kenpom_df = pd.read_csv(kenpom_path)
         kenpom_df = standardize_team_names(kenpom_df, 'team_kenpom', 'kenpom')
         data['kenpom'] = kenpom_df[['team', 'kenpom_rank']].drop_duplicates(subset=['team'])
         print(f"Loaded {len(data['kenpom'])} KenPom rankings")
-    
-    # Load BPI rankings
+
     bpi_path = 'data_raw/bpi_rankings.csv'
     if os.path.exists(bpi_path):
         bpi_df = pd.read_csv(bpi_path)
         bpi_df = standardize_team_names(bpi_df, 'team_bpi', 'bpi')
         data['bpi'] = bpi_df[['team', 'bpi_rank']].drop_duplicates(subset=['team'])
         print(f"Loaded {len(data['bpi'])} BPI rankings")
-    
-    # Load AP rankings
+
     ap_path = 'data_raw/ap_rankings.csv'
     if os.path.exists(ap_path):
         ap_df = pd.read_csv(ap_path)
@@ -51,104 +47,102 @@ def load_and_standardize_data():
             ap_df = standardize_team_names(ap_df, 'team_ap', 'ap')
             data['ap'] = ap_df[['team', 'ap_rank']].drop_duplicates(subset=['team'])
             print(f"Loaded {len(data['ap'])} AP rankings")
-    
-    # Load SOS rankings
+
     sos_path = 'data_raw/sos_rankings.csv'
     if os.path.exists(sos_path):
         sos_df = pd.read_csv(sos_path)
         sos_df = standardize_team_names(sos_df, 'team_sos', 'sos')
         data['sos'] = sos_df[['team', 'sos_rank']].drop_duplicates(subset=['team'])
         print(f"Loaded {len(data['sos'])} SOS rankings")
-    
-    # Load team records
+
     records_path = 'data_raw/team_records.csv'
     if os.path.exists(records_path):
         records_df = pd.read_csv(records_path)
         records_df = standardize_team_names(records_df, 'team_espn', 'espn')
         data['records'] = records_df[['team', 'record']].drop_duplicates(subset=['team'])
         print(f"Loaded {len(data['records'])} team records")
-    
+
     return data
 
 
 def build_master_rankings(data):
     """Merge all data sources into a master rankings table."""
-    
-    # Start with canonical team list from alias file
+
     alias_df = load_team_alias()
     if alias_df is not None:
         master = pd.DataFrame({'team': alias_df['canonical'].unique()})
     else:
-        # Fallback: use teams from NET (most complete list)
         if 'net' in data:
             master = data['net'][['team']].copy()
         else:
             master = pd.DataFrame({'team': []})
-    
-    # Merge all data sources
+
     if 'records' in data:
         master = master.merge(data['records'], on='team', how='left')
     else:
         master['record'] = ''
-    
+
     if 'ap' in data:
         master = master.merge(data['ap'], on='team', how='left')
     else:
         master['ap_rank'] = None
-    
+
     if 'net' in data:
         master = master.merge(data['net'], on='team', how='left')
     else:
         master['net_rank'] = None
-    
+
     if 'kenpom' in data:
         master = master.merge(data['kenpom'], on='team', how='left')
     else:
         master['kenpom_rank'] = None
-    
+
     if 'bpi' in data:
         master = master.merge(data['bpi'], on='team', how='left')
     else:
         master['bpi_rank'] = None
-    
+
     if 'sos' in data:
         master = master.merge(data['sos'], on='team', how='left')
     else:
         master['sos_rank'] = None
-    
-    # Calculate average of metrics (NET, KenPom, BPI)
+
     def calc_avg_rank(row):
         ranks = []
         for col in ['net_rank', 'kenpom_rank', 'bpi_rank']:
             val = row.get(col)
             if pd.notna(val):
                 ranks.append(float(val))
-        
         if ranks:
             return round(sum(ranks) / len(ranks), 1)
         return None
-    
+
     master['avg_rank'] = master.apply(calc_avg_rank, axis=1)
-    
-    # Sort by average rank (teams without avg rank go to bottom)
+
     master['sort_key'] = master['avg_rank'].fillna(9999)
     master = master.sort_values('sort_key').reset_index(drop=True)
     master = master.drop(columns=['sort_key'])
-    
-    # Filter to teams that have at least one ranking
+
     has_ranking = (
-        master['net_rank'].notna() | 
-        master['kenpom_rank'].notna() | 
+        master['net_rank'].notna() |
+        master['kenpom_rank'].notna() |
         master['bpi_rank'].notna()
     )
     master = master[has_ranking].reset_index(drop=True)
-    
+
     return master
+
+
+def _format_utc_minus_5(dt_utc: datetime) -> str:
+    dt = dt_utc.replace(tzinfo=timezone.utc) + timedelta(hours=-5)
+    hour = dt.hour % 12
+    hour = 12 if hour == 0 else hour
+    ampm = "AM" if dt.hour < 12 else "PM"
+    return f"{dt.month:02d}/{dt.day:02d}/{dt.year} {hour}:{dt.minute:02d} {ampm} UTC-5"
 
 
 def create_dashboard_json(master_df):
     """Create JSON data for the dashboard."""
-    
     records = []
     for _, row in master_df.iterrows():
         record = {
@@ -162,18 +156,20 @@ def create_dashboard_json(master_df):
             'sos_rank': int(row['sos_rank']) if pd.notna(row['sos_rank']) else None
         }
         records.append(record)
-    
+
+    updated_str = _format_utc_minus_5(datetime.utcnow())
+
     output = {
-        'updated': datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC'),
+        'updated': updated_str,
         'teams': records
     }
-    
+
     return output
 
 
 def create_dashboard_html():
     """Create the HTML dashboard page."""
-    
+
     html = '''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -186,7 +182,7 @@ def create_dashboard_html():
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
@@ -194,18 +190,18 @@ def create_dashboard_html():
             color: #e0e0e0;
             padding: 20px;
         }
-        
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
         }
-        
+
         header {
             text-align: center;
             padding: 30px 0;
             margin-bottom: 30px;
         }
-        
+
         h1 {
             font-size: 2.5rem;
             background: linear-gradient(90deg, #00d9ff, #00ff88);
@@ -214,18 +210,18 @@ def create_dashboard_html():
             background-clip: text;
             margin-bottom: 10px;
         }
-        
+
         .updated {
             color: #888;
             font-size: 0.9rem;
         }
-        
+
         .search-container {
             margin-bottom: 20px;
             display: flex;
             justify-content: center;
         }
-        
+
         #search {
             width: 100%;
             max-width: 400px;
@@ -238,34 +234,34 @@ def create_dashboard_html():
             outline: none;
             transition: border-color 0.3s;
         }
-        
+
         #search:focus {
             border-color: #00d9ff;
         }
-        
+
         #search::placeholder {
             color: #666;
         }
-        
+
         .table-container {
             overflow-x: auto;
             background: rgba(255, 255, 255, 0.03);
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
-        
+
         table {
             width: 100%;
             border-collapse: collapse;
             min-width: 900px;
         }
-        
+
         th, td {
             padding: 15px 12px;
             text-align: left;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        
+
         th {
             background: rgba(0, 217, 255, 0.1);
             cursor: pointer;
@@ -279,75 +275,75 @@ def create_dashboard_html():
             top: 0;
             transition: background 0.2s;
         }
-        
+
         th:hover {
             background: rgba(0, 217, 255, 0.2);
         }
-        
+
         th.sort-asc::after {
             content: ' \\25B2';
             font-size: 0.7rem;
         }
-        
+
         th.sort-desc::after {
             content: ' \\25BC';
             font-size: 0.7rem;
         }
-        
+
         tr:hover {
             background: rgba(255, 255, 255, 0.05);
         }
-        
+
         .team-name {
             font-weight: 500;
             color: #fff;
         }
-        
+
         .rank-cell {
             text-align: center;
             font-family: 'Monaco', 'Consolas', monospace;
         }
-        
+
         .ap-rank {
             background: rgba(255, 215, 0, 0.1);
             color: #ffd700;
             font-weight: bold;
         }
-        
+
         .avg-rank {
             color: #00ff88;
             font-weight: bold;
         }
-        
+
         .top-10 {
             background: rgba(0, 255, 136, 0.1);
         }
-        
+
         .top-25 {
             background: rgba(0, 217, 255, 0.05);
         }
-        
+
         .record-cell {
             color: #aaa;
             font-family: 'Monaco', 'Consolas', monospace;
         }
-        
+
         .empty {
             color: #444;
         }
-        
+
         .stats {
             text-align: center;
             margin-top: 20px;
             color: #666;
             font-size: 0.9rem;
         }
-        
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.8rem;
             }
-            
+
             th, td {
                 padding: 10px 8px;
                 font-size: 0.85rem;
@@ -359,13 +355,13 @@ def create_dashboard_html():
     <div class="container">
         <header>
             <h1>CBB Rankings Dashboard</h1>
-            <p class="updated">Updated: <span id="update-time">Loading...</span></p>
+            <p class="updated">Updated (UTC-5): <span id="update-time">Loading...</span></p>
         </header>
-        
+
         <div class="search-container">
             <input type="text" id="search" placeholder="Search teams..." autocomplete="off">
         </div>
-        
+
         <div class="table-container">
             <table id="rankings-table">
                 <thead>
@@ -385,15 +381,14 @@ def create_dashboard_html():
                 </tbody>
             </table>
         </div>
-        
+
         <p class="stats" id="stats"></p>
     </div>
-    
+
     <script>
         let teamsData = [];
         let currentSort = { column: 'avg_rank', direction: 'asc' };
-        
-        // Fetch rankings data
+
         async function loadData() {
             try {
                 const response = await fetch('rankings.json');
@@ -404,30 +399,26 @@ def create_dashboard_html():
                 updateStats();
             } catch (error) {
                 console.error('Error loading data:', error);
-                document.getElementById('rankings-body').innerHTML = 
+                document.getElementById('rankings-body').innerHTML =
                     '<tr><td colspan="8" style="text-align: center; padding: 40px; color: #ff6b6b;">Error loading data. Please refresh.</td></tr>';
             }
         }
-        
-        // Render table
+
         function renderTable() {
             const searchTerm = document.getElementById('search').value.toLowerCase();
-            
-            let filtered = teamsData.filter(team => 
+
+            let filtered = teamsData.filter(team =>
                 team.team.toLowerCase().includes(searchTerm)
             );
-            
-            // Sort
+
             filtered.sort((a, b) => {
                 let aVal = a[currentSort.column];
                 let bVal = b[currentSort.column];
-                
-                // Handle null values - push to bottom
+
                 if (aVal === null && bVal === null) return 0;
                 if (aVal === null) return 1;
                 if (bVal === null) return -1;
-                
-                // String comparison for team names
+
                 if (currentSort.column === 'team' || currentSort.column === 'record') {
                     aVal = String(aVal).toLowerCase();
                     bVal = String(bVal).toLowerCase();
@@ -437,26 +428,25 @@ def create_dashboard_html():
                         return bVal.localeCompare(aVal);
                     }
                 }
-                
-                // Numeric comparison
+
                 if (currentSort.direction === 'asc') {
                     return aVal - bVal;
                 } else {
                     return bVal - aVal;
                 }
             });
-            
+
             const tbody = document.getElementById('rankings-body');
-            
+
             if (filtered.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 40px;">No teams found</td></tr>';
                 return;
             }
-            
+
             tbody.innerHTML = filtered.map(team => {
-                const rowClass = team.avg_rank && team.avg_rank <= 10 ? 'top-10' : 
+                const rowClass = team.avg_rank && team.avg_rank <= 10 ? 'top-10' :
                                  team.avg_rank && team.avg_rank <= 25 ? 'top-25' : '';
-                
+
                 return `
                     <tr class="${rowClass}">
                         <td class="team-name">${team.team}</td>
@@ -470,11 +460,10 @@ def create_dashboard_html():
                     </tr>
                 `;
             }).join('');
-            
+
             updateSortIndicators();
         }
-        
-        // Update sort indicators on headers
+
         function updateSortIndicators() {
             document.querySelectorAll('th').forEach(th => {
                 th.classList.remove('sort-asc', 'sort-desc');
@@ -483,18 +472,16 @@ def create_dashboard_html():
                 }
             });
         }
-        
-        // Update stats
+
         function updateStats() {
             const total = teamsData.length;
             const withAP = teamsData.filter(t => t.ap_rank).length;
-            document.getElementById('stats').textContent = 
+            document.getElementById('stats').textContent =
                 `Showing ${total} D1 teams | ${withAP} teams in AP Top 25`;
         }
-        
-        // Event listeners
+
         document.getElementById('search').addEventListener('input', renderTable);
-        
+
         document.querySelectorAll('th[data-sort]').forEach(th => {
             th.addEventListener('click', () => {
                 const column = th.dataset.sort;
@@ -507,50 +494,43 @@ def create_dashboard_html():
                 renderTable();
             });
         });
-        
-        // Load data on page load
+
         loadData();
     </script>
 </body>
 </html>'''
-    
+
     return html
 
 
 def main():
     print("Building site rankings...")
-    
-    # Load and standardize all data
+
     data = load_and_standardize_data()
-    
+
     if not data:
         print("No data loaded - cannot build rankings")
         return
-    
-    # Build master rankings
+
     master = build_master_rankings(data)
     print(f"Built master rankings with {len(master)} teams")
-    
-    # Save processed data
+
     os.makedirs('data_processed', exist_ok=True)
     master.to_csv('data_processed/site_rankings.csv', index=False)
     print("Saved data_processed/site_rankings.csv")
-    
-    # Create docs directory and outputs
+
     os.makedirs('docs', exist_ok=True)
-    
-    # Save JSON for dashboard
+
     dashboard_json = create_dashboard_json(master)
     with open('docs/rankings.json', 'w') as f:
         json.dump(dashboard_json, f, indent=2)
     print("Saved docs/rankings.json")
-    
-    # Save HTML dashboard
+
     html = create_dashboard_html()
     with open('docs/index.html', 'w') as f:
         f.write(html)
     print("Saved docs/index.html")
-    
+
     print("Done!")
 
 
