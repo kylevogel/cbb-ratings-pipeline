@@ -1,77 +1,65 @@
+import os
+import sys
+from datetime import datetime, timezone
+from io import StringIO
+
 import pandas as pd
 import requests
-import os
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-}
 
-def main():
+def fetch(url: str) -> str:
+    headers = {
+        "User-Agent": "Mozilla/5.0",
+        "Accept-Language": "en-US,en;q=0.9",
+    }
+    r = requests.get(url, headers=headers, timeout=30)
+    r.raise_for_status()
+    return r.text
+
+
+def main() -> int:
+    now = datetime.now(timezone.utc)
     url = "https://www.espn.com/mens-college-basketball/rankings"
-    print(f"Fetching AP rankings from {url}...")
 
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=15)
-        r.raise_for_status()
-        
-        tables = pd.read_html(r.text)
-        if not tables:
-            print("No tables found for AP Poll.")
-            return
+    html = fetch(url)
+    tables = pd.read_html(StringIO(html))
 
-        # Find the correct table by looking for specific headers
-        df = None
-        for t in tables:
-            # Check if columns indicate a ranking table (Record, Pts, Trend)
-            # Convert columns to string to be safe
-            cols = [str(c).lower() for c in t.columns]
-            if any("rec" in c for c in cols) and any("pts" in c for c in cols):
-                df = t
-                break
-        
-        if df is None:
-            # Fallback to first table if search fails
-            print("Could not identify AP table by headers. Falling back to table[0].")
-            df = tables[0]
+    target = None
+    best_score = -1
+    for t in tables:
+        cols = [str(c).strip().lower() for c in t.columns]
+        score = 0
+        score += 2 if ("rk" in cols or "rank" in cols) else 0
+        score += 2 if ("team" in cols or "school" in cols) else 0
+        score += 1 if "record" in cols else 0
+        if score > best_score:
+            best_score = score
+            target = t
+    if target is None or best_score < 3:
+        raise RuntimeError("Could not find AP-style table on ESPN rankings page")
 
-        # Standardize Columns
-        # ESPN tables often have unnamed columns for Rank. 
-        # Typically: RK, Team, REC, PTS, TREND
-        # We rename the first column to 'AP_Rank' and second to 'Team'
-        
-        # Ensure we have enough columns
-        if len(df.columns) < 2:
-            print("Table found but has fewer than 2 columns.")
-            return
+    col_map = {str(c).strip().lower(): c for c in target.columns}
+    rk_col = col_map.get("rk") or col_map.get("rank")
+    team_col = col_map.get("team") or col_map.get("school")
 
-        df = df.rename(columns={df.columns[0]: "AP_Rank", df.columns[1]: "Team"})
-        
-        # Clean Data
-        df["Team"] = df["Team"].astype(str)
-        # Remove record like "(10-2)"
-        df["Team"] = df["Team"].str.replace(r"\s*\(\d+-\d+\).*", "", regex=True)
-        # Remove leading rank number like "1 Kansas"
-        df["Team"] = df["Team"].str.replace(r"^\d+\s+", "", regex=True)
-        # Strip whitespace
-        df["Team"] = df["Team"].str.strip()
+    out = pd.DataFrame(
+        {
+            "ap_name": target[team_col].astype(str).str.strip(),
+            "ap": pd.to_numeric(target[rk_col], errors="coerce").astype("Int64"),
+            "source_url": url,
+            "updated_at_utc": now.isoformat().replace("+00:00", "Z"),
+        }
+    ).dropna(subset=["ap_name", "ap"])
 
-        # Ensure Rank is valid (sometimes it's "RV" or empty)
-        # We only want the top 25 integers
-        df["AP_Rank"] = pd.to_numeric(df["AP_Rank"], errors="coerce")
-        df = df.dropna(subset=["AP_Rank"])
-        df["AP_Rank"] = df["AP_Rank"].astype(int)
+    os.makedirs("data_raw", exist_ok=True)
+    out.to_csv("data_raw/ap.csv", index=False)
+    print(f"Wrote {len(out)} rows -> data_raw/ap.csv")
+    return 0
 
-        out_df = df[["Team", "AP_Rank"]].copy()
-        out_df["snapshot_date"] = pd.Timestamp.now().strftime("%Y-%m-%d")
-        
-        os.makedirs("data_raw", exist_ok=True)
-        out_path = os.path.join("data_raw", "AP_Rank.csv")
-        out_df.to_csv(out_path, index=False)
-        
-        print(f"Successfully wrote {len(out_df)} rows to {out_path}")
-
-    except Exception as e:
-        print(f"Error updating AP: {e}")
 
 if __name__ == "__main__":
-    main()
+    try:
+        raise SystemExit(main())
+    except Exception as e:
+        print(f"update_ap_rank failed: {e}", file=sys.stderr)
+        raise
