@@ -124,7 +124,7 @@ def build_master_rankings(data):
     has_ranking = master["net_rank"].notna() | master["kenpom_rank"].notna() | master["bpi_rank"].notna()
     master = master[has_ranking].reset_index(drop=True)
 
-    master["avg_rank"] = master["avg_value"].rank(method="dense", ascending=True).astype("Int64")
+    master["avg_rank"] = master["avg_value"].rank(method="min", ascending=True).astype("Int64")
 
     master = master.sort_values(["avg_rank", "avg_value", "team"], na_position="last").reset_index(drop=True)
     return master
