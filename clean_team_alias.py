@@ -1,144 +1,110 @@
 #!/usr/bin/env python3
-"""
-Utility functions for standardizing team names across different data sources.
-"""
-
-import pandas as pd
 import os
 import re
+import unicodedata
+import pandas as pd
+
+TEAM_ALIAS_PATH = "team_alias.csv"
 
 
-def load_team_alias():
-    alias_path = os.path.join(os.path.dirname(__file__), "team_alias.csv")
-    if os.path.exists(alias_path):
-        return pd.read_csv(alias_path)
-    return None
+def _strip_diacritics(s: str) -> str:
+    s = unicodedata.normalize("NFKD", s)
+    return "".join(ch for ch in s if not unicodedata.combining(ch))
 
 
-def normalize_team_name(name):
-    if pd.isna(name):
-        return None
+def _normalize_text(x) -> str:
+    if x is None or (isinstance(x, float) and pd.isna(x)):
+        return ""
+    s = str(x)
+    s = s.replace("\u2019", "'").replace("\u2018", "'").replace("\u201c", '"').replace("\u201d", '"')
+    s = _strip_diacritics(s)
+    s = re.sub(r"\s+", " ", s).strip()
+    return s
 
-    name = str(name).strip()
 
-    name = re.sub(r"\s*\(\d+-\d+\)\s*$", "", name)
-    name = re.sub(r"\s*#\d+\s*", "", name)
-    name = re.sub(r"^\d+\s+", "", name)
-    name = re.sub(r"\s+", " ", name).strip()
+def _clean_bpi_team_name(raw) -> str:
+    s = _normalize_text(raw)
 
-    m = re.match(r"^(.+?)([A-Z]{2,6})$", name)
+    if not s:
+        return s
+
+    s = re.sub(r"\bA&\b", "A&M", s)
+
+    s_nospace = s.replace(" ", "")
+    if len(s_nospace) >= 6 and len(s_nospace) % 2 == 0:
+        half = len(s_nospace) // 2
+        if s_nospace[:half].upper() == s_nospace[half:].upper():
+            return s_nospace[:half]
+
+    m = re.match(r"^(.*?)([A-Z][A-Z0-9&'.-]{1,6})$", s)
     if m:
-        base, abbr = m.group(1), m.group(2)
-        if base.upper().endswith(abbr):
-            name = base
-        elif any(ch.islower() for ch in base) or any(ch in base for ch in " .&'()-"):
-            name = base
-        elif len(name) > 8:
-            name = base
+        base = m.group(1).strip()
+        if len(base) >= 3:
+            s = base
 
-    replacements = {
-        "St.": "State",
-        "Univ.": "",
-        "University": "",
-        "  ": " ",
-    }
-
-    for old, new in replacements.items():
-        name = name.replace(old, new)
-
-    return re.sub(r"\s+", " ", name).strip()
+    s = re.sub(r"\s+", " ", s).strip()
+    return s
 
 
-def create_name_lookup(alias_df, source_column):
-    if alias_df is None:
-        return {}
-
-    lookup = {}
-    for _, row in alias_df.iterrows():
-        canonical = row.get("canonical", "")
-        source_name = row.get(source_column, "")
-
-        if pd.notna(canonical) and canonical:
-            if pd.notna(source_name) and str(source_name).strip():
-                raw = str(source_name).strip()
-                lookup[raw] = canonical
-                lookup[raw.lower()] = canonical
-
-                norm = normalize_team_name(raw)
-                if norm:
-                    lookup[norm] = canonical
-                    lookup[norm.lower()] = canonical
-
-    return lookup
+def _clean_generic_team_name(raw) -> str:
+    s = _normalize_text(raw)
+    if not s:
+        return s
+    s = re.sub(r"\s+", " ", s).strip()
+    return s
 
 
-def standardize_team_names(df, team_column, source="espn"):
-    alias_df = load_team_alias()
+def load_team_alias(path: str = TEAM_ALIAS_PATH) -> pd.DataFrame:
+    if not os.path.exists(path):
+        return pd.DataFrame()
+    df = pd.read_csv(path)
 
-    source_col_map = {
-        "espn": "espn",
-        "net": "net",
-        "kenpom": "kenpom",
-        "bpi": "bpi",
-        "ap": "ap",
-        "sos": "sos",
-        "warrennolan": "warrennolan",
-    }
+    df.columns = [c.strip() for c in df.columns]
+    return df
 
-    source_col = source_col_map.get(source, source)
 
-    lookup = create_name_lookup(alias_df, source_col)
-
-    if source == "bpi":
-        lookup_espn = create_name_lookup(alias_df, "espn")
-        for k, v in lookup_espn.items():
-            if k not in lookup:
-                lookup[k] = v
-
-    def get_canonical(name):
-        if pd.isna(name):
-            return None
-
-        name_str = str(name).strip()
-
-        if name_str in lookup:
-            return lookup[name_str]
-        if name_str.lower() in lookup:
-            return lookup[name_str.lower()]
-
-        normalized = normalize_team_name(name_str)
-        if normalized and normalized in lookup:
-            return lookup[normalized]
-        if normalized and normalized.lower() in lookup:
-            return lookup[normalized.lower()]
-
-        return name_str
-
+def standardize_team_names(df: pd.DataFrame, source_col: str, source: str, alias_df: pd.DataFrame | None = None) -> pd.DataFrame:
     out = df.copy()
-    out["team"] = out[team_column].apply(get_canonical)
-    return out
 
+    if source_col not in out.columns:
+        raise ValueError(f"Column '{source_col}' not found in df")
 
-def get_unmatched_teams(df, team_column, source="espn"):
-    alias_df = load_team_alias()
     if alias_df is None:
-        return df[team_column].unique().tolist()
+        alias_df = load_team_alias()
 
-    canonical_names = set(alias_df["canonical"].dropna().unique())
-    standardized = standardize_team_names(df, team_column, source)
+    if not alias_df.empty:
+        canonical_col = None
+        for cand in ["team", "canonical_team", "canonical"]:
+            if cand in alias_df.columns:
+                canonical_col = cand
+                break
+        if canonical_col is None:
+            canonical_col = alias_df.columns[0]
 
-    unmatched = []
-    for orig, std in zip(df[team_column], standardized["team"]):
-        if std not in canonical_names:
-            unmatched.append({"original": orig, "attempted_match": std})
+        source_col_in_alias = source if source in alias_df.columns else None
 
-    return pd.DataFrame(unmatched).drop_duplicates()
+        name_to_canonical: dict[str, str] = {}
 
+        for _, row in alias_df.iterrows():
+            canonical = _clean_generic_team_name(row.get(canonical_col, ""))
+            if not canonical:
+                continue
 
-if __name__ == "__main__":
-    alias_df = load_team_alias()
-    if alias_df is not None:
-        print(f"Loaded {len(alias_df)} team aliases")
-        print(f"Columns: {alias_df.columns.tolist()}")
+            name_to_canonical[_clean_generic_team_name(canonical).lower()] = canonical
+
+            if source_col_in_alias:
+                raw_alias = row.get(source_col_in_alias, "")
+                if raw_alias is not None and not (isinstance(raw_alias, float) and pd.isna(raw_alias)):
+                    alias_clean = _clean_generic_team_name(raw_alias)
+                    if alias_clean:
+                        name_to_canonical[alias_clean.lower()] = canonical
     else:
-        print("Could not load team alias file")
+        name_to_canonical = {}
+
+    if source.lower() == "bpi":
+        cleaned = out[source_col].apply(_clean_bpi_team_name)
+    else:
+        cleaned = out[source_col].apply(_clean_generic_team_name)
+
+    out["team"] = cleaned.apply(lambda s: name_to_canonical.get(_clean_generic_team_name(s).lower(), s))
+    return out
