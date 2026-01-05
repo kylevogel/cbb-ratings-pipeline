@@ -2,9 +2,8 @@ name: Update CBB Rankings
 
 on:
   schedule:
-    # Run every hour on the hour
     - cron: '0 * * * *'
-  workflow_dispatch:  # Allow manual trigger
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -36,22 +35,14 @@ jobs:
       - name: Run pipeline
         run: python update_all.py
       
-      - name: List generated files
-        run: |
-          echo "=== docs/ folder ==="
-          ls -la docs/
-          echo "=== data_raw/ folder ==="
-          ls -la data_raw/
-          echo "=== data_processed/ folder ==="
-          ls -la data_processed/
-      
       - name: Commit and push changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add docs/
-          git add data_raw/
-          git add data_processed/
+          git add --force docs/index.html
+          git add --force docs/rankings.json
+          git add --force data_raw/
+          git add --force data_processed/
           git status
           git diff --staged --quiet || git commit -m "Update rankings data $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push
