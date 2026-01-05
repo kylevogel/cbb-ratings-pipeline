@@ -147,10 +147,18 @@
         backdrop-filter: blur(6px);
         z-index: 1;
         font-weight: 600;
+        cursor: pointer;
+        user-select: none;
       }
 
       thead th.num {
         text-align: right;
+      }
+
+      thead th .sort-ind {
+        opacity: 0.5;
+        margin-left: 6px;
+        font-size: 11px;
       }
 
       tbody td {
@@ -260,14 +268,14 @@
       <table>
         <thead>
           <tr>
-            <th class="team-col">Team</th>
-            <th class="record-col">Record</th>
-            <th class="num avg-col">Avg of Net/KenPom/BPI</th>
-            <th class="num ap-col">AP</th>
-            <th class="num net-col">NET</th>
-            <th class="num kp-col">KenPom</th>
-            <th class="num bpi-col">BPI</th>
-            <th class="num sos-col">SoS</th>
+            <th class="team-col" data-key="Team">Team<span class="sort-ind" data-ind="Team"></span></th>
+            <th class="record-col" data-key="Record">Record<span class="sort-ind" data-ind="Record"></span></th>
+            <th class="num avg-col" data-key="AVG">Avg of Net/KenPom/BPI<span class="sort-ind" data-ind="AVG"></span></th>
+            <th class="num ap-col" data-key="AP">AP<span class="sort-ind" data-ind="AP"></span></th>
+            <th class="num net-col" data-key="NET">NET<span class="sort-ind" data-ind="NET"></span></th>
+            <th class="num kp-col" data-key="KenPom">KenPom<span class="sort-ind" data-ind="KenPom"></span></th>
+            <th class="num bpi-col" data-key="BPI">BPI<span class="sort-ind" data-ind="BPI"></span></th>
+            <th class="num sos-col" data-key="SoS">SoS<span class="sort-ind" data-ind="SoS"></span></th>
           </tr>
         </thead>
         <tbody id="tbody"></tbody>
@@ -325,6 +333,57 @@
         }));
       };
 
+      const normalizeRowForSort = (r) => {
+        const sos = r.SoS ?? r.SoSa ?? r.SOS ?? r.sos;
+        return { ...r, SoS: sos };
+      };
+
+      const getSortValue = (row, key) => {
+        const r = normalizeRowForSort(row);
+
+        if (key === "AVG") {
+          const v = r.AVG;
+          const n = asNum(v);
+          return n === null ? "NR" : n;
+        }
+
+        if (key === "SoS") {
+          const n = asNum(r.SoS);
+          return n === null ? "NR" : n;
+        }
+
+        if (key === "AP" || key === "NET" || key === "KenPom" || key === "BPI") {
+          const n = asNum(r[key]);
+          return n === null ? "NR" : n;
+        }
+
+        return String(r[key] ?? "");
+      };
+
+      const isNumericKey = (key) => {
+        return key === "AVG" || key === "AP" || key === "NET" || key === "KenPom" || key === "BPI" || key === "SoS";
+      };
+
+      const compare = (a, b, key) => {
+        const va = getSortValue(a, key);
+        const vb = getSortValue(b, key);
+
+        const aNR = va === "NR";
+        const bNR = vb === "NR";
+        if (aNR && bNR) return 0;
+        if (aNR) return 1;
+        if (bNR) return -1;
+
+        if (isNumericKey(key)) {
+          if (va !== vb) return va - vb;
+          return String(a.Team ?? "").localeCompare(String(b.Team ?? ""));
+        }
+
+        const c = String(va).localeCompare(String(vb), undefined, { numeric: true, sensitivity: "base" });
+        if (c !== 0) return c;
+        return String(a.Team ?? "").localeCompare(String(b.Team ?? ""));
+      };
+
       const render = (rows) => {
         const tbody = document.getElementById("tbody");
         tbody.innerHTML = "";
@@ -350,14 +409,39 @@
       };
 
       let allRows = [];
+      let sortKey = "Team";
+      let sortDir = "asc"; // asc | desc
 
-      const applyFilter = () => {
+      const applyFilterAndSort = () => {
         const q = document.getElementById("search").value.trim().toLowerCase();
-        if (!q) return render(allRows);
-        render(allRows.filter((r) => String(r.Team ?? "").toLowerCase().includes(q)));
+        const filtered = !q
+          ? [...allRows]
+          : allRows.filter((r) => String(r.Team ?? "").toLowerCase().includes(q));
+
+        filtered.sort((a, b) => compare(a, b, sortKey));
+        if (sortDir === "desc") filtered.reverse();
+
+        render(filtered);
+        document.getElementById("count").textContent = `${filtered.length} teams`;
+
+        document.querySelectorAll(".sort-ind").forEach((el) => (el.textContent = ""));
+        const ind = document.querySelector(`.sort-ind[data-ind="${sortKey}"]`);
+        if (ind) ind.textContent = sortDir === "asc" ? "▲" : "▼";
       };
 
-      document.getElementById("search").addEventListener("input", applyFilter);
+      document.getElementById("search").addEventListener("input", applyFilterAndSort);
+
+      document.querySelectorAll("thead th[data-key]").forEach((th) => {
+        th.addEventListener("click", () => {
+          const key = th.getAttribute("data-key");
+          if (sortKey === key) sortDir = sortDir === "asc" ? "desc" : "asc";
+          else {
+            sortKey = key;
+            sortDir = "asc";
+          }
+          applyFilterAndSort();
+        });
+      });
 
       fetch("data/rankings_current.json", { cache: "no-store" })
         .then((r) => r.json())
@@ -367,7 +451,10 @@
 
           const rows = Array.isArray(data.rows) ? data.rows : [];
           allRows = computeAvgRank(rows);
-          render(allRows);
+
+          sortKey = "Team";
+          sortDir = "asc";
+          applyFilterAndSort();
         })
         .catch(() => {
           document.getElementById("updated").textContent = "(failed to load data)";
