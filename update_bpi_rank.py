@@ -6,109 +6,136 @@ Outputs: data_raw/bpi_rankings.csv
 
 import os
 import re
-from datetime import datetime
-
-import pandas as pd
 import requests
-from bs4 import BeautifulSoup
+import pandas as pd
 
 
-def _current_season_end_year_utc() -> int:
-    now = datetime.utcnow()
-    return now.year + 1 if now.month >= 10 else now.year
+BASE_URL = "https://www.espn.com/mens-college-basketball/bpi"
+UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
 
-def _pick_bpi_table(soup: BeautifulSoup):
-    tables = soup.find_all("table")
-    for table in tables:
-        headers = [th.get_text(" ", strip=True).upper() for th in table.find_all("th")]
-        if any("BPI RK" in h for h in headers) or any("BPI" == h for h in headers):
-            return table
+def _page_url(page: int) -> str:
+    if page <= 1:
+        return BASE_URL
+    return f"{BASE_URL}/_/view/bpi/page/{page}"
+
+
+def _pick_bpi_table(tables):
+    for t in tables:
+        cols = [str(c).strip().lower() for c in t.columns]
+        has_team = any("team" in c for c in cols)
+        has_bpi = any("bpi" in c for c in cols)
+        if has_team and has_bpi and len(t) > 0:
+            return t
     return None
 
 
-def scrape_bpi_rankings(season_end_year: int | None = None) -> pd.DataFrame | None:
-    season = season_end_year or _current_season_end_year_utc()
-    url = f"https://www.espn.com/mens-college-basketball/bpi/_/season/{season}"
+def _find_col(df, candidates):
+    cols = list(df.columns)
+    cols_l = [str(c).strip().lower() for c in cols]
+    for cand in candidates:
+        for i, c in enumerate(cols_l):
+            if c == cand or c.replace(" ", "") == cand.replace(" ", ""):
+                return cols[i]
+    for cand in candidates:
+        for i, c in enumerate(cols_l):
+            if cand in c:
+                return cols[i]
+    return None
 
-    headers = {
-        "User-Agent": (
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        )
-    }
 
-    resp = requests.get(url, headers=headers, timeout=30)
-    resp.raise_for_status()
-
-    soup = BeautifulSoup(resp.text, "html.parser")
-
-    table = _pick_bpi_table(soup)
-    if table is None:
-        return None
-
-    header_cells = table.find_all("th")
-    header_text = [h.get_text(" ", strip=True).upper() for h in header_cells]
-    bpi_rk_idx = None
-    for i, h in enumerate(header_text):
-        if "BPI RK" in h or h == "RK":
-            bpi_rk_idx = i
-            break
+def scrape_bpi_rankings(max_pages: int = 25) -> pd.DataFrame | None:
+    headers = {"User-Agent": UA}
 
     rows = []
-    for tr in table.find_all("tr"):
-        a = tr.find("a", href=re.compile(r"/mens-college-basketball/team/_/id/"))
-        if a is None:
-            continue
+    seen_team = set()
+    seen_rank = set()
 
-        team_name = a.get_text(" ", strip=True)
-        if not team_name:
-            continue
+    for page in range(1, max_pages + 1):
+        url = _page_url(page)
 
-        tds = tr.find_all(["td", "th"])
-        cell_text = [td.get_text(" ", strip=True) for td in tds]
+        try:
+            r = requests.get(url, headers=headers, timeout=30)
+            r.raise_for_status()
+        except Exception as e:
+            print(f"Request failed on page {page}: {e}")
+            break
 
-        rank_val = None
-        if bpi_rk_idx is not None and bpi_rk_idx < len(cell_text):
-            candidate = cell_text[bpi_rk_idx]
-            if re.fullmatch(r"\d{1,3}", candidate or ""):
-                rank_val = int(candidate)
+        try:
+            tables = pd.read_html(r.text)
+        except Exception as e:
+            print(f"read_html failed on page {page}: {e}")
+            break
 
-        if rank_val is None:
-            nums = [int(x) for x in cell_text if re.fullmatch(r"\d{1,3}", x or "")]
-            if nums:
-                rank_val = nums[-1]
+        t = _pick_bpi_table(tables)
+        if t is None or t.empty:
+            break
 
-        if rank_val is None:
-            continue
+        rank_col = _find_col(t, ["rk", "rank", "#", "rnk"])
+        team_col = _find_col(t, ["team"])
 
-        rows.append({"bpi_rank": rank_val, "team_bpi": team_name})
+        if team_col is None:
+            print(f"Could not find Team column on page {page}")
+            break
+
+        new_count = 0
+        for _, rec in t.iterrows():
+            team = rec.get(team_col)
+            if pd.isna(team):
+                continue
+
+            team = str(team).strip()
+            if not team or team.lower() == "team":
+                continue
+
+            rank_val = None
+            if rank_col is not None and pd.notna(rec.get(rank_col)):
+                s = re.sub(r"[^\d]", "", str(rec.get(rank_col)))
+                if s.isdigit():
+                    rank_val = int(s)
+
+            if rank_val is None:
+                continue
+
+            if team in seen_team:
+                continue
+            if rank_val in seen_rank:
+                continue
+
+            rows.append({"bpi_rank": rank_val, "team_bpi": team})
+            seen_team.add(team)
+            seen_rank.add(rank_val)
+            new_count += 1
+
+        if new_count == 0:
+            break
 
     if not rows:
         return None
 
-    df = pd.DataFrame(rows).drop_duplicates(subset=["team_bpi"]).sort_values("bpi_rank")
-    return df.reset_index(drop=True)
+    df = pd.DataFrame(rows)
+    df = df.dropna()
+    df["bpi_rank"] = pd.to_numeric(df["bpi_rank"], errors="coerce")
+    df = df.dropna()
+    df["bpi_rank"] = df["bpi_rank"].astype(int)
+    df = df.sort_values("bpi_rank").drop_duplicates(subset=["bpi_rank"])
+    return df
 
 
 def main():
-    print("Fetching ESPN BPI rankings...")
-    try:
-        df = scrape_bpi_rankings()
-    except Exception as e:
-        print(f"Error scraping BPI: {e}")
-        return
+    print("Fetching ESPN BPI rankings (all pages)...")
+    df = scrape_bpi_rankings()
 
-    if df is None or df.empty:
+    if df is not None and not df.empty:
+        os.makedirs("data_raw", exist_ok=True)
+        df.to_csv("data_raw/bpi_rankings.csv", index=False)
+        print(f"Saved {len(df)} BPI rankings to data_raw/bpi_rankings.csv")
+        print("Top 10:")
+        print(df.head(10).to_string(index=False))
+        print("Bottom 10:")
+        print(df.tail(10).to_string(index=False))
+    else:
         print("Failed to fetch BPI rankings")
-        return
-
-    if len(df) < 300:
-        print(f"Warning: only scraped {len(df)} teams (expected ~360+). ESPN page may have changed.")
-
-    os.makedirs("data_raw", exist_ok=True)
-    df.to_csv("data_raw/bpi_rankings.csv", index=False)
-    print(f"Saved {len(df)} BPI rankings to data_raw/bpi_rankings.csv")
 
 
 if __name__ == "__main__":
