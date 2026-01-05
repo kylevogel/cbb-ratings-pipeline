@@ -6,63 +6,12 @@ Outputs: data_raw/bpi_rankings.csv
 
 import requests
 import pandas as pd
+from bs4 import BeautifulSoup
 import os
 import re
 
 def scrape_bpi_rankings():
-    """Scrape BPI rankings from ESPN API."""
-    
-    # ESPN BPI API endpoint
-    url = "https://site.web.api.espn.com/apis/fitt/v3/sports/basketball/mens-college-basketball/powerindex"
-    
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-    }
-    
-    params = {
-        'region': 'us',
-        'lang': 'en',
-        'limit': 400
-    }
-    
-    try:
-        response = requests.get(url, headers=headers, params=params, timeout=30)
-        response.raise_for_status()
-        
-        data = response.json()
-        
-        rows = []
-        teams = data.get('teams', [])
-        
-        for team in teams:
-            team_info = team.get('team', {})
-            team_name = team_info.get('displayName', team_info.get('name', ''))
-            
-            # Get BPI rank
-            bpi_rank = team.get('rank', None)
-            
-            if team_name and bpi_rank:
-                rows.append({
-                    'bpi_rank': int(bpi_rank),
-                    'team_bpi': team_name
-                })
-        
-        if rows:
-            df = pd.DataFrame(rows)
-            df = df.sort_values('bpi_rank').reset_index(drop=True)
-            return df
-        else:
-            print("No BPI data found in API response")
-            return None
-            
-    except Exception as e:
-        print(f"Error fetching BPI from API: {e}")
-        # Try alternate scraping method
-        return scrape_bpi_fallback()
-
-
-def scrape_bpi_fallback():
-    """Fallback scraping from ESPN website."""
+    """Scrape BPI rankings from ESPN."""
     url = "https://www.espn.com/mens-college-basketball/bpi"
     
     headers = {
@@ -70,36 +19,39 @@ def scrape_bpi_fallback():
     }
     
     try:
-        from bs4 import BeautifulSoup
-        
         response = requests.get(url, headers=headers, timeout=30)
         response.raise_for_status()
         
         soup = BeautifulSoup(response.text, 'html.parser')
         
         rows = []
-        # Look for table rows with team data
-        for tr in soup.find_all('tr'):
-            cells = tr.find_all(['td', 'th'])
-            if len(cells) >= 2:
-                rank_text = cells[0].get_text(strip=True)
-                team_text = cells[1].get_text(strip=True)
-                
-                rank = re.sub(r'[^\d]', '', rank_text)
-                
-                if rank and team_text and not team_text.lower() in ['team', 'rank']:
-                    rows.append({
-                        'bpi_rank': int(rank),
-                        'team_bpi': team_text
-                    })
+        
+        # Find all team links - ESPN lists teams in BPI order
+        team_links = soup.find_all('a', href=re.compile(r'/mens-college-basketball/team/_/id/'))
+        
+        seen_teams = set()
+        rank = 1
+        for link in team_links:
+            team_name = link.get_text(strip=True)
+            if team_name and team_name not in seen_teams and len(team_name) > 2:
+                seen_teams.add(team_name)
+                rows.append({
+                    'bpi_rank': rank,
+                    'team_bpi': team_name
+                })
+                rank += 1
         
         if rows:
             df = pd.DataFrame(rows)
             return df
-        return None
-        
+        else:
+            print("No BPI data found")
+            return None
+            
     except Exception as e:
-        print(f"Error in BPI fallback scraping: {e}")
+        print(f"Error scraping BPI: {e}")
+        import traceback
+        traceback.print_exc()
         return None
 
 
