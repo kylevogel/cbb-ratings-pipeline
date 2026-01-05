@@ -1,166 +1,209 @@
 import os
-import sys
 from datetime import datetime, timezone
-from typing import Dict, Optional, Tuple
+from typing import Dict, Tuple, Optional
 
 import pandas as pd
 
-ALIAS_CANDIDATES = ["team_alias.csv", "data_raw/team_alias.csv"]
-GAMES_PATH = "data_processed/games_with_ranks.csv"
+
+ALIAS_PATHS = ["team_alias.csv", "data_raw/team_alias.csv"]
+GAMES_PATHS = [
+    "data_processed/games_with_ranks.csv",
+    "data_raw/games_2024.csv",
+    "data_raw/games.csv",
+]
 
 OUT_CSV = "docs/rankings.csv"
-OUT_JSON = "docs/rankings.json"
 OUT_UPDATED = "docs/last_updated.csv"
+OUT_JSON = "docs/rankings.json"
 
 
-def _first_existing(paths):
+def first_existing(paths):
     for p in paths:
         if os.path.exists(p):
             return p
     return None
 
 
-def _read_alias() -> pd.DataFrame:
-    p = _first_existing(ALIAS_CANDIDATES)
+def normalize_columns(cols):
+    out = []
+    for c in cols:
+        s = str(c).replace("\ufeff", "").strip()
+        out.append(s)
+    return out
+
+
+def read_alias() -> pd.DataFrame:
+    p = first_existing(ALIAS_PATHS)
     if not p:
-        raise RuntimeError("Could not find team_alias.csv (expected at repo root or data_raw/)")
-    df = pd.read_csv(p, dtype=str).fillna("")
-    if "standard_name" not in df.columns:
-        raise RuntimeError("team_alias.csv must include a standard_name column")
+        raise RuntimeError("Could not find team_alias.csv")
+
+    df = pd.read_csv(p, dtype=str, encoding="utf-8-sig").fillna("")
+    df.columns = normalize_columns(df.columns)
+
+    lower_map = {c.lower().strip(): c for c in df.columns}
+
+    std_col = None
+    for key in ["standard_name", "standard name", "standard", "team", "school", "name"]:
+        if key in lower_map:
+            std_col = lower_map[key]
+            break
+    if std_col is None:
+        std_col = df.columns[0]
+
+    df = df.rename(columns={std_col: "standard_name"})
     df["standard_name"] = df["standard_name"].astype(str).str.strip()
     df = df[df["standard_name"].str.len() > 0].copy()
     df = df.drop_duplicates(subset=["standard_name"], keep="first").reset_index(drop=True)
     return df
 
 
-def _guess_team_rank_cols(df: pd.DataFrame) -> Tuple[str, str]:
+def build_lookup(alias: pd.DataFrame) -> Dict[str, str]:
+    lookup = {}
+    for _, row in alias.iterrows():
+        std = str(row["standard_name"]).strip()
+        if not std:
+            continue
+        lookup[std] = std
+        for c in alias.columns:
+            v = str(row.get(c, "")).strip()
+            if v:
+                lookup[v] = std
+    return lookup
+
+
+def load_rank_csv(path: str) -> pd.DataFrame:
+    if not os.path.exists(path):
+        return pd.DataFrame(columns=["name", "rank"])
+
+    df = pd.read_csv(path, dtype=str, encoding="utf-8-sig").fillna("")
+    df.columns = normalize_columns(df.columns)
     cols = list(df.columns)
-    team_col = None
+
+    name_col = None
     rank_col = None
+
     for c in cols:
-        if "team" in str(c).lower() or str(c).lower().endswith("_name"):
-            team_col = c
+        lc = c.lower().strip()
+        if lc.endswith("_name") or lc in ["team", "school", "name"]:
+            name_col = c
             break
+    if name_col is None and cols:
+        name_col = cols[0]
+
     for c in cols:
-        lc = str(c).lower()
-        if "rank" in lc or lc in {"rk"}:
+        lc = c.lower().strip()
+        if lc.endswith("_rank") or lc in ["rank", "rk"]:
             rank_col = c
             break
-    if team_col is None or rank_col is None:
-        raise RuntimeError(f"Could not infer team/rank cols from {cols}")
-    return team_col, rank_col
+    if rank_col is None and len(cols) >= 2:
+        rank_col = cols[1]
 
-
-def _load_rank(path: str) -> Optional[pd.DataFrame]:
-    if not os.path.exists(path):
-        return None
-    df = pd.read_csv(path, dtype=str).fillna("")
-    if df.empty:
-        return df
-    team_col, rank_col = _guess_team_rank_cols(df)
     out = pd.DataFrame()
-    out["name"] = df[team_col].astype(str).str.strip()
+    out["name"] = df[name_col].astype(str).str.strip()
     out["rank"] = pd.to_numeric(df[rank_col], errors="coerce")
-    out = out.dropna(subset=["name"]).drop_duplicates(subset=["name"])
+    out = out.dropna(subset=["name", "rank"])
     out = out[out["name"].str.len() > 0]
-    out = out.dropna(subset=["rank"])
     out["rank"] = out["rank"].astype(int)
-    return out.reset_index(drop=True)
+    out = out.drop_duplicates(subset=["name"], keep="first").reset_index(drop=True)
+    return out
 
 
-def _record_from_games(games: pd.DataFrame) -> pd.DataFrame:
-    g = games.copy()
-    if "Team" not in g.columns or "Win?" not in g.columns:
-        return pd.DataFrame(columns=["team", "record"])
-    g["Team"] = g["Team"].astype(str).str.strip()
-    g["Win?"] = g["Win?"].astype(str).str.strip().str.upper()
-    wins = g[g["Win?"] == "W"].groupby("Team").size()
-    losses = g[g["Win?"] == "L"].groupby("Team").size()
-    teams = sorted(set(g["Team"].dropna().tolist()))
-    rows = []
-    for t in teams:
-        w = int(wins.get(t, 0))
-        l = int(losses.get(t, 0))
-        rows.append((t, f"{w}-{l}"))
-    return pd.DataFrame(rows, columns=["team", "record"])
+def compute_records(games: pd.DataFrame, lookup: Dict[str, str]) -> Dict[str, str]:
+    if games.empty:
+        return {}
+
+    games.columns = normalize_columns(games.columns)
+
+    if "Team" in games.columns and "Win?" in games.columns:
+        t = games.copy()
+        t["Team"] = t["Team"].astype(str).str.strip().map(lambda x: lookup.get(x, x))
+        w = t["Win?"].astype(str).str.strip().str.upper()
+
+        wins = t[w == "W"].groupby("Team").size()
+        losses = t[w == "L"].groupby("Team").size()
+
+        out = {}
+        for team in set(t["Team"].dropna().tolist()):
+            ww = int(wins.get(team, 0))
+            ll = int(losses.get(team, 0))
+            out[team] = f"{ww}-{ll}"
+        return out
+
+    return {}
 
 
 def main() -> int:
-    alias = _read_alias()
-    standard = alias["standard_name"].tolist()
+    alias = read_alias()
+    lookup = build_lookup(alias)
 
-    if os.path.exists(GAMES_PATH):
-        games = pd.read_csv(GAMES_PATH, dtype=str).fillna("")
-    else:
-        games = pd.DataFrame()
+    games_path = first_existing(GAMES_PATHS)
+    games = pd.read_csv(games_path, dtype=str).fillna("") if games_path else pd.DataFrame()
+    record_map = compute_records(games, lookup)
 
-    rec = _record_from_games(games)
+    net_df = load_rank_csv("data_raw/net.csv")
+    kp_df = load_rank_csv("data_raw/kenpom.csv")
+    bpi_df = load_rank_csv("data_raw/bpi.csv")
+    ap_df = load_rank_csv("data_raw/ap.csv")
+    sos_df = load_rank_csv("data_raw/sos.csv")
 
-    net = _load_rank("data_raw/net.csv")
-    kenpom = _load_rank("data_raw/kenpom.csv")
-    bpi = _load_rank("data_raw/bpi.csv")
-    sos = _load_rank("data_raw/sos.csv")
-    ap = _load_rank("data_raw/ap.csv")
+    def to_map(df: pd.DataFrame) -> Dict[str, int]:
+        return {str(r["name"]).strip(): int(r["rank"]) for _, r in df.iterrows()}
 
-    def map_rank(rank_df: Optional[pd.DataFrame], name_col: str) -> Dict[str, Optional[int]]:
-        if rank_df is None or rank_df.empty:
-            return {}
-        src_to_rank = dict(zip(rank_df["name"], rank_df["rank"]))
-        m = {}
-        if name_col in alias.columns:
-            for _, row in alias.iterrows():
-                s = row["standard_name"]
-                src = str(row.get(name_col, "")).strip()
-                if src and src in src_to_rank:
-                    m[s] = int(src_to_rank[src])
-        return m
+    net_map_src = to_map(net_df)
+    kp_map_src = to_map(kp_df)
+    bpi_map_src = to_map(bpi_df)
+    ap_map_src = to_map(ap_df)
+    sos_map_src = to_map(sos_df)
 
-    net_map = map_rank(net, "net_name")
-    kenpom_map = map_rank(kenpom, "kenpom_name")
-    bpi_map = map_rank(bpi, "bpi_name")
-    sos_map = map_rank(sos, "sos_name") if "sos_name" in alias.columns else map_rank(sos, "standard_name")
-    ap_map = map_rank(ap, "ap_name") if "ap_name" in alias.columns else map_rank(ap, "standard_name")
-
-    rec_map = dict(zip(rec["team"], rec["record"]))
+    def rank_for(team_std: str, col: str, src_map: Dict[str, int]) -> Optional[int]:
+        if col in alias.columns:
+            v = alias.loc[alias["standard_name"] == team_std, col]
+            if not v.empty:
+                key = str(v.iloc[0]).strip()
+                if key and key in src_map:
+                    return int(src_map[key])
+        if team_std in src_map:
+            return int(src_map[team_std])
+        return None
 
     rows = []
-    for t in standard:
-        net_r = net_map.get(t)
-        kp_r = kenpom_map.get(t)
-        bpi_r = bpi_map.get(t)
-        sos_r = sos_map.get(t)
-        ap_r = ap_map.get(t)
-        record = rec_map.get(t, "")
+    for team_std in alias["standard_name"].tolist():
+        net = rank_for(team_std, "net_name", net_map_src)
+        kp = rank_for(team_std, "kenpom_name", kp_map_src)
+        bpi = rank_for(team_std, "bpi_name", bpi_map_src)
+        ap = rank_for(team_std, "ap_name", ap_map_src) if "ap_name" in alias.columns else rank_for(team_std, "standard_name", ap_map_src)
+        sos = rank_for(team_std, "sos_name", sos_map_src) if "sos_name" in alias.columns else rank_for(team_std, "standard_name", sos_map_src)
+
+        rec = record_map.get(team_std, "0-0")
+
         rows.append(
             {
-                "team": t,
-                "record": record,
-                "ap": ap_r if ap_r is not None else "",
-                "net": net_r if net_r is not None else "",
-                "kenpom": kp_r if kp_r is not None else "",
-                "bpi": bpi_r if bpi_r is not None else "",
-                "sos": sos_r if sos_r is not None else "",
+                "team": team_std,
+                "record": rec,
+                "ap": ap if ap is not None else "",
+                "net": net if net is not None else "",
+                "kenpom": kp if kp is not None else "",
+                "bpi": bpi if bpi is not None else "",
+                "sos": sos if sos is not None else "",
             }
         )
 
     out = pd.DataFrame(rows)
 
-    def _to_num(series):
-        return pd.to_numeric(series, errors="coerce")
+    net_num = pd.to_numeric(out["net"], errors="coerce")
+    kp_num = pd.to_numeric(out["kenpom"], errors="coerce")
+    bpi_num = pd.to_numeric(out["bpi"], errors="coerce")
 
-    out["_net"] = _to_num(out["net"])
-    out["_kenpom"] = _to_num(out["kenpom"])
-    out["_bpi"] = _to_num(out["bpi"])
+    avg_val = pd.concat([net_num, kp_num, bpi_num], axis=1)
+    avg_val = avg_val.mean(axis=1, skipna=False)
 
-    out["_avg_metric"] = out[["_net", "_kenpom", "_bpi"]].mean(axis=1, skipna=True)
-    out["avg"] = out["_avg_metric"].rank(method="min", ascending=True).astype("Int64")
+    out["avg"] = avg_val.rank(method="min", ascending=True)
+    out["avg"] = out["avg"].astype("Int64")
 
-    out = out.drop(columns=["_net", "_kenpom", "_bpi", "_avg_metric"])
     out = out[["team", "record", "ap", "avg", "net", "kenpom", "bpi", "sos"]]
 
     os.makedirs("docs", exist_ok=True)
     out.to_csv(OUT_CSV, index=False)
-
     out.to_json(OUT_JSON, orient="records")
 
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
