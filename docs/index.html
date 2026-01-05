@@ -5,31 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CBB Rankings Dashboard</title>
     <style>
-      :root{
-        --bg:#f7f7f8;
-        --panel:#ffffff;
-        --border:rgba(0,0,0,.08);
-        --text:#111;
-        --muted:rgba(0,0,0,.62);
-        --radius:14px;
-        --shadow: 0 1px 2px rgba(0,0,0,.06), 0 10px 28px rgba(0,0,0,.07);
+      :root {
+        --bg: #f7f7f8;
+        --panel: #ffffff;
+        --border: rgba(0, 0, 0, 0.08);
+        --text: #111;
+        --muted: rgba(0, 0, 0, 0.62);
+        --radius: 14px;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 10px 28px rgba(0, 0, 0, 0.07);
       }
 
-      body{
+      body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
         margin: 0;
         background: var(--bg);
         color: var(--text);
       }
 
-      .container{
+      .container {
         max-width: 1280px;
         margin: 0 auto;
         padding: 22px 16px 28px;
       }
 
-      /* HEADER CARD */
-      .header-card{
+      .header-card {
         background: var(--panel);
         border: 1px solid var(--border);
         border-radius: var(--radius);
@@ -38,22 +37,22 @@
         margin-bottom: 14px;
       }
 
-      .header-top{
-        display:flex;
-        align-items:flex-start;
-        justify-content:space-between;
-        gap:14px;
+      .header-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
         margin-bottom: 12px;
       }
 
-      .header-title{
-        margin:0;
+      .header-title {
+        margin: 0;
         font-size: 22px;
         letter-spacing: -0.01em;
         line-height: 1.15;
       }
 
-      .header-subtitle{
+      .header-subtitle {
         margin-top: 6px;
         font-size: 12px;
         color: var(--muted);
@@ -62,121 +61,170 @@
         text-overflow: ellipsis;
       }
 
-      .updated-pill{
-        display:inline-flex;
-        align-items:center;
-        gap:8px;
-        padding:8px 10px;
-        border:1px solid var(--border);
+      .updated-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border: 1px solid var(--border);
         border-radius: 999px;
         color: var(--muted);
         font-size: 12px;
         line-height: 1;
         white-space: nowrap;
-        background: rgba(0,0,0,.02);
+        background: rgba(0, 0, 0, 0.02);
       }
 
-      .header-controls{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        gap:12px;
+      .header-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
       }
 
-      .search-wrap{
+      .search-wrap {
         flex: 1 1 520px;
-        display:flex;
-        align-items:center;
-        gap:10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
         padding: 10px 12px;
-        border:1px solid var(--border);
+        border: 1px solid var(--border);
         border-radius: 12px;
         background: #fff;
       }
 
-      .search-icon{
-        width:16px;
-        height:16px;
-        opacity:.55;
+      .search-icon {
+        width: 16px;
+        height: 16px;
+        opacity: 0.55;
         flex: 0 0 auto;
       }
 
-      #search{
-        width:100%;
-        border:0;
-        outline:none;
+      #search {
+        width: 100%;
+        border: 0;
+        outline: none;
         font-size: 14px;
         background: transparent;
         padding: 0;
         margin: 0;
       }
 
-      .pill{
-        display:inline-flex;
-        align-items:center;
-        gap:6px;
-        padding:8px 10px;
-        border:1px solid var(--border);
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 10px;
+        border: 1px solid var(--border);
         border-radius: 999px;
         font-size: 12px;
         color: var(--muted);
-        background: rgba(255,255,255,.7);
+        background: rgba(255, 255, 255, 0.7);
         white-space: nowrap;
       }
 
-      /* TABLE */
-      table{
+      table {
         border-collapse: collapse;
         width: 100%;
         background: var(--panel);
         border: 1px solid var(--border);
         border-radius: var(--radius);
         overflow: hidden;
-        box-shadow: 0 1px 2px rgba(0,0,0,.04);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        table-layout: fixed;
       }
 
-      thead th{
+      thead th {
         text-align: left;
         font-size: 12px;
         letter-spacing: 0.02em;
-        color: rgba(0,0,0,.72);
-        border-bottom: 1px solid rgba(0,0,0,.08);
+        color: rgba(0, 0, 0, 0.72);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         padding: 10px 10px;
         position: sticky;
         top: 0;
-        background: rgba(255,255,255,.96);
+        background: rgba(255, 255, 255, 0.96);
         backdrop-filter: blur(6px);
         z-index: 1;
+        font-weight: 600;
       }
 
-      tbody td{
-        border-bottom: 1px solid rgba(0,0,0,.06);
+      /* CRITICAL FIX: align numeric headers with numeric cells */
+      thead th.num {
+        text-align: right;
+      }
+
+      tbody td {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         padding: 9px 10px;
         font-size: 13px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
-      tbody tr:hover td{
-        background: rgba(0,0,0,.02);
+      tbody tr:hover td {
+        background: rgba(0, 0, 0, 0.02);
       }
 
-      td.num{
+      td.num {
         text-align: right;
         font-variant-numeric: tabular-nums;
       }
 
-      td.team{
-        width: 240px;
-        padding-left: 10px;
+      /* Column sizing so everything stays aligned */
+      th.team-col,
+      td.team {
+        width: 260px;
       }
 
-      td.record{
-        width: 72px;
+      th.record-col,
+      td.record {
+        width: 80px;
       }
 
-      @media (max-width: 700px){
-        .header-top{ flex-direction: column; align-items: flex-start; }
-        .header-controls{ flex-direction: column; align-items: stretch; }
-        .pill{ align-self: flex-start; }
+      th.avg-col,
+      td.avg {
+        width: 130px;
+      }
+
+      th.ap-col,
+      td.ap {
+        width: 70px;
+      }
+
+      th.net-col,
+      td.net {
+        width: 70px;
+      }
+
+      th.kp-col,
+      td.kp {
+        width: 90px;
+      }
+
+      th.bpi-col,
+      td.bpi {
+        width: 70px;
+      }
+
+      th.sos-col,
+      td.sos {
+        width: 70px;
+      }
+
+      @media (max-width: 820px) {
+        .header-top {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .header-controls {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .pill {
+          align-self: flex-start;
+        }
       }
     </style>
   </head>
@@ -185,7 +233,7 @@
     <div class="container">
       <div class="header-card">
         <div class="header-top">
-          <div style="min-width:0;">
+          <div style="min-width: 0">
             <h1 class="header-title">CBB Rankings Dashboard</h1>
             <div class="header-subtitle">NET • SoS • KenPom • BPI • AP • Avg • Record</div>
           </div>
@@ -214,14 +262,14 @@
       <table>
         <thead>
           <tr>
-            <th>Team</th>
-            <th>Record</th>
-            <th class="num">Avg of Metrics</th>
-            <th class="num">AP</th>
-            <th class="num">NET</th>
-            <th class="num">KenPom</th>
-            <th class="num">BPI</th>
-            <th class="num">SoS</th>
+            <th class="team-col">Team</th>
+            <th class="record-col">Record</th>
+            <th class="num avg-col">Avg of Metrics</th>
+            <th class="num ap-col">AP</th>
+            <th class="num net-col">NET</th>
+            <th class="num kp-col">KenPom</th>
+            <th class="num bpi-col">BPI</th>
+            <th class="num sos-col">SoS</th>
           </tr>
         </thead>
         <tbody id="tbody"></tbody>
@@ -290,12 +338,12 @@
           tr.innerHTML = `
             <td class="team">${r.Team ?? ""}</td>
             <td class="record">${r.Record ?? ""}</td>
-            <td class="num">${r["Avg of Metrics"] ?? "NR"}</td>
-            <td class="num">${showRankOrNR(r.AP)}</td>
-            <td class="num">${showRankOrNR(r.NET)}</td>
-            <td class="num">${showRankOrNR(r.KenPom)}</td>
-            <td class="num">${showRankOrNR(r.BPI)}</td>
-            <td class="num">${showRankOrNR(sos)}</td>
+            <td class="num avg">${r["Avg of Metrics"] ?? "NR"}</td>
+            <td class="num ap">${showRankOrNR(r.AP)}</td>
+            <td class="num net">${showRankOrNR(r.NET)}</td>
+            <td class="num kp">${showRankOrNR(r.KenPom)}</td>
+            <td class="num bpi">${showRankOrNR(r.BPI)}</td>
+            <td class="num sos">${showRankOrNR(sos)}</td>
           `;
           tbody.appendChild(tr);
         }
