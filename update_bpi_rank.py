@@ -1,189 +1,158 @@
 #!/usr/bin/env python3
 import os
 import re
+import json
 from io import StringIO
-import pandas as pd
+
 import requests
-import unicodedata
+import pandas as pd
+from bs4 import BeautifulSoup
 
-OUTPUT_PATH = "data_raw/bpi_rankings.csv"
-
-BASE_PAGE_1 = "https://www.espn.com/mens-college-basketball/bpi"
-BASE_PAGE_N = "https://www.espn.com/mens-college-basketball/bpi/_/view/bpi/page/{}"
+ESPN_BPI_BASE = "https://www.espn.com/mens-college-basketball/bpi"
+TEAM_API_FMT = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/{team_id}"
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "en-US,en;q=0.9",
-    "Cache-Control": "no-cache",
-    "Pragma": "no-cache",
+    "Referer": "https://www.espn.com/",
 }
 
-
-def _strip_diacritics(s: str) -> str:
-    s = unicodedata.normalize("NFKD", s)
-    return "".join(ch for ch in s if not unicodedata.combining(ch))
+ID_RE = re.compile(r"/mens-college-basketball/team/_/id/(\d+)/")
 
 
-def _normalize_text(x) -> str:
-    if x is None or (isinstance(x, float) and pd.isna(x)):
-        return ""
-    s = str(x)
-    s = s.replace("\u2019", "'").replace("\u2018", "'").replace("\u201c", '"').replace("\u201d", '"')
-    s = _strip_diacritics(s)
-    s = re.sub(r"\s+", " ", s).strip()
-    return s
+def fetch(url: str, timeout: int = 25) -> str:
+    r = requests.get(url, headers=HEADERS, timeout=timeout)
+    r.raise_for_status()
+    return r.text
 
 
-def _clean_bpi_team_name(raw) -> str:
-    s = _normalize_text(raw)
-    if not s:
-        return s
+def get_short_team_name(team_id: int, cache: dict[int, str]) -> str:
+    if team_id in cache:
+        return cache[team_id]
 
-    s = re.sub(r"\bA&\b", "A&M", s)
+    url = TEAM_API_FMT.format(team_id=team_id)
+    r = requests.get(url, headers=HEADERS, timeout=25)
+    r.raise_for_status()
+    data = r.json()
 
-    s_nospace = s.replace(" ", "")
-    if len(s_nospace) >= 6 and len(s_nospace) % 2 == 0:
-        half = len(s_nospace) // 2
-        if s_nospace[:half].upper() == s_nospace[half:].upper():
-            return s_nospace[:half]
+    team = data.get("team") or {}
+    name = (
+        team.get("shortDisplayName")
+        or team.get("displayName")
+        or team.get("name")
+        or str(team_id)
+    )
 
-    m = re.match(r"^(.*?)([A-Z][A-Z0-9&'.-]{1,6})$", s)
-    if m:
-        base = m.group(1).strip()
-        if len(base) >= 3:
-            s = base
-
-    s = re.sub(r"\s+", " ", s).strip()
-    return s
+    cache[team_id] = name
+    return name
 
 
-def _flatten_columns(df: pd.DataFrame) -> pd.DataFrame:
-    out = df.copy()
-    if isinstance(out.columns, pd.MultiIndex):
-        out.columns = [
-            " ".join([str(x) for x in tup if str(x) != "nan"]).strip() for tup in out.columns.values
-        ]
-    out.columns = [str(c).strip() for c in out.columns]
-    return out
+def extract_team_ids_in_order(html: str) -> list[int]:
+    soup = BeautifulSoup(html, "html.parser")
+    ids = []
+    seen = set()
 
-
-def _pick_team_and_rank_columns(df: pd.DataFrame):
-    cols = list(df.columns)
-
-    rank_candidates = []
-    for c in cols:
-        num = pd.to_numeric(df[c], errors="coerce")
-        if num.notna().mean() < 0.75:
+    for a in soup.select('a[href*="/mens-college-basketball/team/_/id/"]'):
+        href = a.get("href") or ""
+        m = ID_RE.search(href)
+        if not m:
             continue
-        mn = float(num.min()) if num.notna().any() else None
-        mx = float(num.max()) if num.notna().any() else None
-        if mn is None or mx is None:
+        tid = int(m.group(1))
+        if tid in seen:
             continue
-        if mn >= 1 and mx <= 400 and num.nunique(dropna=True) > 40:
-            rank_candidates.append((c, num.notna().mean(), num.nunique(dropna=True)))
+        seen.add(tid)
+        ids.append(tid)
 
-    team_candidates = []
-    for c in cols:
-        ser = df[c].astype(str).map(_normalize_text)
-        has_letters = ser.str.contains(r"[A-Za-z]", regex=True, na=False).mean()
-        if has_letters < 0.65:
-            continue
-        nunq = ser[ser != ""].nunique()
-        if nunq > 40:
-            team_candidates.append((c, has_letters, nunq))
-
-    if not rank_candidates or not team_candidates:
-        return None
-
-    rank_col = sorted(rank_candidates, key=lambda x: (x[1], x[2]), reverse=True)[0][0]
-    team_col = sorted(team_candidates, key=lambda x: (x[1], x[2]), reverse=True)[0][0]
-    return team_col, rank_col
+    return ids
 
 
-def _extract_bpi_from_html(html: str) -> pd.DataFrame:
-    try:
-        tables = pd.read_html(StringIO(html))
-    except ValueError:
-        return pd.DataFrame()
+def extract_bpi_rank_column(html: str) -> pd.Series:
+    tables = pd.read_html(StringIO(html))
+    target = None
 
-    best = None
+    def norm(s: str) -> str:
+        return re.sub(r"[^a-z]", "", str(s).lower())
+
     for t in tables:
-        df = _flatten_columns(t)
-        picked = _pick_team_and_rank_columns(df)
-        if not picked:
-            continue
-        team_col, rank_col = picked
-
-        tmp = df[[rank_col, team_col]].copy()
-        tmp.columns = ["bpi_rank", "team_bpi"]
-        tmp["bpi_rank"] = pd.to_numeric(tmp["bpi_rank"], errors="coerce")
-        tmp["team_bpi"] = tmp["team_bpi"].map(_clean_bpi_team_name)
-        tmp = tmp.dropna(subset=["bpi_rank"])
-        tmp = tmp[tmp["team_bpi"].astype(str).str.len() > 0]
-        tmp["bpi_rank"] = tmp["bpi_rank"].astype(int)
-
-        if len(tmp) >= 30:
-            best = tmp
+        cols = [str(c) for c in t.columns]
+        if any(norm(c) == "bpirk" for c in cols) or any("BPI RK" in str(c).upper() for c in cols):
+            target = t
             break
 
-    return best if best is not None else pd.DataFrame()
+    if target is None:
+        raise RuntimeError("Could not find a table with a BPI RK column on this page.")
+
+    col_name = None
+    for c in target.columns:
+        if norm(c) == "bpirk" or "BPI RK" in str(c).upper():
+            col_name = c
+            break
+
+    if col_name is None:
+        raise RuntimeError("Found a candidate table, but could not locate the BPI RK column name.")
+
+    ranks = (
+        target[col_name]
+        .astype(str)
+        .str.replace(",", "", regex=False)
+        .str.strip()
+    )
+
+    ranks = pd.to_numeric(ranks, errors="coerce").dropna().astype(int)
+    return ranks.reset_index(drop=True)
+
+
+def page_url(page: int) -> str:
+    if page == 1:
+        return ESPN_BPI_BASE
+    return f"{ESPN_BPI_BASE}/_/view/bpi/page/{page}"
 
 
 def fetch_all_bpi_pages(max_pages: int = 20) -> pd.DataFrame:
-    session = requests.Session()
-
+    team_cache: dict[int, str] = {}
     all_rows = []
-    seen_ranks = set()
 
     for page in range(1, max_pages + 1):
-        url = BASE_PAGE_1 if page == 1 else BASE_PAGE_N.format(page)
-        resp = session.get(url, headers=HEADERS, timeout=30)
-        html = resp.text or ""
+        url = page_url(page)
+        html = fetch(url)
 
-        df = _extract_bpi_from_html(html)
-        if df.empty:
+        team_ids = extract_team_ids_in_order(html)
+        ranks = extract_bpi_rank_column(html)
+
+        if len(ranks) == 0:
             break
 
-        df = df[~df["bpi_rank"].isin(seen_ranks)]
-        if df.empty:
-            break
+        if len(team_ids) < len(ranks):
+            raise RuntimeError(
+                f"Page {page}: found {len(team_ids)} team ids but {len(ranks)} rank rows. ESPN layout likely changed."
+            )
 
-        seen_ranks.update(df["bpi_rank"].tolist())
-        all_rows.append(df)
+        team_ids = team_ids[: len(ranks)]
+        teams = [get_short_team_name(tid, team_cache) for tid in team_ids]
+
+        df_page = pd.DataFrame({"bpi_rank": ranks.values, "team_bpi": teams})
+        all_rows.append(df_page)
+
+        if len(ranks) < 50:
+            break
 
     if not all_rows:
         raise RuntimeError("Failed to scrape any BPI pages from ESPN.")
 
-    out = pd.concat(all_rows, ignore_index=True)
-    out = out.sort_values("bpi_rank").drop_duplicates(subset=["bpi_rank"], keep="first")
-    return out
-
-
-def _existing_file_is_usable(path: str) -> bool:
-    if not os.path.exists(path):
-        return False
-    try:
-        df = pd.read_csv(path)
-        if {"bpi_rank", "team_bpi"}.issubset(df.columns) and len(df) >= 300:
-            return True
-        return False
-    except Exception:
-        return False
+    df = pd.concat(all_rows, ignore_index=True)
+    df = df.drop_duplicates(subset=["bpi_rank"]).sort_values("bpi_rank").reset_index(drop=True)
+    return df
 
 
 def main():
-    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
-
-    try:
-        df = fetch_all_bpi_pages()
-        df.to_csv(OUTPUT_PATH, index=False)
-        print(f"Wrote {OUTPUT_PATH} ({len(df)} rows)")
-    except Exception as e:
-        if _existing_file_is_usable(OUTPUT_PATH):
-            print(f"Warning: BPI scrape failed ({e}). Keeping existing {OUTPUT_PATH} and continuing.")
-            return
-        raise
+    print("Fetching ESPN BPI Rankings")
+    df = fetch_all_bpi_pages()
+    os.makedirs("data_raw", exist_ok=True)
+    out_path = "data_raw/bpi_rankings.csv"
+    df.to_csv(out_path, index=False)
+    print(f"Wrote {len(df)} rows to {out_path}")
+    print(df.head(5).to_string(index=False))
 
 
 if __name__ == "__main__":
