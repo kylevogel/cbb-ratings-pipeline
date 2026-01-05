@@ -183,7 +183,7 @@
     <div class="container">
         <header>
             <h1>CBB Rankings Dashboard</h1>
-            <p class="updated">Updated: <span id="update-time">Loading...</span></p>
+            <p class="updated">Updated (UTC-5): <span id="update-time">Loading...</span></p>
         </header>
         
         <div class="search-container">
@@ -216,14 +216,47 @@
     <script>
         let teamsData = [];
         let currentSort = { column: 'avg_rank', direction: 'asc' };
+
+        function formatUtcMinus5(isoString) {
+            const d = new Date(isoString);
+            if (isNaN(d.getTime())) return null;
+
+            const shifted = new Date(d.getTime() - 5 * 60 * 60 * 1000);
+
+            const month = shifted.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' });
+            const day = shifted.toLocaleString('en-US', { day: '2-digit', timeZone: 'UTC' });
+            const year = shifted.toLocaleString('en-US', { year: 'numeric', timeZone: 'UTC' });
+
+            const time = shifted.toLocaleString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true,
+                timeZone: 'UTC'
+            });
+
+            return `${month} ${day}, ${year} ${time}`;
+        }
         
         // Fetch rankings data
         async function loadData() {
             try {
                 const response = await fetch('rankings.json');
                 const data = await response.json();
-                teamsData = data.teams;
-                document.getElementById('update-time').textContent = data.updated;
+
+                // Supports either:
+                // 1) { last_updated_utc: "...", rows: [...] }
+                // 2) { updated: "...", teams: [...] }  (older format)
+                if (data && Array.isArray(data.rows)) {
+                    teamsData = data.rows;
+                    const formatted = data.last_updated_utc ? formatUtcMinus5(data.last_updated_utc) : null;
+                    document.getElementById('update-time').textContent = formatted || 'Unknown';
+                } else {
+                    teamsData = data.teams || [];
+                    const formatted = data.updated ? formatUtcMinus5(data.updated) : null;
+                    document.getElementById('update-time').textContent = formatted || (data.updated || 'Unknown');
+                }
+
                 renderTable();
                 updateStats();
             } catch (error) {
@@ -238,31 +271,44 @@
             const searchTerm = document.getElementById('search').value.toLowerCase();
             
             let filtered = teamsData.filter(team => 
-                team.team.toLowerCase().includes(searchTerm)
+                (team.team || team.Team || '').toLowerCase().includes(searchTerm)
             );
+
+            // Normalize keys (supports either lowercase or Titlecase from CSV)
+            filtered = filtered.map(t => ({
+                team: t.team ?? t.Team ?? '',
+                record: t.record ?? t.Record ?? '',
+                ap_rank: t.ap_rank ?? t.AP ?? '',
+                avg_rank: t.avg_rank ?? t.AVG ?? '',
+                net_rank: t.net_rank ?? t.NET ?? '',
+                kenpom_rank: t.kenpom_rank ?? t.KenPom ?? '',
+                bpi_rank: t.bpi_rank ?? t.BPI ?? '',
+                sos_rank: t.sos_rank ?? t.SoS ?? '',
+            }));
             
             // Sort
             filtered.sort((a, b) => {
                 let aVal = a[currentSort.column];
                 let bVal = b[currentSort.column];
+
+                const aNull = aVal === null || aVal === undefined || aVal === '';
+                const bNull = bVal === null || bVal === undefined || bVal === '';
                 
-                // Handle null values - push to bottom
-                if (aVal === null && bVal === null) return 0;
-                if (aVal === null) return 1;
-                if (bVal === null) return -1;
+                if (aNull && bNull) return 0;
+                if (aNull) return 1;
+                if (bNull) return -1;
                 
-                // String comparison for team names
                 if (currentSort.column === 'team' || currentSort.column === 'record') {
                     aVal = String(aVal).toLowerCase();
                     bVal = String(bVal).toLowerCase();
-                    if (currentSort.direction === 'asc') {
-                        return aVal.localeCompare(bVal);
-                    } else {
-                        return bVal.localeCompare(aVal);
-                    }
+                    return currentSort.direction === 'asc'
+                        ? aVal.localeCompare(bVal)
+                        : bVal.localeCompare(aVal);
                 }
                 
-                // Numeric comparison
+                aVal = Number(aVal);
+                bVal = Number(bVal);
+
                 if (currentSort.direction === 'asc') {
                     return aVal - bVal;
                 } else {
@@ -278,8 +324,9 @@
             }
             
             tbody.innerHTML = filtered.map(team => {
-                const rowClass = team.avg_rank && team.avg_rank <= 10 ? 'top-10' : 
-                                 team.avg_rank && team.avg_rank <= 25 ? 'top-25' : '';
+                const avgNum = Number(team.avg_rank);
+                const rowClass = !isNaN(avgNum) && avgNum <= 10 ? 'top-10' : 
+                                 !isNaN(avgNum) && avgNum <= 25 ? 'top-25' : '';
                 
                 return `
                     <tr class="${rowClass}">
@@ -298,7 +345,6 @@
             updateSortIndicators();
         }
         
-        // Update sort indicators on headers
         function updateSortIndicators() {
             document.querySelectorAll('th').forEach(th => {
                 th.classList.remove('sort-asc', 'sort-desc');
@@ -308,15 +354,13 @@
             });
         }
         
-        // Update stats
         function updateStats() {
             const total = teamsData.length;
-            const withAP = teamsData.filter(t => t.ap_rank).length;
+            const withAP = teamsData.filter(t => (t.ap_rank ?? t.AP)).filter(Boolean).length;
             document.getElementById('stats').textContent = 
                 `Showing ${total} D1 teams | ${withAP} teams in AP Top 25`;
         }
         
-        // Event listeners
         document.getElementById('search').addEventListener('input', renderTable);
         
         document.querySelectorAll('th[data-sort]').forEach(th => {
@@ -332,7 +376,6 @@
             });
         });
         
-        // Load data on page load
         loadData();
     </script>
 </body>
