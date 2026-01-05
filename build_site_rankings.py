@@ -2,7 +2,7 @@
 """
 Build the site rankings data by merging all data sources.
 Creates the final dashboard data file and HTML page.
-Outputs: 
+Outputs:
   - data_processed/site_rankings.csv
   - docs/rankings.json
   - docs/index.html
@@ -19,97 +19,104 @@ def load_and_standardize_data():
     """Load all data sources and standardize team names."""
     data = {}
 
-    net_path = 'data_raw/net_rankings.csv'
+    net_path = "data_raw/net_rankings.csv"
     if os.path.exists(net_path):
         net_df = pd.read_csv(net_path)
-        net_df = standardize_team_names(net_df, 'team_net', 'net')
-        data['net'] = net_df[['team', 'net_rank']].drop_duplicates(subset=['team'])
+        net_df = standardize_team_names(net_df, "team_net", "net")
+        data["net"] = net_df[["team", "net_rank"]].drop_duplicates(subset=["team"])
         print(f"Loaded {len(data['net'])} NET rankings")
 
-    kenpom_path = 'data_raw/kenpom_rankings.csv'
+    kenpom_path = "data_raw/kenpom_rankings.csv"
     if os.path.exists(kenpom_path):
         kenpom_df = pd.read_csv(kenpom_path)
-        kenpom_df = standardize_team_names(kenpom_df, 'team_kenpom', 'kenpom')
-        data['kenpom'] = kenpom_df[['team', 'kenpom_rank']].drop_duplicates(subset=['team'])
+        kenpom_df = standardize_team_names(kenpom_df, "team_kenpom", "kenpom")
+        data["kenpom"] = kenpom_df[["team", "kenpom_rank"]].drop_duplicates(subset=["team"])
         print(f"Loaded {len(data['kenpom'])} KenPom rankings")
 
-    bpi_path = 'data_raw/bpi_rankings.csv'
+    bpi_path = "data_raw/bpi_rankings.csv"
     if os.path.exists(bpi_path):
         bpi_df = pd.read_csv(bpi_path)
-        bpi_df = standardize_team_names(bpi_df, 'team_bpi', 'bpi')
-        data['bpi'] = bpi_df[['team', 'bpi_rank']].drop_duplicates(subset=['team'])
+        bpi_df = standardize_team_names(bpi_df, "team_bpi", "bpi")
+        data["bpi"] = bpi_df[["team", "bpi_rank"]].drop_duplicates(subset=["team"])
         print(f"Loaded {len(data['bpi'])} BPI rankings")
 
-    ap_path = 'data_raw/ap_rankings.csv'
+    ap_path = "data_raw/ap_rankings.csv"
     if os.path.exists(ap_path):
         ap_df = pd.read_csv(ap_path)
         if not ap_df.empty:
-            ap_df = standardize_team_names(ap_df, 'team_ap', 'ap')
-            data['ap'] = ap_df[['team', 'ap_rank']].drop_duplicates(subset=['team'])
+            ap_df = standardize_team_names(ap_df, "team_ap", "ap")
+            data["ap"] = ap_df[["team", "ap_rank"]].drop_duplicates(subset=["team"])
             print(f"Loaded {len(data['ap'])} AP rankings")
 
-    sos_path = 'data_raw/sos_rankings.csv'
+    sos_path = "data_raw/sos_rankings.csv"
     if os.path.exists(sos_path):
         sos_df = pd.read_csv(sos_path)
-        sos_df = standardize_team_names(sos_df, 'team_sos', 'sos')
-        data['sos'] = sos_df[['team', 'sos_rank']].drop_duplicates(subset=['team'])
+        sos_df = standardize_team_names(sos_df, "team_sos", "sos")
+        data["sos"] = sos_df[["team", "sos_rank"]].drop_duplicates(subset=["team"])
         print(f"Loaded {len(data['sos'])} SOS rankings")
 
-    records_path = 'data_raw/team_records.csv'
+    records_path = "data_raw/team_records.csv"
     if os.path.exists(records_path):
         records_df = pd.read_csv(records_path)
-        records_df = standardize_team_names(records_df, 'team_espn', 'espn')
-        data['records'] = records_df[['team', 'record']].drop_duplicates(subset=['team'])
-        print(f"Loaded {len(data['records'])} team records")
+
+        if "team_espn" in records_df.columns:
+            records_df = standardize_team_names(records_df, "team_espn", "espn")
+            data["records"] = records_df[["team", "record"]].drop_duplicates(subset=["team"])
+            print(f"Loaded {len(data['records'])} team records (ESPN)")
+        elif "team_net" in records_df.columns:
+            records_df = standardize_team_names(records_df, "team_net", "net")
+            data["records"] = records_df[["team", "record"]].drop_duplicates(subset=["team"])
+            print(f"Loaded {len(data['records'])} team records (NET)")
+        else:
+            print("team_records.csv exists but does not contain team_espn or team_net columns")
 
     return data
 
 
 def build_master_rankings(data):
     """Merge all data sources into a master rankings table."""
-
     alias_df = load_team_alias()
     if alias_df is not None:
-        master = pd.DataFrame({'team': alias_df['canonical'].unique()})
+        master = pd.DataFrame({"team": alias_df["canonical"].unique()})
     else:
-        if 'net' in data:
-            master = data['net'][['team']].copy()
+        if "net" in data:
+            master = data["net"][["team"]].copy()
         else:
-            master = pd.DataFrame({'team': []})
+            master = pd.DataFrame({"team": []})
 
-    if 'records' in data:
-        master = master.merge(data['records'], on='team', how='left')
+    if "records" in data:
+        master = master.merge(data["records"], on="team", how="left")
     else:
-        master['record'] = ''
+        master["record"] = ""
 
-    if 'ap' in data:
-        master = master.merge(data['ap'], on='team', how='left')
+    if "ap" in data:
+        master = master.merge(data["ap"], on="team", how="left")
     else:
-        master['ap_rank'] = None
+        master["ap_rank"] = None
 
-    if 'net' in data:
-        master = master.merge(data['net'], on='team', how='left')
+    if "net" in data:
+        master = master.merge(data["net"], on="team", how="left")
     else:
-        master['net_rank'] = None
+        master["net_rank"] = None
 
-    if 'kenpom' in data:
-        master = master.merge(data['kenpom'], on='team', how='left')
+    if "kenpom" in data:
+        master = master.merge(data["kenpom"], on="team", how="left")
     else:
-        master['kenpom_rank'] = None
+        master["kenpom_rank"] = None
 
-    if 'bpi' in data:
-        master = master.merge(data['bpi'], on='team', how='left')
+    if "bpi" in data:
+        master = master.merge(data["bpi"], on="team", how="left")
     else:
-        master['bpi_rank'] = None
+        master["bpi_rank"] = None
 
-    if 'sos' in data:
-        master = master.merge(data['sos'], on='team', how='left')
+    if "sos" in data:
+        master = master.merge(data["sos"], on="team", how="left")
     else:
-        master['sos_rank'] = None
+        master["sos_rank"] = None
 
     def calc_avg_rank(row):
         ranks = []
-        for col in ['net_rank', 'kenpom_rank', 'bpi_rank']:
+        for col in ["net_rank", "kenpom_rank", "bpi_rank"]:
             val = row.get(col)
             if pd.notna(val):
                 ranks.append(float(val))
@@ -117,16 +124,16 @@ def build_master_rankings(data):
             return round(sum(ranks) / len(ranks), 1)
         return None
 
-    master['avg_rank'] = master.apply(calc_avg_rank, axis=1)
+    master["avg_rank"] = master.apply(calc_avg_rank, axis=1)
 
-    master['sort_key'] = master['avg_rank'].fillna(9999)
-    master = master.sort_values('sort_key').reset_index(drop=True)
-    master = master.drop(columns=['sort_key'])
+    master["sort_key"] = master["avg_rank"].fillna(9999)
+    master = master.sort_values("sort_key").reset_index(drop=True)
+    master = master.drop(columns=["sort_key"])
 
     has_ranking = (
-        master['net_rank'].notna() |
-        master['kenpom_rank'].notna() |
-        master['bpi_rank'].notna()
+        master["net_rank"].notna()
+        | master["kenpom_rank"].notna()
+        | master["bpi_rank"].notna()
     )
     master = master[has_ranking].reset_index(drop=True)
 
@@ -146,30 +153,25 @@ def create_dashboard_json(master_df):
     records = []
     for _, row in master_df.iterrows():
         record = {
-            'team': row['team'],
-            'record': row['record'] if pd.notna(row['record']) else '',
-            'ap_rank': int(row['ap_rank']) if pd.notna(row['ap_rank']) else None,
-            'avg_rank': float(row['avg_rank']) if pd.notna(row['avg_rank']) else None,
-            'net_rank': int(row['net_rank']) if pd.notna(row['net_rank']) else None,
-            'kenpom_rank': int(row['kenpom_rank']) if pd.notna(row['kenpom_rank']) else None,
-            'bpi_rank': int(row['bpi_rank']) if pd.notna(row['bpi_rank']) else None,
-            'sos_rank': int(row['sos_rank']) if pd.notna(row['sos_rank']) else None
+            "team": row["team"],
+            "record": row["record"] if pd.notna(row["record"]) else "",
+            "ap_rank": int(row["ap_rank"]) if pd.notna(row["ap_rank"]) else None,
+            "avg_rank": float(row["avg_rank"]) if pd.notna(row["avg_rank"]) else None,
+            "net_rank": int(row["net_rank"]) if pd.notna(row["net_rank"]) else None,
+            "kenpom_rank": int(row["kenpom_rank"]) if pd.notna(row["kenpom_rank"]) else None,
+            "bpi_rank": int(row["bpi_rank"]) if pd.notna(row["bpi_rank"]) else None,
+            "sos_rank": int(row["sos_rank"]) if pd.notna(row["sos_rank"]) else None,
         }
         records.append(record)
 
     updated_str = _format_utc_minus_5(datetime.utcnow())
 
-    output = {
-        'updated': updated_str,
-        'teams': records
-    }
-
+    output = {"updated": updated_str, "teams": records}
     return output
 
 
 def create_dashboard_html():
     """Create the HTML dashboard page."""
-
     html = '''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -177,12 +179,7 @@ def create_dashboard_html():
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CBB Rankings Dashboard</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
@@ -190,18 +187,8 @@ def create_dashboard_html():
             color: #e0e0e0;
             padding: 20px;
         }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            padding: 30px 0;
-            margin-bottom: 30px;
-        }
-
+        .container { max-width: 1400px; margin: 0 auto; }
+        header { text-align: center; padding: 30px 0; margin-bottom: 30px; }
         h1 {
             font-size: 2.5rem;
             background: linear-gradient(90deg, #00d9ff, #00ff88);
@@ -210,18 +197,8 @@ def create_dashboard_html():
             background-clip: text;
             margin-bottom: 10px;
         }
-
-        .updated {
-            color: #888;
-            font-size: 0.9rem;
-        }
-
-        .search-container {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
+        .updated { color: #888; font-size: 0.9rem; }
+        .search-container { margin-bottom: 20px; display: flex; justify-content: center; }
         #search {
             width: 100%;
             max-width: 400px;
@@ -234,34 +211,20 @@ def create_dashboard_html():
             outline: none;
             transition: border-color 0.3s;
         }
-
-        #search:focus {
-            border-color: #00d9ff;
-        }
-
-        #search::placeholder {
-            color: #666;
-        }
-
+        #search:focus { border-color: #00d9ff; }
+        #search::placeholder { color: #666; }
         .table-container {
             overflow-x: auto;
             background: rgba(255, 255, 255, 0.03);
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 900px;
-        }
-
+        table { width: 100%; border-collapse: collapse; min-width: 900px; }
         th, td {
             padding: 15px 12px;
             text-align: left;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
         th {
             background: rgba(0, 217, 255, 0.1);
             cursor: pointer;
@@ -275,79 +238,22 @@ def create_dashboard_html():
             top: 0;
             transition: background 0.2s;
         }
-
-        th:hover {
-            background: rgba(0, 217, 255, 0.2);
-        }
-
-        th.sort-asc::after {
-            content: ' \\25B2';
-            font-size: 0.7rem;
-        }
-
-        th.sort-desc::after {
-            content: ' \\25BC';
-            font-size: 0.7rem;
-        }
-
-        tr:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .team-name {
-            font-weight: 500;
-            color: #fff;
-        }
-
-        .rank-cell {
-            text-align: center;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-
-        .ap-rank {
-            background: rgba(255, 215, 0, 0.1);
-            color: #ffd700;
-            font-weight: bold;
-        }
-
-        .avg-rank {
-            color: #00ff88;
-            font-weight: bold;
-        }
-
-        .top-10 {
-            background: rgba(0, 255, 136, 0.1);
-        }
-
-        .top-25 {
-            background: rgba(0, 217, 255, 0.05);
-        }
-
-        .record-cell {
-            color: #aaa;
-            font-family: 'Monaco', 'Consolas', monospace;
-        }
-
-        .empty {
-            color: #444;
-        }
-
-        .stats {
-            text-align: center;
-            margin-top: 20px;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
+        th:hover { background: rgba(0, 217, 255, 0.2); }
+        th.sort-asc::after { content: ' \\25B2'; font-size: 0.7rem; }
+        th.sort-desc::after { content: ' \\25BC'; font-size: 0.7rem; }
+        tr:hover { background: rgba(255, 255, 255, 0.05); }
+        .team-name { font-weight: 500; color: #fff; }
+        .rank-cell { text-align: center; font-family: 'Monaco', 'Consolas', monospace; }
+        .ap-rank { background: rgba(255, 215, 0, 0.1); color: #ffd700; font-weight: bold; }
+        .avg-rank { color: #00ff88; font-weight: bold; }
+        .top-10 { background: rgba(0, 255, 136, 0.1); }
+        .top-25 { background: rgba(0, 217, 255, 0.05); }
+        .record-cell { color: #aaa; font-family: 'Monaco', 'Consolas', monospace; }
+        .empty { color: #444; }
+        .stats { text-align: center; margin-top: 20px; color: #666; font-size: 0.9rem; }
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            th, td {
-                padding: 10px 8px;
-                font-size: 0.85rem;
-            }
+            h1 { font-size: 1.8rem; }
+            th, td { padding: 10px 8px; font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -422,18 +328,12 @@ def create_dashboard_html():
                 if (currentSort.column === 'team' || currentSort.column === 'record') {
                     aVal = String(aVal).toLowerCase();
                     bVal = String(bVal).toLowerCase();
-                    if (currentSort.direction === 'asc') {
-                        return aVal.localeCompare(bVal);
-                    } else {
-                        return bVal.localeCompare(aVal);
-                    }
+                    if (currentSort.direction === 'asc') return aVal.localeCompare(bVal);
+                    return bVal.localeCompare(aVal);
                 }
 
-                if (currentSort.direction === 'asc') {
-                    return aVal - bVal;
-                } else {
-                    return bVal - aVal;
-                }
+                if (currentSort.direction === 'asc') return aVal - bVal;
+                return bVal - aVal;
             });
 
             const tbody = document.getElementById('rankings-body');
@@ -499,7 +399,6 @@ def create_dashboard_html():
     </script>
 </body>
 </html>'''
-
     return html
 
 
@@ -515,19 +414,19 @@ def main():
     master = build_master_rankings(data)
     print(f"Built master rankings with {len(master)} teams")
 
-    os.makedirs('data_processed', exist_ok=True)
-    master.to_csv('data_processed/site_rankings.csv', index=False)
+    os.makedirs("data_processed", exist_ok=True)
+    master.to_csv("data_processed/site_rankings.csv", index=False)
     print("Saved data_processed/site_rankings.csv")
 
-    os.makedirs('docs', exist_ok=True)
+    os.makedirs("docs", exist_ok=True)
 
     dashboard_json = create_dashboard_json(master)
-    with open('docs/rankings.json', 'w') as f:
+    with open("docs/rankings.json", "w") as f:
         json.dump(dashboard_json, f, indent=2)
     print("Saved docs/rankings.json")
 
     html = create_dashboard_html()
-    with open('docs/index.html', 'w') as f:
+    with open("docs/index.html", "w") as f:
         f.write(html)
     print("Saved docs/index.html")
 
