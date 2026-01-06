@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Scrape NCAA NET rankings from the official NCAA website.
 Outputs: data_raw/net_rankings.csv
@@ -24,20 +23,18 @@ def scrape_net_rankings():
         
         soup = BeautifulSoup(response.text, 'html.parser')
         
-        # Find the rankings table
         table = soup.find('table')
         if not table:
             print("Could not find NET rankings table")
             return None
         
         rows = []
-        for tr in table.find_all('tr')[1:]:  # Skip header
+        for tr in table.find_all('tr')[1:]:
             cells = tr.find_all(['td', 'th'])
             if len(cells) >= 2:
                 rank = cells[0].get_text(strip=True)
                 team = cells[1].get_text(strip=True)
                 
-                # Clean rank (remove any non-numeric chars)
                 rank = re.sub(r'[^\d]', '', rank)
                 
                 if rank and team:
