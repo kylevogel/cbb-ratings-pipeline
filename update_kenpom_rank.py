@@ -3,27 +3,27 @@ Scrape KenPom rankings.
 Note: KenPom requires subscription for full data. This scrapes publicly available rankings.
 Outputs: data_raw/kenpom_rankings.csv
 """
-
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 import os
 import re
 
+
 def scrape_kenpom_rankings():
     """Scrape KenPom rankings from the public page."""
     url = "https://kenpom.com/"
-    
+
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
     }
-    
+
     try:
         response = requests.get(url, headers=headers, timeout=30)
         response.raise_for_status()
-        
+
         soup = BeautifulSoup(response.text, 'lxml')
-        
+
         table = soup.find('table', {'id': 'ratings-table'})
         if not table:
             tables = soup.find_all('table')
@@ -31,45 +31,54 @@ def scrape_kenpom_rankings():
                 if t.find('th') and 'Team' in t.get_text():
                     table = t
                     break
-        
+
         if not table:
             print("Could not find KenPom table")
             return None
-        
+
         rows = []
         tbody = table.find('tbody')
         if tbody:
             trs = tbody.find_all('tr')
         else:
             trs = table.find_all('tr')[1:]
-        
+
         for tr in trs:
             cells = tr.find_all(['td', 'th'])
-            if len(cells) >= 2:
+            if len(cells) >= 3:
                 rank_text = cells[0].get_text(strip=True)
                 team_cell = cells[1]
-                
+                record_text = cells[2].get_text(strip=True)
+
                 team_link = team_cell.find('a')
                 if team_link:
                     team = team_link.get_text(strip=True)
                 else:
                     team = team_cell.get_text(strip=True)
-                
+
                 rank = re.sub(r'[^\d]', '', rank_text)
-                
+
+                # Parse W-L record
+                record_match = re.search(r'(\d+)-(\d+)', record_text)
+                if record_match:
+                    record = f"{record_match.group(1)}-{record_match.group(2)}"
+                else:
+                    record = ""
+
                 if rank and team:
                     rows.append({
                         'kenpom_rank': int(rank),
-                        'team_kenpom': team
+                        'team_kenpom': team,
+                        'record': record
                     })
-        
+
         if rows:
             df = pd.DataFrame(rows)
             return df
         else:
             print("No KenPom data found")
             return None
-            
+
     except Exception as e:
         print(f"Error scraping KenPom: {e}")
         return None
@@ -78,7 +87,7 @@ def scrape_kenpom_rankings():
 def main():
     print("Fetching KenPom rankings...")
     df = scrape_kenpom_rankings()
-    
+
     if df is not None and not df.empty:
         os.makedirs('data_raw', exist_ok=True)
         df.to_csv('data_raw/kenpom_rankings.csv', index=False)
