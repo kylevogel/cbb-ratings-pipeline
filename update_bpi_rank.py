@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Fetch ESPN BPI ranks and write:
   data_raw/bpi_rankings.csv  with columns: bpi_rank, team_bpi
@@ -125,7 +124,6 @@ def fetch_all_bpi(max_pages: int = 25, sleep_s: float = 0.25) -> pd.DataFrame:
 
         team_ids = _extract_team_ids_in_order(html)
 
-        # ESPN pages have other team links sometimes; we only need as many as rank rows
         if len(team_ids) < len(ranks):
             raise RuntimeError(
                 f"Page {page}: only found {len(team_ids)} team ids but {len(ranks)} BPI ranks. ESPN layout changed."
@@ -136,7 +134,6 @@ def fetch_all_bpi(max_pages: int = 25, sleep_s: float = 0.25) -> pd.DataFrame:
 
         df_page = pd.DataFrame({"bpi_rank": ranks.values, "team_bpi": team_names})
 
-        # avoid repeats if ESPN returns overlapping pages
         df_page = df_page[~df_page["bpi_rank"].isin(seen_ranks)]
         if df_page.empty:
             break
@@ -144,7 +141,6 @@ def fetch_all_bpi(max_pages: int = 25, sleep_s: float = 0.25) -> pd.DataFrame:
         seen_ranks.update(df_page["bpi_rank"].tolist())
         all_rows.append(df_page)
 
-        # last page is typically < 50 rows
         if len(ranks) < 50:
             break
 
