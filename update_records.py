@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Fetch team records from NCAA NET rankings table (includes all D1 teams).
 Outputs: data_raw/team_records.csv
