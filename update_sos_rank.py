@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Scrape Strength of Schedule rankings from Warren Nolan.
 Outputs: data_raw/sos_rankings.csv
@@ -22,14 +21,11 @@ def scrape_sos_rankings():
         response = requests.get(url, headers=headers, timeout=30)
         response.raise_for_status()
         
-        # Try using pandas read_html first (handles most table formats)
         try:
             tables = pd.read_html(response.text)
             for df in tables:
-                # Look for table with Team and Rank columns
                 cols = [str(c).lower() for c in df.columns]
                 if any('team' in c for c in cols) and any('rank' in c for c in cols):
-                    # Find the right columns
                     team_col = None
                     rank_col = None
                     for c in df.columns:
@@ -59,14 +55,12 @@ def scrape_sos_rankings():
         
         rows = []
         
-        # Try to find team links and their associated ranks
         table = soup.find('table')
         if table:
             all_rows = table.find_all('tr')
-            for tr in all_rows[1:]:  # Skip header
+            for tr in all_rows[1:]:
                 cells = tr.find_all(['td', 'th'])
                 if len(cells) >= 3:
-                    # Team is in first cell
                     team_cell = cells[0]
                     team_link = team_cell.find('a')
                     if team_link:
@@ -74,10 +68,8 @@ def scrape_sos_rankings():
                     else:
                         team = team_cell.get_text(strip=True)
                     
-                    # Rank is in third cell (index 2)
                     rank_text = cells[2].get_text(strip=True)
                     
-                    # Clean up rank
                     rank_clean = re.sub(r'[^\d]', '', rank_text)
                     
                     if team and rank_clean and rank_clean.isdigit():
