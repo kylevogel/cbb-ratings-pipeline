@@ -1,61 +1,57 @@
 #!/usr/bin/env python3
+"""
+Fetch ESPN BPI ranks and write:
+  data_raw/bpi_rankings.csv  with columns: bpi_rank, team_bpi
+
+ESPN's BPI page shows team names in a separate Team/Conf list and
+the "POWER INDEX PROJECTIONS" table (with BPI RK) without team names.
+This script pairs the team list (by ESPN team id order) with the BPI RK
+rows by row.
+"""
+
 import os
+import time
 import re
-import json
 from io import StringIO
 
-import requests
 import pandas as pd
+import requests
 from bs4 import BeautifulSoup
 
-ESPN_BPI_BASE = "https://www.espn.com/mens-college-basketball/bpi"
-TEAM_API_FMT = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/{team_id}"
+OUTPUT_PATH = "data_raw/bpi_rankings.csv"
+BASE_URL = "https://www.espn.com/mens-college-basketball/bpi"
+PAGE_URL = "https://www.espn.com/mens-college-basketball/bpi/_/view/bpi/page/{}"
+TEAM_API = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/teams/{}"
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/120.0.0.0 Safari/537.36"
+    ),
     "Accept-Language": "en-US,en;q=0.9",
-    "Referer": "https://www.espn.com/",
 }
 
-ID_RE = re.compile(r"/mens-college-basketball/team/_/id/(\d+)/")
+TEAM_ID_RE = re.compile(r"/mens-college-basketball/team/_/id/(\d+)/")
 
 
-def fetch(url: str, timeout: int = 25) -> str:
-    r = requests.get(url, headers=HEADERS, timeout=timeout)
+def _get(url: str) -> str:
+    r = requests.get(url, headers=HEADERS, timeout=30)
     r.raise_for_status()
     return r.text
 
 
-def get_short_team_name(team_id: int, cache: dict[int, str]) -> str:
-    if team_id in cache:
-        return cache[team_id]
-
-    url = TEAM_API_FMT.format(team_id=team_id)
-    r = requests.get(url, headers=HEADERS, timeout=25)
-    r.raise_for_status()
-    data = r.json()
-
-    team = data.get("team") or {}
-    name = (
-        team.get("shortDisplayName")
-        or team.get("displayName")
-        or team.get("name")
-        or str(team_id)
-    )
-
-    cache[team_id] = name
-    return name
-
-
-def extract_team_ids_in_order(html: str) -> list[int]:
+def _extract_team_ids_in_order(html: str) -> list[int]:
+    """
+    Extract ESPN team ids from the Team/Conf list.
+    We take IDs in DOM order, de-dup preserving order.
+    """
     soup = BeautifulSoup(html, "html.parser")
     ids = []
     seen = set()
 
-    for a in soup.select('a[href*="/mens-college-basketball/team/_/id/"]'):
-        href = a.get("href") or ""
-        m = ID_RE.search(href)
+    for a in soup.find_all("a", href=True):
+        m = TEAM_ID_RE.search(a["href"])
         if not m:
             continue
         tid = int(m.group(1))
@@ -67,92 +63,123 @@ def extract_team_ids_in_order(html: str) -> list[int]:
     return ids
 
 
-def extract_bpi_rank_column(html: str) -> pd.Series:
+def _team_short_name(team_id: int, cache: dict[int, str]) -> str:
+    if team_id in cache:
+        return cache[team_id]
+
+    url = TEAM_API.format(team_id)
+    r = requests.get(url, headers=HEADERS, timeout=30)
+    r.raise_for_status()
+    data = r.json()
+
+    team = data.get("team") or {}
+    name = team.get("shortDisplayName") or team.get("displayName") or team.get("name") or str(team_id)
+
+    cache[team_id] = name
+    return name
+
+
+def _find_projections_table_with_bpi_rk(html: str) -> pd.DataFrame:
+    """
+    Find the POWER INDEX PROJECTIONS table via read_html and return the table
+    that contains a "BPI RK" column.
+    """
     tables = pd.read_html(StringIO(html))
-    target = None
-
-    def norm(s: str) -> str:
-        return re.sub(r"[^a-z]", "", str(s).lower())
-
     for t in tables:
-        cols = [str(c) for c in t.columns]
-        if any(norm(c) == "bpirk" for c in cols) or any("BPI RK" in str(c).upper() for c in cols):
-            target = t
+        cols = [str(c).strip().upper() for c in t.columns]
+        if any("BPI RK" == c or c.endswith("BPI RK") or "BPI RK" in c for c in cols):
+            return t
+    raise RuntimeError("Could not locate projections table containing 'BPI RK'.")
+
+
+def _extract_bpi_ranks(html: str) -> pd.Series:
+    t = _find_projections_table_with_bpi_rk(html)
+
+    bpi_rk_col = None
+    for c in t.columns:
+        if "BPI RK" in str(c).upper():
+            bpi_rk_col = c
             break
+    if bpi_rk_col is None:
+        raise RuntimeError("Found BPI table but could not identify the BPI RK column.")
 
-    if target is None:
-        raise RuntimeError("Could not find a table with a BPI RK column on this page.")
-
-    col_name = None
-    for c in target.columns:
-        if norm(c) == "bpirk" or "BPI RK" in str(c).upper():
-            col_name = c
-            break
-
-    if col_name is None:
-        raise RuntimeError("Found a candidate table, but could not locate the BPI RK column name.")
-
-    ranks = (
-        target[col_name]
-        .astype(str)
-        .str.replace(",", "", regex=False)
-        .str.strip()
-    )
-
-    ranks = pd.to_numeric(ranks, errors="coerce").dropna().astype(int)
-    return ranks.reset_index(drop=True)
+    ranks = pd.to_numeric(t[bpi_rk_col], errors="coerce").dropna().astype(int).reset_index(drop=True)
+    return ranks
 
 
-def page_url(page: int) -> str:
-    if page == 1:
-        return ESPN_BPI_BASE
-    return f"{ESPN_BPI_BASE}/_/view/bpi/page/{page}"
+def _page_url(page: int) -> str:
+    return BASE_URL if page == 1 else PAGE_URL.format(page)
 
 
-def fetch_all_bpi_pages(max_pages: int = 20) -> pd.DataFrame:
-    team_cache: dict[int, str] = {}
-    all_rows = []
+def fetch_all_bpi(max_pages: int = 25, sleep_s: float = 0.25) -> pd.DataFrame:
+    cache: dict[int, str] = {}
+    all_rows: list[pd.DataFrame] = []
+    seen_ranks = set()
 
     for page in range(1, max_pages + 1):
-        url = page_url(page)
-        html = fetch(url)
+        html = _get(_page_url(page))
 
-        team_ids = extract_team_ids_in_order(html)
-        ranks = extract_bpi_rank_column(html)
-
+        ranks = _extract_bpi_ranks(html)
         if len(ranks) == 0:
             break
 
+        team_ids = _extract_team_ids_in_order(html)
+
+        # ESPN pages have other team links sometimes; we only need as many as rank rows
         if len(team_ids) < len(ranks):
             raise RuntimeError(
-                f"Page {page}: found {len(team_ids)} team ids but {len(ranks)} rank rows. ESPN layout likely changed."
+                f"Page {page}: only found {len(team_ids)} team ids but {len(ranks)} BPI ranks. ESPN layout changed."
             )
 
         team_ids = team_ids[: len(ranks)]
-        teams = [get_short_team_name(tid, team_cache) for tid in team_ids]
+        team_names = [_team_short_name(tid, cache) for tid in team_ids]
 
-        df_page = pd.DataFrame({"bpi_rank": ranks.values, "team_bpi": teams})
+        df_page = pd.DataFrame({"bpi_rank": ranks.values, "team_bpi": team_names})
+
+        # avoid repeats if ESPN returns overlapping pages
+        df_page = df_page[~df_page["bpi_rank"].isin(seen_ranks)]
+        if df_page.empty:
+            break
+
+        seen_ranks.update(df_page["bpi_rank"].tolist())
         all_rows.append(df_page)
 
+        # last page is typically < 50 rows
         if len(ranks) < 50:
             break
+
+        time.sleep(sleep_s)
 
     if not all_rows:
         raise RuntimeError("Failed to scrape any BPI pages from ESPN.")
 
-    df = pd.concat(all_rows, ignore_index=True)
-    df = df.drop_duplicates(subset=["bpi_rank"]).sort_values("bpi_rank").reset_index(drop=True)
-    return df
+    out = pd.concat(all_rows, ignore_index=True)
+    out = out.sort_values("bpi_rank").drop_duplicates(subset=["bpi_rank"], keep="first").reset_index(drop=True)
+    return out
+
+
+def _existing_file_ok(path: str) -> bool:
+    if not os.path.exists(path):
+        return False
+    try:
+        df = pd.read_csv(path)
+        return {"bpi_rank", "team_bpi"}.issubset(df.columns) and len(df) >= 300 and df["team_bpi"].astype(str).str.len().mean() > 3
+    except Exception:
+        return False
 
 
 def main():
-    print("Fetching ESPN BPI Rankings")
-    df = fetch_all_bpi_pages()
     os.makedirs("data_raw", exist_ok=True)
-    out_path = "data_raw/bpi_rankings.csv"
-    df.to_csv(out_path, index=False)
-    print(f"Wrote {len(df)} rows to {out_path}")
-    print(df.head(5).to_string(index=False))
+    try:
+        df = fetch_all_bpi()
+        df.to_csv(OUTPUT_PATH, index=False)
+        print(f"Wrote {OUTPUT_PATH} ({len(df)} rows)")
+        print(df.head(10).to_string(index=False))
+    except Exception as e:
+        if _existing_file_ok(OUTPUT_PATH):
+            print(f"Warning: BPI scrape failed ({e}). Keeping existing {OUTPUT_PATH}.")
+            return
+        raise
 
 
 if __name__ == "__main__":
