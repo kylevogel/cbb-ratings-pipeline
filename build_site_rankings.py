@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Build the site rankings data by merging all data sources.
 Creates the final dashboard data file and HTML page.
