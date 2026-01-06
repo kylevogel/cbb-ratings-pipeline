@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Scrape AP Poll rankings from AP News hub page.
 Outputs: data_raw/ap_rankings.csv
