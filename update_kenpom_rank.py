@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Scrape KenPom rankings.
 Note: KenPom requires subscription for full data. This scrapes publicly available rankings.
@@ -25,10 +24,8 @@ def scrape_kenpom_rankings():
         
         soup = BeautifulSoup(response.text, 'lxml')
         
-        # Find the main ratings table
         table = soup.find('table', {'id': 'ratings-table'})
         if not table:
-            # Try alternate method
             tables = soup.find_all('table')
             for t in tables:
                 if t.find('th') and 'Team' in t.get_text():
@@ -44,7 +41,7 @@ def scrape_kenpom_rankings():
         if tbody:
             trs = tbody.find_all('tr')
         else:
-            trs = table.find_all('tr')[1:]  # Skip header
+            trs = table.find_all('tr')[1:]
         
         for tr in trs:
             cells = tr.find_all(['td', 'th'])
@@ -52,14 +49,12 @@ def scrape_kenpom_rankings():
                 rank_text = cells[0].get_text(strip=True)
                 team_cell = cells[1]
                 
-                # Get team name
                 team_link = team_cell.find('a')
                 if team_link:
                     team = team_link.get_text(strip=True)
                 else:
                     team = team_cell.get_text(strip=True)
                 
-                # Clean rank
                 rank = re.sub(r'[^\d]', '', rank_text)
                 
                 if rank and team:
