@@ -28,7 +28,7 @@ This pipeline updates data in three stages:
 
 ## Why it exists
 
-College basketball rankings live across multiple sites with inconsistent team naming. This project makes the data usable by automatically collecting, standardizing, and merging it into a single table that powers a simple public dashboard.
+In college basketball, there are so many different rankings and metrics these days that it's hard to keep track of them all. I built this dashboard so fans can see how their team ranks across all the major metrics in one place, without ads.
 
 ## Main outputs
 
