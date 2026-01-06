@@ -62,7 +62,6 @@ def main():
     results['bpi'] = run_script('update_bpi_rank.py', 'Fetching ESPN BPI Rankings')    
     results['ap'] = run_script('update_ap_rank.py', 'Fetching AP Poll Rankings')    
     results['sos'] = run_script('update_sos_rank.py', 'Fetching SOS Rankings')    
-    results['records'] = run_script('update_records.py', 'Fetching Team Records')    
     results['build'] = run_script('build_site_rankings.py', 'Building Dashboard')
     
     end_time = datetime.now()
