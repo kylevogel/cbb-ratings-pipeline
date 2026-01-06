@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 01/05/2026 at 10:01 pm EST",
+  "updated": "Updated: 01/05/2026 at 10:06 pm EST",
   "teams": [
     {
       "team": "Michigan",
@@ -2112,16 +2112,6 @@
       "sos_rank": 247
     },
     {
-      "team": "Monmouth",
-      "record": "6-8",
-      "ap_rank": null,
-      "avg_rank": 211,
-      "net_rank": 217,
-      "kenpom_rank": 220,
-      "bpi_rank": 188,
-      "sos_rank": 241
-    },
-    {
       "team": "Utah Tech",
       "record": "6-7",
       "ap_rank": null,
@@ -2130,6 +2120,16 @@
       "kenpom_rank": 205,
       "bpi_rank": 237,
       "sos_rank": 138
+    },
+    {
+      "team": "Monmouth",
+      "record": "6-8",
+      "ap_rank": null,
+      "avg_rank": 213,
+      "net_rank": 217,
+      "kenpom_rank": 221,
+      "bpi_rank": 188,
+      "sos_rank": 241
     },
     {
       "team": "Missouri State",
@@ -2152,24 +2152,24 @@
       "sos_rank": 161
     },
     {
+      "team": "Oregon State",
+      "record": "8-9",
+      "ap_rank": null,
+      "avg_rank": 216,
+      "net_rank": 224,
+      "kenpom_rank": 223,
+      "bpi_rank": 186,
+      "sos_rank": 135
+    },
+    {
       "team": "UT Martin",
       "record": "8-4",
       "ap_rank": null,
       "avg_rank": 216,
       "net_rank": 173,
-      "kenpom_rank": 219,
+      "kenpom_rank": 220,
       "bpi_rank": 240,
       "sos_rank": 329
-    },
-    {
-      "team": "Oregon State",
-      "record": "8-9",
-      "ap_rank": null,
-      "avg_rank": 217,
-      "net_rank": 224,
-      "kenpom_rank": 223,
-      "bpi_rank": 186,
-      "sos_rank": 135
     },
     {
       "team": "Jacksonville State",
@@ -2357,7 +2357,7 @@
       "ap_rank": null,
       "avg_rank": 236,
       "net_rank": 227,
-      "kenpom_rank": 221,
+      "kenpom_rank": 219,
       "bpi_rank": 264,
       "sos_rank": 212
     },
