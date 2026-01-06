@@ -73,7 +73,7 @@ def _team_short_name(team_id: int, cache: dict[int, str]) -> str:
     data = r.json()
 
     team = data.get("team") or {}
-    name = team.get("shortDisplayName") or team.get("displayName") or team.get("name") or str(team_id)
+    name = team.get("displayName") or team.get("shortDisplayName") or team.get("name") or str(team_id)
 
     cache[team_id] = name
     return name
