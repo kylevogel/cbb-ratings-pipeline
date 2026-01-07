@@ -30,6 +30,10 @@ def load_and_standardize_data():
         kenpom_df = standardize_team_names(kenpom_df, "team_kenpom", "kenpom")
         data["kenpom"] = kenpom_df[["team", "kenpom_rank"]].drop_duplicates(subset=["team"])
         print(f"Loaded {len(data['kenpom'])} KenPom rankings")
+        
+        if "record" in kenpom_df.columns:
+            data["records"] = kenpom_df[["team", "record"]].drop_duplicates(subset=["team"])
+            print(f"Loaded {len(data['records'])} team records (from KenPom)")
 
     bpi_path = "data_raw/bpi_rankings.csv"
     if os.path.exists(bpi_path):
@@ -52,21 +56,6 @@ def load_and_standardize_data():
         sos_df = standardize_team_names(sos_df, "team_sos", "sos")
         data["sos"] = sos_df[["team", "sos_rank"]].drop_duplicates(subset=["team"])
         print(f"Loaded {len(data['sos'])} SOS rankings")
-
-    records_path = "data_raw/team_records.csv"
-    if os.path.exists(records_path):
-        records_df = pd.read_csv(records_path)
-
-        if "team_espn" in records_df.columns:
-            records_df = standardize_team_names(records_df, "team_espn", "espn")
-            data["records"] = records_df[["team", "record"]].drop_duplicates(subset=["team"])
-            print(f"Loaded {len(data['records'])} team records (ESPN)")
-        elif "team_net" in records_df.columns:
-            records_df = standardize_team_names(records_df, "team_net", "net")
-            data["records"] = records_df[["team", "record"]].drop_duplicates(subset=["team"])
-            print(f"Loaded {len(data['records'])} team records (NET)")
-        else:
-            print("team_records.csv exists but does not contain team_espn or team_net columns")
 
     return data
 
