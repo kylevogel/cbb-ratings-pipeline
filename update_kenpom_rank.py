@@ -45,11 +45,19 @@ def scrape_kenpom_rankings():
 
         for tr in trs:
             cells = tr.find_all(['td', 'th'])
-            if len(cells) >= 3:
+            if len(cells) >= 4:
                 rank_text = cells[0].get_text(strip=True)
                 team_cell = cells[1]
-                record_text = cells[2].get_text(strip=True)
-
+                
+                # W-L is in the cell with class="wl" or at index 3
+                record = ""
+                wl_cell = tr.find('td', class_='wl')
+                if wl_cell:
+                    record_text = wl_cell.get_text(strip=True)
+                    record_match = re.search(r'(\d+)-(\d+)', record_text)
+                    if record_match:
+                        record = f"{record_match.group(1)}-{record_match.group(2)}"
+                
                 team_link = team_cell.find('a')
                 if team_link:
                     team = team_link.get_text(strip=True)
@@ -57,13 +65,6 @@ def scrape_kenpom_rankings():
                     team = team_cell.get_text(strip=True)
 
                 rank = re.sub(r'[^\d]', '', rank_text)
-
-                # Parse W-L record
-                record_match = re.search(r'(\d+)-(\d+)', record_text)
-                if record_match:
-                    record = f"{record_match.group(1)}-{record_match.group(2)}"
-                else:
-                    record = ""
 
                 if rank and team:
                     rows.append({
@@ -92,6 +93,7 @@ def main():
         os.makedirs('data_raw', exist_ok=True)
         df.to_csv('data_raw/kenpom_rankings.csv', index=False)
         print(f"Saved {len(df)} KenPom rankings to data_raw/kenpom_rankings.csv")
+        print(df.head(10).to_string(index=False))
     else:
         print("Failed to fetch KenPom rankings")
 
