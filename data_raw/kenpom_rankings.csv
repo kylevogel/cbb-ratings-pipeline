@@ -3,14 +3,14 @@ kenpom_rank,team_kenpom,record
 2,Iowa St.,15-0
 3,Arizona,15-0
 4,Purdue,14-1
-5,Vanderbilt,15-0
-6,Gonzaga,16-1
+5,Gonzaga,16-1
+6,Vanderbilt,15-0
 7,Duke,14-1
 8,Connecticut,15-1
 9,Illinois,11-3
 10,BYU,14-1
 11,Houston,14-1
-12,Michigan St.,13-2
+12,Michigan St.,14-2
 13,Florida,10-5
 14,Alabama,11-4
 15,Louisville,11-4
@@ -31,17 +31,17 @@ kenpom_rank,team_kenpom,record
 30,Kentucky,9-6
 31,SMU,12-3
 32,Saint Louis,14-1
-33,Baylor,10-4
-34,Clemson,13-3
-35,N.C. State,11-5
+33,N.C. State,11-5
+34,Baylor,10-4
+35,Clemson,13-3
 36,Miami FL,13-2
 37,Auburn,9-6
 38,Ohio St.,10-4
 39,UCLA,10-5
 40,Creighton,10-6
 41,LSU,12-3
-42,Texas A&M,12-3
-43,Wisconsin,10-5
+42,Wisconsin,10-5
+43,Texas A&M,12-3
 44,UCF,12-2
 45,VCU,11-5
 46,Seton Hall,13-2
@@ -55,55 +55,55 @@ kenpom_rank,team_kenpom,record
 54,Oklahoma,11-4
 55,Santa Clara,13-4
 56,Butler,10-6
-57,Notre Dame,10-5
-58,Oklahoma St.,13-2
-59,Northwestern,8-6
+57,Northwestern,8-7
+58,Notre Dame,10-5
+59,Oklahoma St.,13-2
 60,Belmont,14-3
-61,Providence,8-7
-62,Virginia Tech,12-4
+61,Virginia Tech,12-4
+62,Providence,8-7
 63,Boise St.,9-6
 64,Akron,11-4
 65,Mississippi St.,10-5
-66,Cincinnati,8-7
-67,George Washington,11-5
-68,Wake Forest,10-6
+66,Wake Forest,10-6
+67,Cincinnati,8-7
+68,George Washington,11-5
 69,South Carolina,10-5
 70,Mississippi,8-7
-71,Tulsa,13-2
-72,Kansas St.,9-6
-73,McNeese,12-3
-74,West Virginia,10-5
-75,Syracuse,10-5
+71,Syracuse,10-5
+72,Tulsa,13-2
+73,West Virginia,10-5
+74,Kansas St.,9-6
+75,McNeese,12-3
 76,Dayton,12-4
 77,Stanford,13-3
 78,Oregon,8-7
-79,Memphis,7-7
-80,Colorado,12-3
+79,Colorado,12-3
+80,Memphis,7-7
 81,Nevada,11-4
 82,Yale,12-2
 83,California,13-3
 84,George Mason,15-1
-85,South Florida,9-6
-86,Murray St.,14-3
-87,High Point,15-3
+85,Murray St.,14-3
+86,South Florida,9-6
+87,Minnesota,10-5
 88,Colorado St.,10-5
-89,Minnesota,10-5
+89,High Point,15-3
 90,Illinois St.,12-4
-91,UC San Diego,12-3
-92,Arizona St.,9-6
-93,Pittsburgh,7-8
-94,Grand Canyon,9-5
+91,Pittsburgh,7-8
+92,Grand Canyon,9-5
+93,UC San Diego,12-3
+94,Arizona St.,9-6
 95,Wyoming,11-4
 96,Hawaii,11-3
 97,Northern Iowa,12-4
-98,Utah Valley,12-4
+98,Utah Valley,13-4
 99,Hofstra,12-4
 100,Wichita St.,9-7
-101,Florida Atlantic,10-6
-102,San Francisco,11-6
-103,Miami OH,16-0
-104,Florida St.,7-8
-105,Liberty,11-3
+101,Liberty,12-3
+102,Florida Atlantic,10-6
+103,San Francisco,11-6
+104,Miami OH,16-0
+105,Florida St.,7-8
 106,Xavier,9-7
 107,Richmond,12-4
 108,Stephen F. Austin,12-3
@@ -113,254 +113,254 @@ kenpom_rank,team_kenpom,record
 112,Seattle,12-5
 113,UAB,10-6
 114,Bowling Green,11-5
-115,Maryland,7-8
-116,William & Mary,11-4
-117,UNC Wilmington,14-2
-118,Marquette,6-10
-119,Bradley,11-6
-120,Davidson,10-5
-121,St. Bonaventure,11-4
-122,Georgia Tech,10-6
-123,Sam Houston St.,8-6
+115,UNC Wilmington,15-2
+116,Maryland,7-8
+117,Marquette,6-10
+118,Bradley,11-6
+119,Davidson,10-5
+120,St. Bonaventure,11-4
+121,Georgia Tech,10-6
+122,Sam Houston St.,9-6
+123,Southern Illinois,8-9
 124,Middle Tennessee,9-5
-125,Southern Illinois,8-9
-126,Loyola Marymount,10-7
-127,UC Irvine,11-5
-128,East Tennessee St.,11-5
-129,Pacific,11-6
-130,Columbia,12-3
-131,Oakland,8-8
-132,Utah,8-7
-133,Arkansas St.,11-5
+125,Loyola Marymount,10-7
+126,UC Irvine,11-5
+127,East Tennessee St.,11-5
+128,William & Mary,11-5
+129,Utah,8-7
+130,Oakland,8-8
+131,Arkansas St.,11-5
+132,Pacific,11-6
+133,Columbia,12-3
 134,North Texas,10-6
 135,Rhode Island,9-7
 136,Troy,10-6
 137,Duquesne,9-7
 138,St. Thomas,13-4
-139,Wright St.,9-7
-140,Marist,9-5
-141,Kent St.,12-3
+139,Kent St.,12-3
+140,Wright St.,9-7
+141,Marist,9-5
 142,Cal Baptist,10-6
-143,Lipscomb,9-6
-144,Temple,11-5
-145,New Mexico St.,8-5
+143,Temple,11-5
+144,New Mexico St.,8-5
+145,UT Arlington,10-5
 146,Fresno St.,7-8
-147,UT Arlington,10-5
-148,UNLV,7-7
-149,North Dakota St.,12-5
-150,Mercer,9-7
-151,Elon,9-6
-152,Winthrop,10-8
+147,UNLV,7-7
+148,North Dakota St.,12-5
+149,Mercer,9-7
+150,Elon,10-6
+151,Winthrop,10-8
+152,Washington St.,8-9
 153,Western Kentucky,9-5
-154,Washington St.,8-9
-155,Rutgers,8-7
-156,Quinnipiac,11-5
-157,Furman,11-5
+154,Rutgers,8-7
+155,Quinnipiac,11-5
+156,Furman,11-5
+157,Northern Colorado,11-5
 158,Marshall,11-5
 159,Montana St.,8-7
 160,Boston College,7-8
-161,Tarleton St.,11-5
+161,Lipscomb,9-7
 162,Toledo,9-6
-163,UC Santa Barbara,9-6
-164,Portland St.,8-5
+163,Portland St.,8-5
+164,UC Santa Barbara,9-6
 165,Charleston,10-6
-166,Florida Gulf Coast,7-8
-167,FIU,9-6
-168,Buffalo,13-2
-169,Northern Colorado,10-5
-170,Incarnate Word,8-7
+166,Buffalo,13-2
+167,Tarleton St.,11-6
+168,FIU,9-6
+169,Incarnate Word,8-7
+170,Charlotte,8-8
 171,UC Davis,8-6
-172,Charlotte,8-8
-173,Idaho St.,8-7
-174,Cornell,7-7
-175,Kennesaw St.,9-6
-176,Drake,8-8
-177,Massachusetts,9-7
-178,Valparaiso,8-8
-179,Siena,10-5
-180,Towson,8-9
-181,Texas A&M Corpus Chris,8-7
-182,Eastern Michigan,8-8
-183,LIU,8-7
-184,Tulane,11-4
+172,Cornell,7-7
+173,Kennesaw St.,9-6
+174,Drake,8-8
+175,Massachusetts,9-7
+176,Valparaiso,8-8
+177,Towson,8-9
+178,Siena,10-5
+179,Idaho St.,8-8
+180,Austin Peay,9-5
+181,Eastern Michigan,8-8
+182,Texas A&M Corpus Chris,8-7
+183,Florida Gulf Coast,7-9
+184,Queens,8-8
 185,Illinois Chicago,6-10
-186,South Dakota St.,8-9
-187,Navy,11-5
-188,Ohio,9-7
-189,Southern Miss,9-7
-190,Vermont,9-7
-191,Colgate,9-7
+186,Southern Miss,10-7
+187,Tulane,11-4
+188,Navy,11-5
+189,South Dakota St.,9-9
+190,Colgate,9-7
+191,Ohio,9-7
 192,Montana,8-7
-193,Idaho,9-5
-194,Indiana St.,8-8
-195,Northern Kentucky,12-5
-196,UT Rio Grande Valley,6-9
+193,Northern Kentucky,12-5
+194,Idaho,9-5
+195,LIU,9-7
+196,Campbell,9-8
 197,Robert Morris,11-6
-198,CSUN,9-7
-199,Youngstown St.,8-9
-200,Austin Peay,8-5
-201,Fordham,9-7
-202,Harvard,7-8
-203,Campbell,8-8
-204,Missouri St.,9-6
-205,South Alabama,11-5
-206,Saint Joseph's,9-7
-207,Milwaukee,7-9
-208,Utah Tech,9-7
-209,Nicholls,7-8
-210,Penn,7-7
-211,Queens,7-8
-212,Weber St.,7-8
-213,New Orleans,5-10
-214,Georgia Southern,12-5
-215,Abilene Christian,9-6
-216,San Diego,6-10
-217,Jacksonville St.,8-7
-218,James Madison,8-8
-219,Iona,10-6
-220,Tennessee Martin,11-4
-221,Oregon St.,8-9
+198,Indiana St.,8-8
+199,UT Rio Grande Valley,6-9
+200,Weber St.,8-8
+201,Youngstown St.,8-9
+202,Monmouth,8-8
+203,Harvard,7-8
+204,CSUN,9-7
+205,Abilene Christian,10-6
+206,Fordham,9-7
+207,Saint Joseph's,9-7
+208,Missouri St.,9-6
+209,South Alabama,11-5
+210,Utah Tech,9-7
+211,Vermont,10-7
+212,Tennessee Martin,12-4
+213,Milwaukee,7-9
+214,Penn,7-7
+215,Nicholls,7-8
+216,New Orleans,5-10
+217,James Madison,8-8
+218,Jacksonville St.,8-7
+219,Georgia Southern,12-5
+220,San Diego,6-10
+221,Iona,10-6
 222,San Jose St.,5-10
-223,Monmouth,7-8
-224,Central Arkansas,7-8
-225,Charleston Southern,11-7
-226,Louisiana Tech,8-6
-227,Wofford,11-5
-228,Northeastern,5-9
-229,Southeast Missouri,8-7
-230,Portland,7-10
-231,Radford,9-8
-232,American,9-7
-233,Dartmouth,7-7
-234,Cal St. Fullerton,6-10
-235,La Salle,5-11
-236,Appalachian St.,9-7
-237,Lindenwood,10-6
-238,Samford,9-7
-239,Tennessee St.,9-5
+223,Charleston Southern,11-7
+224,Wofford,11-5
+225,Oregon St.,8-9
+226,Central Arkansas,7-9
+227,Portland,7-10
+228,Southeast Missouri,8-7
+229,Northeastern,5-10
+230,Radford,9-8
+231,American,9-7
+232,La Salle,5-11
+233,Cal St. Fullerton,6-10
+234,Dartmouth,7-7
+235,Appalachian St.,10-7
+236,Lindenwood,10-6
+237,Tennessee St.,9-5
+238,Louisiana Tech,8-7
+239,Samford,9-7
 240,Lamar,7-8
-241,Rice,7-9
-242,Cal Poly,6-10
+241,Cal Poly,6-10
+242,Rice,7-9
 243,Grambling St.,8-7
 244,Green Bay,8-8
 245,Long Beach St.,5-10
-246,Hampton,8-8
+246,Old Dominion,5-12
 247,Merrimack,9-7
-248,Brown,6-8
-249,UNC Asheville,7-10
-250,Purdue Fort Wayne,10-8
-251,Eastern Washington,2-12
-252,Denver,8-9
+248,Denver,8-10
+249,Purdue Fort Wayne,10-8
+250,Eastern Washington,2-12
+251,UNC Asheville,7-10
+252,Brown,6-8
 253,Princeton,5-11
-254,Old Dominion,4-12
-255,Pepperdine,5-12
-256,Stony Brook,9-7
+254,Pepperdine,5-12
+255,Hampton,8-9
+256,Bellarmine,6-9
 257,Southern,5-10
-258,Saint Peter's,7-5
-259,Coastal Carolina,8-8
-260,SIUE,10-6
-261,Central Connecticut,7-6
-262,Western Michigan,6-9
-263,Bethune Cookman,4-10
-264,UTEP,4-10
-265,Southeastern Louisiana,5-10
-266,Western Carolina,5-9
-267,Bellarmine,5-9
-268,UMBC,8-6
-269,Boston University,6-10
-270,Texas St.,9-7
-271,Delaware,5-9
-272,Eastern Kentucky,4-11
-273,Fairfield,9-7
-274,USC Upstate,8-9
-275,Nebraska Omaha,7-10
-276,Howard,9-7
+258,Drexel,7-10
+259,Saint Peter's,7-5
+260,Western Michigan,6-9
+261,SIUE,10-6
+262,Central Connecticut,8-6
+263,Southeastern Louisiana,5-10
+264,Coastal Carolina,8-9
+265,Eastern Kentucky,5-11
+266,UTEP,4-10
+267,Western Carolina,5-9
+268,Nebraska Omaha,8-10
+269,Bethune Cookman,4-10
+270,Boston University,6-10
+271,UMBC,8-6
+272,Fairfield,9-7
+273,Howard,9-7
+274,Texas St.,9-8
+275,USC Upstate,8-9
+276,Delaware,5-10
 277,Detroit Mercy,6-8
-278,Chattanooga,6-10
-279,UC Riverside,6-9
-280,Drexel,6-10
-281,East Carolina,5-10
-282,Evansville,4-13
-283,Norfolk St.,6-11
-284,UMass Lowell,7-10
-285,UNC Greensboro,6-10
-286,Prairie View A&M,6-9
+278,Stony Brook,9-8
+279,Chattanooga,6-10
+280,UC Riverside,6-9
+281,Le Moyne,7-9
+282,East Carolina,5-10
+283,Evansville,4-13
+284,UNC Greensboro,6-10
+285,Norfolk St.,6-11
+286,UMass Lowell,7-10
 287,South Dakota,8-9
-288,Sacramento St.,4-10
-289,Loyola Chicago,5-11
-290,Alabama St.,4-11
-291,Oral Roberts,5-12
-292,Longwood,9-9
-293,Northern Arizona,6-9
-294,Alabama A&M,8-7
+288,Prairie View A&M,6-9
+289,Sacramento St.,4-10
+290,Loyola Chicago,5-11
+291,Alabama St.,4-11
+292,West Georgia,9-6
+293,Longwood,9-9
+294,Oral Roberts,5-12
 295,Presbyterian,8-9
-296,North Alabama,5-8
-297,Northwestern St.,4-11
-298,Cal St. Bakersfield,7-9
-299,Sacred Heart,5-11
+296,Sacred Heart,5-11
+297,Alabama A&M,8-7
+298,Northwestern St.,4-11
+299,Cal St. Bakersfield,7-9
 300,Houston Christian,5-10
-301,West Georgia,8-6
-302,Le Moyne,6-9
-303,Georgia St.,5-11
-304,Morehead St.,7-8
-305,Mount St. Mary's,5-11
+301,North Alabama,5-9
+302,Mount St. Mary's,5-11
+303,Georgia St.,5-12
+304,Northern Arizona,6-10
+305,Tennessee Tech,6-9
 306,Little Rock,5-10
-307,Tennessee Tech,6-9
-308,North Carolina A&T,7-7
+307,North Carolina A&T,7-8
+308,Mercyhurst,6-10
 309,Manhattan,7-9
-310,Wagner,6-7
-311,North Dakota,8-10
-312,Eastern Illinois,4-10
-313,UTSA,4-11
-314,Jacksonville,5-10
-315,East Texas A&M,6-10
-316,Mercyhurst,6-9
-317,Bucknell,4-12
-318,Arkansas Pine Bluff,5-10
-319,Northern Illinois,5-10
-320,Albany,4-12
-321,Lehigh,5-11
-322,Cleveland St.,5-11
+310,Morehead St.,7-9
+311,Eastern Illinois,4-10
+312,UTSA,4-11
+313,East Texas A&M,6-10
+314,North Dakota,8-11
+315,Bucknell,4-12
+316,Arkansas Pine Bluff,5-10
+317,Northern Illinois,5-10
+318,Wagner,6-8
+319,Lehigh,5-11
+320,Cleveland St.,5-11
+321,Albany,4-12
+322,Lafayette,4-12
 323,Louisiana,3-13
 324,Central Michigan,4-12
-325,Lafayette,4-12
-326,Bryant,5-11
-327,Southern Indiana,3-11
-328,Kansas City,4-12
-329,Holy Cross,6-10
-330,Ball St.,4-11
-331,Southern Utah,4-11
+325,Bryant,5-11
+326,Kansas City,4-12
+327,Ball St.,4-11
+328,Southern Indiana,3-11
+329,Southern Utah,4-12
+330,Holy Cross,6-10
+331,Jacksonville,5-11
 332,Army,7-9
-333,VMI,6-10
-334,New Haven,6-9
-335,New Hampshire,4-10
-336,Air Force,3-12
-337,Maryland Eastern Shore,5-13
-338,IU Indy,4-13
-339,Texas Southern,2-11
-340,Canisius,7-8
-341,North Florida,2-13
-342,Florida A&M,3-9
-343,Loyola MD,5-11
-344,Alcorn St.,1-12
-345,Jackson St.,2-12
-346,Stetson,5-10
-347,Stonehill,4-11
+333,Stetson,6-10
+334,VMI,6-10
+335,Air Force,3-12
+336,Maryland Eastern Shore,5-13
+337,Canisius,7-8
+338,Texas Southern,2-11
+339,IU Indy,4-13
+340,New Hampshire,4-11
+341,Loyola MD,5-11
+342,Alcorn St.,1-12
+343,Florida A&M,3-9
+344,Jackson St.,2-12
+345,North Florida,2-14
+346,Stonehill,4-12
+347,New Haven,6-10
 348,Maine,2-15
 349,North Carolina Central,5-11
 350,Fairleigh Dickinson,5-11
-351,Rider,1-12
-352,NJIT,6-10
+351,NJIT,7-10
+352,Rider,1-12
 353,Chicago St.,2-14
 354,Louisiana Monroe,3-13
-355,Western Illinois,4-11
-356,Niagara,4-10
+355,Niagara,4-10
+356,Western Illinois,4-11
 357,Delaware St.,5-11
 358,Gardner Webb,2-16
 359,South Carolina St.,2-14
 360,The Citadel,3-13
-361,Morgan St.,3-12
-362,Saint Francis,3-12
-363,Binghamton,4-12
+361,Saint Francis,4-12
+362,Binghamton,4-13
+363,Morgan St.,3-12
 364,Coppin St.,3-15
 365,Mississippi Valley St.,1-15
