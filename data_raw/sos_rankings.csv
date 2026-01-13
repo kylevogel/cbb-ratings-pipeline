@@ -8,17 +8,17 @@ Arizona,6
 Purdue,7
 BYU,8
 Arkansas,9
-Duke,10
-North Carolina State,11
+North Carolina State,10
+Duke,11
 Wake Forest,12
 Kentucky,13
 Illinois,14
 Florida,15
 UCF,16
-Louisville,17
-Saint John's,18
-Baylor,19
-North Carolina,20
+North Carolina,17
+Louisville,18
+Saint John's,19
+Baylor,20
 Michigan State,21
 Connecticut,22
 Virginia Tech,23
@@ -58,9 +58,9 @@ Texas,56
 Xavier,57
 Toledo,58
 USC,59
-VCU,60
-TCU,61
-Virginia,62
+Virginia,60
+VCU,61
+TCU,62
 South Florida,63
 Memphis,64
 Ohio,65
@@ -75,14 +75,14 @@ UNLV,73
 Boston College,74
 Saint Bonaventure,75
 FAU,76
-San Francisco,77
-Providence,78
-UCLA,79
-Georgia Tech,80
-Georgetown,81
-Dayton,82
+Providence,77
+Dayton,78
+San Francisco,79
+UCLA,80
+Georgia Tech,81
+Penn State,82
 Washington,83
-Penn State,84
+Georgetown,84
 George Washington,85
 Evansville,86
 Washington State,87
@@ -116,8 +116,8 @@ Oakland,114
 Rhode Island,115
 Gonzaga,116
 Loyola-Chicago,117
-California,118
-Charleston,119
+Charleston,118
+California,119
 San Jose State,120
 FIU,121
 Cornell,122
@@ -128,32 +128,32 @@ Oregon State,126
 Portland,127
 Colorado State,128
 Western Kentucky,129
-Loyola-Marymount,130
+UAB,130
 Hofstra,131
-UAB,132
+Loyola-Marymount,132
 Marshall,133
 Utah Valley,134
 Liberty,135
 East Carolina,136
-New Mexico State,137
-Miami (FL),138
+Miami (FL),137
+New Mexico State,138
 UC Irvine,139
 Utah Tech,140
 Belmont,141
 UTSA,142
 Davidson,143
-DePaul,144
-Drake,145
+Drake,144
+DePaul,145
 Northeastern,146
 Elon,147
 Bowling Green,148
 Eastern Kentucky,149
 Campbell,150
 Illinois State,151
-Old Dominion,152
-Richmond,153
-UMass,154
-Northern Illinois,155
+Richmond,152
+UMass,153
+Northern Illinois,154
+Old Dominion,155
 Grand Canyon,156
 Merrimack,157
 Pepperdine,158
@@ -171,12 +171,12 @@ Troy,169
 Dartmouth,170
 Eastern Michigan,171
 Fordham,172
-Cal Poly,173
-UC Riverside,174
-Southern Utah,175
-Arkansas State,176
-UNC Asheville,177
-James Madison,178
+James Madison,173
+Cal Poly,174
+UC Riverside,175
+Southern Utah,176
+Arkansas State,177
+UNC Asheville,178
 Saint Joseph's,179
 William & Mary,180
 San Diego,181
@@ -194,8 +194,8 @@ Rider,192
 Seattle University,193
 Milwaukee,194
 Stony Brook,195
-UC San Diego,196
-Missouri State,197
+Missouri State,196
+UC San Diego,197
 Cal State Fullerton,198
 Rice,199
 Pacific,200
@@ -222,10 +222,10 @@ Long Beach State,220
 New Orleans,221
 Ball State,222
 Texas A&M-Corpus Christi,223
-UNCW,224
-Nicholls,225
-UC Santa Barbara,226
-Cleveland State,227
+Nicholls,224
+UNCW,225
+Cleveland State,226
+UC Santa Barbara,227
 Siena,228
 Central Arkansas,229
 North Carolina A&T,230
@@ -233,37 +233,37 @@ Northwestern State,231
 Sacred Heart,232
 Southern Miss,233
 UTRGV,234
-South Dakota State,235
-Eastern Washington,236
-Lipscomb,237
-Montana,238
-Brown,239
-Appalachian State,240
+Appalachian State,235
+South Dakota State,236
+Eastern Washington,237
+Lipscomb,238
+Montana,239
+Brown,240
 Oral Roberts,241
 East Texas A&M,242
 Iona,243
 Eastern Illinois,244
-Drexel,245
-Canisius,246
-UNCG,247
+Canisius,245
+UNCG,246
+Drexel,247
 Bellarmine,248
 Purdue Fort Wayne,249
 East Tennessee State,250
-Manhattan,251
-California Baptist,252
-IU Indianapolis,253
-Samford,254
-Denver,255
-FGCU,256
-South Carolina Upstate,257
+South Carolina Upstate,251
+Manhattan,252
+California Baptist,253
+IU Indianapolis,254
+Samford,255
+Denver,256
+FGCU,257
 Montana State,258
 Colgate,259
-Niagara,260
+Northern Kentucky,260
 Marist,261
-Northern Kentucky,262
-Texas State,263
-Chattanooga,264
-Omaha,265
+Texas State,262
+Chattanooga,263
+Omaha,264
+Niagara,265
 ULM,266
 Northern Arizona,267
 North Dakota,268
@@ -298,8 +298,8 @@ New Hampshire,296
 Bryant,297
 Saint Francis (PA),298
 Maine,299
-UMass-Lowell,300
-Lehigh,301
+Lehigh,300
+UMass-Lowell,301
 North Dakota State,302
 Saint Thomas,303
 Hawaii,304
@@ -323,8 +323,8 @@ Western Illinois,321
 Arkansas-Pine Bluff,322
 The Citadel,323
 Northern Colorado,324
-Holy Cross,325
-Longwood,326
+Longwood,325
+Holy Cross,326
 Texas Southern,327
 High Point,328
 Austin Peay,329
@@ -359,8 +359,8 @@ SIUE,357
 Prairie View A&M,358
 Central Connecticut,359
 Binghamton,360
-UMBC,361
-Howard,362
+Howard,361
+UMBC,362
 Delaware State,363
 Le Moyne,364
 Morgan State,365
