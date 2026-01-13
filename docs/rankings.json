@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 01/13/2026 at 10:19 am EST",
+  "updated": "Updated: 01/13/2026 at 11:23 am EST",
   "teams": [
     {
       "team": "Michigan",
@@ -447,7 +447,7 @@
       "ap_rank": null,
       "avg_rank": 45,
       "net_rank": 37,
-      "kenpom_rank": 45,
+      "kenpom_rank": 46,
       "bpi_rank": 57,
       "sos_rank": 16
     },
@@ -487,7 +487,7 @@
       "ap_rank": null,
       "avg_rank": 49,
       "net_rank": 56,
-      "kenpom_rank": 46,
+      "kenpom_rank": 45,
       "bpi_rank": 50,
       "sos_rank": 58
     },
@@ -932,16 +932,6 @@
       "sos_rank": 33
     },
     {
-      "team": "Northern Iowa",
-      "record": "12-5",
-      "ap_rank": null,
-      "avg_rank": 94,
-      "net_rank": 92,
-      "kenpom_rank": 98,
-      "bpi_rank": 95,
-      "sos_rank": 94
-    },
-    {
       "team": "Yale",
       "record": "12-3",
       "ap_rank": null,
@@ -952,10 +942,20 @@
       "sos_rank": 121
     },
     {
+      "team": "Northern Iowa",
+      "record": "12-5",
+      "ap_rank": null,
+      "avg_rank": 95,
+      "net_rank": 92,
+      "kenpom_rank": 99,
+      "bpi_rank": 95,
+      "sos_rank": 94
+    },
+    {
       "team": "Pittsburgh",
       "record": "7-9",
       "ap_rank": null,
-      "avg_rank": 96,
+      "avg_rank": 95,
       "net_rank": 111,
       "kenpom_rank": 94,
       "bpi_rank": 81,
@@ -1012,24 +1012,24 @@
       "sos_rank": 307
     },
     {
+      "team": "Utah Valley",
+      "record": "14-4",
+      "ap_rank": null,
+      "avg_rank": 101,
+      "net_rank": 87,
+      "kenpom_rank": 98,
+      "bpi_rank": 117,
+      "sos_rank": 134
+    },
+    {
       "team": "Florida Atlantic",
       "record": "11-6",
       "ap_rank": null,
-      "avg_rank": 102,
+      "avg_rank": 103,
       "net_rank": 97,
       "kenpom_rank": 100,
       "bpi_rank": 106,
       "sos_rank": 74
-    },
-    {
-      "team": "Utah Valley",
-      "record": "14-4",
-      "ap_rank": null,
-      "avg_rank": 102,
-      "net_rank": 87,
-      "kenpom_rank": 99,
-      "bpi_rank": 117,
-      "sos_rank": 134
     },
     {
       "team": "Xavier",
@@ -1337,7 +1337,7 @@
       "ap_rank": null,
       "avg_rank": 134,
       "net_rank": 146,
-      "kenpom_rank": 133,
+      "kenpom_rank": 132,
       "bpi_rank": 123,
       "sos_rank": 135
     },
@@ -1365,9 +1365,9 @@
       "team": "Oakland",
       "record": "9-9",
       "ap_rank": null,
-      "avg_rank": 136,
+      "avg_rank": 137,
       "net_rank": 137,
-      "kenpom_rank": 132,
+      "kenpom_rank": 133,
       "bpi_rank": 146,
       "sos_rank": 112
     },
