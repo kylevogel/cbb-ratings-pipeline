@@ -1,12 +1,12 @@
 kenpom_rank,team_kenpom,record
-1,Michigan,14-1
-2,Arizona,16-0
+1,Michigan,15-1
+2,Arizona,17-0
 3,Iowa St.,16-1
 4,Purdue,16-1
 5,Illinois,14-3
-6,Houston,16-1
-7,Gonzaga,17-1
-8,Duke,15-1
+6,Duke,16-1
+7,Houston,16-1
+8,Gonzaga,17-1
 9,Connecticut,17-1
 10,Florida,12-5
 11,Vanderbilt,16-1
@@ -20,7 +20,7 @@ kenpom_rank,team_kenpom,record
 19,Tennessee,12-5
 20,Iowa,12-5
 21,Louisville,12-5
-22,Utah St.,14-1
+22,Utah St.,15-1
 23,Texas Tech,13-4
 24,Arkansas,13-4
 25,N.C. State,12-5
@@ -44,11 +44,11 @@ kenpom_rank,team_kenpom,record
 43,Seton Hall,14-3
 44,UCF,14-2
 45,LSU,12-5
-46,San Diego St.,12-4
-47,VCU,12-6
+46,VCU,12-6
+47,San Diego St.,12-4
 48,New Mexico,14-3
 49,Santa Clara,15-5
-50,Washington,10-6
+50,Washington,10-7
 51,USC,14-3
 52,Creighton,11-7
 53,TCU,11-5
@@ -67,32 +67,32 @@ kenpom_rank,team_kenpom,record
 66,Butler,10-7
 67,McNeese,14-3
 68,Providence,8-9
-69,Notre Dame,10-7
-70,George Washington,12-6
+69,George Washington,12-6
+70,Notre Dame,10-7
 71,Stanford,14-4
 72,Dayton,13-4
-73,Nevada,12-4
+73,Nevada,12-5
 74,South Florida,11-6
 75,George Mason,17-1
 76,Tulsa,14-3
 77,Colorado,12-5
 78,Mississippi St.,10-7
-79,California,13-4
+79,Arizona St.,10-7
 80,Boise St.,9-8
 81,Murray St.,15-3
 82,Kansas St.,9-8
 83,Pittsburgh,8-9
-84,South Carolina,10-7
-85,Minnesota,10-7
-86,Arizona St.,10-6
+84,California,13-5
+85,South Carolina,10-7
+86,Minnesota,10-7
 87,Miami OH,18-0
 88,Oregon,8-9
 89,Colorado St.,11-6
 90,Memphis,8-8
 91,Yale,12-3
 92,Liberty,13-3
-93,Grand Canyon,10-6
-94,Xavier,11-7
+93,Xavier,11-7
+94,Grand Canyon,10-6
 95,Utah Valley,14-4
 96,Hawaii,12-3
 97,Illinois St.,12-6
@@ -117,10 +117,10 @@ kenpom_rank,team_kenpom,record
 116,UNC Wilmington,16-2
 117,Bowling Green,11-6
 118,Marquette,6-12
-119,Utah,8-9
-120,Troy,12-6
-121,UC Irvine,12-6
-122,Seattle,12-6
+119,Troy,12-6
+120,Utah,8-9
+121,Seattle,12-6
+122,UC Irvine,12-6
 123,Winthrop,12-8
 124,Middle Tennessee,10-7
 125,East Tennessee St.,12-6
@@ -131,20 +131,20 @@ kenpom_rank,team_kenpom,record
 130,Pacific,12-8
 131,Oakland,9-9
 132,Marist,11-5
-133,Wright St.,11-7
-134,Arkansas St.,12-5
-135,Georgia Tech,10-8
+133,Georgia Tech,10-8
+134,Wright St.,11-7
+135,Arkansas St.,12-5
 136,William & Mary,11-6
 137,North Dakota St.,15-5
-138,North Texas,10-7
-139,Loyola Marymount,11-9
+138,Loyola Marymount,11-9
+139,North Texas,10-7
 140,St. Bonaventure,11-6
 141,Temple,11-6
 142,Fresno St.,8-9
 143,New Mexico St.,9-6
-144,UT Arlington,11-5
-145,Duquesne,9-8
-146,Mercer,10-7
+144,Mercer,10-7
+145,UT Arlington,11-5
+146,Duquesne,9-8
 147,Washington St.,8-10
 148,UNLV,8-8
 149,Kent St.,13-4
@@ -201,9 +201,9 @@ kenpom_rank,team_kenpom,record
 200,Idaho,10-6
 201,Nicholls,8-9
 202,Colgate,10-8
-203,Ohio,10-8
-204,Youngstown St.,9-9
-205,Oregon St.,10-10
+203,Oregon St.,10-10
+204,Ohio,10-8
+205,Youngstown St.,9-9
 206,Indiana St.,9-9
 207,Robert Morris,11-7
 208,San Diego,7-11
@@ -216,8 +216,8 @@ kenpom_rank,team_kenpom,record
 215,Missouri St.,10-7
 216,Abilene Christian,10-7
 217,Southern Miss,11-8
-218,UT Rio Grande Valley,6-11
-219,Utah Tech,9-9
+218,Utah Tech,9-9
+219,UT Rio Grande Valley,6-11
 220,Portland,9-11
 221,Charleston Southern,11-9
 222,James Madison,9-8
@@ -290,16 +290,16 @@ kenpom_rank,team_kenpom,record
 289,Northwestern St.,6-11
 290,UNC Greensboro,6-11
 291,Little Rock,7-10
-292,Loyola Chicago,5-13
-293,Georgia St.,6-12
+292,Georgia St.,6-12
+293,Loyola Chicago,5-13
 294,Prairie View A&M,8-9
 295,Cal St. Bakersfield,8-10
 296,Norfolk St.,7-12
 297,Oral Roberts,5-14
 298,Alabama A&M,9-8
 299,Northern Arizona,6-11
-300,Sacramento St.,4-11
-301,Alabama St.,5-12
+300,Alabama St.,5-12
+301,Sacramento St.,4-11
 302,Presbyterian,9-10
 303,Lehigh,7-11
 304,Houston Christian,5-12
@@ -318,8 +318,8 @@ kenpom_rank,team_kenpom,record
 317,Arkansas Pine Bluff,6-11
 318,Wagner,6-9
 319,West Georgia,9-7
-320,Ball St.,4-13
-321,Southern Utah,4-13
+320,Southern Utah,4-13
+321,Ball St.,4-13
 322,Maryland Eastern Shore,7-13
 323,Florida A&M,5-9
 324,Central Michigan,5-13
@@ -335,8 +335,8 @@ kenpom_rank,team_kenpom,record
 334,Texas Southern,3-12
 335,Kansas City,4-14
 336,Southern Indiana,3-13
-337,Bryant,5-12
-338,Loyola MD,5-13
+337,Loyola MD,5-13
+338,Bryant,5-12
 339,VMI,6-11
 340,Alcorn St.,2-13
 341,Air Force,3-14
