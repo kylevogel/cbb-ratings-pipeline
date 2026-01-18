@@ -10,24 +10,24 @@ Purdue,8
 BYU,9
 Arizona,10
 Illinois,11
-Wake Forest,12
-North Carolina State,13
+North Carolina State,12
+Wake Forest,13
 Florida,14
 Louisville,15
 Baylor,16
 North Carolina,17
 Virginia Tech,18
 UCF,19
-Saint John's,20
-Kentucky,21
+Kentucky,20
+Saint John's,21
 Cincinnati,22
-Connecticut,23
-Michigan State,24
-Vanderbilt,25
-San Diego State,26
-Oregon,27
-Florida State,28
-Tennessee,29
+Vanderbilt,23
+Connecticut,24
+Michigan State,25
+Oregon,26
+San Diego State,27
+Tennessee,28
+Florida State,29
 Houston,30
 Boise State,31
 Arizona State,32
@@ -37,8 +37,8 @@ Creighton,35
 Mississippi State,36
 Colorado,37
 Saint Mary's College,38
-Iowa State,39
-Ohio State,40
+Ohio State,39
+Iowa State,40
 Indiana,41
 Texas,42
 Villanova,43
@@ -89,18 +89,18 @@ Duquesne,87
 Minnesota,88
 Georgia,89
 Evansville,90
-LSU,91
+South Carolina,91
 Dayton,92
-South Carolina,93
-West Virginia,94
+West Virginia,93
+LSU,94
 San Francisco,95
 Tulane,96
 Butler,97
 Middle Tennessee,98
-Oklahoma,99
-Missouri,100
-Princeton,101
-Fresno State,102
+Missouri,99
+Princeton,100
+Fresno State,101
+Oklahoma,102
 George Mason,103
 California,104
 Northern Iowa,105
@@ -108,12 +108,12 @@ Southern Illinois,106
 San Jose State,107
 Rhode Island,108
 Wyoming,109
-Yale,110
-Towson,111
-Gonzaga,112
-Portland,113
-UTEP,114
-Texas A&M,115
+Gonzaga,110
+Yale,111
+Towson,112
+Texas A&M,113
+Portland,114
+UTEP,115
 Bradley,116
 Oregon State,117
 Oakland,118
@@ -143,20 +143,20 @@ East Carolina,141
 Marshall,142
 Pepperdine,143
 Belmont,144
-UC Irvine,145
-Penn,146
-Utah Tech,147
-DePaul,148
-Abilene Christian,149
+Abilene Christian,145
+UC Irvine,146
+Penn,147
+Utah Tech,148
+DePaul,149
 UAB,150
 Elon,151
 Bowling Green,152
-Indiana State,153
-Winthrop,154
-Western Kentucky,155
-Louisiana,156
-New Mexico State,157
-UMass,158
+Winthrop,153
+Western Kentucky,154
+Louisiana,155
+New Mexico State,156
+UMass,157
+Indiana State,158
 Old Dominion,159
 Eastern Michigan,160
 Merrimack,161
@@ -169,13 +169,13 @@ Saint Joseph's,167
 Fordham,168
 Central Michigan,169
 North Florida,170
-Southern Utah,171
-UTA,172
-Eastern Kentucky,173
-William & Mary,174
-UC Riverside,175
-Seattle University,176
-Sam Houston State,177
+Sam Houston State,171
+Southern Utah,172
+UTA,173
+Eastern Kentucky,174
+William & Mary,175
+UC Riverside,176
+Seattle University,177
 Arkansas State,178
 UIC,179
 UNC Asheville,180
@@ -200,10 +200,10 @@ UC San Diego,198
 Quinnipiac,199
 Western Carolina,200
 Hampton,201
-Louisiana Tech,202
-Mercer,203
+Mercer,202
+Tulsa,203
 Charlotte,204
-Tulsa,205
+Louisiana Tech,205
 Rice,206
 Buffalo,207
 Harvard,208
@@ -218,8 +218,8 @@ Temple,216
 Ball State,217
 Furman,218
 UC Santa Barbara,219
-Monmouth,220
-Montana,221
+Montana,220
+Monmouth,221
 Miami (OH),222
 Siena,223
 Saint Peter's,224
@@ -241,40 +241,40 @@ Eastern Washington,239
 Idaho State,240
 UTRGV,241
 Eastern Illinois,242
-Canisius,243
-Marist,244
-South Dakota State,245
-Iona,246
-Lipscomb,247
-Appalachian State,248
-Samford,249
-California Baptist,250
-Texas State,251
+Samford,243
+Texas State,244
+Canisius,245
+Marist,246
+South Dakota State,247
+Iona,248
+Lipscomb,249
+Appalachian State,250
+California Baptist,251
 Central Arkansas,252
 Southeast Missouri,253
 South Carolina Upstate,254
-Bethune-Cookman,255
+UNCG,255
 IU Indianapolis,256
-UNCG,257
-Coastal Carolina,258
-Oral Roberts,259
-Montana State,260
-Jacksonville,261
-Bellarmine,262
+Coastal Carolina,257
+Oral Roberts,258
+Montana State,259
+Jacksonville,260
+Bellarmine,261
+Bethune-Cookman,262
 Colgate,263
-Cal State Bakersfield,264
-Niagara,265
-FGCU,266
+FGCU,264
+Cal State Bakersfield,265
+Niagara,266
 East Tennessee State,267
 Purdue Fort Wayne,268
 Manhattan,269
 Detroit,270
-South Alabama,271
-Fairfield,272
-Weber State,273
-Denver,274
-Southeastern Louisiana,275
-North Dakota,276
+Fairfield,271
+Weber State,272
+Denver,273
+South Alabama,274
+North Dakota,275
+Southeastern Louisiana,276
 American,277
 Northern Arizona,278
 Mount Saint Mary's,279
@@ -285,12 +285,12 @@ Bucknell,283
 Chattanooga,284
 Incarnate Word,285
 Tennessee State,286
-UMKC,287
-Portland State,288
+Portland State,287
+UMKC,288
 VMI,289
 Lamar,290
-Lehigh,291
-Wofford,292
+Wofford,291
+Lehigh,292
 Houston Christian,293
 Morehead State,294
 Idaho,295
@@ -323,32 +323,32 @@ Northern Colorado,321
 High Point,322
 Holy Cross,323
 Charleston Southern,324
-Longwood,325
-Texas Southern,326
+Texas Southern,325
+Longwood,326
 Georgia Southern,327
 Austin Peay,328
 Arkansas-Pine Bluff,329
-Florida A&M,330
-Tennessee-Martin,331
-Southern,332
+Southern,330
+Florida A&M,331
+Tennessee-Martin,332
 Boston University,333
 West Georgia,334
-Southern Indiana,335
-Loyola-Maryland,336
-South Dakota,337
-Grambling State,338
+Grambling State,335
+Southern Indiana,336
+Loyola-Maryland,337
+South Dakota,338
 Lafayette,339
 NJIT,340
 Alabama A&M,341
-New Haven,342
-Alabama State,343
+Alabama State,342
+New Haven,343
 North Carolina Central,344
 Alcorn State,345
 South Carolina State,346
 Navy,347
 Stonehill,348
-SIUE,349
-Prairie View A&M,350
+Prairie View A&M,349
+SIUE,350
 Fairleigh Dickinson,351
 Coppin State,352
 Norfolk State,353
