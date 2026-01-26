@@ -40,10 +40,11 @@
         #search:focus { border-color: #00d9ff; }
         #search::placeholder { color: #666; }
         .table-container {
-            overflow-x: auto;
             background: rgba(255, 255, 255, 0.03);
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-height: 75vh;
+            overflow: auto;
         }
         table { width: 100%; border-collapse: collapse; min-width: 900px; }
         th, td {
@@ -52,7 +53,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         th {
-            background: rgba(0, 217, 255, 0.1);
+            background: #1a1a2e;
             cursor: pointer;
             user-select: none;
             font-weight: 600;
@@ -62,6 +63,7 @@
             white-space: nowrap;
             position: sticky;
             top: 0;
+            z-index: 10;
             transition: background 0.2s;
         }
         th:hover { background: rgba(0, 217, 255, 0.2); }
