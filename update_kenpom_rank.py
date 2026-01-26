@@ -1,128 +1,124 @@
 """
-Scrape KenPom rankings.
-Note: KenPom requires subscription for full data. This scrapes publicly available rankings.
+Scrape KenPom rankings using Selenium to bypass Cloudflare protection.
 Outputs: data_raw/kenpom_rankings.csv
 """
-import requests
 import pandas as pd
-from bs4 import BeautifulSoup
 import os
 import re
-
+import time
 
 def scrape_kenpom_rankings():
-    """Scrape KenPom rankings from the public page."""
+    """Scrape KenPom rankings using Selenium."""
+    try:
+        from selenium import webdriver
+        from selenium.webdriver.chrome.options import Options
+        from selenium.webdriver.chrome.service import Service
+        from selenium.webdriver.common.by import By
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium.webdriver.support import expected_conditions as EC
+    except ImportError:
+        print("Selenium not installed. Install with: pip install selenium")
+        return None
+    
     url = "https://kenpom.com/"
     
-    # Use a full set of browser headers to avoid 403
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Connection': 'keep-alive',
-        'Upgrade-Insecure-Requests': '1',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'none',
-        'Sec-Fetch-User': '?1',
-        'Cache-Control': 'max-age=0',
-    }
+    # Set up Chrome options for headless browsing
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
     
+    driver = None
     try:
-        # Use a session to handle cookies
-        session = requests.Session()
-        response = session.get(url, headers=headers, timeout=30)
-        response.raise_for_status()
+        print("Starting headless Chrome browser...")
+        driver = webdriver.Chrome(options=chrome_options)
         
-        print(f"Successfully fetched KenPom page ({len(response.text)} bytes)")
+        print(f"Navigating to {url}")
+        driver.get(url)
         
-        soup = BeautifulSoup(response.text, 'html.parser')
+        # Wait for the table to load (Cloudflare check should complete)
+        print("Waiting for page to load...")
+        WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((By.ID, "ratings-table"))
+        )
         
-        # Try to find the ratings table
-        table = soup.find('table', {'id': 'ratings-table'})
-        if not table:
-            tables = soup.find_all('table')
-            for t in tables:
-                if t.find('th') and 'Team' in t.get_text():
-                    table = t
-                    break
+        # Give it a moment for all data to render
+        time.sleep(2)
         
-        if not table:
-            print("Could not find KenPom table")
-            return None
+        print("Page loaded, parsing table...")
         
-        print("Found KenPom table, parsing rows...")
+        # Find the table
+        table = driver.find_element(By.ID, "ratings-table")
+        rows = table.find_elements(By.TAG_NAME, "tr")
         
-        rows = []
-        tbody = table.find('tbody')
-        if tbody:
-            trs = tbody.find_all('tr')
-        else:
-            trs = table.find_all('tr')[1:]
+        print(f"Found {len(rows)} rows in table")
         
-        print(f"Found {len(trs)} table rows")
-        
-        for tr in trs:
-            cells = tr.find_all(['td', 'th'])
+        data = []
+        for row in rows[1:]:  # Skip header
+            cells = row.find_elements(By.TAG_NAME, "td")
             if len(cells) >= 4:
-                rank_text = cells[0].get_text(strip=True)
-                team_cell = cells[1]
+                rank_text = cells[0].text.strip()
+                team_text = cells[1].text.strip()
                 
-                # W-L is in the cell with class="wl" or at index 3
+                # Get W-L record (usually in cell with class 'wl')
                 record = ""
-                wl_cell = tr.find('td', class_='wl')
-                if wl_cell:
-                    record_text = wl_cell.get_text(strip=True)
+                try:
+                    wl_cell = row.find_element(By.CLASS_NAME, "wl")
+                    record_text = wl_cell.text.strip()
                     record_match = re.search(r'(\d+)-(\d+)', record_text)
                     if record_match:
                         record = f"{record_match.group(1)}-{record_match.group(2)}"
-                
-                team_link = team_cell.find('a')
-                if team_link:
-                    team = team_link.get_text(strip=True)
-                else:
-                    team = team_cell.get_text(strip=True)
+                except:
+                    pass
                 
                 rank = re.sub(r'[^\d]', '', rank_text)
                 
-                if rank and team:
-                    rows.append({
+                if rank and team_text:
+                    data.append({
                         'kenpom_rank': int(rank),
-                        'team_kenpom': team,
+                        'team_kenpom': team_text,
                         'record': record
                     })
         
-        if rows:
-            df = pd.DataFrame(rows)
+        if data:
+            df = pd.DataFrame(data)
             print(f"Successfully parsed {len(df)} teams")
             return df
         else:
-            print("No KenPom data found in table")
+            print("No data found in table")
             return None
             
-    except requests.exceptions.HTTPError as e:
-        print(f"Error scraping KenPom: {e}")
-        if e.response.status_code == 403:
-            print("KenPom is blocking automated requests. The site may require authentication or have bot protection.")
-        return None
     except Exception as e:
         print(f"Error scraping KenPom: {e}")
+        import traceback
+        traceback.print_exc()
         return None
+    finally:
+        if driver:
+            driver.quit()
 
 
 def main():
     print("Fetching KenPom rankings...")
     df = scrape_kenpom_rankings()
     
+    output_path = 'data_raw/kenpom_rankings.csv'
+    
     if df is not None and not df.empty:
         os.makedirs('data_raw', exist_ok=True)
-        df.to_csv('data_raw/kenpom_rankings.csv', index=False)
-        print(f"Saved {len(df)} KenPom rankings to data_raw/kenpom_rankings.csv")
+        df.to_csv(output_path, index=False)
+        print(f"Saved {len(df)} KenPom rankings to {output_path}")
         print("\nFirst 10 teams:")
         print(df.head(10).to_string(index=False))
     else:
-        print("Failed to fetch KenPom rankings")
+        # Check if we have existing data to preserve
+        if os.path.exists(output_path):
+            print(f"Failed to fetch new KenPom data. Keeping existing {output_path}")
+        else:
+            print("Failed to fetch KenPom rankings.")
 
 
 if __name__ == "__main__":
