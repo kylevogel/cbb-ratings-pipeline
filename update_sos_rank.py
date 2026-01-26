@@ -2,12 +2,12 @@
 Scrape Strength of Schedule rankings from Warren Nolan.
 Outputs: data_raw/sos_rankings.csv
 """
-
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 import os
 import re
+
 
 def scrape_sos_rankings():
     """Scrape SOS rankings from Warren Nolan."""
@@ -21,23 +21,28 @@ def scrape_sos_rankings():
         response = requests.get(url, headers=headers, timeout=30)
         response.raise_for_status()
         
+        # Try pandas read_html first
         try:
             tables = pd.read_html(response.text)
             for df in tables:
-                cols = [str(c).lower() for c in df.columns]
+                cols = [str(c).lower().strip() for c in df.columns]
+                
+                # Check if this looks like the SOS table
                 if any('team' in c for c in cols) and any('rank' in c for c in cols):
                     team_col = None
                     rank_col = None
+                    
                     for c in df.columns:
-                        c_lower = str(c).lower()
-                        if 'team' in c_lower:
+                        c_lower = str(c).lower().strip()
+                        if 'team' in c_lower and team_col is None:
                             team_col = c
-                        elif c_lower == 'rank':
+                        elif 'rank' in c_lower and rank_col is None:  # Changed to partial match
                             rank_col = c
                     
                     if team_col and rank_col:
                         result = df[[team_col, rank_col]].copy()
                         result.columns = ['team_sos', 'sos_rank']
+                        result['team_sos'] = result['team_sos'].astype(str).str.strip()
                         result = result.dropna()
                         result['sos_rank'] = pd.to_numeric(result['sos_rank'], errors='coerce')
                         result = result.dropna()
@@ -45,22 +50,31 @@ def scrape_sos_rankings():
                         result = result[result['sos_rank'] > 0]
                         result = result.drop_duplicates(subset=['sos_rank'])
                         result = result.sort_values('sos_rank')
+                        
                         if len(result) > 100:
+                            print(f"Successfully parsed {len(result)} teams using pandas read_html")
                             return result
         except Exception as e:
             print(f"pandas read_html failed: {e}")
         
         # Fallback to BeautifulSoup parsing
+        print("Falling back to BeautifulSoup parsing...")
         soup = BeautifulSoup(response.text, 'html.parser')
         
         rows = []
         
+        # Find the main data table
         table = soup.find('table')
         if table:
             all_rows = table.find_all('tr')
+            
+            # Skip header row
             for tr in all_rows[1:]:
                 cells = tr.find_all(['td', 'th'])
+                
+                # Table structure: Team | SOS | Rank | Opp Record | Opp Win Percent | SOS Delta
                 if len(cells) >= 3:
+                    # Get team name from first cell
                     team_cell = cells[0]
                     team_link = team_cell.find('a')
                     if team_link:
@@ -68,8 +82,10 @@ def scrape_sos_rankings():
                     else:
                         team = team_cell.get_text(strip=True)
                     
+                    # Get rank from third cell (index 2)
                     rank_text = cells[2].get_text(strip=True)
                     
+                    # Clean rank - extract just the number
                     rank_clean = re.sub(r'[^\d]', '', rank_text)
                     
                     if team and rank_clean and rank_clean.isdigit():
@@ -83,6 +99,7 @@ def scrape_sos_rankings():
         if rows:
             df = pd.DataFrame(rows)
             df = df.drop_duplicates(subset=['sos_rank']).sort_values('sos_rank')
+            print(f"Successfully parsed {len(df)} teams using BeautifulSoup")
             return df
         
         print("No SOS data found")
@@ -103,6 +120,8 @@ def main():
         os.makedirs('data_raw', exist_ok=True)
         df.to_csv('data_raw/sos_rankings.csv', index=False)
         print(f"Saved {len(df)} SOS rankings to data_raw/sos_rankings.csv")
+        print("\nFirst 10 teams:")
+        print(df.head(10).to_string(index=False))
     else:
         print("Failed to fetch SOS rankings")
 
