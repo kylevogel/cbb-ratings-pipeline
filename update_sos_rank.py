@@ -7,6 +7,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import os
 import re
+from io import StringIO
 
 
 def scrape_sos_rankings():
@@ -20,67 +21,49 @@ def scrape_sos_rankings():
     try:
         response = requests.get(url, headers=headers, timeout=30)
         response.raise_for_status()
+        print(f"Successfully fetched page ({len(response.text)} bytes)")
         
-        # Try pandas read_html first
-        try:
-            tables = pd.read_html(response.text)
-            for df in tables:
-                cols = [str(c).lower().strip() for c in df.columns]
-                
-                # Check if this looks like the SOS table
-                if any('team' in c for c in cols) and any('rank' in c for c in cols):
-                    team_col = None
-                    rank_col = None
-                    
-                    for c in df.columns:
-                        c_lower = str(c).lower().strip()
-                        if 'team' in c_lower and team_col is None:
-                            team_col = c
-                        elif 'rank' in c_lower and rank_col is None:  # Changed to partial match
-                            rank_col = c
-                    
-                    if team_col and rank_col:
-                        result = df[[team_col, rank_col]].copy()
-                        result.columns = ['team_sos', 'sos_rank']
-                        result['team_sos'] = result['team_sos'].astype(str).str.strip()
-                        result = result.dropna()
-                        result['sos_rank'] = pd.to_numeric(result['sos_rank'], errors='coerce')
-                        result = result.dropna()
-                        result['sos_rank'] = result['sos_rank'].astype(int)
-                        result = result[result['sos_rank'] > 0]
-                        result = result.drop_duplicates(subset=['sos_rank'])
-                        result = result.sort_values('sos_rank')
-                        
-                        if len(result) > 100:
-                            print(f"Successfully parsed {len(result)} teams using pandas read_html")
-                            return result
-        except Exception as e:
-            print(f"pandas read_html failed: {e}")
-        
-        # Fallback to BeautifulSoup parsing
-        print("Falling back to BeautifulSoup parsing...")
+        # Parse with BeautifulSoup first - more reliable for this site's structure
         soup = BeautifulSoup(response.text, 'html.parser')
         
         rows = []
         
-        # Find the main data table
-        table = soup.find('table')
+        # Find the stats table specifically
+        table = soup.find('table', class_='stats-table')
+        if not table:
+            # Fallback to any table
+            table = soup.find('table')
+        
         if table:
-            all_rows = table.find_all('tr')
+            print("Found table, parsing rows...")
+            tbody = table.find('tbody')
+            if tbody:
+                all_rows = tbody.find_all('tr')
+            else:
+                all_rows = table.find_all('tr')[1:]  # Skip header
             
-            # Skip header row
-            for tr in all_rows[1:]:
-                cells = tr.find_all(['td', 'th'])
+            print(f"Found {len(all_rows)} data rows")
+            
+            for tr in all_rows:
+                cells = tr.find_all('td')
                 
                 # Table structure: Team | SOS | Rank | Opp Record | Opp Win Percent | SOS Delta
                 if len(cells) >= 3:
-                    # Get team name from first cell
+                    # Get team name - it's nested in divs and an anchor tag
                     team_cell = cells[0]
-                    team_link = team_cell.find('a')
+                    
+                    # Try to find the team name in the anchor tag
+                    team_link = team_cell.find('a', class_='blue-black')
                     if team_link:
                         team = team_link.get_text(strip=True)
                     else:
-                        team = team_cell.get_text(strip=True)
+                        # Fallback: try any anchor
+                        team_link = team_cell.find('a')
+                        if team_link:
+                            team = team_link.get_text(strip=True)
+                        else:
+                            # Last resort: get all text from cell
+                            team = team_cell.get_text(strip=True)
                     
                     # Get rank from third cell (index 2)
                     rank_text = cells[2].get_text(strip=True)
@@ -99,8 +82,44 @@ def scrape_sos_rankings():
         if rows:
             df = pd.DataFrame(rows)
             df = df.drop_duplicates(subset=['sos_rank']).sort_values('sos_rank')
-            print(f"Successfully parsed {len(df)} teams using BeautifulSoup")
+            print(f"Successfully parsed {len(df)} teams")
             return df
+        
+        # If BeautifulSoup parsing failed, try pd.read_html as fallback
+        print("BeautifulSoup parsing found no rows, trying pd.read_html...")
+        try:
+            tables = pd.read_html(StringIO(response.text))
+            for df in tables:
+                cols = [str(c).lower().strip() for c in df.columns]
+                
+                if any('team' in c for c in cols) and any('rank' in c for c in cols):
+                    team_col = None
+                    rank_col = None
+                    
+                    for c in df.columns:
+                        c_lower = str(c).lower().strip()
+                        if 'team' in c_lower and team_col is None:
+                            team_col = c
+                        elif 'rank' in c_lower and rank_col is None:
+                            rank_col = c
+                    
+                    if team_col and rank_col:
+                        result = df[[team_col, rank_col]].copy()
+                        result.columns = ['team_sos', 'sos_rank']
+                        result['team_sos'] = result['team_sos'].astype(str).str.strip()
+                        result = result.dropna()
+                        result['sos_rank'] = pd.to_numeric(result['sos_rank'], errors='coerce')
+                        result = result.dropna()
+                        result['sos_rank'] = result['sos_rank'].astype(int)
+                        result = result[result['sos_rank'] > 0]
+                        result = result.drop_duplicates(subset=['sos_rank'])
+                        result = result.sort_values('sos_rank')
+                        
+                        if len(result) > 100:
+                            print(f"Successfully parsed {len(result)} teams using pd.read_html")
+                            return result
+        except Exception as e:
+            print(f"pd.read_html also failed: {e}")
         
         print("No SOS data found")
         return None
