@@ -32,10 +32,10 @@ bpi_rank,team_bpi
 31,UCLA Bruins
 32,North Carolina Tar Heels
 33,Villanova Wildcats
-34,Wisconsin Badgers
-35,Ohio State Buckeyes
-36,Georgia Bulldogs
-37,Utah State Aggies
+34,Ohio State Buckeyes
+35,Georgia Bulldogs
+36,Utah State Aggies
+37,Wisconsin Badgers
 38,Texas Longhorns
 39,Saint Mary's Gaels
 40,SMU Mustangs
@@ -47,13 +47,13 @@ bpi_rank,team_bpi
 46,Oklahoma Sooners
 47,Butler Bulldogs
 48,Creighton Bluejays
-49,VCU Rams
-50,TCU Horned Frogs
-51,USC Trojans
-52,Cincinnati Bearcats
-53,Ole Miss Rebels
-54,UCF Knights
-55,Washington Huskies
+49,USC Trojans
+50,VCU Rams
+51,TCU Horned Frogs
+52,Washington Huskies
+53,Cincinnati Bearcats
+54,Ole Miss Rebels
+55,UCF Knights
 56,Northwestern Wildcats
 57,New Mexico Lobos
 58,Seton Hall Pirates
@@ -68,18 +68,18 @@ bpi_rank,team_bpi
 67,Mississippi State Bulldogs
 68,George Washington Revolutionaries
 69,Virginia Tech Hokies
-70,Kansas State Wildcats
-71,George Mason Patriots
-72,South Carolina Gamecocks
-73,South Florida Bulls
+70,South Florida Bulls
+71,Kansas State Wildcats
+72,George Mason Patriots
+73,South Carolina Gamecocks
 74,Tulsa Golden Hurricane
 75,California Golden Bears
 76,Minnesota Golden Gophers
-77,Oregon Ducks
-78,Oklahoma State Cowboys
-79,Notre Dame Fighting Irish
+77,Oklahoma State Cowboys
+78,Notre Dame Fighting Irish
+79,Nevada Wolf Pack
 80,Akron Zips
-81,Nevada Wolf Pack
+81,Oregon Ducks
 82,Boise State Broncos
 83,Colorado State Rams
 84,Grand Canyon Lopes
@@ -102,17 +102,17 @@ bpi_rank,team_bpi
 101,Florida State Seminoles
 102,Murray State Racers
 103,Utah Utes
-104,Florida Atlantic Owls
-105,DePaul Blue Demons
-106,Rhode Island Rams
-107,Northern Iowa Panthers
+104,DePaul Blue Demons
+105,Rhode Island Rams
+106,Northern Iowa Panthers
+107,Florida Atlantic Owls
 108,UAB Blazers
 109,Hawai'i Rainbow Warriors
 110,UNLV Rebels
-111,UC Irvine Anteaters
-112,Troy Trojans
-113,Penn State Nittany Lions
-114,Sam Houston Bearkats
+111,Troy Trojans
+112,UC Irvine Anteaters
+113,Sam Houston Bearkats
+114,Penn State Nittany Lions
 115,UNC Wilmington Seahawks
 116,Stephen F. Austin Lumberjacks
 117,Georgia Tech Yellow Jackets
@@ -124,8 +124,8 @@ bpi_rank,team_bpi
 123,Richmond Spiders
 124,Seattle U Redhawks
 125,Rutgers Scarlet Knights
-126,Davidson Wildcats
-127,Kennesaw State Owls
+126,Kennesaw State Owls
+127,Davidson Wildcats
 128,East Tennessee State Buccaneers
 129,Bradley Braves
 130,North Texas Mean Green
@@ -136,8 +136,8 @@ bpi_rank,team_bpi
 135,Pacific Tigers
 136,UIC Flames
 137,Arkansas State Red Wolves
-138,Loyola Marymount Lions
-139,William & Mary Tribe
+138,William & Mary Tribe
+139,Loyola Marymount Lions
 140,Winthrop Eagles
 141,North Dakota State Bison
 142,St. Bonaventure Bonnies
@@ -210,11 +210,11 @@ bpi_rank,team_bpi
 209,Drexel Dragons
 210,Eastern Michigan Eagles
 211,Iona Gaels
-212,Robert Morris Colonials
-213,San Diego Toreros
+212,San Diego Toreros
+213,Robert Morris Colonials
 214,La Salle Explorers
-215,UC Davis Aggies
-216,Samford Bulldogs
+215,Samford Bulldogs
+216,UC Davis Aggies
 217,Incarnate Word Cardinals
 218,Old Dominion Monarchs
 219,Cal State Northridge Matadors
@@ -243,8 +243,8 @@ bpi_rank,team_bpi
 242,Bethune-Cookman Wildcats
 243,Texas State Bobcats
 244,Brown Bears
-245,Tarleton State Texans
-246,Southern Jaguars
+245,Southern Jaguars
+246,Tarleton State Texans
 247,Norfolk State Spartans
 248,Charleston Southern Buccaneers
 249,Utah Tech Trailblazers
@@ -256,8 +256,8 @@ bpi_rank,team_bpi
 255,Loyola Chicago Ramblers
 256,Boston University Terriers
 257,Stony Brook Seawolves
-258,SIU Edwardsville Cougars
-259,SE Louisiana Lions
+258,SE Louisiana Lions
+259,SIU Edwardsville Cougars
 260,Fairfield Stags
 261,Green Bay Phoenix
 262,New Orleans Privateers
@@ -288,9 +288,9 @@ bpi_rank,team_bpi
 287,Pepperdine Waves
 288,Le Moyne Dolphins
 289,UC Riverside Highlanders
-290,Mercyhurst Lakers
-291,North Carolina A&T Aggies
-292,Northwestern State Demons
+290,North Carolina A&T Aggies
+291,Northwestern State Demons
+292,Mercyhurst Lakers
 293,Western Michigan Broncos
 294,South Carolina Upstate Spartans
 295,Mount St. Mary's Mountaineers
@@ -351,8 +351,8 @@ bpi_rank,team_bpi
 350,Jackson State Tigers
 351,Air Force Falcons
 352,Rider Broncs
-353,Niagara Purple Eagles
-354,Chicago State Cougars
+353,Chicago State Cougars
+354,Niagara Purple Eagles
 355,Morgan State Bears
 356,Alcorn State Braves
 357,Western Illinois Leathernecks
