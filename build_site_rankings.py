@@ -164,7 +164,7 @@ def create_dashboard_html():
             color: #e0e0e0;
             padding: 20px;
         }
-        .container { max-width: 1400px; margin: 0 auto; }
+        .container { max-width: 1800px; margin: 0 auto; padding: 0 20px; }
         header { text-align: center; padding: 30px 0; margin-bottom: 30px; }
         h1 {
             font-size: 2.5rem;
@@ -191,19 +191,20 @@ def create_dashboard_html():
         #search:focus { border-color: #00d9ff; }
         #search::placeholder { color: #666; }
         .table-container {
-            overflow-x: auto;
             background: rgba(255, 255, 255, 0.03);
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-height: 75vh;
+            overflow: auto;
         }
-        table { width: 100%; border-collapse: collapse; min-width: 900px; }
+        table { width: 100%; border-collapse: collapse; }
         th, td {
             padding: 15px 12px;
             text-align: left;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         th {
-            background: rgba(0, 217, 255, 0.1);
+            background: #1a1a2e;
             cursor: pointer;
             user-select: none;
             font-weight: 600;
@@ -213,6 +214,7 @@ def create_dashboard_html():
             white-space: nowrap;
             position: sticky;
             top: 0;
+            z-index: 10;
             transition: background 0.2s;
         }
         th:hover { background: rgba(0, 217, 255, 0.2); }
