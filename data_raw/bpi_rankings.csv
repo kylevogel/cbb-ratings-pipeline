@@ -5,11 +5,11 @@ bpi_rank,team_bpi
 4,Houston Cougars
 5,Gonzaga Bulldogs
 6,Iowa State Cyclones
-7,Louisville Cardinals
-8,Illinois Fighting Illini
-9,Purdue Boilermakers
-10,Florida Gators
-11,UConn Huskies
+7,Illinois Fighting Illini
+8,Purdue Boilermakers
+9,Florida Gators
+10,UConn Huskies
+11,Louisville Cardinals
 12,Michigan State Spartans
 13,BYU Cougars
 14,Kansas Jayhawks
@@ -24,19 +24,19 @@ bpi_rank,team_bpi
 23,Virginia Cavaliers
 24,Arkansas Razorbacks
 25,Clemson Tigers
-26,Indiana Hoosiers
-27,Texas A&M Aggies
+26,Texas A&M Aggies
+27,Indiana Hoosiers
 28,NC State Wolfpack
 29,Iowa Hawkeyes
 30,Saint Louis Billikens
 31,UCLA Bruins
 32,North Carolina Tar Heels
 33,Villanova Wildcats
-34,Ohio State Buckeyes
-35,Georgia Bulldogs
-36,Utah State Aggies
-37,Wisconsin Badgers
-38,Texas Longhorns
+34,Georgia Bulldogs
+35,Utah State Aggies
+36,Wisconsin Badgers
+37,Texas Longhorns
+38,Ohio State Buckeyes
 39,Saint Mary's Gaels
 40,SMU Mustangs
 41,Miami Hurricanes
@@ -51,14 +51,14 @@ bpi_rank,team_bpi
 50,VCU Rams
 51,TCU Horned Frogs
 52,Washington Huskies
-53,Cincinnati Bearcats
-54,Ole Miss Rebels
+53,Ole Miss Rebels
+54,Cincinnati Bearcats
 55,UCF Knights
 56,Northwestern Wildcats
 57,New Mexico Lobos
 58,Seton Hall Pirates
-59,McNeese Cowboys
-60,Wake Forest Demon Deacons
+59,Wake Forest Demon Deacons
+60,McNeese Cowboys
 61,Providence Friars
 62,High Point Panthers
 63,Santa Clara Broncos
@@ -86,13 +86,13 @@ bpi_rank,team_bpi
 85,Liberty Flames
 86,Memphis Tigers
 87,Miami (OH) RedHawks
-88,Xavier Musketeers
-89,Pittsburgh Panthers
-90,Georgetown Hoyas
+88,Georgetown Hoyas
+89,Xavier Musketeers
+90,Pittsburgh Panthers
 91,Illinois State Redbirds
-92,Stanford Cardinal
-93,San Francisco Dons
-94,Maryland Terrapins
+92,San Francisco Dons
+93,Maryland Terrapins
+94,Stanford Cardinal
 95,Colorado Buffaloes
 96,Wichita State Shockers
 97,Marquette Golden Eagles
@@ -108,11 +108,11 @@ bpi_rank,team_bpi
 107,Florida Atlantic Owls
 108,UAB Blazers
 109,Hawai'i Rainbow Warriors
-110,UNLV Rebels
-111,Troy Trojans
-112,UC Irvine Anteaters
-113,Sam Houston Bearkats
-114,Penn State Nittany Lions
+110,Penn State Nittany Lions
+111,UNLV Rebels
+112,Troy Trojans
+113,UC Irvine Anteaters
+114,Sam Houston Bearkats
 115,UNC Wilmington Seahawks
 116,Stephen F. Austin Lumberjacks
 117,Georgia Tech Yellow Jackets
@@ -136,10 +136,10 @@ bpi_rank,team_bpi
 135,Pacific Tigers
 136,UIC Flames
 137,Arkansas State Red Wolves
-138,William & Mary Tribe
-139,Loyola Marymount Lions
-140,Winthrop Eagles
-141,North Dakota State Bison
+138,Loyola Marymount Lions
+139,Winthrop Eagles
+140,North Dakota State Bison
+141,William & Mary Tribe
 142,St. Bonaventure Bonnies
 143,Oakland Golden Grizzlies
 144,Kent State Golden Flashes
@@ -148,8 +148,8 @@ bpi_rank,team_bpi
 147,Middle Tennessee Blue Raiders
 148,Marshall Thundering Herd
 149,California Baptist Lancers
-150,Boston College Eagles
-151,Lipscomb Bisons
+150,Lipscomb Bisons
+151,Boston College Eagles
 152,Massachusetts Minutemen
 153,New Mexico State Aggies
 154,St. Thomas-Minnesota Tommies
@@ -162,19 +162,19 @@ bpi_rank,team_bpi
 161,Fresno State Bulldogs
 162,Furman Paladins
 163,Columbia Lions
-164,Austin Peay Governors
-165,Quinnipiac Bobcats
-166,Washington State Cougars
-167,Texas A&M-Corpus Christi Islanders
+164,UT Rio Grande Valley Vaqueros
+165,Austin Peay Governors
+166,Quinnipiac Bobcats
+167,Washington State Cougars
 168,Jacksonville State Gamecocks
 169,Navy Midshipmen
 170,UT Arlington Mavericks
 171,Toledo Rockets
 172,App State Mountaineers
-173,UT Rio Grande Valley Vaqueros
-174,Valparaiso Beacons
-175,Northern Colorado Bears
-176,Charleston Cougars
+173,Valparaiso Beacons
+174,Texas A&M-Corpus Christi Islanders
+175,Charleston Cougars
+176,Northern Colorado Bears
 177,Tulane Green Wave
 178,Northern Kentucky Norse
 179,South Dakota State Jackrabbits
@@ -193,8 +193,8 @@ bpi_rank,team_bpi
 192,Queens University Royals
 193,Charlotte 49ers
 194,Oregon State Beavers
-195,Fordham Rams
-196,Harvard Crimson
+195,Harvard Crimson
+196,Fordham Rams
 197,Colgate Raiders
 198,Louisiana Tech Bulldogs
 199,American University Eagles
@@ -206,11 +206,11 @@ bpi_rank,team_bpi
 205,Nicholls Colonels
 206,Missouri State Bears
 207,Milwaukee Panthers
-208,Youngstown State Penguins
-209,Drexel Dragons
-210,Eastern Michigan Eagles
-211,Iona Gaels
-212,San Diego Toreros
+208,Drexel Dragons
+209,Youngstown State Penguins
+210,Iona Gaels
+211,San Diego Toreros
+212,Eastern Michigan Eagles
 213,Robert Morris Colonials
 214,La Salle Explorers
 215,Samford Bulldogs
@@ -240,20 +240,20 @@ bpi_rank,team_bpi
 239,Princeton Tigers
 240,Coastal Carolina Chanticleers
 241,Lindenwood Lions
-242,Bethune-Cookman Wildcats
-243,Texas State Bobcats
-244,Brown Bears
-245,Southern Jaguars
-246,Tarleton State Texans
-247,Norfolk State Spartans
-248,Charleston Southern Buccaneers
-249,Utah Tech Trailblazers
-250,Cal State Fullerton Titans
-251,Tennessee State Tigers
+242,Texas State Bobcats
+243,Brown Bears
+244,Southern Jaguars
+245,Tarleton State Texans
+246,Bethune-Cookman Wildcats
+247,Charleston Southern Buccaneers
+248,Utah Tech Trailblazers
+249,Cal State Fullerton Titans
+250,Tennessee State Tigers
+251,UMBC Retrievers
 252,Northeastern Huskies
-253,UMBC Retrievers
-254,Jacksonville Dolphins
-255,Loyola Chicago Ramblers
+253,Norfolk State Spartans
+254,Loyola Chicago Ramblers
+255,Jacksonville Dolphins
 256,Boston University Terriers
 257,Stony Brook Seawolves
 258,SE Louisiana Lions
@@ -262,9 +262,9 @@ bpi_rank,team_bpi
 261,Green Bay Phoenix
 262,New Orleans Privateers
 263,Western Carolina Catamounts
-264,Central Connecticut Blue Devils
-265,Southern Miss Golden Eagles
-266,Southeast Missouri State Redhawks
+264,Southern Miss Golden Eagles
+265,Southeast Missouri State Redhawks
+266,Central Connecticut Blue Devils
 267,Eastern Washington Eagles
 268,Abilene Christian Wildcats
 269,Georgia State Panthers
@@ -277,20 +277,20 @@ bpi_rank,team_bpi
 276,Presbyterian Blue Hose
 277,Omaha Mavericks
 278,Sacred Heart Pioneers
-279,North Dakota Fighting Hawks
-280,Idaho State Bengals
-281,Grambling Tigers
+279,Le Moyne Dolphins
+280,North Dakota Fighting Hawks
+281,Idaho State Bengals
 282,Evansville Purple Aces
-283,UNC Greensboro Spartans
-284,UAlbany Great Danes
-285,East Texas A&M Lions
+283,Grambling Tigers
+284,UNC Greensboro Spartans
+285,UAlbany Great Danes
 286,Denver Pioneers
-287,Pepperdine Waves
-288,Le Moyne Dolphins
+287,East Texas A&M Lions
+288,Pepperdine Waves
 289,UC Riverside Highlanders
 290,North Carolina A&T Aggies
-291,Northwestern State Demons
-292,Mercyhurst Lakers
+291,Mercyhurst Lakers
+292,Northwestern State Demons
 293,Western Michigan Broncos
 294,South Carolina Upstate Spartans
 295,Mount St. Mary's Mountaineers
@@ -312,20 +312,20 @@ bpi_rank,team_bpi
 311,UMass Lowell River Hawks
 312,Bellarmine Knights
 313,Prairie View A&M Panthers
-314,Florida A&M Rattlers
-315,IU Indianapolis Jaguars
-316,Loyola Maryland Greyhounds
-317,New Hampshire Wildcats
-318,UTSA Roadrunners
-319,Fairleigh Dickinson Knights
-320,North Alabama Lions
-321,Eastern Illinois Panthers
-322,Manhattan Jaspers
-323,Texas Southern Tigers
-324,Maine Black Bears
-325,Louisiana Ragin' Cajuns
-326,Arkansas-Pine Bluff Golden Lions
-327,Stonehill Skyhawks
+314,IU Indianapolis Jaguars
+315,Loyola Maryland Greyhounds
+316,New Hampshire Wildcats
+317,UTSA Roadrunners
+318,Florida A&M Rattlers
+319,North Alabama Lions
+320,Eastern Illinois Panthers
+321,Manhattan Jaspers
+322,Texas Southern Tigers
+323,Maine Black Bears
+324,Louisiana Ragin' Cajuns
+325,Fairleigh Dickinson Knights
+326,Stonehill Skyhawks
+327,Arkansas-Pine Bluff Golden Lions
 328,New Haven Chargers
 329,Central Michigan Chippewas
 330,Houston Christian Huskies
@@ -347,18 +347,18 @@ bpi_rank,team_bpi
 346,Saint Francis Red Flash
 347,Stetson Hatters
 348,Kansas City Roos
-349,Canisius Golden Griffins
-350,Jackson State Tigers
+349,Jackson State Tigers
+350,Canisius Golden Griffins
 351,Air Force Falcons
 352,Rider Broncs
 353,Chicago State Cougars
-354,Niagara Purple Eagles
-355,Morgan State Bears
+354,Morgan State Bears
+355,Niagara Purple Eagles
 356,Alcorn State Braves
 357,Western Illinois Leathernecks
 358,Binghamton Bearcats
-359,Delaware State Hornets
-360,UL Monroe Warhawks
+359,UL Monroe Warhawks
+360,Delaware State Hornets
 361,The Citadel Bulldogs
 362,South Carolina State Bulldogs
 363,Gardner-Webb Runnin' Bulldogs
