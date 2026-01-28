@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 01/27/2026 at 06:16 pm EST",
+  "updated": "Updated: 01/27/2026 at 08:10 pm EST",
   "teams": [
     {
       "team": "Arizona",
@@ -59,7 +59,7 @@
       "net_rank": 7,
       "kenpom_rank": 6,
       "bpi_rank": 6,
-      "sos_rank": 52
+      "sos_rank": 51
     },
     {
       "team": "Houston",
@@ -79,7 +79,7 @@
       "net_rank": 9,
       "kenpom_rank": 4,
       "bpi_rank": 12,
-      "sos_rank": 19
+      "sos_rank": 18
     },
     {
       "team": "Purdue",
@@ -259,7 +259,7 @@
       "net_rank": 29,
       "kenpom_rank": 28,
       "bpi_rank": 21,
-      "sos_rank": 18
+      "sos_rank": 20
     },
     {
       "team": "NC State",
@@ -299,7 +299,7 @@
       "net_rank": 26,
       "kenpom_rank": 32,
       "bpi_rank": 35,
-      "sos_rank": 53
+      "sos_rank": 52
     },
     {
       "team": "Villanova",
@@ -319,7 +319,7 @@
       "net_rank": 40,
       "kenpom_rank": 31,
       "bpi_rank": 26,
-      "sos_rank": 115
+      "sos_rank": 114
     },
     {
       "team": "Georgia",
@@ -389,7 +389,7 @@
       "net_rank": 42,
       "kenpom_rank": 41,
       "bpi_rank": 31,
-      "sos_rank": 65
+      "sos_rank": 66
     },
     {
       "team": "Miami",
@@ -419,7 +419,7 @@
       "net_rank": 46,
       "kenpom_rank": 42,
       "bpi_rank": 43,
-      "sos_rank": 91
+      "sos_rank": 90
     },
     {
       "team": "UCF",
@@ -439,7 +439,7 @@
       "net_rank": 44,
       "kenpom_rank": 49,
       "bpi_rank": 51,
-      "sos_rank": 66
+      "sos_rank": 64
     },
     {
       "team": "New Mexico",
@@ -497,7 +497,7 @@
       "ap_rank": null,
       "avg_rank": 50,
       "net_rank": 59,
-      "kenpom_rank": 52,
+      "kenpom_rank": 51,
       "bpi_rank": 45,
       "sos_rank": 17
     },
@@ -505,7 +505,7 @@
       "team": "San Diego State",
       "record": "14-5",
       "ap_rank": null,
-      "avg_rank": 50,
+      "avg_rank": 51,
       "net_rank": 47,
       "kenpom_rank": 45,
       "bpi_rank": 64,
@@ -529,7 +529,7 @@
       "net_rank": 61,
       "kenpom_rank": 53,
       "bpi_rank": 48,
-      "sos_rank": 40
+      "sos_rank": 42
     },
     {
       "team": "Seton Hall",
@@ -537,7 +537,7 @@
       "ap_rank": null,
       "avg_rank": 54,
       "net_rank": 56,
-      "kenpom_rank": 51,
+      "kenpom_rank": 52,
       "bpi_rank": 58,
       "sos_rank": 77
     },
@@ -629,7 +629,7 @@
       "net_rank": 78,
       "kenpom_rank": 59,
       "bpi_rank": 54,
-      "sos_rank": 20
+      "sos_rank": 19
     },
     {
       "team": "California",
@@ -657,7 +657,7 @@
       "ap_rank": null,
       "avg_rank": 66,
       "net_rank": 63,
-      "kenpom_rank": 69,
+      "kenpom_rank": 68,
       "bpi_rank": 70,
       "sos_rank": 78
     },
@@ -702,24 +702,24 @@
       "sos_rank": 80
     },
     {
-      "team": "Oklahoma State",
-      "record": "14-6",
-      "ap_rank": null,
-      "avg_rank": 71,
-      "net_rank": 73,
-      "kenpom_rank": 68,
-      "bpi_rank": 77,
-      "sos_rank": 51
-    },
-    {
       "team": "Syracuse",
       "record": "12-8",
       "ap_rank": null,
-      "avg_rank": 72,
+      "avg_rank": 71,
       "net_rank": 79,
-      "kenpom_rank": 75,
+      "kenpom_rank": 74,
       "bpi_rank": 65,
       "sos_rank": 46
+    },
+    {
+      "team": "Oklahoma State",
+      "record": "14-6",
+      "ap_rank": null,
+      "avg_rank": 72,
+      "net_rank": 73,
+      "kenpom_rank": 69,
+      "bpi_rank": 77,
+      "sos_rank": 53
     },
     {
       "team": "George Mason",
@@ -762,24 +762,24 @@
       "sos_rank": 147
     },
     {
+      "team": "Dayton",
+      "record": "14-6",
+      "ap_rank": null,
+      "avg_rank": 77,
+      "net_rank": 85,
+      "kenpom_rank": 80,
+      "bpi_rank": 66,
+      "sos_rank": 76
+    },
+    {
       "team": "Providence",
       "record": "9-11",
       "ap_rank": null,
       "avg_rank": 77,
       "net_rank": 95,
-      "kenpom_rank": 74,
+      "kenpom_rank": 75,
       "bpi_rank": 61,
       "sos_rank": 62
-    },
-    {
-      "team": "Dayton",
-      "record": "14-6",
-      "ap_rank": null,
-      "avg_rank": 78,
-      "net_rank": 85,
-      "kenpom_rank": 80,
-      "bpi_rank": 66,
-      "sos_rank": 76
     },
     {
       "team": "Grand Canyon",
@@ -797,7 +797,7 @@
       "ap_rank": null,
       "avg_rank": 80,
       "net_rank": 80,
-      "kenpom_rank": 95,
+      "kenpom_rank": 94,
       "bpi_rank": 62,
       "sos_rank": 328
     },
@@ -839,7 +839,7 @@
       "net_rank": 89,
       "kenpom_rank": 88,
       "bpi_rank": 71,
-      "sos_rank": 42
+      "sos_rank": 41
     },
     {
       "team": "Minnesota",
@@ -877,7 +877,7 @@
       "ap_rank": null,
       "avg_rank": 88,
       "net_rank": 81,
-      "kenpom_rank": 94,
+      "kenpom_rank": 93,
       "bpi_rank": 85,
       "sos_rank": 157
     },
@@ -889,7 +889,17 @@
       "net_rank": 93,
       "kenpom_rank": 89,
       "bpi_rank": 83,
-      "sos_rank": 142
+      "sos_rank": 143
+    },
+    {
+      "team": "Mississippi State",
+      "record": "10-10",
+      "ap_rank": null,
+      "avg_rank": 90,
+      "net_rank": 106,
+      "kenpom_rank": 95,
+      "bpi_rank": 67,
+      "sos_rank": 44
     },
     {
       "team": "Murray State",
@@ -905,21 +915,11 @@
       "team": "Arizona State",
       "record": "11-9",
       "ap_rank": null,
-      "avg_rank": 91,
+      "avg_rank": 92,
       "net_rank": 87,
       "kenpom_rank": 83,
       "bpi_rank": 99,
       "sos_rank": 29
-    },
-    {
-      "team": "Mississippi State",
-      "record": "10-10",
-      "ap_rank": null,
-      "avg_rank": 91,
-      "net_rank": 106,
-      "kenpom_rank": 96,
-      "bpi_rank": 67,
-      "sos_rank": 44
     },
     {
       "team": "Xavier",
@@ -947,7 +947,7 @@
       "ap_rank": null,
       "avg_rank": 95,
       "net_rank": 90,
-      "kenpom_rank": 97,
+      "kenpom_rank": 96,
       "bpi_rank": 96,
       "sos_rank": 125
     },
@@ -957,7 +957,7 @@
       "ap_rank": null,
       "avg_rank": 96,
       "net_rank": 99,
-      "kenpom_rank": 100,
+      "kenpom_rank": 99,
       "bpi_rank": 92,
       "sos_rank": 97
     },
@@ -972,22 +972,12 @@
       "sos_rank": 311
     },
     {
-      "team": "Stephen F. Austin",
-      "record": "17-3",
-      "ap_rank": null,
-      "avg_rank": 97,
-      "net_rank": 84,
-      "kenpom_rank": 93,
-      "bpi_rank": 116,
-      "sos_rank": 324
-    },
-    {
       "team": "Florida Atlantic",
       "record": "14-7",
       "ap_rank": null,
-      "avg_rank": 99,
+      "avg_rank": 98,
       "net_rank": 94,
-      "kenpom_rank": 98,
+      "kenpom_rank": 97,
       "bpi_rank": 107,
       "sos_rank": 84
     },
@@ -995,21 +985,21 @@
       "team": "Georgetown",
       "record": "10-10",
       "ap_rank": null,
-      "avg_rank": 99,
+      "avg_rank": 98,
       "net_rank": 112,
-      "kenpom_rank": 99,
+      "kenpom_rank": 98,
       "bpi_rank": 88,
       "sos_rank": 85
     },
     {
-      "team": "DePaul",
-      "record": "12-8",
+      "team": "Stephen F. Austin",
+      "record": "18-3",
       "ap_rank": null,
-      "avg_rank": 101,
-      "net_rank": 105,
-      "kenpom_rank": 102,
-      "bpi_rank": 104,
-      "sos_rank": 136
+      "avg_rank": 100,
+      "net_rank": 84,
+      "kenpom_rank": 100,
+      "bpi_rank": 116,
+      "sos_rank": 324
     },
     {
       "team": "Memphis",
@@ -1017,15 +1007,25 @@
       "ap_rank": null,
       "avg_rank": 101,
       "net_rank": 120,
-      "kenpom_rank": 105,
+      "kenpom_rank": 104,
       "bpi_rank": 86,
       "sos_rank": 73
+    },
+    {
+      "team": "DePaul",
+      "record": "12-8",
+      "ap_rank": null,
+      "avg_rank": 102,
+      "net_rank": 105,
+      "kenpom_rank": 102,
+      "bpi_rank": 104,
+      "sos_rank": 136
     },
     {
       "team": "Northern Iowa",
       "record": "13-8",
       "ap_rank": null,
-      "avg_rank": 101,
+      "avg_rank": 102,
       "net_rank": 98,
       "kenpom_rank": 107,
       "bpi_rank": 106,
@@ -1049,7 +1049,7 @@
       "net_rank": 126,
       "kenpom_rank": 101,
       "bpi_rank": 90,
-      "sos_rank": 41
+      "sos_rank": 40
     },
     {
       "team": "Utah Valley",
@@ -1057,7 +1057,7 @@
       "ap_rank": null,
       "avg_rank": 106,
       "net_rank": 97,
-      "kenpom_rank": 104,
+      "kenpom_rank": 105,
       "bpi_rank": 118,
       "sos_rank": 129
     },
@@ -1129,7 +1129,7 @@
       "net_rank": 125,
       "kenpom_rank": 110,
       "bpi_rank": 105,
-      "sos_rank": 106
+      "sos_rank": 107
     },
     {
       "team": "Bowling Green",
@@ -1179,7 +1179,7 @@
       "net_rank": 110,
       "kenpom_rank": 116,
       "bpi_rank": 135,
-      "sos_rank": 188
+      "sos_rank": 190
     },
     {
       "team": "Seattle",
@@ -1189,7 +1189,7 @@
       "net_rank": 121,
       "kenpom_rank": 119,
       "bpi_rank": 124,
-      "sos_rank": 194
+      "sos_rank": 193
     },
     {
       "team": "Marquette",
@@ -1395,9 +1395,9 @@
       "team": "Temple",
       "record": "13-7",
       "ap_rank": null,
-      "avg_rank": 139,
+      "avg_rank": 140,
       "net_rank": 155,
-      "kenpom_rank": 144,
+      "kenpom_rank": 145,
       "bpi_rank": 121,
       "sos_rank": 215
     },
@@ -1437,7 +1437,7 @@
       "ap_rank": null,
       "avg_rank": 144,
       "net_rank": 146,
-      "kenpom_rank": 151,
+      "kenpom_rank": 152,
       "bpi_rank": 137,
       "sos_rank": 167
     },
@@ -1447,7 +1447,7 @@
       "ap_rank": null,
       "avg_rank": 145,
       "net_rank": 163,
-      "kenpom_rank": 145,
+      "kenpom_rank": 144,
       "bpi_rank": 130,
       "sos_rank": 197
     },
@@ -1489,7 +1489,7 @@
       "net_rank": 147,
       "kenpom_rank": 138,
       "bpi_rank": 161,
-      "sos_rank": 107
+      "sos_rank": 106
     },
     {
       "team": "Marshall",
@@ -1532,10 +1532,20 @@
       "sos_rank": 239
     },
     {
-      "team": "Kennesaw State",
+      "team": "Saint Bonaventure",
       "record": "12-8",
       "ap_rank": null,
       "avg_rank": 154,
+      "net_rank": 158,
+      "kenpom_rank": 157,
+      "bpi_rank": 142,
+      "sos_rank": 79
+    },
+    {
+      "team": "Kennesaw State",
+      "record": "12-8",
+      "ap_rank": null,
+      "avg_rank": 155,
       "net_rank": 167,
       "kenpom_rank": 165,
       "bpi_rank": 126,
@@ -1545,21 +1555,11 @@
       "team": "Loyola Marymount",
       "record": "11-11",
       "ap_rank": null,
-      "avg_rank": 154,
+      "avg_rank": 155,
       "net_rank": 165,
       "kenpom_rank": 155,
       "bpi_rank": 138,
       "sos_rank": 120
-    },
-    {
-      "team": "Saint Bonaventure",
-      "record": "12-8",
-      "ap_rank": null,
-      "avg_rank": 154,
-      "net_rank": 158,
-      "kenpom_rank": 158,
-      "bpi_rank": 142,
-      "sos_rank": 79
     },
     {
       "team": "Washington State",
@@ -1619,17 +1619,7 @@
       "net_rank": 160,
       "kenpom_rank": 159,
       "bpi_rank": 171,
-      "sos_rank": 64
-    },
-    {
-      "team": "Marist",
-      "record": "13-7",
-      "ap_rank": null,
-      "avg_rank": 163,
-      "net_rank": 151,
-      "kenpom_rank": 161,
-      "bpi_rank": 180,
-      "sos_rank": 261
+      "sos_rank": 65
     },
     {
       "team": "Montana",
@@ -1637,9 +1627,19 @@
       "ap_rank": null,
       "avg_rank": 163,
       "net_rank": 156,
-      "kenpom_rank": 152,
+      "kenpom_rank": 151,
       "bpi_rank": 184,
       "sos_rank": 223
+    },
+    {
+      "team": "Marist",
+      "record": "13-7",
+      "ap_rank": null,
+      "avg_rank": 164,
+      "net_rank": 151,
+      "kenpom_rank": 161,
+      "bpi_rank": 180,
+      "sos_rank": 260
     },
     {
       "team": "Towson",
@@ -1655,11 +1655,11 @@
       "team": "Valparaiso",
       "record": "10-10",
       "ap_rank": null,
-      "avg_rank": 165,
+      "avg_rank": 166,
       "net_rank": 166,
-      "kenpom_rank": 157,
+      "kenpom_rank": 158,
       "bpi_rank": 173,
-      "sos_rank": 193
+      "sos_rank": 195
     },
     {
       "team": "Furman",
@@ -1869,7 +1869,7 @@
       "net_rank": 189,
       "kenpom_rank": 194,
       "bpi_rank": 190,
-      "sos_rank": 144
+      "sos_rank": 145
     },
     {
       "team": "Monmouth",
@@ -1927,7 +1927,7 @@
       "ap_rank": null,
       "avg_rank": 193,
       "net_rank": 200,
-      "kenpom_rank": 205,
+      "kenpom_rank": 206,
       "bpi_rank": 188,
       "sos_rank": 298
     },
@@ -1942,24 +1942,24 @@
       "sos_rank": 210
     },
     {
+      "team": "Colgate",
+      "record": "12-9",
+      "ap_rank": null,
+      "avg_rank": 195,
+      "net_rank": 201,
+      "kenpom_rank": 200,
+      "bpi_rank": 197,
+      "sos_rank": 259
+    },
+    {
       "team": "Jacksonville State",
       "record": "10-9",
       "ap_rank": null,
       "avg_rank": 195,
       "net_rank": 225,
-      "kenpom_rank": 204,
+      "kenpom_rank": 205,
       "bpi_rank": 168,
       "sos_rank": 169
-    },
-    {
-      "team": "Colgate",
-      "record": "12-9",
-      "ap_rank": null,
-      "avg_rank": 196,
-      "net_rank": 201,
-      "kenpom_rank": 200,
-      "bpi_rank": 197,
-      "sos_rank": 260
     },
     {
       "team": "Appalachian State",
@@ -1967,7 +1967,7 @@
       "ap_rank": null,
       "avg_rank": 197,
       "net_rank": 209,
-      "kenpom_rank": 218,
+      "kenpom_rank": 219,
       "bpi_rank": 172,
       "sos_rank": 252
     },
@@ -1977,7 +1977,7 @@
       "ap_rank": null,
       "avg_rank": 197,
       "net_rank": 194,
-      "kenpom_rank": 202,
+      "kenpom_rank": 203,
       "bpi_rank": 203,
       "sos_rank": 287
     },
@@ -2007,7 +2007,7 @@
       "ap_rank": null,
       "avg_rank": 201,
       "net_rank": 219,
-      "kenpom_rank": 203,
+      "kenpom_rank": 204,
       "bpi_rank": 191,
       "sos_rank": 123
     },
@@ -2017,7 +2017,7 @@
       "ap_rank": null,
       "avg_rank": 201,
       "net_rank": 203,
-      "kenpom_rank": 210,
+      "kenpom_rank": 211,
       "bpi_rank": 200,
       "sos_rank": 325
     },
@@ -2037,7 +2037,7 @@
       "ap_rank": null,
       "avg_rank": 204,
       "net_rank": 227,
-      "kenpom_rank": 201,
+      "kenpom_rank": 202,
       "bpi_rank": 196,
       "sos_rank": 165
     },
@@ -2047,7 +2047,7 @@
       "ap_rank": null,
       "avg_rank": 205,
       "net_rank": 220,
-      "kenpom_rank": 206,
+      "kenpom_rank": 207,
       "bpi_rank": 199,
       "sos_rank": 272
     },
@@ -2057,7 +2057,7 @@
       "ap_rank": null,
       "avg_rank": 205,
       "net_rank": 206,
-      "kenpom_rank": 211,
+      "kenpom_rank": 212,
       "bpi_rank": 208,
       "sos_rank": 227
     },
@@ -2067,7 +2067,7 @@
       "ap_rank": null,
       "avg_rank": 207,
       "net_rank": 211,
-      "kenpom_rank": 221,
+      "kenpom_rank": 222,
       "bpi_rank": 194,
       "sos_rank": 111
     },
@@ -2095,9 +2095,9 @@
       "team": "UT Martin",
       "record": "15-5",
       "ap_rank": null,
-      "avg_rank": 209,
+      "avg_rank": 210,
       "net_rank": 190,
-      "kenpom_rank": 212,
+      "kenpom_rank": 213,
       "bpi_rank": 229,
       "sos_rank": 340
     },
@@ -2119,15 +2119,15 @@
       "net_rank": 213,
       "kenpom_rank": 209,
       "bpi_rank": 219,
-      "sos_rank": 212
+      "sos_rank": 211
     },
     {
       "team": "Merrimack",
       "record": "13-9",
       "ap_rank": null,
-      "avg_rank": 212,
+      "avg_rank": 213,
       "net_rank": 214,
-      "kenpom_rank": 207,
+      "kenpom_rank": 208,
       "bpi_rank": 220,
       "sos_rank": 175
     },
@@ -2147,7 +2147,7 @@
       "ap_rank": null,
       "avg_rank": 215,
       "net_rank": 215,
-      "kenpom_rank": 208,
+      "kenpom_rank": 210,
       "bpi_rank": 227,
       "sos_rank": 153
     },
@@ -2157,7 +2157,7 @@
       "ap_rank": null,
       "avg_rank": 216,
       "net_rank": 202,
-      "kenpom_rank": 216,
+      "kenpom_rank": 217,
       "bpi_rank": 237,
       "sos_rank": 350
     },
@@ -2167,59 +2167,49 @@
       "ap_rank": null,
       "avg_rank": 216,
       "net_rank": 212,
-      "kenpom_rank": 215,
+      "kenpom_rank": 216,
       "bpi_rank": 228,
       "sos_rank": 285
-    },
-    {
-      "team": "Youngstown State",
-      "record": "10-12",
-      "ap_rank": null,
-      "avg_rank": 218,
-      "net_rank": 229,
-      "kenpom_rank": 219,
-      "bpi_rank": 209,
-      "sos_rank": 315
     },
     {
       "team": "Ohio",
       "record": "11-10",
       "ap_rank": null,
-      "avg_rank": 219,
+      "avg_rank": 218,
       "net_rank": 228,
       "kenpom_rank": 228,
       "bpi_rank": 202,
       "sos_rank": 72
     },
     {
-      "team": "Utah Tech",
-      "record": "11-11",
+      "team": "Youngstown State",
+      "record": "10-12",
       "ap_rank": null,
-      "avg_rank": 220,
-      "net_rank": 199,
-      "kenpom_rank": 213,
-      "bpi_rank": 248,
-      "sos_rank": 141
+      "avg_rank": 219,
+      "net_rank": 229,
+      "kenpom_rank": 221,
+      "bpi_rank": 209,
+      "sos_rank": 315
     },
     {
       "team": "Iona",
       "record": "14-8",
       "ap_rank": null,
-      "avg_rank": 221,
+      "avg_rank": 220,
       "net_rank": 218,
-      "kenpom_rank": 233,
+      "kenpom_rank": 232,
       "bpi_rank": 210,
       "sos_rank": 268
     },
     {
-      "team": "La Salle",
-      "record": "7-13",
+      "team": "Utah Tech",
+      "record": "11-11",
       "ap_rank": null,
-      "avg_rank": 222,
-      "net_rank": 226,
-      "kenpom_rank": 222,
-      "bpi_rank": 214,
-      "sos_rank": 56
+      "avg_rank": 221,
+      "net_rank": 199,
+      "kenpom_rank": 214,
+      "bpi_rank": 248,
+      "sos_rank": 142
     },
     {
       "team": "Lamar",
@@ -2232,22 +2222,22 @@
       "sos_rank": 290
     },
     {
-      "team": "Nicholls",
-      "record": "8-12",
+      "team": "La Salle",
+      "record": "7-13",
       "ap_rank": null,
-      "avg_rank": 224,
-      "net_rank": 231,
-      "kenpom_rank": 231,
-      "bpi_rank": 205,
-      "sos_rank": 234
+      "avg_rank": 223,
+      "net_rank": 226,
+      "kenpom_rank": 223,
+      "bpi_rank": 214,
+      "sos_rank": 56
     },
     {
       "team": "UNC Asheville",
       "record": "9-12",
       "ap_rank": null,
-      "avg_rank": 225,
+      "avg_rank": 224,
       "net_rank": 230,
-      "kenpom_rank": 217,
+      "kenpom_rank": 218,
       "bpi_rank": 222,
       "sos_rank": 168
     },
@@ -2255,7 +2245,7 @@
       "team": "Portland",
       "record": "10-12",
       "ap_rank": null,
-      "avg_rank": 226,
+      "avg_rank": 225,
       "net_rank": 208,
       "kenpom_rank": 191,
       "bpi_rank": 273,
@@ -2265,7 +2255,7 @@
       "team": "Florida Gulf Coast",
       "record": "8-13",
       "ap_rank": null,
-      "avg_rank": 227,
+      "avg_rank": 226,
       "net_rank": 240,
       "kenpom_rank": 230,
       "bpi_rank": 204,
@@ -2275,11 +2265,11 @@
       "team": "Milwaukee",
       "record": "9-13",
       "ap_rank": null,
-      "avg_rank": 228,
+      "avg_rank": 227,
       "net_rank": 224,
-      "kenpom_rank": 248,
+      "kenpom_rank": 247,
       "bpi_rank": 207,
-      "sos_rank": 189
+      "sos_rank": 188
     },
     {
       "team": "Rice",
@@ -2295,21 +2285,21 @@
       "team": "Idaho State",
       "record": "10-11",
       "ap_rank": null,
-      "avg_rank": 230,
+      "avg_rank": 229,
       "net_rank": 185,
-      "kenpom_rank": 214,
+      "kenpom_rank": 215,
       "bpi_rank": 281,
       "sos_rank": 257
     },
     {
-      "team": "Charleston Southern",
-      "record": "11-11",
+      "team": "Nicholls",
+      "record": "8-13",
       "ap_rank": null,
-      "avg_rank": 231,
-      "net_rank": 223,
-      "kenpom_rank": 226,
-      "bpi_rank": 247,
-      "sos_rank": 323
+      "avg_rank": 230,
+      "net_rank": 231,
+      "kenpom_rank": 248,
+      "bpi_rank": 205,
+      "sos_rank": 234
     },
     {
       "team": "Coastal Carolina",
@@ -2317,17 +2307,27 @@
       "ap_rank": null,
       "avg_rank": 231,
       "net_rank": 222,
-      "kenpom_rank": 234,
+      "kenpom_rank": 233,
       "bpi_rank": 240,
       "sos_rank": 247
+    },
+    {
+      "team": "Charleston Southern",
+      "record": "11-11",
+      "ap_rank": null,
+      "avg_rank": 232,
+      "net_rank": 223,
+      "kenpom_rank": 226,
+      "bpi_rank": 247,
+      "sos_rank": 323
     },
     {
       "team": "Dartmouth",
       "record": "9-9",
       "ap_rank": null,
-      "avg_rank": 233,
+      "avg_rank": 232,
       "net_rank": 234,
-      "kenpom_rank": 237,
+      "kenpom_rank": 236,
       "bpi_rank": 226,
       "sos_rank": 177
     },
@@ -2337,9 +2337,29 @@
       "ap_rank": null,
       "avg_rank": 234,
       "net_rank": 256,
-      "kenpom_rank": 244,
+      "kenpom_rank": 243,
       "bpi_rank": 198,
-      "sos_rank": 211
+      "sos_rank": 212
+    },
+    {
+      "team": "New Orleans",
+      "record": "8-13",
+      "ap_rank": null,
+      "avg_rank": 235,
+      "net_rank": 238,
+      "kenpom_rank": 201,
+      "bpi_rank": 262,
+      "sos_rank": 231
+    },
+    {
+      "team": "Old Dominion",
+      "record": "6-15",
+      "ap_rank": null,
+      "avg_rank": 235,
+      "net_rank": 246,
+      "kenpom_rank": 237,
+      "bpi_rank": 218,
+      "sos_rank": 132
     },
     {
       "team": "Princeton",
@@ -2352,22 +2372,12 @@
       "sos_rank": 110
     },
     {
-      "team": "Old Dominion",
-      "record": "6-15",
-      "ap_rank": null,
-      "avg_rank": 236,
-      "net_rank": 246,
-      "kenpom_rank": 238,
-      "bpi_rank": 218,
-      "sos_rank": 132
-    },
-    {
       "team": "Tennessee State",
       "record": "13-7",
       "ap_rank": null,
-      "avg_rank": 236,
+      "avg_rank": 235,
       "net_rank": 216,
-      "kenpom_rank": 236,
+      "kenpom_rank": 235,
       "bpi_rank": 250,
       "sos_rank": 278
     },
@@ -2375,7 +2385,7 @@
       "team": "Green Bay",
       "record": "12-10",
       "ap_rank": null,
-      "avg_rank": 238,
+      "avg_rank": 239,
       "net_rank": 217,
       "kenpom_rank": 227,
       "bpi_rank": 261,
@@ -2385,9 +2395,9 @@
       "team": "Saint Peter's",
       "record": "11-7",
       "ap_rank": null,
-      "avg_rank": 239,
+      "avg_rank": 240,
       "net_rank": 232,
-      "kenpom_rank": 239,
+      "kenpom_rank": 238,
       "bpi_rank": 238,
       "sos_rank": 236
     },
@@ -2395,9 +2405,9 @@
       "team": "Incarnate Word",
       "record": "9-11",
       "ap_rank": null,
-      "avg_rank": 240,
+      "avg_rank": 241,
       "net_rank": 253,
-      "kenpom_rank": 243,
+      "kenpom_rank": 242,
       "bpi_rank": 217,
       "sos_rank": 277
     },
@@ -2405,9 +2415,9 @@
       "team": "Hampton",
       "record": "10-11",
       "ap_rank": null,
-      "avg_rank": 241,
+      "avg_rank": 242,
       "net_rank": 243,
-      "kenpom_rank": 245,
+      "kenpom_rank": 244,
       "bpi_rank": 232,
       "sos_rank": 182
     },
@@ -2415,21 +2425,11 @@
       "team": "Lindenwood",
       "record": "12-9",
       "ap_rank": null,
-      "avg_rank": 242,
+      "avg_rank": 243,
       "net_rank": 236,
-      "kenpom_rank": 246,
+      "kenpom_rank": 245,
       "bpi_rank": 241,
       "sos_rank": 294
-    },
-    {
-      "team": "New Orleans",
-      "record": "7-13",
-      "ap_rank": null,
-      "avg_rank": 242,
-      "net_rank": 238,
-      "kenpom_rank": 223,
-      "bpi_rank": 262,
-      "sos_rank": 231
     },
     {
       "team": "Georgia Southern",
@@ -2442,12 +2442,22 @@
       "sos_rank": 319
     },
     {
+      "team": "San Jose State",
+      "record": "6-14",
+      "ap_rank": null,
+      "avg_rank": 245,
+      "net_rank": 257,
+      "kenpom_rank": 240,
+      "bpi_rank": 234,
+      "sos_rank": 103
+    },
+    {
       "team": "Stony Brook",
       "record": "12-9",
       "ap_rank": null,
       "avg_rank": 245,
       "net_rank": 235,
-      "kenpom_rank": 240,
+      "kenpom_rank": 239,
       "bpi_rank": 257,
       "sos_rank": 187
     },
@@ -2455,21 +2465,11 @@
       "team": "Samford",
       "record": "10-11",
       "ap_rank": null,
-      "avg_rank": 246,
+      "avg_rank": 247,
       "net_rank": 266,
       "kenpom_rank": 252,
       "bpi_rank": 215,
       "sos_rank": 243
-    },
-    {
-      "team": "San Jose State",
-      "record": "6-14",
-      "ap_rank": null,
-      "avg_rank": 246,
-      "net_rank": 257,
-      "kenpom_rank": 242,
-      "bpi_rank": 234,
-      "sos_rank": 103
     },
     {
       "team": "Radford",
@@ -2487,7 +2487,7 @@
       "ap_rank": null,
       "avg_rank": 249,
       "net_rank": 254,
-      "kenpom_rank": 247,
+      "kenpom_rank": 246,
       "bpi_rank": 246,
       "sos_rank": 270
     },
@@ -2497,7 +2497,7 @@
       "ap_rank": null,
       "avg_rank": 250,
       "net_rank": 250,
-      "kenpom_rank": 232,
+      "kenpom_rank": 231,
       "bpi_rank": 267,
       "sos_rank": 238
     },
@@ -2507,7 +2507,7 @@
       "ap_rank": null,
       "avg_rank": 251,
       "net_rank": 244,
-      "kenpom_rank": 235,
+      "kenpom_rank": 234,
       "bpi_rank": 275,
       "sos_rank": 205
     },
@@ -2519,7 +2519,7 @@
       "net_rank": 248,
       "kenpom_rank": 255,
       "bpi_rank": 252,
-      "sos_rank": 143
+      "sos_rank": 144
     },
     {
       "team": "Southeast Missouri State",
@@ -2567,7 +2567,7 @@
       "ap_rank": null,
       "avg_rank": 257,
       "net_rank": 263,
-      "kenpom_rank": 272,
+      "kenpom_rank": 273,
       "bpi_rank": 231,
       "sos_rank": 327
     },
@@ -2659,7 +2659,7 @@
       "net_rank": 271,
       "kenpom_rank": 262,
       "bpi_rank": 263,
-      "sos_rank": 195
+      "sos_rank": 194
     },
     {
       "team": "Le Moyne",
@@ -2702,24 +2702,24 @@
       "sos_rank": 358
     },
     {
-      "team": "Presbyterian",
-      "record": "11-11",
-      "ap_rank": null,
-      "avg_rank": 271,
-      "net_rank": 260,
-      "kenpom_rank": 276,
-      "bpi_rank": 276,
-      "sos_rank": 282
-    },
-    {
       "team": "Texas State",
       "record": "11-11",
       "ap_rank": null,
-      "avg_rank": 272,
+      "avg_rank": 271,
       "net_rank": 286,
-      "kenpom_rank": 285,
+      "kenpom_rank": 284,
       "bpi_rank": 242,
       "sos_rank": 273
+    },
+    {
+      "team": "Presbyterian",
+      "record": "11-11",
+      "ap_rank": null,
+      "avg_rank": 272,
+      "net_rank": 260,
+      "kenpom_rank": 277,
+      "bpi_rank": 276,
+      "sos_rank": 282
     },
     {
       "team": "Denver",
@@ -2737,9 +2737,9 @@
       "ap_rank": null,
       "avg_rank": 274,
       "net_rank": 276,
-      "kenpom_rank": 277,
+      "kenpom_rank": 278,
       "bpi_rank": 271,
-      "sos_rank": 114
+      "sos_rank": 115
     },
     {
       "team": "East Carolina",
@@ -2757,7 +2757,7 @@
       "ap_rank": null,
       "avg_rank": 276,
       "net_rank": 270,
-      "kenpom_rank": 281,
+      "kenpom_rank": 282,
       "bpi_rank": 280,
       "sos_rank": 266
     },
@@ -2772,24 +2772,24 @@
       "sos_rank": 336
     },
     {
-      "team": "Grambling",
-      "record": "8-10",
-      "ap_rank": null,
-      "avg_rank": 278,
-      "net_rank": 272,
-      "kenpom_rank": 280,
-      "bpi_rank": 283,
-      "sos_rank": 343
-    },
-    {
       "team": "Pepperdine",
       "record": "6-16",
       "ap_rank": null,
-      "avg_rank": 279,
+      "avg_rank": 278,
       "net_rank": 275,
-      "kenpom_rank": 273,
+      "kenpom_rank": 272,
       "bpi_rank": 288,
-      "sos_rank": 145
+      "sos_rank": 141
+    },
+    {
+      "team": "Grambling",
+      "record": "8-10",
+      "ap_rank": null,
+      "avg_rank": 279,
+      "net_rank": 272,
+      "kenpom_rank": 281,
+      "bpi_rank": 283,
+      "sos_rank": 343
     },
     {
       "team": "Central Connecticut",
@@ -2822,32 +2822,32 @@
       "sos_rank": 216
     },
     {
-      "team": "UC Riverside",
-      "record": "7-14",
-      "ap_rank": null,
-      "avg_rank": 282,
-      "net_rank": 279,
-      "kenpom_rank": 275,
-      "bpi_rank": 289,
-      "sos_rank": 158
-    },
-    {
       "team": "Cal Poly",
       "record": "7-14",
       "ap_rank": null,
-      "avg_rank": 284,
+      "avg_rank": 283,
       "net_rank": 269,
       "kenpom_rank": 270,
       "bpi_rank": 305,
       "sos_rank": 178
     },
     {
+      "team": "UC Riverside",
+      "record": "7-14",
+      "ap_rank": null,
+      "avg_rank": 283,
+      "net_rank": 279,
+      "kenpom_rank": 276,
+      "bpi_rank": 289,
+      "sos_rank": 158
+    },
+    {
       "team": "East Texas A&M",
       "record": "8-12",
       "ap_rank": null,
-      "avg_rank": 284,
+      "avg_rank": 285,
       "net_rank": 273,
-      "kenpom_rank": 284,
+      "kenpom_rank": 285,
       "bpi_rank": 287,
       "sos_rank": 220
     },
@@ -2857,7 +2857,7 @@
       "ap_rank": null,
       "avg_rank": 286,
       "net_rank": 274,
-      "kenpom_rank": 279,
+      "kenpom_rank": 280,
       "bpi_rank": 300,
       "sos_rank": 250
     },
@@ -2865,11 +2865,11 @@
       "team": "Evansville",
       "record": "5-15",
       "ap_rank": null,
-      "avg_rank": 287,
+      "avg_rank": 286,
       "net_rank": 285,
       "kenpom_rank": 287,
       "bpi_rank": 282,
-      "sos_rank": 90
+      "sos_rank": 91
     },
     {
       "team": "Sacred Heart",
@@ -2893,19 +2893,19 @@
     },
     {
       "team": "Northwestern State",
-      "record": "6-13",
+      "record": "6-14",
       "ap_rank": null,
       "avg_rank": 290,
       "net_rank": 299,
-      "kenpom_rank": 282,
+      "kenpom_rank": 275,
       "bpi_rank": 292,
-      "sos_rank": 232
+      "sos_rank": 233
     },
     {
       "team": "Sacramento State",
       "record": "6-13",
       "ap_rank": null,
-      "avg_rank": 290,
+      "avg_rank": 291,
       "net_rank": 284,
       "kenpom_rank": 283,
       "bpi_rank": 306,
@@ -2925,9 +2925,9 @@
       "team": "Southern Utah",
       "record": "7-14",
       "ap_rank": null,
-      "avg_rank": 292,
+      "avg_rank": 293,
       "net_rank": 293,
-      "kenpom_rank": 278,
+      "kenpom_rank": 279,
       "bpi_rank": 304,
       "sos_rank": 173
     },
@@ -3019,7 +3019,7 @@
       "net_rank": 296,
       "kenpom_rank": 302,
       "bpi_rank": 299,
-      "sos_rank": 262
+      "sos_rank": 261
     },
     {
       "team": "Delaware",
@@ -3087,9 +3087,9 @@
       "ap_rank": null,
       "avg_rank": 309,
       "net_rank": 304,
-      "kenpom_rank": 306,
+      "kenpom_rank": 307,
       "bpi_rank": 320,
-      "sos_rank": 259
+      "sos_rank": 262
     },
     {
       "team": "Arkansas-Pine Bluff",
@@ -3132,6 +3132,16 @@
       "sos_rank": 330
     },
     {
+      "team": "Houston Christian",
+      "record": "7-13",
+      "ap_rank": null,
+      "avg_rank": 313,
+      "net_rank": 309,
+      "kenpom_rank": 306,
+      "bpi_rank": 330,
+      "sos_rank": 288
+    },
+    {
       "team": "Northern Illinois",
       "record": "6-13",
       "ap_rank": null,
@@ -3140,16 +3150,6 @@
       "kenpom_rank": 316,
       "bpi_rank": 310,
       "sos_rank": 183
-    },
-    {
-      "team": "Houston Christian",
-      "record": "7-13",
-      "ap_rank": null,
-      "avg_rank": 315,
-      "net_rank": 309,
-      "kenpom_rank": 307,
-      "bpi_rank": 330,
-      "sos_rank": 288
     },
     {
       "team": "New Hampshire",
@@ -3249,7 +3249,7 @@
       "net_rank": 325,
       "kenpom_rank": 327,
       "bpi_rank": 331,
-      "sos_rank": 233
+      "sos_rank": 232
     },
     {
       "team": "Loyola Maryland",
@@ -3419,7 +3419,7 @@
       "net_rank": 337,
       "kenpom_rank": 340,
       "bpi_rank": 334,
-      "sos_rank": 190
+      "sos_rank": 189
     },
     {
       "team": "UTSA",
