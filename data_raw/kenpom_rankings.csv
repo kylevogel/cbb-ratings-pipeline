@@ -55,8 +55,8 @@ kenpom_rank,team_kenpom,record
 54,Akron,17-4
 55,Northwestern,10-11
 56,Virginia Tech,16-6
-57,Cincinnati,11-10
-58,Tulsa,18-3
+57,Tulsa,18-3
+58,Cincinnati,11-10
 59,West Virginia,14-7
 60,Butler,13-8
 61,Oklahoma,11-10
@@ -65,8 +65,8 @@ kenpom_rank,team_kenpom,record
 64,Creighton,12-9
 65,California,15-6
 66,George Washington,13-8
-67,McNeese,17-4
-68,Belmont,19-3
+67,Belmont,19-3
+68,McNeese,17-4
 69,South Florida,14-7
 70,Yale,15-3
 71,Oklahoma St.,14-6
@@ -88,16 +88,16 @@ kenpom_rank,team_kenpom,record
 87,South Carolina,11-10
 88,Kansas St.,10-11
 89,Miami OH,21-0
-90,Hawaii,15-4
-91,Xavier,11-10
-92,Murray St.,16-6
-93,Georgetown,11-10
+90,Xavier,11-10
+91,Murray St.,16-6
+92,Georgetown,11-10
+93,Utah Valley,16-6
 94,Colorado St.,12-9
-95,Utah Valley,16-6
-96,Wichita St.,13-8
-97,Memphis,10-10
-98,Oregon,8-13
-99,Stephen F. Austin,18-3
+95,Wichita St.,13-8
+96,Memphis,10-10
+97,Hawaii,15-5
+98,Stephen F. Austin,18-3
+99,Oregon,8-13
 100,High Point,19-4
 101,Pittsburgh,9-12
 102,Florida St.,9-12
@@ -112,17 +112,17 @@ kenpom_rank,team_kenpom,record
 111,Northern Iowa,13-9
 112,UNC Wilmington,19-3
 113,Utah,9-11
-114,UC San Diego,15-7
-115,Richmond,13-9
-116,UC Irvine,14-7
+114,UC Irvine,15-7
+115,UC San Diego,15-7
+116,Richmond,13-9
 117,Hofstra,13-9
 118,Winthrop,15-8
 119,Troy,15-7
 120,Oakland,13-10
 121,North Dakota St.,18-5
 122,Southern Illinois,9-12
-123,UC Santa Barbara,14-7
-124,Maryland,8-12
+123,Maryland,8-12
+124,UC Santa Barbara,14-7
 125,UAB,13-8
 126,Bowling Green,13-8
 127,Georgia Tech,11-10
@@ -137,8 +137,8 @@ kenpom_rank,team_kenpom,record
 136,St. Thomas,17-6
 137,Illinois Chicago,12-10
 138,Mercer,14-8
-139,Fresno St.,9-11
-140,UT Arlington,14-6
+139,UT Arlington,14-6
+140,Fresno St.,9-11
 141,Kent St.,16-5
 142,Washington St.,10-13
 143,Wright St.,13-8
@@ -153,8 +153,8 @@ kenpom_rank,team_kenpom,record
 152,Valparaiso,10-11
 153,Toledo,11-10
 154,Saint Joseph's,13-8
-155,Portland St.,13-6
-156,New Mexico St.,10-10
+155,New Mexico St.,10-10
+156,Portland St.,13-6
 157,Lipscomb,14-8
 158,Drake,12-10
 159,Arkansas St.,13-9
@@ -171,8 +171,8 @@ kenpom_rank,team_kenpom,record
 170,Charlotte,12-9
 171,Buffalo,14-7
 172,Siena,14-7
-173,Marshall,13-8
-174,Towson,12-11
+173,Towson,12-11
+174,Marshall,13-8
 175,Western Kentucky,11-10
 176,UT Rio Grande Valley,10-11
 177,UC Davis,12-9
@@ -201,9 +201,9 @@ kenpom_rank,team_kenpom,record
 200,Portland,10-13
 201,Fordham,11-10
 202,New Orleans,8-13
-203,LIU,13-8
-204,Weber St.,10-11
-205,Indiana St.,9-13
+203,Weber St.,10-11
+204,Indiana St.,9-13
+205,LIU,13-8
 206,South Alabama,15-6
 207,Vermont,14-8
 208,Lamar,11-10
@@ -234,12 +234,12 @@ kenpom_rank,team_kenpom,record
 233,Florida Gulf Coast,9-13
 234,Ohio,11-11
 235,Charleston Southern,11-12
-236,Rice,9-12
-237,Lindenwood,13-9
+236,Lindenwood,13-9
+237,Rice,9-12
 238,Saint Peter's,11-7
 239,Dartmouth,9-9
-240,Tennessee St.,14-7
-241,Eastern Washington,5-16
+240,Eastern Washington,5-16
+241,Tennessee St.,14-7
 242,Long Beach St.,8-14
 243,Hampton,10-12
 244,Bethune Cookman,9-11
@@ -251,8 +251,8 @@ kenpom_rank,team_kenpom,record
 250,Samford,10-12
 251,Northeastern,6-14
 252,Cal Poly,8-14
-253,Southeast Missouri,12-10
-254,San Jose St.,6-15
+253,San Jose St.,6-15
+254,Southeast Missouri,12-10
 255,Western Carolina,8-12
 256,Nebraska Omaha,11-12
 257,Southern Miss,11-12
@@ -289,9 +289,9 @@ kenpom_rank,team_kenpom,record
 288,South Dakota,12-11
 289,Sacred Heart,9-13
 290,UTEP,7-14
-291,Mercyhurst,11-11
+291,Chattanooga,9-13
 292,Bellarmine,8-13
-293,Chattanooga,9-13
+293,Mercyhurst,11-11
 294,Boston University,8-14
 295,East Texas A&M,8-13
 296,Little Rock,9-12
@@ -304,8 +304,8 @@ kenpom_rank,team_kenpom,record
 303,Lehigh,9-13
 304,Houston Christian,8-13
 305,Norfolk St.,10-13
-306,UNC Greensboro,8-14
-307,Northern Arizona,8-14
+306,Northern Arizona,8-14
+307,UNC Greensboro,8-14
 308,Ball St.,7-13
 309,Arkansas Pine Bluff,7-13
 310,Texas Southern,6-13
@@ -328,8 +328,8 @@ kenpom_rank,team_kenpom,record
 327,Holy Cross,8-14
 328,West Georgia,10-11
 329,Wagner,6-13
-330,Oral Roberts,5-18
-331,Southern Indiana,5-16
+330,Southern Indiana,5-16
+331,Oral Roberts,5-18
 332,NJIT,10-12
 333,Prairie View A&M,8-13
 334,Manhattan,8-14
