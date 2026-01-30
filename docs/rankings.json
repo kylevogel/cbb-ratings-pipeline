@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 01/30/2026 at 03:30 am EST",
+  "updated": "Updated: 01/30/2026 at 04:33 am EST",
   "teams": [
     {
       "team": "Arizona",
@@ -422,24 +422,24 @@
       "sos_rank": 65
     },
     {
-      "team": "UCF",
-      "record": "16-4",
-      "ap_rank": null,
-      "avg_rank": 43,
-      "net_rank": 39,
-      "kenpom_rank": 45,
-      "bpi_rank": 56,
-      "sos_rank": 20
-    },
-    {
       "team": "USC",
       "record": "15-6",
       "ap_rank": null,
       "avg_rank": 43,
       "net_rank": 48,
       "kenpom_rank": 46,
-      "bpi_rank": 46,
+      "bpi_rank": 45,
       "sos_rank": 66
+    },
+    {
+      "team": "UCF",
+      "record": "16-4",
+      "ap_rank": null,
+      "avg_rank": 44,
+      "net_rank": 39,
+      "kenpom_rank": 45,
+      "bpi_rank": 56,
+      "sos_rank": 20
     },
     {
       "team": "VCU",
@@ -568,7 +568,7 @@
       "avg_rank": 57,
       "net_rank": 73,
       "kenpom_rank": 62,
-      "bpi_rank": 45,
+      "bpi_rank": 46,
       "sos_rank": 98
     },
     {
