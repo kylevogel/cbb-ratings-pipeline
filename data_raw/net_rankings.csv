@@ -1,14 +1,14 @@
 net_rank,team_net
-1,Michigan
-2,Duke
-3,Arizona
-4,Gonzaga
-5,Iowa St.
-6,UConn
-7,Nebraska
-8,Illinois
+1,Duke
+2,Arizona
+3,Michigan
+4,Iowa St.
+5,Gonzaga
+6,Illinois
+7,UConn
+8,Purdue
 9,Houston
-10,Purdue
+10,Nebraska
 11,Michigan St.
 12,Florida
 13,Vanderbilt
@@ -18,17 +18,17 @@ net_rank,team_net
 17,Louisville
 18,Virginia
 19,Texas Tech
-20,Alabama
+20,Iowa
 21,Tennessee
-22,Iowa
-23,St. John's (NY)
-24,Arkansas
+22,Alabama
+23,Arkansas
+24,St. John's (NY)
 25,North Carolina
-26,NC State
-27,Utah St.
+26,Utah St.
+27,NC State
 28,Kentucky
-29,Indiana
-30,Auburn
+29,Auburn
+30,Indiana
 31,Clemson
 32,Saint Mary's (CA)
 33,Villanova
@@ -36,214 +36,214 @@ net_rank,team_net
 35,Texas A&M
 36,Georgia
 37,UCF
-38,Texas
-39,Miami (FL)
+38,Miami (FL)
+39,Texas
 40,Ohio St.
 41,Wisconsin
 42,New Mexico
 43,Santa Clara
 44,UCLA
 45,San Diego St.
-46,TCU
+46,Tulsa
 47,Washington
-48,Tulsa
+48,Southern California
 49,Seton Hall
-50,Southern California
+50,Akron
 51,California
-52,Akron
-53,VCU
-54,Miami (OH)
-55,Baylor
-56,Virginia Tech
+52,VCU
+53,Miami (OH)
+54,TCU
+55,Virginia Tech
+56,Baylor
 57,LSU
 58,Belmont
-59,McNeese
-60,Nevada
+59,Nevada
+60,McNeese
 61,Boise St.
 62,South Fla.
 63,Yale
 64,Butler
 65,George Mason
-66,Oklahoma St.
-67,West Virginia
+66,West Virginia
+67,Oklahoma St.
 68,Grand Canyon
 69,Illinois St.
-70,Wake Forest
+70,Missouri
 71,Northwestern
-72,Missouri
-73,Syracuse
+72,Syracuse
+73,Wake Forest
 74,Liberty
-75,Creighton
-76,Ole Miss
+75,Colorado
+76,Creighton
 77,Cincinnati
 78,Stanford
-79,Oklahoma
-80,Minnesota
+79,Ole Miss
+80,Oklahoma
 81,Arizona St.
 82,High Point
-83,SFA
-84,Colorado
+83,Minnesota
+84,SFA
 85,Notre Dame
-86,Kansas St.
-87,George Washington
-88,Providence
-89,Wichita St.
-90,Utah Valley
-91,Murray St.
-92,Dayton
-93,Hawaii
+86,George Washington
+87,Providence
+88,Utah Valley
+89,Murray St.
+90,Wichita St.
+91,Dayton
+92,Hawaii
+93,Kansas St.
 94,Mississippi St.
-95,Georgetown
-96,Sam Houston
+95,Sam Houston
+96,Georgetown
 97,Xavier
 98,UNCW
-99,Fla. Atlantic
-100,San Francisco
-101,Colorado St.
-102,Florida St.
-103,Davidson
-104,Wyoming
-105,UNI
-106,South Carolina
-107,Pacific
-108,DePaul
-109,Memphis
-110,California Baptist
-111,Hofstra
-112,Rhode Island
-113,Oregon
-114,Pittsburgh
-115,UC Irvine
-116,Winthrop
-117,Utah
+99,San Francisco
+100,Colorado St.
+101,Florida St.
+102,Davidson
+103,Wyoming
+104,UNI
+105,South Carolina
+106,Pacific
+107,DePaul
+108,Fla. Atlantic
+109,California Baptist
+110,Hofstra
+111,Pittsburgh
+112,Memphis
+113,UC Irvine
+114,Winthrop
+115,Utah
+116,Oregon
+117,St. Thomas (MN)
 118,North Dakota St.
-119,UAB
-120,Bradley
-121,Oakland
-122,William & Mary
-123,Marquette
-124,Seattle U
-125,UC San Diego
-126,UC Santa Barbara
-127,St. Thomas (MN)
-128,Wright St.
-129,ETSU
-130,Washington St.
-131,Mercer
+119,ETSU
+120,Oakland
+121,UAB
+122,Bradley
+123,William & Mary
+124,Wright St.
+125,Rhode Island
+126,Marquette
+127,Seattle U
+128,UC San Diego
+129,UC Santa Barbara
+130,Penn St.
+131,Washington St.
 132,Marshall
-133,Penn St.
+133,Mercer
 134,UT Arlington
 135,Portland St.
-136,Southern Ill.
-137,Bowling Green
+136,Bowling Green
+137,Southern Ill.
 138,Troy
 139,UIC
 140,Kent St.
 141,Fresno St.
-142,UNLV
-143,Georgia Tech
-144,Richmond
-145,Montana St.
-146,St. Bonaventure
-147,Temple
-148,Middle Tenn.
-149,Kennesaw St.
-150,Austin Peay
-151,Marist
-152,Boston College
-153,Charlotte
-154,Montana
+142,Georgia Tech
+143,Richmond
+144,UNLV
+145,Duquesne
+146,Montana St.
+147,St. Bonaventure
+148,Austin Peay
+149,Middle Tenn.
+150,Marist
+151,Kennesaw St.
+152,Temple
+153,Boston College
+154,Charlotte
 155,Saint Joseph's
-156,Duquesne
-157,Col. of Charleston
-158,Idaho
+156,Montana
+157,Idaho
+158,Col. of Charleston
 159,Rutgers
-160,Maryland
-161,Valparaiso
-162,Toledo
-163,Columbia
-164,UTRGV
-165,Western Ky.
-166,Lipscomb
-167,Towson
-168,UT Martin
-169,Harvard
-170,Navy
+160,Valparaiso
+161,Toledo
+162,Columbia
+163,UTRGV
+164,Western Ky.
+165,Lipscomb
+166,UT Martin
+167,Harvard
+168,Towson
+169,Navy
+170,Maryland
 171,Drake
 172,Buffalo
-173,Elon
-174,Penn
+173,Penn
+174,Siena
 175,North Texas
-176,Arkansas St.
-177,Cornell
-178,Siena
-179,Furman
+176,Elon
+177,Arkansas St.
+178,Cornell
+179,Northern Colo.
 180,UC Davis
-181,Northern Colo.
+181,Furman
 182,App State
 183,LIU
 184,Idaho St.
 185,South Dakota St.
-186,Massachusetts
-187,Utah Tech
-188,LMU (CA)
-189,New Mexico St.
-190,Northern Ky.
-191,Weber St.
-192,Fordham
+186,Utah Tech
+187,Massachusetts
+188,New Mexico St.
+189,LMU (CA)
+190,Weber St.
+191,Fordham
+192,Northern Ky.
 193,FIU
 194,A&M-Corpus Christi
 195,South Alabama
-196,Robert Morris
+196,Quinnipiac
 197,CSUN
-198,Missouri St.
-199,Central Ark.
-200,Cal St. Fullerton
-201,Quinnipiac
-202,Wofford
+198,Robert Morris
+199,Missouri St.
+200,Central Ark.
+201,Cal St. Fullerton
+202,Tulane
 203,Oregon St.
-204,Lamar University
-205,Colgate
+204,Colgate
+205,Lamar University
 206,Monmouth
 207,Drexel
 208,Eastern Mich.
 209,San Diego
-210,Tulane
+210,Merrimack
 211,Stony Brook
-212,Queens (NC)
-213,Vermont
-214,Ohio
-215,Tarleton St.
-216,Purdue Fort Wayne
-217,Merrimack
-218,New Orleans
-219,Jacksonville St.
-220,Tennessee St.
+212,Wofford
+213,Queens (NC)
+214,Vermont
+215,Ohio
+216,Tarleton St.
+217,Purdue Fort Wayne
+218,Jacksonville St.
+219,Tennessee St.
+220,New Orleans
 221,Indiana St.
-222,Coastal Carolina
-223,James Madison
+222,James Madison
+223,Coastal Carolina
 224,Dartmouth
 225,Campbell
-226,Saint Peter's
-227,Iona
-228,Youngstown St.
+226,Iona
+227,Youngstown St.
+228,Princeton
 229,Lindenwood
-230,Princeton
-231,UNC Asheville
-232,Milwaukee
-233,FGCU
-234,Portland
-235,Green Bay
-236,Charleston So.
-237,Southeast Mo. St.
-238,La Salle
+230,UNC Asheville
+231,FGCU
+232,Portland
+233,Charleston So.
+234,Southeast Mo. St.
+235,Saint Peter's
+236,La Salle
+237,Milwaukee
+238,Green Bay
 239,Nicholls
-240,Fairfield
+240,American
 241,Southern Miss.
-242,American
-243,Radford
-244,Bethune-Cookman
-245,Rice
+242,Radford
+243,Bethune-Cookman
+244,Rice
+245,Fairfield
 246,Long Beach St.
 247,Louisiana Tech
 248,Old Dominion
@@ -252,110 +252,110 @@ net_rank,team_net
 251,Northeastern
 252,Ga. Southern
 253,Abilene Christian
-254,Omaha
+254,Samford
 255,Sacramento St.
-256,Hampton
-257,UMBC
-258,Western Caro.
-259,North Dakota
+256,Omaha
+257,Hampton
+258,UMBC
+259,Presbyterian
 260,N.C. A&T
-261,Presbyterian
+261,North Dakota
 262,SIUE
 263,Eastern Wash.
 264,Georgia St.
-265,San Jose St.
-266,Detroit Mercy
+265,Detroit Mercy
+266,San Jose St.
 267,Texas St.
-268,Samford
+268,Grambling
 269,Eastern Ky.
 270,Denver
-271,Grambling
-272,Longwood
-273,UIW
-274,Western Mich.
-275,Le Moyne
-276,South Dakota
-277,Pepperdine
-278,UC Riverside
-279,Evansville
-280,UTEP
-281,Central Conn. St.
-282,Southeastern La.
-283,Morehead St.
-284,Sacred Heart
+271,Longwood
+272,Western Mich.
+273,Western Caro.
+274,UIW
+275,East Carolina
+276,Le Moyne
+277,South Dakota
+278,Pepperdine
+279,UC Riverside
+280,Evansville
+281,UTEP
+282,Morehead St.
+283,Central Conn. St.
+284,Southeastern La.
 285,Mercyhurst
 286,USC Upstate
 287,East Texas A&M
-288,Southern Utah
-289,East Carolina
+288,Sacred Heart
+289,Southern Utah
 290,Chattanooga
 291,Brown
 292,Jacksonville
-293,Delaware
-294,Lehigh
-295,Bellarmine
-296,Southern U.
+293,Lehigh
+294,Delaware
+295,Southern U.
+296,Bellarmine
 297,Boston U.
-298,Northwestern St.
-299,Alabama A&M
+298,Alabama A&M
+299,Northwestern St.
 300,Houston Christian
 301,Central Mich.
-302,Mount St. Mary's
-303,NIU
-304,Northern Ariz.
-305,Ark.-Pine Bluff
-306,Cleveland St.
+302,Cleveland St.
+303,Mount St. Mary's
+304,NIU
+305,Northern Ariz.
+306,Ark.-Pine Bluff
 307,Little Rock
 308,Ball St.
 309,CSU Bakersfield
-310,West Ga.
-311,UNC Greensboro
-312,NJIT
+310,UNC Greensboro
+311,West Ga.
+312,Lafayette
 313,IU Indy
-314,Lafayette
-315,Norfolk St.
-316,Loyola Chicago
-317,Eastern Ill.
+314,NJIT
+315,Loyola Chicago
+316,Eastern Ill.
+317,Norfolk St.
 318,Florida A&M
 319,New Hampshire
 320,Holy Cross
 321,Wagner
 322,UMass Lowell
-323,Stetson
-324,Louisiana
+323,Louisiana
+324,Army West Point
 325,Prairie View
-326,Army West Point
+326,Stetson
 327,Stonehill
 328,Alabama St.
 329,New Haven
-330,UAlbany
-331,Tennessee Tech
+330,Tennessee Tech
+331,UAlbany
 332,Manhattan
-333,Oral Roberts
+333,Texas Southern
 334,North Ala.
-335,Texas Southern
-336,UMES
-337,Bucknell
+335,Oral Roberts
+336,Bucknell
+337,UMES
 338,Loyola Maryland
 339,FDU
 340,N.C. Central
-341,Canisius
+341,Southern Ind.
 342,North Florida
-343,Southern Ind.
+343,Canisius
 344,Maine
 345,Air Force
 346,The Citadel
 347,Bryant
 348,Jackson St.
-349,Kansas City
-350,Alcorn
+349,Alcorn
+350,Chicago St.
 351,Niagara
-352,Chicago St.
-353,UTSA
+352,UTSA
+353,Kansas City
 354,Saint Francis
-355,Morgan St.
-356,VMI
-357,Rider
+355,Rider
+356,Morgan St.
+357,VMI
 358,Delaware St.
 359,ULM
 360,Western Ill.
