@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 02/02/2026 at 01:34 pm EST",
+  "updated": "Updated: 02/02/2026 at 06:22 pm EST",
   "teams": [
     {
       "team": "Duke",
@@ -2135,11 +2135,21 @@
       "team": "Purdue Fort Wayne",
       "record": "14-9",
       "ap_rank": null,
-      "avg_rank": 214,
+      "avg_rank": 213,
       "net_rank": 217,
-      "kenpom_rank": 220,
+      "kenpom_rank": 219,
       "bpi_rank": 200,
       "sos_rank": 258
+    },
+    {
+      "team": "Florida Gulf Coast",
+      "record": "10-13",
+      "ap_rank": null,
+      "avg_rank": 215,
+      "net_rank": 231,
+      "kenpom_rank": 218,
+      "bpi_rank": 190,
+      "sos_rank": 255
     },
     {
       "team": "Vermont",
@@ -2147,19 +2157,9 @@
       "ap_rank": null,
       "avg_rank": 215,
       "net_rank": 214,
-      "kenpom_rank": 219,
+      "kenpom_rank": 220,
       "bpi_rank": 205,
       "sos_rank": 323
-    },
-    {
-      "team": "Florida Gulf Coast",
-      "record": "10-13",
-      "ap_rank": null,
-      "avg_rank": 216,
-      "net_rank": 231,
-      "kenpom_rank": 218,
-      "bpi_rank": 190,
-      "sos_rank": 255
     },
     {
       "team": "Wofford",
