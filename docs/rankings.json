@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 02/04/2026 at 03:27 pm EST",
+  "updated": "Updated: 02/04/2026 at 04:28 pm EST",
   "teams": [
     {
       "team": "Arizona",
@@ -1212,6 +1212,16 @@
       "sos_rank": 118
     },
     {
+      "team": "Bradley",
+      "record": "16-8",
+      "ap_rank": null,
+      "avg_rank": 122,
+      "net_rank": 123,
+      "kenpom_rank": 136,
+      "bpi_rank": 118,
+      "sos_rank": 126
+    },
+    {
       "team": "Penn State",
       "record": "10-12",
       "ap_rank": null,
@@ -1220,16 +1230,6 @@
       "kenpom_rank": 130,
       "bpi_rank": 114,
       "sos_rank": 70
-    },
-    {
-      "team": "Bradley",
-      "record": "16-8",
-      "ap_rank": null,
-      "avg_rank": 123,
-      "net_rank": 123,
-      "kenpom_rank": 137,
-      "bpi_rank": 118,
-      "sos_rank": 126
     },
     {
       "team": "Southern Illinois",
@@ -1467,7 +1467,7 @@
       "ap_rank": null,
       "avg_rank": 147,
       "net_rank": 122,
-      "kenpom_rank": 136,
+      "kenpom_rank": 137,
       "bpi_rank": 176,
       "sos_rank": 294
     },
