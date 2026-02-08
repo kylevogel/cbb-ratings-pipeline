@@ -37,8 +37,8 @@ kenpom_rank,team_kenpom,record
 36,SMU,16-7
 37,Georgia,17-6
 38,Santa Clara,21-5
-39,UCLA,17-7
-40,Ohio St.,15-7
+39,Ohio St.,15-7
+40,UCLA,17-7
 41,Wisconsin,16-7
 42,Miami FL,18-5
 43,San Diego St.,17-6
@@ -57,8 +57,8 @@ kenpom_rank,team_kenpom,record
 56,Nevada,17-7
 57,Belmont,22-3
 58,Oklahoma St.,16-7
-59,Virginia Tech,16-8
-60,West Virginia,15-8
+59,West Virginia,15-8
+60,Virginia Tech,16-8
 61,Oklahoma,12-12
 62,Providence,11-13
 63,Akron,19-5
@@ -68,8 +68,8 @@ kenpom_rank,team_kenpom,record
 67,Mississippi,11-12
 68,South Florida,15-8
 69,Syracuse,13-11
-70,Northwestern,10-13
-71,California,17-7
+70,California,17-7
+71,Northwestern,10-13
 72,Colorado,14-10
 73,Arizona St.,12-12
 74,Minnesota,11-12
@@ -91,12 +91,12 @@ kenpom_rank,team_kenpom,record
 90,Liberty,20-3
 91,Murray St.,18-7
 92,Florida St.,11-12
-93,Hawaii,16-5
+93,Hawaii,17-5
 94,Wichita St.,14-9
 95,High Point,22-4
 96,South Carolina,11-13
-97,Dayton,15-9
-98,Oregon,8-15
+97,Oregon,8-15
+98,Dayton,15-9
 99,Colorado St.,13-10
 100,Memphis,11-11
 101,Xavier,12-11
@@ -108,29 +108,29 @@ kenpom_rank,team_kenpom,record
 107,Marquette,9-15
 108,Pittsburgh,9-15
 109,Florida Atlantic,14-10
-110,DePaul,12-12
-111,Sam Houston St.,16-8
-112,San Francisco,14-12
+110,San Francisco,14-12
+111,DePaul,12-12
+112,Sam Houston St.,16-8
 113,Rhode Island,14-9
 114,Duquesne,14-10
 115,UNC Wilmington,19-4
 116,UC Irvine,16-8
 117,St. Thomas,20-6
 118,UC Santa Barbara,16-8
-119,UC San Diego,16-8
+119,UC San Diego,16-9
 120,Utah,9-14
 121,East Tennessee St.,18-7
-122,Cal Baptist,18-6
+122,Southern Illinois,10-14
 123,Troy,17-8
-124,Southern Illinois,10-14
+124,Cal Baptist,18-6
 125,Winthrop,18-8
 126,UAB,14-9
 127,Washington St.,11-15
 128,Fresno St.,11-12
-129,North Dakota St.,20-6
-130,Seattle,15-10
-131,Illinois Chicago,13-12
-132,UNLV,11-12
+129,UNLV,11-12
+130,North Dakota St.,20-6
+131,Seattle,15-10
+132,Illinois Chicago,13-12
 133,Oakland,14-11
 134,Penn St.,10-13
 135,William & Mary,15-9
@@ -138,10 +138,10 @@ kenpom_rank,team_kenpom,record
 137,Boston College,9-14
 138,Wright St.,16-9
 139,Kent St.,17-7
-140,Georgia Tech,11-13
+140,Richmond,13-11
 141,Bradley,16-9
-142,Richmond,13-11
-143,St. Bonaventure,14-10
+142,St. Bonaventure,14-10
+143,Georgia Tech,11-13
 144,UT Rio Grande Valley,13-11
 145,Temple,15-8
 146,Saint Joseph's,15-9
@@ -157,21 +157,21 @@ kenpom_rank,team_kenpom,record
 156,Cornell,11-10
 157,UC Davis,15-9
 158,Harvard,13-9
-159,Toledo,12-12
-160,Montana,14-11
-161,Rutgers,9-15
+159,Rutgers,9-15
+160,Toledo,12-12
+161,Montana,14-11
 162,Northern Colorado,15-10
 163,Charleston,16-8
 164,Marist,16-8
 165,Charlotte,13-10
-166,Navy,19-6
+166,Central Arkansas,14-10
 167,Mercer,15-10
-168,Central Arkansas,14-10
+168,Navy,19-6
 169,Kennesaw St.,14-9
 170,Western Kentucky,13-11
 171,Marshall,15-9
-172,Towson,13-12
-173,New Mexico St.,11-12
+172,New Mexico St.,11-12
+173,Towson,13-12
 174,Furman,16-8
 175,Fordham,12-12
 176,Cal St. Fullerton,12-13
@@ -181,20 +181,20 @@ kenpom_rank,team_kenpom,record
 180,Lipscomb,15-10
 181,Penn,11-10
 182,CSUN,15-10
-183,Jacksonville St.,13-10
-184,Merrimack,16-9
+183,Merrimack,16-9
+184,Idaho,13-11
 185,Portland,12-14
-186,Idaho,13-11
+186,Jacksonville St.,13-10
 187,Middle Tennessee,11-12
-188,Lamar,12-12
-189,Tulane,13-9
+188,Tulane,13-9
+189,Lamar,12-12
 190,Massachusetts,15-10
-191,Missouri St.,13-10
-192,Northern Kentucky,15-11
+191,Northern Kentucky,15-11
+192,Missouri St.,13-10
 193,Texas A&M Corpus Chris,13-11
 194,Buffalo,14-10
-195,FIU,11-12
-196,Elon,13-12
+195,Elon,13-12
+196,FIU,11-12
 197,Utah Tech,14-11
 198,Queens,14-11
 199,Campbell,12-13
@@ -203,8 +203,8 @@ kenpom_rank,team_kenpom,record
 202,Indiana St.,10-14
 203,Tarleton St.,12-12
 204,Tennessee Martin,19-6
-205,LIU,16-8
-206,Colgate,15-10
+205,Colgate,15-10
+206,LIU,16-8
 207,Youngstown St.,12-13
 208,Quinnipiac,17-9
 209,South Alabama,17-7
@@ -223,11 +223,11 @@ kenpom_rank,team_kenpom,record
 222,Eastern Michigan,9-15
 223,UNC Asheville,11-13
 224,Bethune Cookman,12-11
-225,Princeton,8-15
-226,Vermont,15-10
+225,Vermont,15-10
+226,Princeton,8-15
 227,Green Bay,14-12
-228,Southeast Missouri,15-10
-229,James Madison,12-13
+228,James Madison,12-13
+229,Southeast Missouri,15-10
 230,Rice,10-13
 231,Long Beach St.,8-16
 232,Idaho St.,10-15
@@ -235,8 +235,8 @@ kenpom_rank,team_kenpom,record
 234,Southern Miss,13-13
 235,Coastal Carolina,15-11
 236,Louisiana Tech,13-10
-237,Saint Peter's,14-8
-238,Denver,12-14
+237,Denver,12-14
+238,Saint Peter's,14-8
 239,Lindenwood,15-10
 240,Dartmouth,10-11
 241,Radford,13-13
@@ -244,8 +244,8 @@ kenpom_rank,team_kenpom,record
 243,American,13-12
 244,SIUE,16-9
 245,Purdue Fort Wayne,14-11
-246,Nicholls,10-14
-247,Cal Poly,9-16
+246,Cal Poly,9-16
+247,Nicholls,10-14
 248,Iona,14-11
 249,Sacramento St.,9-14
 250,Howard,15-9
@@ -262,9 +262,9 @@ kenpom_rank,team_kenpom,record
 261,Detroit Mercy,10-13
 262,Fairfield,16-10
 263,Bellarmine,11-13
-264,Northeastern,6-17
-265,Grambling St.,11-11
-266,Eastern Kentucky,9-16
+264,Eastern Kentucky,9-16
+265,Northeastern,6-17
+266,Grambling St.,11-11
 267,Southern,10-13
 268,Georgia Southern,14-11
 269,East Carolina,7-16
@@ -285,10 +285,10 @@ kenpom_rank,team_kenpom,record
 284,North Carolina A&T,9-14
 285,Northwestern St.,6-18
 286,Western Michigan,8-15
-287,Central Connecticut,13-10
-288,Delaware,7-16
-289,Boston University,10-15
-290,Morehead St.,13-12
+287,Delaware,7-16
+288,Central Connecticut,13-10
+289,Morehead St.,13-12
+290,Boston University,10-15
 291,USC Upstate,11-14
 292,Le Moyne,12-13
 293,Central Michigan,7-17
@@ -296,8 +296,8 @@ kenpom_rank,team_kenpom,record
 295,Mercyhurst,12-13
 296,Cleveland St.,10-15
 297,Sacred Heart,10-16
-298,Northern Illinois,8-14
-299,Mount St. Mary's,11-15
+298,Mount St. Mary's,11-15
+299,Northern Illinois,8-14
 300,Evansville,5-19
 301,Arkansas Pine Bluff,10-13
 302,Houston Christian,8-16
@@ -309,8 +309,8 @@ kenpom_rank,team_kenpom,record
 308,Alabama A&M,12-11
 309,NJIT,13-12
 310,Loyola Chicago,6-19
-311,Northern Arizona,9-16
-312,UNC Greensboro,9-15
+311,UNC Greensboro,9-15
+312,Northern Arizona,9-16
 313,Lafayette,8-17
 314,Eastern Illinois,10-15
 315,IU Indy,7-18
@@ -325,12 +325,12 @@ kenpom_rank,team_kenpom,record
 324,Bucknell,8-17
 325,Loyola MD,9-16
 326,UMass Lowell,10-15
-327,New Hampshire,8-14
-328,Holy Cross,9-16
+327,Holy Cross,9-16
+328,New Hampshire,8-14
 329,Fairleigh Dickinson,9-16
 330,Florida A&M,8-13
-331,Manhattan,10-16
-332,Stetson,8-17
+331,Stetson,8-17
+332,Manhattan,10-16
 333,Wagner,8-14
 334,Oral Roberts,5-20
 335,Stonehill,9-16
