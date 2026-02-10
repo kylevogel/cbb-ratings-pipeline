@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 02/10/2026 at 03:43 am EST",
+  "updated": "Updated: 02/10/2026 at 04:56 am EST",
   "teams": [
     {
       "team": "Michigan",
@@ -108,7 +108,7 @@
       "avg_rank": 11,
       "net_rank": 12,
       "kenpom_rank": 9,
-      "bpi_rank": 12,
+      "bpi_rank": 13,
       "sos_rank": 16
     },
     {
@@ -118,7 +118,7 @@
       "avg_rank": 12,
       "net_rank": 13,
       "kenpom_rank": 11,
-      "bpi_rank": 14,
+      "bpi_rank": 12,
       "sos_rank": 1
     },
     {
@@ -145,10 +145,10 @@
       "team": "Vanderbilt",
       "record": "19-4",
       "ap_rank": 19,
-      "avg_rank": 15,
+      "avg_rank": 14,
       "net_rank": 14,
       "kenpom_rank": 14,
-      "bpi_rank": 16,
+      "bpi_rank": 15,
       "sos_rank": 21
     },
     {
@@ -158,7 +158,7 @@
       "avg_rank": 16,
       "net_rank": 21,
       "kenpom_rank": 17,
-      "bpi_rank": 13,
+      "bpi_rank": 14,
       "sos_rank": 26
     },
     {
@@ -185,10 +185,10 @@
       "team": "St. John's",
       "record": "19-5",
       "ap_rank": 17,
-      "avg_rank": 18,
+      "avg_rank": 19,
       "net_rank": 22,
       "kenpom_rank": 21,
-      "bpi_rank": 15,
+      "bpi_rank": 16,
       "sos_rank": 20
     },
     {
@@ -228,7 +228,7 @@
       "avg_rank": 23,
       "net_rank": 20,
       "kenpom_rank": 18,
-      "bpi_rank": 30,
+      "bpi_rank": 29,
       "sos_rank": 56
     },
     {
@@ -262,20 +262,10 @@
       "sos_rank": 9
     },
     {
-      "team": "NC State",
-      "record": "18-7",
-      "ap_rank": null,
-      "avg_rank": 27,
-      "net_rank": 27,
-      "kenpom_rank": 29,
-      "bpi_rank": 26,
-      "sos_rank": 14
-    },
-    {
       "team": "Auburn",
       "record": "14-9",
       "ap_rank": null,
-      "avg_rank": 28,
+      "avg_rank": 27,
       "net_rank": 31,
       "kenpom_rank": 30,
       "bpi_rank": 22,
@@ -285,7 +275,7 @@
       "team": "Clemson",
       "record": "20-4",
       "ap_rank": 20,
-      "avg_rank": 28,
+      "avg_rank": 27,
       "net_rank": 30,
       "kenpom_rank": 28,
       "bpi_rank": 25,
@@ -295,11 +285,21 @@
       "team": "Utah State",
       "record": "20-3",
       "ap_rank": null,
-      "avg_rank": 30,
+      "avg_rank": 29,
       "net_rank": 25,
       "kenpom_rank": 26,
       "bpi_rank": 33,
       "sos_rank": 54
+    },
+    {
+      "team": "NC State",
+      "record": "18-7",
+      "ap_rank": null,
+      "avg_rank": 30,
+      "net_rank": 27,
+      "kenpom_rank": 29,
+      "bpi_rank": 30,
+      "sos_rank": 14
     },
     {
       "team": "Villanova",
@@ -318,7 +318,7 @@
       "avg_rank": 32,
       "net_rank": 33,
       "kenpom_rank": 35,
-      "bpi_rank": 28,
+      "bpi_rank": 26,
       "sos_rank": 38
     },
     {
@@ -338,7 +338,7 @@
       "avg_rank": 34,
       "net_rank": 39,
       "kenpom_rank": 33,
-      "bpi_rank": 29,
+      "bpi_rank": 28,
       "sos_rank": 104
     },
     {
