@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 02/10/2026 at 06:33 pm EST",
+  "updated": "Updated: 02/10/2026 at 08:46 pm EST",
   "teams": [
     {
       "team": "Michigan",
@@ -2502,6 +2502,16 @@
       "sos_rank": 276
     },
     {
+      "team": "Milwaukee",
+      "record": "10-17",
+      "ap_rank": null,
+      "avg_rank": 250,
+      "net_rank": 253,
+      "kenpom_rank": 268,
+      "bpi_rank": 228,
+      "sos_rank": 219
+    },
+    {
       "team": "Nicholls",
       "record": "10-15",
       "ap_rank": null,
@@ -2510,16 +2520,6 @@
       "kenpom_rank": 257,
       "bpi_rank": 237,
       "sos_rank": 235
-    },
-    {
-      "team": "Milwaukee",
-      "record": "9-17",
-      "ap_rank": null,
-      "avg_rank": 252,
-      "net_rank": 253,
-      "kenpom_rank": 269,
-      "bpi_rank": 228,
-      "sos_rank": 219
     },
     {
       "team": "Long Beach State",
@@ -2717,7 +2717,7 @@
       "ap_rank": null,
       "avg_rank": 272,
       "net_rank": 281,
-      "kenpom_rank": 268,
+      "kenpom_rank": 269,
       "bpi_rank": 272,
       "sos_rank": 154
     },
@@ -2725,7 +2725,7 @@
       "team": "Grambling",
       "record": "11-12",
       "ap_rank": null,
-      "avg_rank": 273,
+      "avg_rank": 272,
       "net_rank": 271,
       "kenpom_rank": 273,
       "bpi_rank": 278,
@@ -2757,7 +2757,7 @@
       "ap_rank": null,
       "avg_rank": 276,
       "net_rank": 276,
-      "kenpom_rank": 288,
+      "kenpom_rank": 289,
       "bpi_rank": 267,
       "sos_rank": 361
     },
@@ -2797,7 +2797,7 @@
       "ap_rank": null,
       "avg_rank": 280,
       "net_rank": 291,
-      "kenpom_rank": 289,
+      "kenpom_rank": 288,
       "bpi_rank": 262,
       "sos_rank": 345
     },
@@ -2805,7 +2805,7 @@
       "team": "North Dakota",
       "record": "14-13",
       "ap_rank": null,
-      "avg_rank": 280,
+      "avg_rank": 281,
       "net_rank": 275,
       "kenpom_rank": 284,
       "bpi_rank": 283,
@@ -2912,6 +2912,16 @@
       "sos_rank": 155
     },
     {
+      "team": "Mercyhurst",
+      "record": "12-13",
+      "ap_rank": null,
+      "avg_rank": 292,
+      "net_rank": 288,
+      "kenpom_rank": 298,
+      "bpi_rank": 287,
+      "sos_rank": 354
+    },
+    {
       "team": "Northwestern State",
       "record": "7-18",
       "ap_rank": null,
@@ -2920,16 +2930,6 @@
       "kenpom_rank": 283,
       "bpi_rank": 290,
       "sos_rank": 238
-    },
-    {
-      "team": "Mercyhurst",
-      "record": "12-13",
-      "ap_rank": null,
-      "avg_rank": 293,
-      "net_rank": 288,
-      "kenpom_rank": 299,
-      "bpi_rank": 287,
-      "sos_rank": 354
     },
     {
       "team": "Jacksonville",
@@ -2977,7 +2977,7 @@
       "ap_rank": null,
       "avg_rank": 298,
       "net_rank": 296,
-      "kenpom_rank": 298,
+      "kenpom_rank": 299,
       "bpi_rank": 295,
       "sos_rank": 230
     },
@@ -2985,7 +2985,7 @@
       "team": "UNC Greensboro",
       "record": "10-15",
       "ap_rank": null,
-      "avg_rank": 299,
+      "avg_rank": 298,
       "net_rank": 304,
       "kenpom_rank": 306,
       "bpi_rank": 280,
@@ -3123,11 +3123,11 @@
     },
     {
       "team": "IUPUI",
-      "record": "7-18",
+      "record": "7-19",
       "ap_rank": null,
       "avg_rank": 313,
       "net_rank": 310,
-      "kenpom_rank": 315,
+      "kenpom_rank": 316,
       "bpi_rank": 316,
       "sos_rank": 275
     },
@@ -3175,9 +3175,9 @@
       "team": "Eastern Illinois",
       "record": "10-15",
       "ap_rank": null,
-      "avg_rank": 318,
+      "avg_rank": 317,
       "net_rank": 312,
-      "kenpom_rank": 316,
+      "kenpom_rank": 315,
       "bpi_rank": 327,
       "sos_rank": 247
     },
