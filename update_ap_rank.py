@@ -113,7 +113,14 @@ def scrape_ap_poll():
                             continue
                         if re.search(r"^[▲▼↑↓\-\+]?\s*\d+$", candidate):  # Trend indicator
                             continue
+                        if re.search(r"^\(\d+\)$", candidate):  # Vote count like (0), (59)
+                            continue
+                        if re.search(r"^\d+\s*\(\d+\)$", candidate):  # Points with votes like "1475 (59)"
+                            continue
                         if len(candidate) < 3:
+                            continue
+                        # Must start with a letter (team names start with letters)
+                        if not re.match(r"^[A-Za-z]", candidate):
                             continue
                         
                         # This looks like a team name
