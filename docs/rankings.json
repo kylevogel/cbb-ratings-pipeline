@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 02/13/2026 at 05:26 pm EST",
+  "updated": "Updated: 02/13/2026 at 06:25 pm EST",
   "teams": [
     {
       "team": "Michigan",
@@ -2862,16 +2862,6 @@
       "sos_rank": 301
     },
     {
-      "team": "Pepperdine",
-      "record": "6-20",
-      "ap_rank": null,
-      "avg_rank": 287,
-      "net_rank": 287,
-      "kenpom_rank": 279,
-      "bpi_rank": 295,
-      "sos_rank": 134
-    },
-    {
       "team": "South Dakota",
       "record": "14-13",
       "ap_rank": null,
@@ -2880,6 +2870,16 @@
       "kenpom_rank": 278,
       "bpi_rank": 306,
       "sos_rank": 346
+    },
+    {
+      "team": "Pepperdine",
+      "record": "6-20",
+      "ap_rank": null,
+      "avg_rank": 288,
+      "net_rank": 288,
+      "kenpom_rank": 279,
+      "bpi_rank": 295,
+      "sos_rank": 134
     },
     {
       "team": "Mercyhurst",
@@ -2915,8 +2915,8 @@
       "team": "USC Upstate",
       "record": "11-15",
       "ap_rank": null,
-      "avg_rank": 292,
-      "net_rank": 288,
+      "avg_rank": 290,
+      "net_rank": 287,
       "kenpom_rank": 295,
       "bpi_rank": 292,
       "sos_rank": 228
@@ -2946,7 +2946,7 @@
       "record": "8-17",
       "ap_rank": null,
       "avg_rank": 295,
-      "net_rank": 292,
+      "net_rank": 293,
       "kenpom_rank": 277,
       "bpi_rank": 313,
       "sos_rank": 149
@@ -2955,7 +2955,7 @@
       "team": "UNC Greensboro",
       "record": "11-15",
       "ap_rank": null,
-      "avg_rank": 296,
+      "avg_rank": 295,
       "net_rank": 300,
       "kenpom_rank": 306,
       "bpi_rank": 277,
@@ -3012,6 +3012,16 @@
       "sos_rank": 144
     },
     {
+      "team": "Arkansas-Pine Bluff",
+      "record": "11-13",
+      "ap_rank": null,
+      "avg_rank": 302,
+      "net_rank": 292,
+      "kenpom_rank": 292,
+      "bpi_rank": 318,
+      "sos_rank": 316
+    },
+    {
       "team": "Central Michigan",
       "record": "7-17",
       "ap_rank": null,
@@ -3030,16 +3040,6 @@
       "kenpom_rank": 304,
       "bpi_rank": 300,
       "sos_rank": 285
-    },
-    {
-      "team": "Arkansas-Pine Bluff",
-      "record": "11-13",
-      "ap_rank": null,
-      "avg_rank": 304,
-      "net_rank": 293,
-      "kenpom_rank": 292,
-      "bpi_rank": 318,
-      "sos_rank": 316
     },
     {
       "team": "Cleveland State",
