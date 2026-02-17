@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 02/16/2026 at 11:13 pm EST",
+  "updated": "Updated: 02/17/2026 at 12:54 am EST",
   "teams": [
     {
       "team": "Michigan",
@@ -33,7 +33,7 @@
     },
     {
       "team": "Houston",
-      "record": "23-2",
+      "record": "23-3",
       "ap_rank": 2,
       "avg_rank": 4,
       "net_rank": 4,
@@ -63,7 +63,7 @@
     },
     {
       "team": "Iowa State",
-      "record": "22-3",
+      "record": "23-3",
       "ap_rank": 6,
       "avg_rank": 7,
       "net_rank": 8,
@@ -1522,24 +1522,24 @@
       "sos_rank": 240
     },
     {
-      "team": "Navy",
-      "record": "21-6",
-      "ap_rank": null,
-      "avg_rank": 153,
-      "net_rank": 150,
-      "kenpom_rank": 156,
-      "bpi_rank": 153,
-      "sos_rank": 348
-    },
-    {
       "team": "Saint Joseph's",
       "record": "15-10",
       "ap_rank": null,
       "avg_rank": 153,
       "net_rank": 157,
-      "kenpom_rank": 155,
+      "kenpom_rank": 154,
       "bpi_rank": 147,
       "sos_rank": 157
+    },
+    {
+      "team": "Navy",
+      "record": "21-6",
+      "ap_rank": null,
+      "avg_rank": 154,
+      "net_rank": 150,
+      "kenpom_rank": 156,
+      "bpi_rank": 153,
+      "sos_rank": 348
     },
     {
       "team": "Georgia Tech",
@@ -1587,7 +1587,7 @@
       "ap_rank": null,
       "avg_rank": 159,
       "net_rank": 149,
-      "kenpom_rank": 185,
+      "kenpom_rank": 184,
       "bpi_rank": 159,
       "sos_rank": 119
     },
@@ -1767,9 +1767,19 @@
       "ap_rank": null,
       "avg_rank": 177,
       "net_rank": 191,
-      "kenpom_rank": 184,
+      "kenpom_rank": 185,
       "bpi_rank": 154,
       "sos_rank": 155
+    },
+    {
+      "team": "Idaho",
+      "record": "14-12",
+      "ap_rank": null,
+      "avg_rank": 178,
+      "net_rank": 167,
+      "kenpom_rank": 177,
+      "bpi_rank": 187,
+      "sos_rank": 302
     },
     {
       "team": "UC Davis",
@@ -1777,19 +1787,9 @@
       "ap_rank": null,
       "avg_rank": 178,
       "net_rank": 166,
-      "kenpom_rank": 154,
+      "kenpom_rank": 155,
       "bpi_rank": 210,
       "sos_rank": 217
-    },
-    {
-      "team": "Idaho",
-      "record": "14-12",
-      "ap_rank": null,
-      "avg_rank": 179,
-      "net_rank": 167,
-      "kenpom_rank": 177,
-      "bpi_rank": 187,
-      "sos_rank": 302
     },
     {
       "team": "Oregon State",
@@ -1937,7 +1937,7 @@
       "ap_rank": null,
       "avg_rank": 194,
       "net_rank": 192,
-      "kenpom_rank": 189,
+      "kenpom_rank": 190,
       "bpi_rank": 203,
       "sos_rank": 150
     },
@@ -1947,7 +1947,7 @@
       "ap_rank": null,
       "avg_rank": 195,
       "net_rank": 199,
-      "kenpom_rank": 190,
+      "kenpom_rank": 189,
       "bpi_rank": 198,
       "sos_rank": 262
     },
@@ -3077,7 +3077,7 @@
       "ap_rank": null,
       "avg_rank": 308,
       "net_rank": 301,
-      "kenpom_rank": 304,
+      "kenpom_rank": 303,
       "bpi_rank": 323,
       "sos_rank": 328
     },
@@ -3157,7 +3157,7 @@
       "ap_rank": null,
       "avg_rank": 316,
       "net_rank": 311,
-      "kenpom_rank": 303,
+      "kenpom_rank": 304,
       "bpi_rank": 336,
       "sos_rank": 352
     },
