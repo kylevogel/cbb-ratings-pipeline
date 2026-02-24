@@ -6,33 +6,33 @@ net_rank,team_net
 5,Gonzaga
 6,Purdue
 7,Florida
-8,Houston
-9,Iowa St.
+8,Iowa St.
+9,Houston
 10,UConn
 11,Nebraska
 12,Michigan St.
-13,Louisville
-14,Texas Tech
-15,Virginia
-16,Vanderbilt
-17,Tennessee
-18,Kansas
+13,Kansas
+14,Louisville
+15,Texas Tech
+16,Virginia
+17,Vanderbilt
+18,Tennessee
 19,BYU
 20,Arkansas
 21,Alabama
 22,Saint Louis
 23,St. John's (NY)
 24,Utah St.
-25,Saint Mary's (CA)
-26,NC State
-27,North Carolina
+25,North Carolina
+26,Saint Mary's (CA)
+27,NC State
 28,Iowa
 29,Kentucky
 30,Villanova
 31,SMU
 32,Wisconsin
-33,Auburn
-34,Georgia
+33,Georgia
+34,Auburn
 35,Miami (FL)
 36,Indiana
 37,Ohio St.
@@ -58,8 +58,8 @@ net_rank,team_net
 57,McNeese
 58,Southern California
 59,California
-60,Akron
-61,Missouri
+60,Missouri
+61,Akron
 62,Boise St.
 63,West Virginia
 64,Yale
@@ -79,13 +79,13 @@ net_rank,team_net
 78,Providence
 79,Northwestern
 80,Butler
-81,SFA
-82,Creighton
-83,Oklahoma St.
-84,Dayton
-85,UNI
-86,Wichita St.
-87,George Washington
+81,Creighton
+82,Oklahoma St.
+83,Dayton
+84,UNI
+85,Wichita St.
+86,George Washington
+87,SFA
 88,Colorado St.
 89,Notre Dame
 90,Liberty
@@ -144,10 +144,10 @@ net_rank,team_net
 143,Arkansas St.
 144,Montana St.
 145,Harvard
-146,Northern Colo.
-147,Wright St.
-148,Marshall
-149,Bowling Green
+146,Wright St.
+147,Northern Colo.
+148,Bowling Green
+149,Marshall
 150,Valparaiso
 151,North Texas
 152,Saint Joseph's
@@ -180,8 +180,8 @@ net_rank,team_net
 179,Central Ark.
 180,Merrimack
 181,Charlotte
-182,App State
-183,Oregon St.
+182,Oregon St.
+183,App State
 184,Tulane
 185,Towson
 186,Columbia
@@ -196,19 +196,19 @@ net_rank,team_net
 195,Monmouth
 196,Massachusetts
 197,Northern Ky.
-198,LIU
-199,A&M-Corpus Christi
+198,A&M-Corpus Christi
+199,LIU
 200,Drake
 201,Youngstown St.
-202,Elon
-203,South Dakota St.
-204,Quinnipiac
-205,Queens (NC)
-206,Eastern Wash.
-207,James Madison
-208,Campbell
-209,Howard
-210,New Orleans
+202,New Orleans
+203,Elon
+204,South Dakota St.
+205,Quinnipiac
+206,Queens (NC)
+207,Eastern Wash.
+208,James Madison
+209,Campbell
+210,Howard
 211,Stony Brook
 212,Drexel
 213,Samford
@@ -219,19 +219,19 @@ net_rank,team_net
 218,Jacksonville St.
 219,Missouri St.
 220,Idaho St.
-221,Tarleton St.
-222,Green Bay
+221,Green Bay
+222,Tarleton St.
 223,Denver
 224,Coastal Carolina
-225,Lamar University
-226,Vermont
-227,Portland
-228,Cal Poly
-229,Indiana St.
+225,Vermont
+226,Portland
+227,Cal Poly
+228,Indiana St.
+229,Lamar University
 230,La Salle
 231,UNC Asheville
-232,Abilene Christian
-233,Eastern Mich.
+232,Eastern Mich.
+233,Abilene Christian
 234,San Diego
 235,Saint Peter's
 236,Iona
@@ -247,13 +247,13 @@ net_rank,team_net
 246,Omaha
 247,American
 248,FGCU
-249,Rice
-250,Old Dominion
-251,Western Caro.
-252,Purdue Fort Wayne
-253,San Jose St.
-254,Bethune-Cookman
-255,Nicholls
+249,Nicholls
+250,Rice
+251,Old Dominion
+252,Western Caro.
+253,Purdue Fort Wayne
+254,San Jose St.
+255,Bethune-Cookman
 256,Milwaukee
 257,Princeton
 258,Lindenwood
@@ -279,10 +279,10 @@ net_rank,team_net
 278,UC Riverside
 279,Brown
 280,Southern Utah
-281,UIW
-282,Mercyhurst
-283,Northeastern
-284,Central Mich.
+281,Mercyhurst
+282,Northeastern
+283,Central Mich.
+284,UIW
 285,Central Conn. St.
 286,Grambling
 287,USC Upstate
@@ -293,21 +293,21 @@ net_rank,team_net
 292,Georgia St.
 293,Northwestern St.
 294,Western Mich.
-295,East Texas A&M
-296,Northern Ariz.
-297,Sacred Heart
+295,Northern Ariz.
+296,Sacred Heart
+297,Houston Christian
 298,Lehigh
-299,Southeastern La.
-300,UNC Greensboro
-301,Houston Christian
+299,East Texas A&M
+300,Southeastern La.
+301,UNC Greensboro
 302,Tennessee Tech
 303,Evansville
 304,Norfolk St.
 305,Jacksonville
 306,Alabama A&M
 307,Little Rock
-308,Louisiana
-309,West Ga.
+308,West Ga.
+309,Louisiana
 310,Loyola Chicago
 311,NJIT
 312,IU Indy
@@ -337,13 +337,13 @@ net_rank,team_net
 336,Bucknell
 337,Stonehill
 338,New Hampshire
-339,Chicago St.
-340,Maine
-341,North Ala.
+339,North Ala.
+340,Chicago St.
+341,Maine
 342,UTSA
 343,Southern Ind.
-344,Jackson St.
-345,Alcorn
+344,Alcorn
+345,Jackson St.
 346,N.C. Central
 347,Niagara
 348,Canisius
