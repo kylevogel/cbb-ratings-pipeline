@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 02/24/2026 at 03:38 am EST",
+  "updated": "Updated: 02/24/2026 at 04:44 am EST",
   "teams": [
     {
       "team": "Michigan",
@@ -128,7 +128,7 @@
       "avg_rank": 13,
       "net_rank": 11,
       "kenpom_rank": 12,
-      "bpi_rank": 18,
+      "bpi_rank": 19,
       "sos_rank": 64
     },
     {
@@ -152,44 +152,24 @@
       "sos_rank": 19
     },
     {
+      "team": "Kansas",
+      "record": "21-7",
+      "ap_rank": 14,
+      "avg_rank": 16,
+      "net_rank": 18,
+      "kenpom_rank": 15,
+      "bpi_rank": 16,
+      "sos_rank": 2
+    },
+    {
       "team": "Texas Tech",
       "record": "20-7",
       "ap_rank": 16,
-      "avg_rank": 16,
+      "avg_rank": 17,
       "net_rank": 14,
       "kenpom_rank": 16,
       "bpi_rank": 20,
       "sos_rank": 1
-    },
-    {
-      "team": "Kansas",
-      "record": "21-7",
-      "ap_rank": 14,
-      "avg_rank": 17,
-      "net_rank": 18,
-      "kenpom_rank": 15,
-      "bpi_rank": 19,
-      "sos_rank": 2
-    },
-    {
-      "team": "Alabama",
-      "record": "20-7",
-      "ap_rank": 17,
-      "avg_rank": 18,
-      "net_rank": 21,
-      "kenpom_rank": 20,
-      "bpi_rank": 16,
-      "sos_rank": 4
-    },
-    {
-      "team": "BYU",
-      "record": "20-7",
-      "ap_rank": 19,
-      "avg_rank": 18,
-      "net_rank": 19,
-      "kenpom_rank": 21,
-      "bpi_rank": 17,
-      "sos_rank": 9
     },
     {
       "team": "Virginia",
@@ -200,6 +180,26 @@
       "kenpom_rank": 19,
       "bpi_rank": 23,
       "sos_rank": 63
+    },
+    {
+      "team": "Alabama",
+      "record": "20-7",
+      "ap_rank": 17,
+      "avg_rank": 19,
+      "net_rank": 21,
+      "kenpom_rank": 20,
+      "bpi_rank": 17,
+      "sos_rank": 4
+    },
+    {
+      "team": "BYU",
+      "record": "20-7",
+      "ap_rank": 19,
+      "avg_rank": 19,
+      "net_rank": 19,
+      "kenpom_rank": 21,
+      "bpi_rank": 18,
+      "sos_rank": 9
     },
     {
       "team": "Arkansas",
@@ -278,7 +278,7 @@
       "avg_rank": 28,
       "net_rank": 27,
       "kenpom_rank": 30,
-      "bpi_rank": 32,
+      "bpi_rank": 30,
       "sos_rank": 10
     },
     {
@@ -358,7 +358,7 @@
       "avg_rank": 36,
       "net_rank": 38,
       "kenpom_rank": 40,
-      "bpi_rank": 30,
+      "bpi_rank": 31,
       "sos_rank": 74
     },
     {
@@ -368,7 +368,7 @@
       "avg_rank": 36,
       "net_rank": 36,
       "kenpom_rank": 41,
-      "bpi_rank": 31,
+      "bpi_rank": 32,
       "sos_rank": 38
     },
     {
