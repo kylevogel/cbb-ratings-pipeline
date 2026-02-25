@@ -16,48 +16,48 @@ sos_rank,team_sos
 15,Kentucky
 16,Michigan State
 17,Baylor
-18,Wake Forest
+18,Vanderbilt
 19,Arizona State
-20,Vanderbilt
+20,Wake Forest
 21,Louisville
 22,SMU
 23,Oregon
 24,Connecticut
-25,Boise State
-26,Saint John's
-27,Cincinnati
+25,Cincinnati
+26,Boise State
+27,Saint John's
 28,Tennessee
 29,Virginia Tech
 30,Houston
-31,Ohio State
-32,UCF
+31,UCF
+32,Ohio State
 33,La Salle
-34,Northwestern
-35,Florida State
-36,Utah
-37,Maryland
-38,Oklahoma State
-39,Colorado
-40,Indiana
+34,Oklahoma State
+35,Northwestern
+36,Florida State
+37,Utah
+38,Colorado
+39,Indiana
+40,Maryland
 41,Syracuse
-42,Villanova
-43,Creighton
-44,Wisconsin
-45,Kansas State
-46,Pittsburgh
-47,Notre Dame
+42,Creighton
+43,Pittsburgh
+44,Villanova
+45,Notre Dame
+46,Wisconsin
+47,Kansas State
 48,Stanford
 49,San Diego State
-50,Utah State
-51,Texas
+50,Texas
+51,Utah State
 52,Mississippi State
-53,Marquette
-54,Iowa State
+53,Iowa State
+54,Marquette
 55,Iowa
 56,VCU
 57,Ole Miss
-58,Xavier
-59,UCLA
+58,UCLA
+59,Xavier
 60,Nebraska
 61,Virginia
 62,Dayton
@@ -67,62 +67,62 @@ sos_rank,team_sos
 66,South Florida
 67,USC
 68,Seton Hall
-69,Providence
-70,Santa Clara
+69,Santa Clara
+70,Providence
 71,Washington
 72,Memphis
 73,TCU
-74,Clemson
-75,Georgia
-76,Air Force
-77,Boston College
-78,Minnesota
-79,Rutgers
-80,Toledo
+74,Georgia
+75,Air Force
+76,Boston College
+77,Minnesota
+78,Clemson
+79,Toledo
+80,Rutgers
 81,Nevada
 82,LSU
 83,UNLV
 84,Missouri
 85,Butler
 86,Duquesne
-87,West Virginia
-88,Saint Bonaventure
-89,Washington State
+87,Washington State
+88,West Virginia
+89,Saint Bonaventure
 90,South Carolina
 91,New Mexico
 92,George Washington
 93,FAU
 94,Fresno State
 95,California
-96,Gonzaga
-97,Evansville
-98,Oklahoma
-99,Georgia Tech
-100,George Mason
-101,San Francisco
-102,Texas A&M
-103,Wyoming
-104,Davidson
-105,Middle Tennessee
-106,Towson
+96,Texas A&M
+97,Gonzaga
+98,Evansville
+99,San Francisco
+100,Oklahoma
+101,Wyoming
+102,George Mason
+103,Georgia Tech
+104,Towson
+105,Davidson
+106,Middle Tennessee
 107,Tulane
 108,Northern Iowa
-109,Saint Louis
-110,Yale
+109,Yale
+110,Saint Louis
 111,Ohio
 112,Portland
 113,Loyola-Chicago
 114,San Jose State
 115,DePaul
 116,Oregon State
-117,Colorado State
-118,Southern Illinois
-119,Miami (FL)
-120,Campbell
-121,Marshall
-122,Rhode Island
-123,Grand Canyon
-124,UTEP
+117,Southern Illinois
+118,Colorado State
+119,Marshall
+120,Rhode Island
+121,Miami (FL)
+122,UTEP
+123,Campbell
+124,Grand Canyon
 125,Loyola-Marymount
 126,Pepperdine
 127,Wichita State
@@ -130,23 +130,23 @@ sos_rank,team_sos
 129,Princeton
 130,Charleston
 131,UIC
-132,Abilene Christian
-133,Drake
-134,Murray State
-135,Bradley
-136,Southern Utah
-137,UC Riverside
+132,Drake
+133,Abilene Christian
+134,Oakland
+135,Murray State
+136,Bradley
+137,Southern Utah
 138,Fordham
 139,Western Kentucky
 140,Liberty
-141,Oakland
-142,Western Michigan
-143,Old Dominion
-144,Penn
-145,Seattle University
-146,North Texas
-147,UAB
-148,Hofstra
+141,UC Riverside
+142,Hofstra
+143,Western Michigan
+144,Old Dominion
+145,Penn
+146,Seattle University
+147,North Texas
+148,UAB
 149,UTSA
 150,Illinois State
 151,UC Irvine
@@ -156,20 +156,20 @@ sos_rank,team_sos
 155,Tulsa
 156,Richmond
 157,Troy
-158,Utah Valley
-159,Northeastern
-160,UMass
-161,East Carolina
+158,Northeastern
+159,Utah Valley
+160,East Carolina
+161,UMass
 162,Indiana State
 163,Jacksonville State
-164,James Madison
-165,Cal State Fullerton
+164,Cal State Fullerton
+165,James Madison
 166,Arkansas State
 167,New Mexico State
 168,Charlotte
 169,Akron
-170,Saint Joseph's
-171,Cornell
+170,Cornell
+171,Saint Joseph's
 172,Central Michigan
 173,Sam Houston State
 174,UNC Asheville
@@ -189,23 +189,23 @@ sos_rank,team_sos
 188,Tarleton State
 189,Buffalo
 190,North Florida
-191,Northern Illinois
-192,William & Mary
+191,William & Mary
+192,Northern Illinois
 193,Valparaiso
-194,Columbia
-195,Louisiana
-196,Quinnipiac
+194,Quinnipiac
+195,Columbia
+196,Louisiana
 197,Western Carolina
 198,Stony Brook
 199,Rice
-200,Sacramento State
-201,Southern Miss
-202,UC San Diego
+200,UC San Diego
+201,Sacramento State
+202,Southern Miss
 203,San Diego
 204,Merrimack
 205,Long Beach State
-206,Kennesaw State
-207,UC Santa Barbara
+206,UC Santa Barbara
+207,Kennesaw State
 208,Hampton
 209,UNCW
 210,Cal State Northridge
@@ -213,18 +213,18 @@ sos_rank,team_sos
 212,Wright State
 213,Monmouth
 214,UC Davis
-215,Delaware
-216,Cleveland State
-217,Coastal Carolina
-218,McNeese
+215,Cleveland State
+216,Delaware
+217,McNeese
+218,Coastal Carolina
 219,Saint Peter's
 220,Drexel
-221,Lipscomb
-222,New Orleans
-223,Mercer
-224,Eastern Washington
-225,Georgia State
-226,ULM
+221,Mercer
+222,Lipscomb
+223,New Orleans
+224,Georgia State
+225,ULM
+226,Eastern Washington
 227,East Texas A&M
 228,Texas A&M-Corpus Christi
 229,North Carolina A&T
@@ -234,8 +234,8 @@ sos_rank,team_sos
 233,Louisiana Tech
 234,Temple
 235,Harvard
-236,Montana
-237,Samford
+236,Samford
+237,Montana
 238,Brown
 239,Niagara
 240,Miami (OH)
@@ -246,11 +246,11 @@ sos_rank,team_sos
 245,Canisius
 246,Marist
 247,UNCG
-248,California Baptist
-249,Northwestern State
-250,East Tennessee State
-251,Cal State Bakersfield
-252,Manhattan
+248,Northwestern State
+249,East Tennessee State
+250,Cal State Bakersfield
+251,Manhattan
+252,California Baptist
 253,Eastern Illinois
 254,Colgate
 255,Central Arkansas
@@ -265,44 +265,44 @@ sos_rank,team_sos
 264,Southeast Missouri
 265,Northern Kentucky
 266,South Dakota State
-267,Texas State
-268,Jacksonville
+267,Jacksonville
+268,Texas State
 269,Incarnate Word
 270,Bethune-Cookman
-271,Chattanooga
-272,Fairfield
-273,Tennessee State
-274,UMKC
+271,Fairfield
+272,Chattanooga
+273,UMKC
+274,Tennessee State
 275,Bellarmine
 276,Ball State
-277,IU Indianapolis
-278,Siena
-279,Bucknell
-280,Northern Arizona
-281,Hawaii
-282,FGCU
+277,FGCU
+278,IU Indianapolis
+279,Siena
+280,Bucknell
+281,Northern Arizona
+282,Hawaii
 283,Southeastern Louisiana
 284,American
 285,Queens
 286,Mount Saint Mary's
 287,Portland State
 288,North Dakota
-289,Lehigh
+289,Stetson
 290,Saint Francis (PA)
-291,Stetson
-292,Lamar
-293,Weber State
-294,Little Rock
-295,Army
-296,Georgia Southern
+291,Lamar
+292,Weber State
+293,VMI
+294,Lehigh
+295,Georgia Southern
+296,Army
 297,Idaho
-298,Tennessee Tech
-299,VMI
+298,Little Rock
+299,Tennessee Tech
 300,Robert Morris
 301,Omaha
-302,Morehead State
+302,Youngstown State
 303,Houston Christian
-304,Youngstown State
+304,Morehead State
 305,Radford
 306,Jackson State
 307,Lindenwood
@@ -321,29 +321,29 @@ sos_rank,team_sos
 320,Austin Peay
 321,North Dakota State
 322,High Point
-323,Holy Cross
-324,Charleston Southern
-325,Lafayette
-326,Wofford
+323,Charleston Southern
+324,Holy Cross
+325,Wofford
+326,Lafayette
 327,West Georgia
 328,Texas Southern
-329,Loyola-Maryland
-330,NJIT
+329,NJIT
+330,Loyola-Maryland
 331,Southern
 332,Stephen F. Austin
 333,Tennessee-Martin
 334,North Carolina Central
 335,South Dakota
 336,Vermont
-337,Coppin State
-338,Longwood
+337,Longwood
+338,Coppin State
 339,New Haven
-340,Grambling State
-341,Fairleigh Dickinson
-342,Boston University
+340,Florida A&M
+341,Grambling State
+342,Fairleigh Dickinson
 343,Southern Indiana
-344,Alabama State
-345,Florida A&M
+344,Boston University
+345,Alabama State
 346,Wagner
 347,Alcorn State
 348,Long Island
