@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 03/02/2026 at 03:36 am EST",
+  "updated": "Updated: 03/02/2026 at 04:41 am EST",
   "teams": [
     {
       "team": "Duke",
@@ -108,7 +108,7 @@
       "avg_rank": 11,
       "net_rank": 11,
       "kenpom_rank": 9,
-      "bpi_rank": 13,
+      "bpi_rank": 12,
       "sos_rank": 13
     },
     {
@@ -175,10 +175,10 @@
       "team": "Tennessee",
       "record": "20-9",
       "ap_rank": 22,
-      "avg_rank": 17,
+      "avg_rank": 18,
       "net_rank": 20,
       "kenpom_rank": 18,
-      "bpi_rank": 12,
+      "bpi_rank": 13,
       "sos_rank": 26
     },
     {
@@ -328,7 +328,7 @@
       "avg_rank": 33,
       "net_rank": 31,
       "kenpom_rank": 33,
-      "bpi_rank": 37,
+      "bpi_rank": 36,
       "sos_rank": 65
     },
     {
@@ -342,20 +342,10 @@
       "sos_rank": 117
     },
     {
-      "team": "Villanova",
-      "record": "22-7",
-      "ap_rank": null,
-      "avg_rank": 35,
-      "net_rank": 33,
-      "kenpom_rank": 34,
-      "bpi_rank": 38,
-      "sos_rank": 50
-    },
-    {
       "team": "Auburn",
       "record": "15-14",
       "ap_rank": null,
-      "avg_rank": 36,
+      "avg_rank": 35,
       "net_rank": 38,
       "kenpom_rank": 40,
       "bpi_rank": 28,
@@ -365,11 +355,21 @@
       "team": "Ohio State",
       "record": "18-11",
       "ap_rank": null,
-      "avg_rank": 37,
+      "avg_rank": 35,
       "net_rank": 34,
       "kenpom_rank": 35,
-      "bpi_rank": 39,
+      "bpi_rank": 37,
       "sos_rank": 31
+    },
+    {
+      "team": "Villanova",
+      "record": "22-7",
+      "ap_rank": null,
+      "avg_rank": 35,
+      "net_rank": 33,
+      "kenpom_rank": 34,
+      "bpi_rank": 39,
+      "sos_rank": 50
     },
     {
       "team": "Texas A&M",
@@ -408,7 +408,7 @@
       "avg_rank": 41,
       "net_rank": 41,
       "kenpom_rank": 43,
-      "bpi_rank": 36,
+      "bpi_rank": 38,
       "sos_rank": 46
     },
     {
@@ -3478,7 +3478,7 @@
       "avg_rank": 348,
       "net_rank": 348,
       "kenpom_rank": 343,
-      "bpi_rank": 353,
+      "bpi_rank": 354,
       "sos_rank": 348
     },
     {
@@ -3562,24 +3562,24 @@
       "sos_rank": 175
     },
     {
+      "team": "VMI",
+      "record": "6-25",
+      "ap_rank": null,
+      "avg_rank": 356,
+      "net_rank": 358,
+      "kenpom_rank": 360,
+      "bpi_rank": 353,
+      "sos_rank": 302
+    },
+    {
       "team": "Kansas City",
       "record": "4-26",
       "ap_rank": null,
-      "avg_rank": 357,
+      "avg_rank": 358,
       "net_rank": 357,
       "kenpom_rank": 356,
       "bpi_rank": 359,
       "sos_rank": 288
-    },
-    {
-      "team": "VMI",
-      "record": "6-25",
-      "ap_rank": null,
-      "avg_rank": 357,
-      "net_rank": 358,
-      "kenpom_rank": 360,
-      "bpi_rank": 354,
-      "sos_rank": 302
     },
     {
       "team": "Binghamton",
