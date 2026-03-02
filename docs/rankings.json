@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 03/02/2026 at 02:33 pm EST",
+  "updated": "Updated: 03/02/2026 at 03:29 pm EST",
   "teams": [
     {
       "team": "Duke",
@@ -1397,9 +1397,19 @@
       "ap_rank": null,
       "avg_rank": 140,
       "net_rank": 142,
-      "kenpom_rank": 144,
+      "kenpom_rank": 143,
       "bpi_rank": 133,
       "sos_rank": 178
+    },
+    {
+      "team": "Richmond",
+      "record": "15-14",
+      "ap_rank": null,
+      "avg_rank": 141,
+      "net_rank": 147,
+      "kenpom_rank": 142,
+      "bpi_rank": 134,
+      "sos_rank": 150
     },
     {
       "team": "Rutgers",
@@ -1407,19 +1417,9 @@
       "ap_rank": null,
       "avg_rank": 141,
       "net_rank": 158,
-      "kenpom_rank": 143,
+      "kenpom_rank": 144,
       "bpi_rank": 121,
       "sos_rank": 74
-    },
-    {
-      "team": "Richmond",
-      "record": "15-14",
-      "ap_rank": null,
-      "avg_rank": 142,
-      "net_rank": 147,
-      "kenpom_rank": 142,
-      "bpi_rank": 134,
-      "sos_rank": 150
     },
     {
       "team": "Washington State",
