@@ -19,9 +19,9 @@ sos_rank,team_sos
 18,Wake Forest
 19,SMU
 20,Virginia Tech
-21,Baylor
-22,Vanderbilt
-23,Cincinnati
+21,Vanderbilt
+22,Cincinnati
+23,Baylor
 24,Boise State
 25,Saint John's
 26,Tennessee
@@ -56,11 +56,11 @@ sos_rank,team_sos
 55,Penn State
 56,VCU
 57,South Florida
-58,Nebraska
-59,Iowa State
-60,Iowa
-61,Mississippi State
-62,Georgetown
+58,Georgetown
+59,Nebraska
+60,Iowa State
+61,Iowa
+62,Mississippi State
 63,Marquette
 64,Virginia
 65,Georgia
@@ -93,17 +93,17 @@ sos_rank,team_sos
 92,New Mexico
 93,San Francisco
 94,George Washington
-95,Evansville
-96,George Mason
-97,California
+95,California
+96,Evansville
+97,George Mason
 98,Davidson
 99,Texas A&M
 100,Fresno State
 101,Oklahoma
-102,Wyoming
-103,Gonzaga
-104,FAU
-105,Middle Tennessee
+102,Gonzaga
+103,FAU
+104,Middle Tennessee
+105,Wyoming
 106,Towson
 107,Loyola-Chicago
 108,Ohio
@@ -119,8 +119,8 @@ sos_rank,team_sos
 118,Wichita State
 119,Oregon State
 120,Marshall
-121,UTEP
-122,Portland
+121,Portland
+122,UTEP
 123,Grand Canyon
 124,Rhode Island
 125,Western Kentucky
@@ -134,8 +134,8 @@ sos_rank,team_sos
 133,UTSA
 134,Oakland
 135,Charleston
-136,Liberty
-137,Loyola-Marymount
+136,Loyola-Marymount
+137,Liberty
 138,Penn
 139,Hofstra
 140,Southern Utah
@@ -150,19 +150,19 @@ sos_rank,team_sos
 149,East Carolina
 150,Richmond
 151,Fordham
-152,James Madison
+152,Saint Joseph's
 153,Tulsa
-154,Saint Joseph's
-155,UAB
+154,UAB
+155,James Madison
 156,UMass
 157,Seattle University
 158,Cornell
-159,UC Irvine
-160,UNC Asheville
-161,Utah Valley
-162,New Mexico State
+159,UNC Asheville
+160,Utah Valley
+161,New Mexico State
+162,Indiana State
 163,UC Riverside
-164,Indiana State
+164,UC Irvine
 165,Elon
 166,Bowling Green
 167,UTA
@@ -182,8 +182,8 @@ sos_rank,team_sos
 181,Winthrop
 182,Green Bay
 183,Rice
-184,Tarleton State
-185,Pacific
+184,Pacific
+185,Tarleton State
 186,Dartmouth
 187,Cal Poly
 188,Eastern Kentucky
@@ -195,32 +195,32 @@ sos_rank,team_sos
 194,Wright State
 195,Quinnipiac
 196,Columbia
-197,William & Mary
-198,Merrimack
-199,Kennesaw State
+197,Merrimack
+198,Kennesaw State
+199,William & Mary
 200,Northern Illinois
 201,Long Beach State
 202,Monmouth
-203,UC Santa Barbara
-204,San Diego
+203,San Diego
+204,UC Santa Barbara
 205,Coastal Carolina
 206,Milwaukee
 207,UNCW
 208,Stony Brook
 209,UC Davis
 210,UC San Diego
-211,Louisiana
-212,Drexel
+211,Drexel
+212,Louisiana
 213,Cal State Northridge
 214,Sacramento State
-215,Hampton
-216,Southern Miss
-217,McNeese
-218,North Carolina A&T
+215,Southern Miss
+216,Hampton
+217,North Carolina A&T
+218,McNeese
 219,Delaware
-220,Temple
-221,Furman
-222,Niagara
+220,Niagara
+221,Temple
+222,Furman
 223,East Texas A&M
 224,New Orleans
 225,Miami (OH)
@@ -234,8 +234,8 @@ sos_rank,team_sos
 233,ULM
 234,Brown
 235,Nicholls
-236,Appalachian State
-237,Canisius
+236,Canisius
+237,Appalachian State
 238,Samford
 239,Montana
 240,Eastern Illinois
@@ -245,8 +245,8 @@ sos_rank,team_sos
 244,Marist
 245,Sacred Heart
 246,UTRGV
-247,South Dakota State
-248,Purdue Fort Wayne
+247,Purdue Fort Wayne
+248,South Dakota State
 249,Detroit
 250,Montana State
 251,Harvard
@@ -273,8 +273,8 @@ sos_rank,team_sos
 272,Bethune-Cookman
 273,Ball State
 274,Youngstown State
-275,Bellarmine
-276,American
+275,American
+276,Bellarmine
 277,FGCU
 278,UNCG
 279,IU Indianapolis
@@ -301,11 +301,11 @@ sos_rank,team_sos
 300,Houston Christian
 301,Weber State
 302,VMI
-303,Jackson State
-304,Radford
+303,Radford
+304,High Point
 305,Army
-306,High Point
-307,Idaho
+306,Idaho
+307,Jackson State
 308,Saint Thomas
 309,Northern Colorado
 310,The Citadel
@@ -334,13 +334,13 @@ sos_rank,team_sos
 333,Texas Southern
 334,North Carolina Central
 335,Coppin State
-336,Florida A&M
-337,South Dakota
-338,Longwood
+336,Longwood
+337,Florida A&M
+338,South Dakota
 339,Fairleigh Dickinson
 340,New Haven
-341,Grambling State
-342,Southern Indiana
+341,Southern Indiana
+342,Grambling State
 343,Wagner
 344,Boston University
 345,Vermont
@@ -361,6 +361,6 @@ sos_rank,team_sos
 360,Central Connecticut
 361,Howard
 362,Delaware State
-363,Binghamton
-364,UMBC
+363,UMBC
+364,Binghamton
 365,Morgan State
