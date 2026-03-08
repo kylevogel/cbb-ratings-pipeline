@@ -12,7 +12,7 @@ kenpom_rank,team_kenpom,record
 11,Connecticut,27-4
 12,Nebraska,25-5
 13,Vanderbilt,24-7
-14,Texas Tech,22-8
+14,Texas Tech,22-9
 15,Alabama,23-8
 16,Tennessee,21-10
 17,Louisville,22-9
@@ -23,7 +23,7 @@ kenpom_rank,team_kenpom,record
 22,Saint Mary's,27-4
 23,Iowa,20-10
 24,Wisconsin,22-9
-25,BYU,20-10
+25,BYU,21-10
 26,Ohio St.,20-11
 27,Kentucky,19-12
 28,UCLA,21-10
@@ -49,10 +49,10 @@ kenpom_rank,team_kenpom,record
 48,Baylor,16-15
 49,New Mexico,22-9
 50,Missouri,20-11
-51,Washington,15-15
-52,Seton Hall,20-11
-53,UCF,20-10
-54,South Florida,22-8
+51,Seton Hall,20-11
+52,UCF,20-10
+53,South Florida,22-8
+54,Washington,15-16
 55,Tulsa,24-6
 56,Boise St.,20-11
 57,Virginia Tech,19-12
@@ -70,9 +70,9 @@ kenpom_rank,team_kenpom,record
 69,Oklahoma St.,18-13
 70,California,21-10
 71,Minnesota,15-16
-72,Wake Forest,16-15
-73,Providence,14-17
-74,Creighton,15-16
+72,Creighton,15-16
+73,Wake Forest,16-15
+74,Providence,14-17
 75,Northern Iowa,22-12
 76,Nevada,20-11
 77,Yale,23-5
@@ -95,21 +95,21 @@ kenpom_rank,team_kenpom,record
 94,George Mason,23-8
 95,South Carolina,13-18
 96,Xavier,14-17
-97,Wyoming,18-13
-98,Pittsburgh,12-19
-99,Mississippi St.,13-18
-100,Kansas St.,12-19
-101,Oregon,11-19
+97,Oregon,12-19
+98,Wyoming,18-13
+99,Pittsburgh,12-19
+100,Mississippi St.,13-18
+101,Kansas St.,12-19
 102,UNC Wilmington,26-5
 103,DePaul,16-15
 104,Illinois Chicago,19-14
-105,St. Thomas,24-8
-106,Illinois St.,20-12
-107,UNLV,16-15
-108,Hawaii,22-7
-109,UC Irvine,22-10
-110,Sam Houston St.,21-10
-111,Davidson,19-12
+105,Illinois St.,20-12
+106,UNLV,16-15
+107,Hawaii,22-7
+108,UC Irvine,22-10
+109,St. Thomas,24-9
+110,Davidson,19-12
+111,Sam Houston St.,21-10
 112,Cal Baptist,23-8
 113,North Dakota St.,26-7
 114,Pacific,17-14
@@ -144,8 +144,8 @@ kenpom_rank,team_kenpom,record
 143,Portland St.,19-10
 144,Richmond,15-16
 145,Wright St.,21-11
-146,Central Arkansas,22-11
-147,Winthrop,23-10
+146,Winthrop,23-10
+147,Central Arkansas,22-11
 148,East Tennessee St.,22-10
 149,Bowling Green,18-13
 150,Arkansas St.,20-12
@@ -191,8 +191,8 @@ kenpom_rank,team_kenpom,record
 190,Montana,16-15
 191,Columbia,16-12
 192,Appalachian St.,19-13
-193,Weber St.,16-15
-194,Drake,14-20
+193,Drake,14-20
+194,Weber St.,16-15
 195,Green Bay,18-14
 196,Lipscomb,19-13
 197,Marshall,19-12
@@ -212,16 +212,16 @@ kenpom_rank,team_kenpom,record
 211,Cal Poly,14-18
 212,Samford,18-14
 213,James Madison,18-15
-214,Youngstown St.,15-17
-215,Missouri St.,14-17
+214,Missouri St.,14-17
+215,Youngstown St.,15-17
 216,Tarleton St.,14-17
 217,Southern Miss,19-15
 218,LIU,23-10
 219,South Dakota St.,14-18
 220,Quinnipiac,19-13
 221,Drexel,17-15
-222,Detroit Mercy,16-14
-223,Tennessee Martin,22-11
+222,Tennessee Martin,22-11
+223,Detroit Mercy,16-14
 224,Rice,12-18
 225,San Diego,12-21
 226,La Salle,9-22
@@ -258,8 +258,8 @@ kenpom_rank,team_kenpom,record
 257,East Carolina,11-19
 258,Fairfield,21-12
 259,Purdue Fort Wayne,17-15
-260,Iona,18-14
-261,UC Riverside,10-22
+260,UC Riverside,10-22
+261,Iona,18-14
 262,Boston University,16-16
 263,Nebraska Omaha,16-17
 264,Pepperdine,9-23
@@ -273,12 +273,12 @@ kenpom_rank,team_kenpom,record
 272,Hampton,13-19
 273,Western Michigan,10-21
 274,Northwestern St.,10-21
-275,Southern,15-16
-276,Dartmouth,11-16
+275,Dartmouth,11-16
+276,Southern,15-16
 277,UTEP,11-20
-278,Bellarmine,13-19
-279,Mount St. Mary's,15-17
-280,North Dakota,17-16
+278,North Dakota,18-16
+279,Bellarmine,13-19
+280,Mount St. Mary's,15-17
 281,Morehead St.,20-13
 282,South Dakota,16-16
 283,Southeastern Louisiana,9-22
@@ -288,8 +288,8 @@ kenpom_rank,team_kenpom,record
 287,Houston Christian,12-19
 288,North Carolina A&T,11-19
 289,Brown,9-18
-290,Ball St.,12-19
-291,Delaware,10-21
+290,Delaware,10-21
+291,Ball St.,12-19
 292,Jacksonville,12-20
 293,Loyola Chicago,8-23
 294,Sacred Heart,14-19
@@ -308,8 +308,8 @@ kenpom_rank,team_kenpom,record
 307,Texas Southern,12-17
 308,Wagner,14-17
 309,Little Rock,12-20
-310,Georgia St.,10-22
-311,Oral Roberts,10-23
+310,Oral Roberts,10-23
+311,Georgia St.,10-22
 312,Prairie View A&M,14-17
 313,Louisiana,11-22
 314,Tennessee Tech,13-18
