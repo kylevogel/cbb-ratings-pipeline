@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 03/08/2026 at 05:17 pm EST",
+  "updated": "Updated: 03/08/2026 at 06:18 pm EST",
   "teams": [
     {
       "team": "Duke",
@@ -13,7 +13,7 @@
     },
     {
       "team": "Michigan",
-      "record": "28-2",
+      "record": "29-2",
       "ap_rank": 3,
       "avg_rank": 2,
       "net_rank": 2,
@@ -103,7 +103,7 @@
     },
     {
       "team": "Michigan State",
-      "record": "25-5",
+      "record": "25-6",
       "ap_rank": 8,
       "avg_rank": 11,
       "net_rank": 11,
@@ -912,6 +912,16 @@
       "sos_rank": 30
     },
     {
+      "team": "Oregon",
+      "record": "12-19",
+      "ap_rank": null,
+      "avg_rank": 92,
+      "net_rank": 102,
+      "kenpom_rank": 96,
+      "bpi_rank": 85,
+      "sos_rank": 25
+    },
+    {
       "team": "Utah Valley",
       "record": "24-7",
       "ap_rank": null,
@@ -920,16 +930,6 @@
       "kenpom_rank": 89,
       "bpi_rank": 110,
       "sos_rank": 170
-    },
-    {
-      "team": "Oregon",
-      "record": "12-19",
-      "ap_rank": null,
-      "avg_rank": 93,
-      "net_rank": 102,
-      "kenpom_rank": 97,
-      "bpi_rank": 85,
-      "sos_rank": 25
     },
     {
       "team": "Stephen F. Austin",
@@ -967,7 +967,7 @@
       "ap_rank": null,
       "avg_rank": 97,
       "net_rank": 97,
-      "kenpom_rank": 96,
+      "kenpom_rank": 97,
       "bpi_rank": 96,
       "sos_rank": 64
     },
@@ -1332,6 +1332,16 @@
       "sos_rank": 256
     },
     {
+      "team": "Navy",
+      "record": "26-7",
+      "ap_rank": null,
+      "avg_rank": 134,
+      "net_rank": 126,
+      "kenpom_rank": 142,
+      "bpi_rank": 138,
+      "sos_rank": 345
+    },
+    {
       "team": "North Texas",
       "record": "18-13",
       "ap_rank": null,
@@ -1340,16 +1350,6 @@
       "kenpom_rank": 141,
       "bpi_rank": 122,
       "sos_rank": 144
-    },
-    {
-      "team": "Navy",
-      "record": "26-7",
-      "ap_rank": null,
-      "avg_rank": 135,
-      "net_rank": 126,
-      "kenpom_rank": 143,
-      "bpi_rank": 138,
-      "sos_rank": 345
     },
     {
       "team": "East Tennessee State",
@@ -1565,9 +1565,9 @@
       "team": "Portland State",
       "record": "19-10",
       "ap_rank": null,
-      "avg_rank": 156,
+      "avg_rank": 157,
       "net_rank": 139,
-      "kenpom_rank": 142,
+      "kenpom_rank": 143,
       "bpi_rank": 186,
       "sos_rank": 293
     },
