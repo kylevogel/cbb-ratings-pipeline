@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 03/10/2026 at 03:26 pm EST",
+  "updated": "Updated: 03/10/2026 at 04:24 pm EST",
   "teams": [
     {
       "team": "Duke",
@@ -423,7 +423,7 @@
     },
     {
       "team": "Cincinnati",
-      "record": "17-14",
+      "record": "18-14",
       "ap_rank": null,
       "avg_rank": 43,
       "net_rank": 46,
@@ -857,7 +857,7 @@
       "ap_rank": null,
       "avg_rank": 86,
       "net_rank": 91,
-      "kenpom_rank": 85,
+      "kenpom_rank": 86,
       "bpi_rank": 74,
       "sos_rank": 64
     },
@@ -877,7 +877,7 @@
       "ap_rank": null,
       "avg_rank": 88,
       "net_rank": 87,
-      "kenpom_rank": 86,
+      "kenpom_rank": 85,
       "bpi_rank": 87,
       "sos_rank": 119
     },
@@ -1213,11 +1213,11 @@
     },
     {
       "team": "Utah",
-      "record": "10-21",
+      "record": "10-22",
       "ap_rank": null,
       "avg_rank": 122,
       "net_rank": 131,
-      "kenpom_rank": 126,
+      "kenpom_rank": 125,
       "bpi_rank": 108,
       "sos_rank": 51
     },
@@ -1342,16 +1342,6 @@
       "sos_rank": 151
     },
     {
-      "team": "UC Santa Barbara",
-      "record": "18-13",
-      "ap_rank": null,
-      "avg_rank": 135,
-      "net_rank": 135,
-      "kenpom_rank": 125,
-      "bpi_rank": 146,
-      "sos_rank": 207
-    },
-    {
       "team": "Wright State",
       "record": "22-11",
       "ap_rank": null,
@@ -1360,6 +1350,16 @@
       "kenpom_rank": 138,
       "bpi_rank": 139,
       "sos_rank": 209
+    },
+    {
+      "team": "UC Santa Barbara",
+      "record": "18-13",
+      "ap_rank": null,
+      "avg_rank": 136,
+      "net_rank": 135,
+      "kenpom_rank": 126,
+      "bpi_rank": 146,
+      "sos_rank": 207
     },
     {
       "team": "Montana State",
@@ -1517,7 +1517,7 @@
       "ap_rank": null,
       "avg_rank": 152,
       "net_rank": 164,
-      "kenpom_rank": 162,
+      "kenpom_rank": 161,
       "bpi_rank": 130,
       "sos_rank": 225
     },
@@ -1597,7 +1597,7 @@
       "ap_rank": null,
       "avg_rank": 160,
       "net_rank": 148,
-      "kenpom_rank": 161,
+      "kenpom_rank": 162,
       "bpi_rank": 169,
       "sos_rank": 132
     },
