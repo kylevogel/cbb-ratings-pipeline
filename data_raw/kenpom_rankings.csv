@@ -8,13 +8,13 @@ kenpom_rank,team_kenpom,record
 7,Iowa St.,25-6
 8,Purdue,23-8
 9,Michigan St.,25-6
-10,Gonzaga,28-3
-11,Connecticut,27-4
+10,Connecticut,27-4
+11,Gonzaga,29-3
 12,Nebraska,26-5
 13,Vanderbilt,24-7
 14,Louisville,22-9
-15,Alabama,23-8
-16,Tennessee,21-10
+15,Tennessee,21-10
+16,Alabama,23-8
 17,Texas Tech,22-9
 18,Arkansas,23-8
 19,Kansas,22-9
@@ -28,8 +28,8 @@ kenpom_rank,team_kenpom,record
 27,Kentucky,19-12
 28,UCLA,21-10
 29,Miami FL,24-7
-30,Georgia,22-9
-31,North Carolina,24-7
+30,North Carolina,24-7
+31,Georgia,22-9
 32,Villanova,24-7
 33,Texas,18-13
 34,Texas A&M,21-10
@@ -82,10 +82,10 @@ kenpom_rank,team_kenpom,record
 81,Mississippi,12-19
 82,Butler,16-15
 83,George Washington,17-14
-84,Hofstra,22-10
+84,Colorado St.,20-11
 85,Marquette,12-19
-86,Colorado St.,20-11
-87,Georgetown,14-17
+86,Georgetown,14-17
+87,Hofstra,23-10
 88,Wichita St.,21-10
 89,Stephen F. Austin,27-4
 90,Utah Valley,24-7
@@ -106,8 +106,8 @@ kenpom_rank,team_kenpom,record
 105,Illinois Chicago,19-15
 106,UC Irvine,22-10
 107,Davidson,19-12
-108,St. Thomas,24-9
-109,Sam Houston St.,21-10
+108,Sam Houston St.,21-10
+109,St. Thomas,24-9
 110,UNC Wilmington,26-6
 111,Pacific,18-15
 112,Cal Baptist,23-8
@@ -117,12 +117,12 @@ kenpom_rank,team_kenpom,record
 116,Liberty,25-6
 117,Southern Illinois,16-16
 118,Seattle,20-13
-119,San Francisco,17-16
-120,Murray St.,20-12
-121,Saint Joseph's,21-10
-122,Bradley,21-12
-123,UAB,20-11
-124,UT Rio Grande Valley,18-13
+119,UT Rio Grande Valley,19-13
+120,San Francisco,17-16
+121,Murray St.,20-12
+122,Saint Joseph's,21-10
+123,Bradley,21-12
+124,UAB,20-11
 125,UC Santa Barbara,18-13
 126,Florida Atlantic,17-14
 127,Utah,10-21
@@ -135,25 +135,25 @@ kenpom_rank,team_kenpom,record
 134,Rhode Island,16-15
 135,Toledo,17-14
 136,Washington St.,12-20
-137,Northern Colorado,20-11
-138,Penn St.,12-19
-139,Robert Morris,22-10
-140,Wright St.,22-11
-141,North Texas,18-13
+137,Penn St.,12-19
+138,Wright St.,22-11
+139,North Texas,18-13
+140,Northern Colorado,20-12
+141,Portland St.,20-10
 142,Navy,26-7
-143,Portland St.,20-10
-144,Troy,22-11
-145,Richmond,15-16
+143,Troy,22-11
+144,Richmond,15-16
+145,Robert Morris,22-11
 146,William & Mary,20-12
 147,Bowling Green,18-13
 148,Arkansas St.,20-12
 149,Harvard,17-11
 150,Central Arkansas,22-12
 151,Winthrop,23-11
-152,Boston College,11-20
+152,Towson,19-15
 153,Kent St.,23-8
-154,UC Davis,18-13
-155,Towson,19-14
+154,Boston College,11-20
+155,UC Davis,18-13
 156,UT Arlington,17-13
 157,Cornell,15-12
 158,Valparaiso,18-15
@@ -175,19 +175,19 @@ kenpom_rank,team_kenpom,record
 174,Austin Peay,22-9
 175,Texas A&M Corpus Chris,18-14
 176,Northern Kentucky,20-14
-177,CSUN,19-13
-178,Monmouth,19-14
-179,Kennesaw St.,18-13
-180,Oregon St.,17-15
+177,Oregon St.,17-16
+178,CSUN,19-13
+179,Monmouth,19-14
+180,Kennesaw St.,18-13
 181,Campbell,16-18
-182,Queens,21-13
-183,Utah Tech,18-14
-184,New Mexico St.,15-15
-185,Tennessee St.,23-9
-186,Furman,22-12
-187,Montana,16-15
-188,Columbia,16-12
-189,Mercer,19-13
+182,Montana,17-15
+183,Queens,21-13
+184,Utah Tech,18-14
+185,New Mexico St.,15-15
+186,Tennessee St.,23-9
+187,Furman,22-12
+188,Mercer,19-13
+189,Columbia,16-12
 190,FIU,15-16
 191,New Orleans,15-18
 192,Charlotte,15-16
@@ -202,25 +202,25 @@ kenpom_rank,team_kenpom,record
 201,Massachusetts,16-15
 202,Howard,21-10
 203,Marist,19-12
-204,Marshall,19-13
-205,Jacksonville St.,15-16
+204,Jacksonville St.,15-16
+205,Marshall,19-13
 206,South Alabama,21-11
 207,Buffalo,17-14
 208,Louisiana Tech,18-13
 209,Green Bay,18-15
 210,Tulane,17-14
-211,Samford,18-14
-212,Cal Poly,14-18
+211,Cal Poly,14-18
+212,Samford,18-14
 213,James Madison,18-15
-214,Tarleton St.,14-17
-215,Missouri St.,14-17
+214,Missouri St.,14-17
+215,Tarleton St.,14-17
 216,Youngstown St.,15-17
 217,LIU,23-10
 218,Quinnipiac,19-13
 219,Southern Miss,19-16
-220,South Dakota St.,14-18
-221,Drexel,17-16
-222,Detroit Mercy,16-14
+220,Detroit Mercy,17-14
+221,South Dakota St.,14-18
+222,Drexel,17-16
 223,Tennessee Martin,22-11
 224,San Diego,12-21
 225,La Salle,9-22
@@ -229,17 +229,17 @@ kenpom_rank,team_kenpom,record
 228,Stony Brook,17-15
 229,Western Carolina,15-16
 230,Elon,14-18
-231,Nicholls,14-18
-232,Southeast Missouri,20-13
+231,Southeast Missouri,20-13
+232,Vermont,21-11
 233,Long Beach St.,10-22
-234,Vermont,21-11
-235,Denver,15-17
-236,Georgia Southern,21-16
-237,San Jose St.,8-23
-238,Bethune Cookman,17-14
+234,Denver,15-17
+235,Georgia Southern,21-16
+236,San Jose St.,8-23
+237,Bethune Cookman,17-14
+238,Nicholls,14-19
 239,Lamar,12-19
-240,American,16-16
-241,Eastern Michigan,10-21
+240,Eastern Michigan,10-21
+241,American,16-16
 242,Charleston Southern,15-17
 243,Florida Gulf Coast,16-18
 244,Texas St.,19-13
@@ -269,8 +269,8 @@ kenpom_rank,team_kenpom,record
 268,Milwaukee,12-20
 269,Presbyterian,15-18
 270,Central Michigan,10-21
-271,Longwood,16-16
-272,Hampton,13-19
+271,Hampton,13-19
+272,Longwood,16-16
 273,Western Michigan,10-21
 274,Dartmouth,11-16
 275,Southern,15-16
@@ -292,11 +292,11 @@ kenpom_rank,team_kenpom,record
 291,Ball St.,12-19
 292,Delaware,10-21
 293,Loyola Chicago,8-23
-294,Jacksonville,12-20
-295,Sacred Heart,14-19
-296,Eastern Kentucky,11-21
-297,Le Moyne,15-17
-298,Grambling St.,13-18
+294,Grambling St.,14-18
+295,Jacksonville,12-20
+296,Sacred Heart,14-19
+297,Eastern Kentucky,11-21
+298,Le Moyne,15-17
 299,UNC Greensboro,15-19
 300,Chattanooga,13-19
 301,Alabama A&M,17-14
@@ -313,8 +313,8 @@ kenpom_rank,team_kenpom,record
 312,Prairie View A&M,14-17
 313,Louisiana,11-22
 314,Tennessee Tech,13-18
-315,Arkansas Pine Bluff,13-18
-316,Florida A&M,14-15
+315,Florida A&M,14-15
+316,Arkansas Pine Bluff,13-18
 317,IU Indy,7-25
 318,UMass Lowell,15-17
 319,Alabama St.,10-22
@@ -322,8 +322,8 @@ kenpom_rank,team_kenpom,record
 321,Norfolk St.,15-16
 322,Cleveland St.,11-22
 323,Loyola MD,12-20
-324,Eastern Illinois,13-20
-325,Albany,11-21
+324,Albany,11-21
+325,Eastern Illinois,13-20
 326,Lafayette,11-21
 327,Cal St. Bakersfield,8-24
 328,New Haven,14-17
@@ -363,4 +363,4 @@ kenpom_rank,team_kenpom,record
 362,Delaware St.,7-22
 363,Coppin St.,7-24
 364,Western Illinois,5-26
-365,Mississippi Valley St.,3-29
+365,Mississippi Valley St.,3-30
