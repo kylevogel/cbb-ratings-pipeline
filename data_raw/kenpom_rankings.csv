@@ -3,9 +3,9 @@ kenpom_rank,team_kenpom,record
 2,Michigan,30-2
 3,Arizona,30-2
 4,Florida,26-6
-5,Illinois,24-7
-6,Houston,27-5
-7,Iowa St.,27-6
+5,Houston,27-5
+6,Iowa St.,27-6
+7,Illinois,24-8
 8,Purdue,24-8
 9,Michigan St.,25-6
 10,Connecticut,28-4
@@ -22,7 +22,7 @@ kenpom_rank,team_kenpom,record
 21,St. John's,26-6
 22,BYU,23-11
 23,Saint Mary's,27-5
-24,Wisconsin,23-9
+24,Wisconsin,24-9
 25,Iowa,21-12
 26,Ohio St.,21-12
 27,Miami FL,25-7
@@ -78,14 +78,14 @@ kenpom_rank,team_kenpom,record
 77,Creighton,15-17
 78,Minnesota,15-17
 79,USC,18-14
-80,Dayton,21-10
+80,Dayton,22-10
 81,Yale,23-5
 82,Syracuse,15-17
-83,George Washington,18-15
-84,Marquette,12-20
+83,Marquette,12-20
+84,George Washington,18-15
 85,Colorado St.,21-12
-86,Hofstra,24-10
-87,Butler,16-16
+86,Butler,16-16
+87,Hofstra,24-10
 88,Wichita St.,21-10
 89,Utah Valley,24-7
 90,Notre Dame,13-18
@@ -104,17 +104,17 @@ kenpom_rank,team_kenpom,record
 103,Illinois St.,20-12
 104,Illinois Chicago,19-15
 105,UC Irvine,22-10
-106,Sam Houston St.,22-10
-107,UNLV,17-16
-108,St. Thomas,24-9
-109,UNC Wilmington,26-6
-110,Davidson,20-12
+106,UNLV,17-16
+107,St. Thomas,24-9
+108,UNC Wilmington,26-6
+109,Davidson,20-12
+110,Sam Houston St.,22-10
 111,Pacific,18-15
 112,Cal Baptist,23-8
 113,North Dakota St.,27-7
 114,Hawaii,22-8
-115,UT Rio Grande Valley,19-14
-116,Southern Illinois,16-16
+115,Southern Illinois,16-16
+116,UT Rio Grande Valley,19-14
 117,UC San Diego,23-11
 118,Seattle,20-13
 119,San Francisco,17-16
@@ -137,7 +137,7 @@ kenpom_rank,team_kenpom,record
 136,Memphis,13-19
 137,North Texas,19-13
 138,Penn St.,12-20
-139,St. Bonaventure,17-16
+139,St. Bonaventure,17-17
 140,Wright St.,23-11
 141,Northern Colorado,20-12
 142,Navy,26-7
@@ -154,8 +154,8 @@ kenpom_rank,team_kenpom,record
 153,Boston College,11-20
 154,Winthrop,23-11
 155,Towson,19-15
-156,UT Arlington,18-13
-157,Valparaiso,18-15
+156,Valparaiso,18-15
+157,UT Arlington,18-13
 158,Cornell,15-12
 159,UC Davis,19-14
 160,Cal St. Fullerton,18-15
@@ -168,12 +168,12 @@ kenpom_rank,team_kenpom,record
 167,East Tennessee St.,23-11
 168,Oakland,16-16
 169,CSUN,20-13
-170,Eastern Washington,14-19
-171,Western Kentucky,18-14
-172,Charleston,21-11
-173,Texas A&M Corpus Chris,18-15
-174,Austin Peay,22-9
-175,Kennesaw St.,19-13
+170,Kennesaw St.,19-13
+171,Eastern Washington,14-19
+172,Western Kentucky,18-14
+173,Charleston,21-11
+174,Texas A&M Corpus Chris,18-15
+175,Austin Peay,22-9
 176,Northern Kentucky,20-14
 177,Oregon St.,17-16
 178,Middle Tennessee,17-15
@@ -196,8 +196,8 @@ kenpom_rank,team_kenpom,record
 195,Massachusetts,17-15
 196,Appalachian St.,19-13
 197,Louisiana Tech,20-13
-198,Weber St.,16-16
-199,Drake,14-20
+198,Drake,14-20
+199,Weber St.,16-16
 200,Buffalo,17-15
 201,Indiana St.,11-21
 202,Portland,15-19
@@ -209,8 +209,8 @@ kenpom_rank,team_kenpom,record
 208,Marshall,19-13
 209,Jacksonville St.,15-17
 210,Green Bay,18-15
-211,Cal Poly,14-19
-212,Tulane,18-15
+211,Tulane,18-15
+212,Cal Poly,14-19
 213,Samford,18-14
 214,LIU,24-10
 215,James Madison,18-15
@@ -237,8 +237,8 @@ kenpom_rank,team_kenpom,record
 236,Georgia Southern,21-16
 237,Nicholls,14-19
 238,Lamar,12-19
-239,American,16-16
-240,Eastern Michigan,10-21
+239,Eastern Michigan,10-21
+240,American,16-16
 241,Charleston Southern,15-17
 242,Abilene Christian,14-19
 243,Bethune Cookman,17-15
@@ -247,8 +247,8 @@ kenpom_rank,team_kenpom,record
 246,UNC Asheville,15-17
 247,Coastal Carolina,19-13
 248,Colgate,18-15
-249,Idaho St.,13-20
-250,Old Dominion,12-21
+249,Old Dominion,12-21
+250,Idaho St.,13-20
 251,Princeton,9-20
 252,Southern Utah,10-22
 253,Wofford,19-13
@@ -256,8 +256,8 @@ kenpom_rank,team_kenpom,record
 255,Saint Peter's,17-12
 256,SIUE,19-13
 257,Radford,16-16
-258,UC Riverside,10-22
-259,Iona,18-14
+258,Iona,18-14
+259,UC Riverside,10-22
 260,Purdue Fort Wayne,17-15
 261,Nebraska Omaha,16-17
 262,Boston University,17-17
@@ -283,8 +283,8 @@ kenpom_rank,team_kenpom,record
 282,South Dakota,16-16
 283,Morehead St.,20-13
 284,Lehigh,18-16
-285,Southeastern Louisiana,9-22
-286,Northeastern,7-24
+285,Northeastern,7-24
+286,Southeastern Louisiana,9-22
 287,Mercyhurst,17-17
 288,East Texas A&M,11-21
 289,Brown,9-18
