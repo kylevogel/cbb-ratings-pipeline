@@ -37,9 +37,9 @@ kenpom_rank,team_kenpom,record
 36,Clemson,24-10
 37,Texas,18-14
 38,Auburn,17-16
-39,Saint Louis,28-4
-40,Texas A&M,21-11
-41,Oklahoma,19-15
+39,Texas A&M,21-11
+40,Oklahoma,19-15
+41,Saint Louis,28-5
 42,SMU,20-13
 43,TCU,22-11
 44,Cincinnati,18-15
@@ -75,17 +75,17 @@ kenpom_rank,team_kenpom,record
 74,Wake Forest,17-16
 75,Nevada,22-12
 76,Yale,24-5
-77,Creighton,15-17
-78,Minnesota,15-17
+77,Dayton,23-10
+78,Creighton,15-17
 79,Georgetown,16-18
-80,USC,18-14
-81,Dayton,22-10
+80,Minnesota,15-17
+81,USC,18-14
 82,Syracuse,15-17
 83,Marquette,12-20
 84,George Washington,18-15
-85,Colorado St.,21-12
-86,Butler,16-16
-87,Hofstra,24-10
+85,Butler,16-16
+86,Hofstra,24-10
+87,Colorado St.,21-12
 88,Wichita St.,21-10
 89,Utah Valley,25-7
 90,Notre Dame,13-18
@@ -149,20 +149,20 @@ kenpom_rank,team_kenpom,record
 148,Kent St.,24-9
 149,William & Mary,20-12
 150,Arkansas St.,20-12
-151,Harvard,17-11
-152,Central Arkansas,22-12
+151,Central Arkansas,22-12
+152,Harvard,17-12
 153,UT Arlington,18-14
 154,Winthrop,23-11
 155,Boston College,11-20
 156,Valparaiso,18-15
 157,Towson,19-15
 158,UC Davis,19-14
-159,Richmond,15-17
-160,Loyola Marymount,15-17
-161,Penn,16-11
+159,Penn,17-11
+160,Richmond,15-17
+161,Loyola Marymount,15-17
 162,Georgia Tech,11-20
-163,Temple,16-16
-164,Cornell,15-13
+163,Cornell,15-13
+164,Temple,16-16
 165,Fordham,17-15
 166,East Tennessee St.,23-11
 167,Cal St. Fullerton,18-16
@@ -202,10 +202,10 @@ kenpom_rank,team_kenpom,record
 201,Indiana St.,11-21
 202,Lipscomb,19-13
 203,Portland,15-19
-204,Howard,22-10
-205,Marist,19-12
-206,Missouri St.,16-18
-207,South Alabama,21-11
+204,Marist,19-12
+205,Missouri St.,16-18
+206,South Alabama,21-11
+207,Howard,23-10
 208,Marshall,19-13
 209,Jacksonville St.,15-17
 210,Green Bay,18-15
@@ -308,8 +308,8 @@ kenpom_rank,team_kenpom,record
 307,Alabama A&M,18-15
 308,Evansville,7-25
 309,Oral Roberts,10-23
-310,Little Rock,12-20
-311,Georgia St.,10-22
+310,Georgia St.,10-22
+311,Little Rock,12-20
 312,Florida A&M,15-16
 313,Louisiana,11-22
 314,Arkansas Pine Bluff,13-19
@@ -350,7 +350,7 @@ kenpom_rank,team_kenpom,record
 349,New Hampshire,9-21
 350,Maryland Eastern Shore,9-23
 351,Louisiana Monroe,4-28
-352,North Carolina Central,14-17
+352,North Carolina Central,14-18
 353,Morgan St.,14-16
 354,Saint Francis,7-24
 355,Bryant,9-22
