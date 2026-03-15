@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 03/15/2026 at 02:24 pm EST",
+  "updated": "Updated: 03/15/2026 at 03:22 pm EST",
   "teams": [
     {
       "team": "Duke",
@@ -402,16 +402,6 @@
       "sos_rank": 26
     },
     {
-      "team": "Indiana",
-      "record": "18-14",
-      "ap_rank": null,
-      "avg_rank": 41,
-      "net_rank": 41,
-      "kenpom_rank": 45,
-      "bpi_rank": 38,
-      "sos_rank": 61
-    },
-    {
       "team": "Santa Clara",
       "record": "26-8",
       "ap_rank": null,
@@ -420,6 +410,16 @@
       "kenpom_rank": 35,
       "bpi_rank": 49,
       "sos_rank": 49
+    },
+    {
+      "team": "Indiana",
+      "record": "18-14",
+      "ap_rank": null,
+      "avg_rank": 42,
+      "net_rank": 41,
+      "kenpom_rank": 46,
+      "bpi_rank": 38,
+      "sos_rank": 61
     },
     {
       "team": "Oklahoma",
@@ -443,11 +443,11 @@
     },
     {
       "team": "VCU",
-      "record": "26-7",
+      "record": "27-7",
       "ap_rank": null,
       "avg_rank": 45,
       "net_rank": 43,
-      "kenpom_rank": 46,
+      "kenpom_rank": 45,
       "bpi_rank": 46,
       "sos_rank": 56
     },
@@ -673,11 +673,11 @@
     },
     {
       "team": "Dayton",
-      "record": "23-10",
+      "record": "23-11",
       "ap_rank": null,
       "avg_rank": 68,
       "net_rank": 69,
-      "kenpom_rank": 76,
+      "kenpom_rank": 78,
       "bpi_rank": 64,
       "sos_rank": 48
     },
@@ -715,9 +715,9 @@
       "team": "Creighton",
       "record": "15-17",
       "ap_rank": null,
-      "avg_rank": 72,
+      "avg_rank": 71,
       "net_rank": 83,
-      "kenpom_rank": 77,
+      "kenpom_rank": 76,
       "bpi_rank": 62,
       "sos_rank": 52
     },
@@ -742,30 +742,30 @@
       "sos_rank": 74
     },
     {
+      "team": "Minnesota",
+      "record": "15-17",
+      "ap_rank": null,
+      "avg_rank": 75,
+      "net_rank": 80,
+      "kenpom_rank": 77,
+      "bpi_rank": 70,
+      "sos_rank": 85
+    },
+    {
       "team": "Belmont",
       "record": "26-6",
       "ap_rank": null,
-      "avg_rank": 75,
+      "avg_rank": 76,
       "net_rank": 63,
       "kenpom_rank": 69,
       "bpi_rank": 96,
       "sos_rank": 177
     },
     {
-      "team": "Minnesota",
-      "record": "15-17",
-      "ap_rank": null,
-      "avg_rank": 75,
-      "net_rank": 80,
-      "kenpom_rank": 78,
-      "bpi_rank": 70,
-      "sos_rank": 85
-    },
-    {
       "team": "Nevada",
       "record": "22-12",
       "ap_rank": null,
-      "avg_rank": 75,
+      "avg_rank": 76,
       "net_rank": 70,
       "kenpom_rank": 75,
       "bpi_rank": 83,
@@ -797,7 +797,7 @@
       "ap_rank": null,
       "avg_rank": 80,
       "net_rank": 84,
-      "kenpom_rank": 86,
+      "kenpom_rank": 87,
       "bpi_rank": 65,
       "sos_rank": 96
     },
@@ -887,7 +887,7 @@
       "ap_rank": null,
       "avg_rank": 89,
       "net_rank": 87,
-      "kenpom_rank": 87,
+      "kenpom_rank": 86,
       "bpi_rank": 86,
       "sos_rank": 117
     },
@@ -1047,19 +1047,9 @@
       "ap_rank": null,
       "avg_rank": 105,
       "net_rank": 111,
-      "kenpom_rank": 108,
+      "kenpom_rank": 107,
       "bpi_rank": 105,
       "sos_rank": 71
-    },
-    {
-      "team": "Hawaii",
-      "record": "24-8",
-      "ap_rank": null,
-      "avg_rank": 106,
-      "net_rank": 101,
-      "kenpom_rank": 107,
-      "bpi_rank": 122,
-      "sos_rank": 262
     },
     {
       "team": "Sam Houston",
@@ -1070,6 +1060,16 @@
       "kenpom_rank": 111,
       "bpi_rank": 112,
       "sos_rank": 172
+    },
+    {
+      "team": "Hawaii",
+      "record": "24-8",
+      "ap_rank": null,
+      "avg_rank": 107,
+      "net_rank": 101,
+      "kenpom_rank": 108,
+      "bpi_rank": 122,
+      "sos_rank": 262
     },
     {
       "team": "Liberty",
@@ -1185,9 +1185,9 @@
       "team": "Saint Joseph's",
       "record": "22-11",
       "ap_rank": null,
-      "avg_rank": 119,
+      "avg_rank": 118,
       "net_rank": 121,
-      "kenpom_rank": 117,
+      "kenpom_rank": 116,
       "bpi_rank": 119,
       "sos_rank": 124
     },
@@ -1217,7 +1217,7 @@
       "ap_rank": null,
       "avg_rank": 122,
       "net_rank": 120,
-      "kenpom_rank": 116,
+      "kenpom_rank": 117,
       "bpi_rank": 126,
       "sos_rank": 145
     },
