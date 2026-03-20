@@ -1,6 +1,6 @@
 kenpom_rank,team_kenpom,record
-1,Duke 1,33-2
-2,Arizona 1,32-2
+1,Arizona 1,33-2
+2,Duke 1,33-2
 3,Michigan 1,32-3
 4,Florida 1,26-7
 5,Houston 2,29-6
@@ -12,12 +12,12 @@ kenpom_rank,team_kenpom,record
 11,Vanderbilt 5,27-8
 12,Gonzaga 3,31-3
 13,Nebraska 4,27-6
-14,Virginia 3,29-5
-15,Arkansas 4,27-8
+14,Arkansas 4,27-8
+15,Virginia 3,30-5
 16,Tennessee 6,22-11
 17,St. John's 5,28-6
-18,Alabama 4,23-9
-19,Texas Tech 5,23-10
+18,Texas Tech 5,23-10
+19,Alabama 4,23-9
 20,Louisville 6,24-10
 21,Kansas 4,23-10
 22,Wisconsin 5,24-11
@@ -34,8 +34,8 @@ kenpom_rank,team_kenpom,record
 33,Villanova 8,24-8
 34,Texas 11,20-14
 35,Texas A&M 10,22-11
-36,N.C. State 11,20-14
-37,Georgia 8,22-11
+36,Georgia 8,22-11
+37,N.C. State 11,20-14
 38,Santa Clara 10,26-9
 39,Clemson 8,24-10
 40,Auburn,18-16
@@ -51,20 +51,20 @@ kenpom_rank,team_kenpom,record
 50,Baylor,16-16
 51,Seton Hall,21-12
 52,Missouri 10,20-12
-53,Washington,16-17
-54,UCF 10,21-11
+53,UCF 10,21-11
+54,Washington,16-17
 55,Virginia Tech,19-13
 56,Northwestern,15-19
-57,Florida St.,18-15
-58,Grand Canyon,20-12
+57,Grand Canyon,20-12
+58,Florida St.,18-15
 59,LSU,15-17
-60,Stanford,20-12
-61,West Virginia,18-14
+60,West Virginia,18-14
+61,Stanford,20-12
 62,Boise St.,20-12
 63,Tulsa,27-7
 64,Mississippi,15-20
-65,McNeese 12,28-6
-66,Arizona St.,17-16
+65,Arizona St.,17-16
+66,McNeese 12,28-6
 67,Oklahoma St.,20-14
 68,Dayton,24-11
 69,Akron 12,29-6
@@ -94,8 +94,8 @@ kenpom_rank,team_kenpom,record
 93,Utah Valley,25-9
 94,South Carolina,13-19
 95,Wyoming,18-15
-96,Pittsburgh,13-20
-97,Xavier,15-18
+96,Xavier,15-18
+97,Pittsburgh,13-20
 98,George Mason,23-10
 99,Mississippi St.,13-19
 100,Kansas St.,12-20
@@ -136,9 +136,9 @@ kenpom_rank,team_kenpom,record
 135,St. Bonaventure,17-17
 136,Memphis,13-19
 137,North Texas,19-14
-138,Penn St.,12-20
-139,Washington St.,12-20
-140,Wright St. 14,23-11
+138,Wright St. 14,23-12
+139,Penn St.,12-20
+140,Washington St.,12-20
 141,Navy,26-8
 142,Robert Morris,22-11
 143,William & Mary,20-12
@@ -161,21 +161,21 @@ kenpom_rank,team_kenpom,record
 160,Kent St.,24-10
 161,Valparaiso,18-15
 162,UC Davis,19-14
-163,Temple,16-16
-164,Loyola Marymount,15-17
+163,Loyola Marymount,15-17
+164,Temple,16-16
 165,East Tennessee St.,23-11
 166,Georgia Tech,11-20
 167,Cornell,15-13
-168,Western Kentucky,18-14
-169,Oakland,16-16
+168,Oakland,16-16
+169,Western Kentucky,18-14
 170,Cal St. Fullerton,18-16
 171,Charleston,21-11
 172,Eastern Washington,14-19
 173,Austin Peay,22-9
 174,Texas A&M Corpus Chris,18-15
-175,Middle Tennessee,17-15
-176,Merrimack,23-11
-177,Northern Kentucky,20-14
+175,Northern Kentucky,20-14
+176,Middle Tennessee,17-15
+177,Merrimack,23-11
 178,CSUN,20-14
 179,Monmouth,19-15
 180,Oregon St.,17-16
@@ -199,8 +199,8 @@ kenpom_rank,team_kenpom,record
 198,Louisiana Tech,20-14
 199,Lipscomb,19-13
 200,Buffalo,17-15
-201,Marist,19-12
-202,South Alabama,21-12
+201,South Alabama,21-12
+202,Marist,19-12
 203,Drake,14-20
 204,Weber St.,16-16
 205,Missouri St.,16-18
@@ -210,11 +210,11 @@ kenpom_rank,team_kenpom,record
 209,Jacksonville St.,15-17
 210,Green Bay,18-15
 211,Tulane,18-15
-212,Samford,18-14
-213,LIU 16,24-10
+212,Youngstown St.,15-17
+213,Samford,18-14
 214,Cal Poly,14-19
 215,James Madison,18-15
-216,Youngstown St.,15-17
+216,LIU 16,24-11
 217,Quinnipiac,19-13
 218,Detroit Mercy,17-15
 219,Southern Miss,19-16
@@ -257,8 +257,8 @@ kenpom_rank,team_kenpom,record
 256,Iona,18-14
 257,Radford,16-16
 258,SIUE,19-13
-259,Fairfield,21-13
-260,Purdue Fort Wayne,17-15
+259,Purdue Fort Wayne,17-15
+260,Fairfield,21-13
 261,UC Riverside,10-22
 262,Boston University,17-17
 263,Pepperdine,9-23
@@ -266,8 +266,8 @@ kenpom_rank,team_kenpom,record
 265,Incarnate Word,12-19
 266,Lindenwood,18-15
 267,Sacramento St.,10-21
-268,Presbyterian,15-18
-269,Milwaukee,12-20
+268,Milwaukee,12-20
+269,Presbyterian,15-18
 270,Longwood,16-16
 271,Hampton,13-19
 272,Central Michigan,10-21
@@ -317,8 +317,8 @@ kenpom_rank,team_kenpom,record
 316,Tennessee Tech,13-18
 317,IU Indy,7-25
 318,Alabama St.,10-22
-319,UMass Lowell,15-18
-320,Cleveland St.,11-22
+319,Cleveland St.,11-22
+320,UMass Lowell,15-18
 321,Northern Arizona,10-22
 322,Loyola MD,12-20
 323,Albany,11-21
