@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 03/22/2026 at 12:20 pm EST",
+  "updated": "Updated: 03/22/2026 at 01:27 pm EST",
   "teams": [
     {
       "team": "Duke",
@@ -615,27 +615,17 @@
       "team": "LSU",
       "record": "15-17",
       "ap_rank": null,
-      "avg_rank": 62,
+      "avg_rank": 61,
       "net_rank": 77,
-      "kenpom_rank": 62,
+      "kenpom_rank": 61,
       "bpi_rank": 54,
       "sos_rank": 79
-    },
-    {
-      "team": "Stanford",
-      "record": "20-12",
-      "ap_rank": null,
-      "avg_rank": 63,
-      "net_rank": 61,
-      "kenpom_rank": 61,
-      "bpi_rank": 74,
-      "sos_rank": 60
     },
     {
       "team": "Boise State",
       "record": "20-12",
       "ap_rank": null,
-      "avg_rank": 64,
+      "avg_rank": 63,
       "net_rank": 60,
       "kenpom_rank": 59,
       "bpi_rank": 78,
@@ -645,11 +635,21 @@
       "team": "Grand Canyon",
       "record": "20-12",
       "ap_rank": null,
-      "avg_rank": 64,
+      "avg_rank": 63,
       "net_rank": 71,
       "kenpom_rank": 57,
       "bpi_rank": 69,
       "sos_rank": 123
+    },
+    {
+      "team": "Stanford",
+      "record": "20-12",
+      "ap_rank": null,
+      "avg_rank": 63,
+      "net_rank": 61,
+      "kenpom_rank": 62,
+      "bpi_rank": 74,
+      "sos_rank": 60
     },
     {
       "team": "Ole Miss",
@@ -727,19 +727,9 @@
       "ap_rank": null,
       "avg_rank": 73,
       "net_rank": 79,
-      "kenpom_rank": 78,
+      "kenpom_rank": 77,
       "bpi_rank": 66,
       "sos_rank": 77
-    },
-    {
-      "team": "Creighton",
-      "record": "15-17",
-      "ap_rank": null,
-      "avg_rank": 74,
-      "net_rank": 83,
-      "kenpom_rank": 77,
-      "bpi_rank": 64,
-      "sos_rank": 58
     },
     {
       "team": "Nevada",
@@ -750,6 +740,16 @@
       "kenpom_rank": 74,
       "bpi_rank": 80,
       "sos_rank": 82
+    },
+    {
+      "team": "Creighton",
+      "record": "15-17",
+      "ap_rank": null,
+      "avg_rank": 75,
+      "net_rank": 83,
+      "kenpom_rank": 78,
+      "bpi_rank": 64,
+      "sos_rank": 58
     },
     {
       "team": "Minnesota",
@@ -1567,7 +1567,7 @@
       "ap_rank": null,
       "avg_rank": 157,
       "net_rank": 158,
-      "kenpom_rank": 156,
+      "kenpom_rank": 157,
       "bpi_rank": 154,
       "sos_rank": 90
     },
