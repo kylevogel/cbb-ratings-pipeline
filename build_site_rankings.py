@@ -1,10 +1,12 @@
 """
 Build the site rankings data by merging all data sources.
-Creates the final dashboard data file and HTML page.
+Creates the final dashboard data file.
 Outputs:
   - data_processed/site_rankings.csv
   - docs/rankings.json
-  - docs/index.html
+
+NOTE: docs/index.html is NOT written by this script.
+Edit docs/index.html directly — it will not be overwritten on pipeline runs.
 """
 
 import pandas as pd
@@ -30,7 +32,7 @@ def load_and_standardize_data():
         kenpom_df = standardize_team_names(kenpom_df, "team_kenpom", "kenpom")
         data["kenpom"] = kenpom_df[["team", "kenpom_rank"]].drop_duplicates(subset=["team"])
         print(f"Loaded {len(data['kenpom'])} KenPom rankings")
-        
+
         if "record" in kenpom_df.columns:
             data["records"] = kenpom_df[["team", "record"]].drop_duplicates(subset=["team"])
             print(f"Loaded {len(data['records'])} team records (from KenPom)")
@@ -148,279 +150,6 @@ def create_dashboard_json(master_df):
     return {"updated": updated_str, "teams": records}
 
 
-def create_dashboard_html():
-    return """<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBB Rankings Dashboard</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            min-height: 100vh;
-            color: #e0e0e0;
-            padding: 20px;
-        }
-        .container { max-width: 1800px; margin: 0 auto; padding: 0 20px; }
-        header { text-align: center; padding: 30px 0; margin-bottom: 30px; }
-        h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(90deg, #00d9ff, #00ff88);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-        }
-        .updated { color: #888; font-size: 0.9rem; }
-        .search-container { margin-bottom: 20px; display: flex; justify-content: center; }
-        #search {
-            width: 100%;
-            max-width: 400px;
-            padding: 12px 20px;
-            font-size: 1rem;
-            border: 2px solid #333;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-        #search:focus { border-color: #00d9ff; }
-        #search::placeholder { color: #666; }
-        .table-container {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            max-height: 75vh;
-            overflow: auto;
-        }
-        table { width: 100%; border-collapse: collapse; }
-        th, td {
-            padding: 15px 12px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        th {
-            background: #1a1a2e;
-            cursor: pointer;
-            user-select: none;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            transition: background 0.2s;
-        }
-        th:hover { background: rgba(0, 217, 255, 0.2); }
-        th.sort-asc::after { content: ' \\25B2'; font-size: 0.7rem; }
-        th.sort-desc::after { content: ' \\25BC'; font-size: 0.7rem; }
-        tr:hover { background: rgba(255, 255, 255, 0.05); }
-        .team-name { font-weight: 500; color: #fff; }
-        .rank-cell { text-align: left; padding-left: 30px; font-family: 'Monaco', 'Consolas', monospace; }
-        .ap-rank { background: rgba(255, 215, 0, 0.1); color: #ffd700; font-weight: bold; }
-        .avg-rank { color: #00ff88; font-weight: bold; }
-        .top-10 { background: rgba(0, 255, 136, 0.1); }
-        .top-25 { background: rgba(0, 217, 255, 0.05); }
-        .record-cell { color: #aaa; font-family: 'Monaco', 'Consolas', monospace; }
-        .empty { color: #444; }
-        .stats { text-align: center; margin-top: 20px; color: #666; font-size: 0.9rem; }
-        @media (max-width: 768px) {
-            h1 { font-size: 1.8rem; }
-            th, td { padding: 10px 8px; font-size: 0.85rem; }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>CBB Rankings Dashboard</h1>
-            <p class="updated"><span id="update-time">Loading...</span></p>
-        </header>
-
-        <div class="search-container">
-            <input type="text" id="search" placeholder="Search teams..." autocomplete="off">
-        </div>
-
-        <div class="table-container">
-            <table id="rankings-table">
-                <thead>
-                    <tr>
-                        <th data-sort="team">Team</th>
-                        <th data-sort="record">Record</th>
-                        <th data-sort="avg_rank">KV Rank</th>
-                        <th data-sort="ap_rank">AP</th>
-                        <th data-sort="net_rank">NET</th>
-                        <th data-sort="kenpom_rank">KenPom</th>
-                        <th data-sort="bpi_rank">BPI</th>
-                        <th data-sort="sos_rank">SOS</th>
-                    </tr>
-                </thead>
-                <tbody id="rankings-body">
-                    <tr><td colspan="8" style="text-align: center; padding: 40px;">Loading rankings data...</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <p class="stats" id="stats"></p>
-    </div>
-
-    <script>
-        let teamsData = [];
-        let currentSort = { column: 'avg_rank', direction: 'asc' };
-
-        function parseRecord(rec) {
-            if (rec === null || rec === undefined) return null;
-            const s = String(rec).trim();
-            if (!s) return null;
-            const m = s.match(/(\\d+)\\s*-\\s*(\\d+)/);
-            if (!m) return null;
-            const w = parseInt(m[1], 10);
-            const l = parseInt(m[2], 10);
-            const g = w + l;
-            const pct = g > 0 ? (w / g) : -1;
-            return { w, l, pct };
-        }
-
-        async function loadData() {
-            try {
-                const response = await fetch('rankings.json');
-                const data = await response.json();
-                teamsData = data.teams;
-                document.getElementById('update-time').textContent = data.updated;
-                renderTable();
-                updateStats();
-            } catch (error) {
-                console.error('Error loading data:', error);
-                document.getElementById('rankings-body').innerHTML =
-                    '<tr><td colspan="8" style="text-align: center; padding: 40px; color: #ff6b6b;">Error loading data. Please refresh.</td></tr>';
-            }
-        }
-
-        function renderTable() {
-            const searchTerm = document.getElementById('search').value.toLowerCase();
-
-            let filtered = teamsData.filter(team =>
-                team.team.toLowerCase().includes(searchTerm)
-            );
-
-            filtered.sort((a, b) => {
-                let aVal = a[currentSort.column];
-                let bVal = b[currentSort.column];
-
-                if (aVal === null && bVal === null) return 0;
-                if (aVal === null) return 1;
-                if (bVal === null) return -1;
-
-                if (currentSort.column === 'team') {
-                    aVal = String(aVal).toLowerCase();
-                    bVal = String(bVal).toLowerCase();
-                    if (currentSort.direction === 'asc') return aVal.localeCompare(bVal);
-                    return bVal.localeCompare(aVal);
-                }
-
-                if (currentSort.column === 'record') {
-                    const ar = parseRecord(aVal);
-                    const br = parseRecord(bVal);
-
-                    if (ar === null && br === null) return 0;
-                    if (ar === null) return 1;
-                    if (br === null) return -1;
-
-                    const cmpPct = br.pct - ar.pct;
-                    if (cmpPct !== 0) {
-                        return currentSort.direction === 'asc' ? cmpPct : -cmpPct;
-                    }
-
-                    const cmpW = br.w - ar.w;
-                    if (cmpW !== 0) {
-                        return currentSort.direction === 'asc' ? cmpW : -cmpW;
-                    }
-
-                    const cmpL = ar.l - br.l;
-                    if (cmpL !== 0) {
-                        return currentSort.direction === 'asc' ? cmpL : -cmpL;
-                    }
-
-                    const at = String(a.team || '').toLowerCase();
-                    const bt = String(b.team || '').toLowerCase();
-                    return at.localeCompare(bt);
-                }
-
-                if (currentSort.direction === 'asc') return aVal - bVal;
-                return bVal - aVal;
-            });
-
-            const tbody = document.getElementById('rankings-body');
-
-            if (filtered.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 40px;">No teams found</td></tr>';
-                return;
-            }
-
-            tbody.innerHTML = filtered.map(team => {
-                const rowClass = team.avg_rank && team.avg_rank <= 10 ? 'top-10' :
-                                 team.avg_rank && team.avg_rank <= 25 ? 'top-25' : '';
-
-                return `
-                    <tr class="${rowClass}">
-                        <td class="team-name">${team.team}</td>
-                        <td class="record-cell">${team.record || '<span class="empty">-</span>'}</td>
-                        <td class="rank-cell avg-rank">${team.avg_rank || '<span class="empty">-</span>'}</td>
-                        <td class="rank-cell ap-rank">${team.ap_rank || '<span class="empty">-</span>'}</td>
-                        <td class="rank-cell">${team.net_rank || '<span class="empty">-</span>'}</td>
-                        <td class="rank-cell">${team.kenpom_rank || '<span class="empty">-</span>'}</td>
-                        <td class="rank-cell">${team.bpi_rank || '<span class="empty">-</span>'}</td>
-                        <td class="rank-cell">${team.sos_rank || '<span class="empty">-</span>'}</td>
-                    </tr>
-                `;
-            }).join('');
-
-            updateSortIndicators();
-        }
-
-        function updateSortIndicators() {
-            document.querySelectorAll('th').forEach(th => {
-                th.classList.remove('sort-asc', 'sort-desc');
-                if (th.dataset.sort === currentSort.column) {
-                    th.classList.add(currentSort.direction === 'asc' ? 'sort-asc' : 'sort-desc');
-                }
-            });
-        }
-
-        function updateStats() {
-            const total = teamsData.length;
-            const withAP = teamsData.filter(t => t.ap_rank).length;
-            document.getElementById('stats').textContent =
-                `Showing ${total} D1 teams | ${withAP} teams in AP Top 25`;
-        }
-
-        document.getElementById('search').addEventListener('input', renderTable);
-
-        document.querySelectorAll('th[data-sort]').forEach(th => {
-            th.addEventListener('click', () => {
-                const column = th.dataset.sort;
-                if (currentSort.column === column) {
-                    currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
-                } else {
-                    currentSort.column = column;
-                    currentSort.direction = 'asc';
-                }
-                renderTable();
-            });
-        });
-
-        loadData();
-    </script>
-</body>
-</html>"""
-
-
 def main():
     print("Building site rankings...")
 
@@ -443,10 +172,13 @@ def main():
         json.dump(dashboard_json, f, indent=2)
     print("Saved docs/rankings.json")
 
-    html = create_dashboard_html()
-    with open("docs/index.html", "w") as f:
-        f.write(html)
-    print("Saved docs/index.html")
+    # FIX: index.html is no longer written here.
+    # Edit docs/index.html directly — it is the source of truth and
+    # will not be overwritten by the pipeline.
+    if not os.path.exists("docs/index.html"):
+        print("WARNING: docs/index.html does not exist. Make sure it is committed to the repo.")
+    else:
+        print("docs/index.html already exists — skipping (not overwritten).")
 
     print("Done!")
 
