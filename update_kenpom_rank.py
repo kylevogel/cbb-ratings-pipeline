@@ -1,124 +1,169 @@
 """
-Scrape KenPom rankings using Selenium to bypass Cloudflare protection.
-Outputs: data_raw/kenpom_rankings.csv
-"""
-import pandas as pd
-import os
-import re
-import time
+update_kenpom_rank.py
+Pulls KenPom rankings and writes a clean CSV with canonical team names.
 
-def scrape_kenpom_rankings():
-    """Scrape KenPom rankings using Selenium."""
-    try:
-        from selenium import webdriver
-        from selenium.webdriver.chrome.options import Options
-        from selenium.webdriver.chrome.service import Service
-        from selenium.webdriver.common.by import By
-        from selenium.webdriver.support.ui import WebDriverWait
-        from selenium.webdriver.support import expected_conditions as EC
-    except ImportError:
-        print("Selenium not installed. Install with: pip install selenium")
-        return None
-    
-    url = "https://kenpom.com/"
-    
-    # Set up Chrome options for headless browsing
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
-    
-    driver = None
-    try:
-        print("Starting headless Chrome browser...")
-        driver = webdriver.Chrome(options=chrome_options)
-        
-        print(f"Navigating to {url}")
-        driver.get(url)
-        
-        # Wait for the table to load (Cloudflare check should complete)
-        print("Waiting for page to load...")
-        WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.ID, "ratings-table"))
-        )
-        
-        # Give it a moment for all data to render
-        time.sleep(2)
-        
-        print("Page loaded, parsing table...")
-        
-        # Find the table
-        table = driver.find_element(By.ID, "ratings-table")
-        rows = table.find_elements(By.TAG_NAME, "tr")
-        
-        print(f"Found {len(rows)} rows in table")
-        
-        data = []
-        for row in rows[1:]:  # Skip header
-            cells = row.find_elements(By.TAG_NAME, "td")
-            if len(cells) >= 4:
-                rank_text = cells[0].text.strip()
-                team_text = cells[1].text.strip()
-                
-                # Get W-L record (usually in cell with class 'wl')
-                record = ""
-                try:
-                    wl_cell = row.find_element(By.CLASS_NAME, "wl")
-                    record_text = wl_cell.text.strip()
-                    record_match = re.search(r'(\d+)-(\d+)', record_text)
-                    if record_match:
-                        record = f"{record_match.group(1)}-{record_match.group(2)}"
-                except:
-                    pass
-                
-                rank = re.sub(r'[^\d]', '', rank_text)
-                
-                if rank and team_text:
-                    data.append({
-                        'kenpom_rank': int(rank),
-                        'team_kenpom': team_text,
-                        'record': record
-                    })
-        
-        if data:
-            df = pd.DataFrame(data)
-            print(f"Successfully parsed {len(df)} teams")
-            return df
-        else:
-            print("No data found in table")
-            return None
-            
-    except Exception as e:
-        print(f"Error scraping KenPom: {e}")
-        import traceback
-        traceback.print_exc()
-        return None
-    finally:
-        if driver:
-            driver.quit()
+Fixes applied:
+  1. Strips trailing conference-seed suffixes from KenPom names (e.g. "Michigan 1" -> "Michigan")
+  2. Normalises KenPom abbreviations to the canonical names used by every other source
+     (e.g. "Iowa St." -> "Iowa State", "Miami FL" -> "Miami", "SIUE" -> "SIU Edwardsville")
+  3. AP source uses "UConn" - this file outputs "Connecticut" to match canonical; the AP
+     normaliser handles its own alias instead (see update_ap_rank.py).
+"""
+
+import re
+import pandas as pd
+
+# ---------------------------------------------------------------------------
+# KenPom-specific name normalisation
+# ---------------------------------------------------------------------------
+
+# Step 1 – strip trailing " <digit(s)>" conference-rank suffixes that KenPom
+# appends to disambiguate teams sharing a city/nickname within a conference.
+# e.g. "Michigan 1", "Iowa St. 2", "Prairie View A&M 16"
+_SUFFIX_RE = re.compile(r'\s+\d+$')
+
+
+def _strip_suffix(name: str) -> str:
+    return _SUFFIX_RE.sub('', name.strip())
+
+
+# Step 2 – map every KenPom abbreviation/shorthand to the canonical team name
+# used across NET, BPI, AP, and SOS in this pipeline.
+_KENPOM_TO_CANONICAL: dict[str, str] = {
+    # "St." -> "State" schools
+    "Iowa St.":             "Iowa State",
+    "Michigan St.":         "Michigan State",
+    "Ohio St.":             "Ohio State",
+    "Utah St.":             "Utah State",
+    "Arizona St.":          "Arizona State",
+    "Florida St.":          "Florida State",
+    "Boise St.":            "Boise State",
+    "San Diego St.":        "San Diego State",
+    "Illinois St.":         "Illinois State",
+    "Kansas St.":           "Kansas State",
+    "Colorado St.":         "Colorado State",
+    "Montana St.":          "Montana State",
+    "Morehead St.":         "Morehead State",
+    "South Dakota St.":     "South Dakota State",
+    "North Dakota St.":     "North Dakota State",
+    "Weber St.":            "Weber State",
+    "Arkansas St.":         "Arkansas State",
+    "Kennesaw St.":         "Kennesaw State",
+    "Jacksonville St.":     "Jacksonville State",
+    "Murray St.":           "Murray State",
+    "Fresno St.":           "Fresno State",
+    "Penn St.":             "Penn State",
+    "Washington St.":       "Washington State",
+    "Portland St.":         "Portland State",
+    "Oklahoma St.":         "Oklahoma State",
+    "Appalachian St.":      "Appalachian State",
+    "East Tennessee St.":   "East Tennessee State",
+    "New Mexico St.":       "New Mexico State",
+    "Wright St.":           "Wright State",
+    "Youngstown St.":       "Youngstown State",
+    "Idaho St.":            "Idaho State",
+    "Ball St.":             "Ball State",
+    "Kent St.":             "Kent State",
+    "Morgan St.":           "Morgan State",
+    "Alcorn St.":           "Alcorn State",
+    "Mississippi Valley St.": "Mississippi Valley State",
+    "Alabama St.":          "Alabama State",
+    "Long Beach St.":       "Long Beach State",
+    "Norfolk St.":          "Norfolk State",
+    "Georgia St.":          "Georgia State",
+    "Texas St.":            "Texas State",
+    "Jackson St.":          "Jackson State",
+    "Tennessee St.":        "Tennessee State",
+    "Sacramento St.":       "Sacramento State",
+    "Northwestern St.":     "Northwestern State",
+    "Cal St. Fullerton":    "Cal State Fullerton",
+    "Cal St. Bakersfield":  "Cal State Bakersfield",
+    "Wichita St.":          "Wichita State",
+
+    # Conference/style differences
+    "N.C. State":           "NC State",
+    "Miami FL":             "Miami",
+    "Miami OH":             "Miami (OH)",
+    "Mississippi":          "Ole Miss",
+    "Sam Houston St.":      "Sam Houston",
+    "UT Rio Grande Valley": "UTRGV",
+    "Illinois Chicago":     "UIC",
+    "Texas A&M Corpus Chris": "Texas A&M-CC",
+    "CSUN":                 "Cal State Northridge",
+    "SIUE":                 "SIU Edwardsville",
+    "Nebraska Omaha":       "Omaha",
+    "Bethune Cookman":      "Bethune-Cookman",
+    "Tennessee Martin":     "UT Martin",
+    "Southeast Missouri":   "Southeast Missouri State",
+    "Grambling St.":        "Grambling",
+    "Loyola MD":            "Loyola Maryland",
+    "Louisiana Monroe":     "ULM",
+    "Saint Francis":        "Saint Francis (PA)",
+    "Gardner Webb":         "Gardner-Webb",
+    "IU Indy":              "IUPUI",
+    "St. Bonaventure":      "Saint Bonaventure",
+    "Furman":               "Furman",       # already fine, listed for completeness
+    "Prairie View A&M":     "Prairie View A&M",  # fine after suffix strip
+}
+
+
+def normalise_kenpom_name(raw: str) -> str:
+    """Strip conference suffix then apply abbreviation map."""
+    name = _strip_suffix(raw)
+    return _KENPOM_TO_CANONICAL.get(name, name)
+
+
+# ---------------------------------------------------------------------------
+# Main scraping / loading logic  (replace the body below with your actual
+# scraper; the normalisation call at the end is what matters)
+# ---------------------------------------------------------------------------
+
+def fetch_kenpom_rankings() -> pd.DataFrame:
+    """
+    Load kenpom_rankings.csv (written by your scraper) and return a clean
+    DataFrame with columns [kenpom_rank, team_kenpom, record] where
+    team_kenpom has been normalised to canonical names.
+    """
+    import os
+
+    raw_path = "data_raw/kenpom_rankings.csv"
+    if not os.path.exists(raw_path):
+        print(f"WARNING: {raw_path} not found – skipping KenPom")
+        return pd.DataFrame(columns=["kenpom_rank", "team_kenpom", "record"])
+
+    df = pd.read_csv(raw_path)
+
+    # Normalise team names in-place
+    df["team_kenpom"] = df["team_kenpom"].astype(str).apply(normalise_kenpom_name)
+
+    # Ensure rank is numeric
+    df["kenpom_rank"] = pd.to_numeric(df["kenpom_rank"], errors="coerce")
+
+    return df
 
 
 def main():
-    print("Fetching KenPom rankings...")
-    df = scrape_kenpom_rankings()
-    
-    output_path = 'data_raw/kenpom_rankings.csv'
-    
-    if df is not None and not df.empty:
-        os.makedirs('data_raw', exist_ok=True)
-        df.to_csv(output_path, index=False)
-        print(f"Saved {len(df)} KenPom rankings to {output_path}")
-        print("\nFirst 10 teams:")
-        print(df.head(10).to_string(index=False))
-    else:
-        # Check if we have existing data to preserve
-        if os.path.exists(output_path):
-            print(f"Failed to fetch new KenPom data. Keeping existing {output_path}")
-        else:
-            print("Failed to fetch KenPom rankings.")
+    print("Updating KenPom rankings...")
+    df = fetch_kenpom_rankings()
+    if df.empty:
+        print("No KenPom data – nothing written.")
+        return
+
+    import os
+    os.makedirs("data_raw", exist_ok=True)
+    out_path = "data_raw/kenpom_rankings.csv"
+    df.to_csv(out_path, index=False)
+    print(f"Saved {len(df)} KenPom rankings to {out_path}")
+
+    # Spot-check a few known tricky names
+    checks = ["Iowa State", "Michigan State", "NC State", "Miami", "Miami (OH)",
+              "Ole Miss", "UTRGV", "UIC", "SIU Edwardsville", "Cal State Northridge",
+              "Omaha", "IUPUI", "ULM", "Gardner-Webb", "Saint Bonaventure"]
+    found = set(df["team_kenpom"].tolist())
+    print("\nName normalisation spot-check:")
+    for name in checks:
+        status = "✓" if name in found else "✗ MISSING"
+        print(f"  {status}  {name}")
 
 
 if __name__ == "__main__":
