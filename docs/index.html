@@ -123,11 +123,6 @@
         let teamsData = [];
         let currentSort = { column: 'avg_rank', direction: 'asc' };
 
-        // FIX: use explicit null/undefined check instead of falsy ||
-        function fmt(val) {
-            return (val === null || val === undefined || val === '') ? '<span class="empty">-</span>' : val;
-        }
-
         function parseRecord(rec) {
             if (rec === null || rec === undefined) return null;
             const s = String(rec).trim();
@@ -144,7 +139,6 @@
         async function loadData() {
             try {
                 const response = await fetch('rankings.json');
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const data = await response.json();
                 teamsData = data.teams;
                 document.getElementById('update-time').textContent = data.updated;
@@ -154,7 +148,6 @@
                 console.error('Error loading data:', error);
                 document.getElementById('rankings-body').innerHTML =
                     '<tr><td colspan="8" style="text-align: center; padding: 40px; color: #ff6b6b;">Error loading data. Please refresh.</td></tr>';
-                document.getElementById('update-time').textContent = 'Failed to load';
             }
         }
 
@@ -169,7 +162,6 @@
                 let aVal = a[currentSort.column];
                 let bVal = b[currentSort.column];
 
-                // Nulls always go to the bottom regardless of sort direction
                 if (aVal === null && bVal === null) return 0;
                 if (aVal === null) return 1;
                 if (bVal === null) return -1;
@@ -189,21 +181,19 @@
                     if (ar === null) return 1;
                     if (br === null) return -1;
 
-                    // FIX: asc = best record first (highest win pct), so ar.pct - br.pct
-                    // was previously br.pct - ar.pct which made asc sort worst-first
-                    const cmpPct = ar.pct - br.pct;
+                    const cmpPct = br.pct - ar.pct;
                     if (cmpPct !== 0) {
-                        return currentSort.direction === 'asc' ? -cmpPct : cmpPct;
+                        return currentSort.direction === 'asc' ? cmpPct : -cmpPct;
                     }
 
-                    const cmpW = ar.w - br.w;
+                    const cmpW = br.w - ar.w;
                     if (cmpW !== 0) {
-                        return currentSort.direction === 'asc' ? -cmpW : cmpW;
+                        return currentSort.direction === 'asc' ? cmpW : -cmpW;
                     }
 
-                    const cmpL = br.l - ar.l;
+                    const cmpL = ar.l - br.l;
                     if (cmpL !== 0) {
-                        return currentSort.direction === 'asc' ? -cmpL : cmpL;
+                        return currentSort.direction === 'asc' ? cmpL : -cmpL;
                     }
 
                     const at = String(a.team || '').toLowerCase();
@@ -223,21 +213,19 @@
             }
 
             tbody.innerHTML = filtered.map(team => {
-                // FIX: use explicit null check, not falsy, so rank 0 doesn't show as '-'
-                const avgRankVal = team.avg_rank !== null && team.avg_rank !== undefined ? team.avg_rank : null;
-                const rowClass = avgRankVal !== null && avgRankVal <= 10 ? 'top-10' :
-                                 avgRankVal !== null && avgRankVal <= 25 ? 'top-25' : '';
+                const rowClass = team.avg_rank && team.avg_rank <= 10 ? 'top-10' :
+                                 team.avg_rank && team.avg_rank <= 25 ? 'top-25' : '';
 
                 return `
                     <tr class="${rowClass}">
                         <td class="team-name">${team.team}</td>
-                        <td class="record-cell">${fmt(team.record)}</td>
-                        <td class="rank-cell avg-rank">${fmt(team.avg_rank)}</td>
-                        <td class="rank-cell ap-rank">${fmt(team.ap_rank)}</td>
-                        <td class="rank-cell">${fmt(team.net_rank)}</td>
-                        <td class="rank-cell">${fmt(team.kenpom_rank)}</td>
-                        <td class="rank-cell">${fmt(team.bpi_rank)}</td>
-                        <td class="rank-cell">${fmt(team.sos_rank)}</td>
+                        <td class="record-cell">${team.record || '<span class="empty">-</span>'}</td>
+                        <td class="rank-cell avg-rank">${team.avg_rank || '<span class="empty">-</span>'}</td>
+                        <td class="rank-cell ap-rank">${team.ap_rank || '<span class="empty">-</span>'}</td>
+                        <td class="rank-cell">${team.net_rank || '<span class="empty">-</span>'}</td>
+                        <td class="rank-cell">${team.kenpom_rank || '<span class="empty">-</span>'}</td>
+                        <td class="rank-cell">${team.bpi_rank || '<span class="empty">-</span>'}</td>
+                        <td class="rank-cell">${team.sos_rank || '<span class="empty">-</span>'}</td>
                     </tr>
                 `;
             }).join('');
@@ -256,7 +244,7 @@
 
         function updateStats() {
             const total = teamsData.length;
-            const withAP = teamsData.filter(t => t.ap_rank !== null && t.ap_rank !== undefined).length;
+            const withAP = teamsData.filter(t => t.ap_rank).length;
             document.getElementById('stats').textContent =
                 `Showing ${total} D1 teams | ${withAP} teams in AP Top 25`;
         }
