@@ -147,7 +147,6 @@ def _try_text_method(soup: BeautifulSoup) -> list[dict]:
     lines = [ln.strip() for ln in text.split("\n") if ln.strip()]
 
     rows = []
-    found_ranks: set[int] = set()
     i = 0
 
     while i < len(lines) - 1 and len(rows) < 25:
@@ -155,7 +154,8 @@ def _try_text_method(soup: BeautifulSoup) -> list[dict]:
 
         if re.fullmatch(r"\d{1,2}", ln):
             rk = int(ln)
-            if 1 <= rk <= 25 and rk not in found_ranks:
+            # Allow same rank twice (ties), but stop at 25 total teams
+            if 1 <= rk <= 25 and len(rows) < 25:
                 for j in range(i + 1, min(i + 12, len(lines))):
                     candidate = lines[j]
 
@@ -191,8 +191,9 @@ def _try_text_method(soup: BeautifulSoup) -> list[dict]:
                     ).strip()
 
                     if team and len(team) >= 3:
-                        rows.append({"ap_rank": rk, "team_ap": team})
-                        found_ranks.add(rk)
+                        # Skip if we already have this team (scrape artifact)
+                        if not any(r["team_ap"] == team for r in rows):
+                            rows.append({"ap_rank": rk, "team_ap": team})
                         break
         i += 1
 
@@ -238,20 +239,18 @@ def scrape_ap_poll() -> pd.DataFrame | None:
 
     df = (
         pd.DataFrame(rows)
-        .drop_duplicates(subset=["ap_rank"])
-        .sort_values("ap_rank")
+        .drop_duplicates(subset=["team_ap"])   # dedupe by team, NOT rank — tied ranks are valid
+        .sort_values(["ap_rank", "team_ap"])
         .reset_index(drop=True)
     )
 
     # Normalise names to canonical
     df["team_ap"] = df["team_ap"].apply(_normalise)
 
-    # Report any gaps
-    present = set(df["ap_rank"].tolist())
-    missing = sorted(set(range(1, 26)) - present)
-    if missing:
-        print(f"  WARNING: ranks missing after scrape: {missing}")
-        print("  This may mean the AP source page has a gap, or the parser needs updating.")
+    # With ties some rank numbers legitimately don't appear (e.g. two #23s means no #24)
+    # Warn only if team count is below 25, not on missing rank numbers
+    if len(df) < 25:
+        print(f"  WARNING: only {len(df)} teams scraped (expected 25) — parser may need updating.")
 
     for _, row in df.iterrows():
         print(f"  {int(row['ap_rank'])}. {row['team_ap']}")
