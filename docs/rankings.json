@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 03/28/2026 at 02:40 am EST",
+  "updated": "Updated: 03/28/2026 at 03:31 am EST",
   "teams": [
     {
       "team": "Duke",
@@ -52,24 +52,24 @@
       "sos_rank": 13
     },
     {
+      "team": "Illinois",
+      "record": "26-8",
+      "ap_rank": 13,
+      "avg_rank": 6,
+      "net_rank": 8,
+      "kenpom_rank": 6,
+      "bpi_rank": 6,
+      "sos_rank": 11
+    },
+    {
       "team": "Iowa State",
       "record": "29-7",
       "ap_rank": 6,
       "avg_rank": 6,
       "net_rank": 6,
       "kenpom_rank": 7,
-      "bpi_rank": 6,
-      "sos_rank": 32
-    },
-    {
-      "team": "Illinois",
-      "record": "26-8",
-      "ap_rank": 13,
-      "avg_rank": 7,
-      "net_rank": 8,
-      "kenpom_rank": 6,
       "bpi_rank": 7,
-      "sos_rank": 11
+      "sos_rank": 32
     },
     {
       "team": "Purdue",
@@ -88,14 +88,14 @@
       "avg_rank": 9,
       "net_rank": 10,
       "kenpom_rank": 10,
-      "bpi_rank": 10,
+      "bpi_rank": 11,
       "sos_rank": 23
     },
     {
       "team": "Gonzaga",
       "record": "31-4",
       "ap_rank": 12,
-      "avg_rank": 10,
+      "avg_rank": 9,
       "net_rank": 7,
       "kenpom_rank": 15,
       "bpi_rank": 9,
@@ -145,10 +145,10 @@
       "team": "Tennessee",
       "record": "24-11",
       "ap_rank": 23,
-      "avg_rank": 15,
+      "avg_rank": 13,
       "net_rank": 20,
       "kenpom_rank": 14,
-      "bpi_rank": 11,
+      "bpi_rank": 10,
       "sos_rank": 15
     },
     {
@@ -185,10 +185,10 @@
       "team": "Virginia",
       "record": "30-6",
       "ap_rank": 9,
-      "avg_rank": 19,
+      "avg_rank": 18,
       "net_rank": 12,
       "kenpom_rank": 18,
-      "bpi_rank": 21,
+      "bpi_rank": 20,
       "sos_rank": 43
     },
     {
@@ -198,7 +198,7 @@
       "avg_rank": 20,
       "net_rank": 19,
       "kenpom_rank": 20,
-      "bpi_rank": 20,
+      "bpi_rank": 21,
       "sos_rank": 3
     },
     {
