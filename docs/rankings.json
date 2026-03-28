@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 03/28/2026 at 03:31 am EST",
+  "updated": "Updated: 03/28/2026 at 04:30 am EST",
   "teams": [
     {
       "team": "Duke",
@@ -888,7 +888,7 @@
       "avg_rank": 89,
       "net_rank": 87,
       "kenpom_rank": 88,
-      "bpi_rank": 86,
+      "bpi_rank": 87,
       "sos_rank": 111
     },
     {
@@ -972,6 +972,16 @@
       "sos_rank": 72
     },
     {
+      "team": "Oregon",
+      "record": "12-20",
+      "ap_rank": null,
+      "avg_rank": 98,
+      "net_rank": 109,
+      "kenpom_rank": 100,
+      "bpi_rank": 86,
+      "sos_rank": 37
+    },
+    {
       "team": "Stephen F. Austin",
       "record": "28-6",
       "ap_rank": null,
@@ -982,20 +992,10 @@
       "sos_rank": 291
     },
     {
-      "team": "Oregon",
-      "record": "12-20",
-      "ap_rank": null,
-      "avg_rank": 99,
-      "net_rank": 109,
-      "kenpom_rank": 100,
-      "bpi_rank": 87,
-      "sos_rank": 37
-    },
-    {
       "team": "Pittsburgh",
       "record": "13-20",
       "ap_rank": null,
-      "avg_rank": 99,
+      "avg_rank": 100,
       "net_rank": 104,
       "kenpom_rank": 98,
       "bpi_rank": 94,
@@ -1232,16 +1232,6 @@
       "sos_rank": 79
     },
     {
-      "team": "Southern Illinois",
-      "record": "16-16",
-      "ap_rank": null,
-      "avg_rank": 124,
-      "net_rank": 120,
-      "kenpom_rank": 120,
-      "bpi_rank": 127,
-      "sos_rank": 148
-    },
-    {
       "team": "Utah",
       "record": "10-22",
       "ap_rank": null,
@@ -1255,11 +1245,21 @@
       "team": "Florida Atlantic",
       "record": "18-15",
       "ap_rank": null,
-      "avg_rank": 126,
+      "avg_rank": 125,
       "net_rank": 123,
       "kenpom_rank": 127,
       "bpi_rank": 118,
       "sos_rank": 117
+    },
+    {
+      "team": "Southern Illinois",
+      "record": "16-16",
+      "ap_rank": null,
+      "avg_rank": 125,
+      "net_rank": 120,
+      "kenpom_rank": 120,
+      "bpi_rank": 128,
+      "sos_rank": 148
     },
     {
       "team": "Memphis",
@@ -1348,7 +1348,7 @@
       "avg_rank": 135,
       "net_rank": 142,
       "kenpom_rank": 139,
-      "bpi_rank": 128,
+      "bpi_rank": 127,
       "sos_rank": 68
     },
     {
@@ -1748,7 +1748,7 @@
       "avg_rank": 175,
       "net_rank": 182,
       "kenpom_rank": 188,
-      "bpi_rank": 161,
+      "bpi_rank": 160,
       "sos_rank": 252
     },
     {
@@ -1828,7 +1828,7 @@
       "avg_rank": 183,
       "net_rank": 192,
       "kenpom_rank": 195,
-      "bpi_rank": 160,
+      "bpi_rank": 161,
       "sos_rank": 245
     },
     {
