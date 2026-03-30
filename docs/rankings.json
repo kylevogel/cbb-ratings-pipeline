@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 03/30/2026 at 01:27 am EST",
+  "updated": "Updated: 03/30/2026 at 03:19 am EST",
   "teams": [
     {
       "team": "Duke",
@@ -1232,16 +1232,6 @@
       "sos_rank": 82
     },
     {
-      "team": "Southern Illinois",
-      "record": "16-16",
-      "ap_rank": null,
-      "avg_rank": 124,
-      "net_rank": 120,
-      "kenpom_rank": 120,
-      "bpi_rank": 127,
-      "sos_rank": 148
-    },
-    {
       "team": "Utah",
       "record": "10-22",
       "ap_rank": null,
@@ -1255,11 +1245,21 @@
       "team": "Florida Atlantic",
       "record": "18-15",
       "ap_rank": null,
-      "avg_rank": 126,
+      "avg_rank": 125,
       "net_rank": 123,
       "kenpom_rank": 127,
       "bpi_rank": 118,
       "sos_rank": 118
+    },
+    {
+      "team": "Southern Illinois",
+      "record": "16-16",
+      "ap_rank": null,
+      "avg_rank": 125,
+      "net_rank": 120,
+      "kenpom_rank": 120,
+      "bpi_rank": 128,
+      "sos_rank": 148
     },
     {
       "team": "Memphis",
@@ -1348,7 +1348,7 @@
       "avg_rank": 135,
       "net_rank": 142,
       "kenpom_rank": 139,
-      "bpi_rank": 128,
+      "bpi_rank": 127,
       "sos_rank": 72
     },
     {
@@ -1748,7 +1748,7 @@
       "avg_rank": 175,
       "net_rank": 182,
       "kenpom_rank": 188,
-      "bpi_rank": 160,
+      "bpi_rank": 161,
       "sos_rank": 254
     },
     {
@@ -1828,7 +1828,7 @@
       "avg_rank": 183,
       "net_rank": 192,
       "kenpom_rank": 195,
-      "bpi_rank": 161,
+      "bpi_rank": 160,
       "sos_rank": 245
     },
     {
@@ -2455,10 +2455,10 @@
       "team": "Old Dominion",
       "record": "12-21",
       "ap_rank": null,
-      "avg_rank": 246,
+      "avg_rank": 245,
       "net_rank": 255,
       "kenpom_rank": 248,
-      "bpi_rank": 226,
+      "bpi_rank": 225,
       "sos_rank": 192
     },
     {
@@ -2532,16 +2532,6 @@
       "sos_rank": 274
     },
     {
-      "team": "Longwood",
-      "record": "16-16",
-      "ap_rank": null,
-      "avg_rank": 254,
-      "net_rank": 266,
-      "kenpom_rank": 270,
-      "bpi_rank": 225,
-      "sos_rank": 341
-    },
-    {
       "team": "Princeton",
       "record": "9-20",
       "ap_rank": null,
@@ -2550,6 +2540,16 @@
       "kenpom_rank": 254,
       "bpi_rank": 258,
       "sos_rank": 132
+    },
+    {
+      "team": "Longwood",
+      "record": "16-16",
+      "ap_rank": null,
+      "avg_rank": 255,
+      "net_rank": 266,
+      "kenpom_rank": 270,
+      "bpi_rank": 226,
+      "sos_rank": 341
     },
     {
       "team": "Boston University",
@@ -2852,16 +2852,6 @@
       "sos_rank": 282
     },
     {
-      "team": "Eastern Kentucky",
-      "record": "11-21",
-      "ap_rank": null,
-      "avg_rank": 286,
-      "net_rank": 291,
-      "kenpom_rank": 297,
-      "bpi_rank": 270,
-      "sos_rank": 194
-    },
-    {
       "team": "Jacksonville",
       "record": "12-20",
       "ap_rank": null,
@@ -2882,6 +2872,16 @@
       "sos_rank": 298
     },
     {
+      "team": "Eastern Kentucky",
+      "record": "11-21",
+      "ap_rank": null,
+      "avg_rank": 288,
+      "net_rank": 291,
+      "kenpom_rank": 297,
+      "bpi_rank": 271,
+      "sos_rank": 194
+    },
+    {
       "team": "Southeastern Louisiana",
       "record": "9-22",
       "ap_rank": null,
@@ -2890,6 +2890,16 @@
       "kenpom_rank": 286,
       "bpi_rank": 282,
       "sos_rank": 300
+    },
+    {
+      "team": "Ball State",
+      "record": "12-19",
+      "ap_rank": null,
+      "avg_rank": 290,
+      "net_rank": 299,
+      "kenpom_rank": 296,
+      "bpi_rank": 270,
+      "sos_rank": 287
     },
     {
       "team": "UNC Greensboro",
@@ -2902,20 +2912,10 @@
       "sos_rank": 273
     },
     {
-      "team": "Ball State",
-      "record": "12-19",
-      "ap_rank": null,
-      "avg_rank": 291,
-      "net_rank": 299,
-      "kenpom_rank": 296,
-      "bpi_rank": 271,
-      "sos_rank": 287
-    },
-    {
       "team": "Delaware",
       "record": "10-21",
       "ap_rank": null,
-      "avg_rank": 291,
+      "avg_rank": 292,
       "net_rank": 287,
       "kenpom_rank": 291,
       "bpi_rank": 288,
