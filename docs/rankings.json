@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 04/06/2026 at 03:20 am EST",
+  "updated": "Updated: 04/06/2026 at 05:03 am EST",
   "teams": [
     {
       "team": "Duke",
@@ -342,24 +342,24 @@
       "sos_rank": 64
     },
     {
+      "team": "Georgia",
+      "record": "22-11",
+      "ap_rank": null,
+      "avg_rank": 34,
+      "net_rank": 33,
+      "kenpom_rank": 35,
+      "bpi_rank": 37,
+      "sos_rank": 67
+    },
+    {
       "team": "Auburn",
       "record": "19-16",
       "ap_rank": null,
-      "avg_rank": 35,
+      "avg_rank": 36,
       "net_rank": 38,
       "kenpom_rank": 40,
       "bpi_rank": 28,
       "sos_rank": 8
-    },
-    {
-      "team": "Georgia",
-      "record": "22-11",
-      "ap_rank": null,
-      "avg_rank": 35,
-      "net_rank": 33,
-      "kenpom_rank": 35,
-      "bpi_rank": 38,
-      "sos_rank": 67
     },
     {
       "team": "Villanova",
@@ -398,28 +398,28 @@
       "avg_rank": 40,
       "net_rank": 41,
       "kenpom_rank": 43,
-      "bpi_rank": 37,
-      "sos_rank": 62
-    },
-    {
-      "team": "Oklahoma",
-      "record": "19-15",
-      "ap_rank": null,
-      "avg_rank": 41,
-      "net_rank": 48,
-      "kenpom_rank": 41,
       "bpi_rank": 36,
-      "sos_rank": 87
+      "sos_rank": 62
     },
     {
       "team": "Santa Clara",
       "record": "26-9",
       "ap_rank": null,
-      "avg_rank": 42,
+      "avg_rank": 41,
       "net_rank": 40,
       "kenpom_rank": 37,
       "bpi_rank": 49,
       "sos_rank": 55
+    },
+    {
+      "team": "Oklahoma",
+      "record": "19-15",
+      "ap_rank": null,
+      "avg_rank": 42,
+      "net_rank": 48,
+      "kenpom_rank": 41,
+      "bpi_rank": 38,
+      "sos_rank": 87
     },
     {
       "team": "SMU",
@@ -2508,7 +2508,7 @@
       "avg_rank": 251,
       "net_rank": 261,
       "kenpom_rank": 241,
-      "bpi_rank": 247,
+      "bpi_rank": 248,
       "sos_rank": 278
     },
     {
@@ -2632,6 +2632,16 @@
       "sos_rank": 266
     },
     {
+      "team": "Incarnate Word",
+      "record": "12-19",
+      "ap_rank": null,
+      "avg_rank": 264,
+      "net_rank": 282,
+      "kenpom_rank": 265,
+      "bpi_rank": 247,
+      "sos_rank": 282
+    },
+    {
       "team": "Presbyterian",
       "record": "15-18",
       "ap_rank": null,
@@ -2640,16 +2650,6 @@
       "kenpom_rank": 269,
       "bpi_rank": 265,
       "sos_rank": 268
-    },
-    {
-      "team": "Incarnate Word",
-      "record": "12-19",
-      "ap_rank": null,
-      "avg_rank": 265,
-      "net_rank": 282,
-      "kenpom_rank": 265,
-      "bpi_rank": 248,
-      "sos_rank": 282
     },
     {
       "team": "Omaha",
