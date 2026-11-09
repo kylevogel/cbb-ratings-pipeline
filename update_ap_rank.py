@@ -204,7 +204,62 @@ def _try_text_method(soup: BeautifulSoup) -> list[dict]:
 # Main scrape entry point
 # ---------------------------------------------------------------------------
 
+ESPN_RANKINGS_API = (
+    "https://site.api.espn.com/apis/site/v2/sports/basketball/"
+    "mens-college-basketball/rankings"
+)
+
+
+def _parse_espn_rankings(data: dict) -> list[dict]:
+    """Pull the AP Top 25 out of ESPN's rankings JSON."""
+    for poll in data.get("rankings", []):
+        label = f"{poll.get('name', '')} {poll.get('shortName', '')} {poll.get('type', '')}".lower()
+        if "ap" not in label.split() and "ap top 25" not in label and "associated press" not in label:
+            continue
+        rows = []
+        for r in poll.get("ranks", []):
+            team = r.get("team") or {}
+            name = team.get("location") or team.get("displayName") or team.get("name")
+            rank = r.get("current")
+            if name and rank:
+                rows.append({"ap_rank": int(rank), "team_ap": str(name).strip()})
+        if rows:
+            return rows
+    return []
+
+
+def _try_espn_api() -> list[dict]:
+    """Preferred source: ESPN's public JSON feed (not bot-blocked like apnews.com)."""
+    try:
+        headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
+        r = requests.get(ESPN_RANKINGS_API, headers=headers, timeout=30)
+        r.raise_for_status()
+        rows = _parse_espn_rankings(r.json())
+        print(f"  ESPN rankings API returned {len(rows)} AP teams")
+        return rows
+    except Exception as e:
+        print(f"  ESPN rankings API failed: {e}")
+        return []
+
+
 def scrape_ap_poll() -> pd.DataFrame | None:
+    rows = _try_espn_api()
+    if len(rows) >= 20:
+        df = (
+            pd.DataFrame(rows)
+            .drop_duplicates(subset=["team_ap"])
+            .sort_values(["ap_rank", "team_ap"])
+            .reset_index(drop=True)
+        )
+        df["team_ap"] = df["team_ap"].apply(_normalise)
+        for _, row in df.iterrows():
+            print(f"  {int(row['ap_rank'])}. {row['team_ap']}")
+        return df
+    print("  Falling back to AP News page...")
+    return _scrape_ap_news_page()
+
+
+def _scrape_ap_news_page() -> pd.DataFrame | None:
     url = "https://apnews.com/hub/ap-top-25-college-basketball-poll"
     headers = {
         "User-Agent": (
