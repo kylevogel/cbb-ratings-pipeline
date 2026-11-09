@@ -1,6 +1,7 @@
 """
 update_kenpom_rank.py
-Pulls KenPom rankings and writes a clean CSV with canonical team names.
+Scrapes KenPom rankings (Selenium, to get past Cloudflare) and writes
+data_raw/kenpom_rankings.csv with canonical team names and W-L records.
 
 Fixes applied:
   1. Strips trailing conference-seed suffixes from KenPom names (e.g. "Michigan 1" -> "Michigan")
@@ -10,7 +11,10 @@ Fixes applied:
      normaliser handles its own alias instead (see update_ap_rank.py).
 """
 
+import os
 import re
+import time
+
 import pandas as pd
 
 # ---------------------------------------------------------------------------
@@ -114,56 +118,103 @@ def normalise_kenpom_name(raw: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Main scraping / loading logic  (replace the body below with your actual
-# scraper; the normalisation call at the end is what matters)
+# Scraper
 # ---------------------------------------------------------------------------
 
-def fetch_kenpom_rankings() -> pd.DataFrame:
-    """
-    Load kenpom_rankings.csv (written by your scraper) and return a clean
-    DataFrame with columns [kenpom_rank, team_kenpom, record] where
-    team_kenpom has been normalised to canonical names.
-    """
-    import os
+OUTPUT_PATH = "data_raw/kenpom_rankings.csv"
 
-    raw_path = "data_raw/kenpom_rankings.csv"
-    if not os.path.exists(raw_path):
-        print(f"WARNING: {raw_path} not found – skipping KenPom")
-        return pd.DataFrame(columns=["kenpom_rank", "team_kenpom", "record"])
 
-    df = pd.read_csv(raw_path)
+def scrape_kenpom_rankings():
+    """Scrape the KenPom ratings table with headless Chrome. Returns a DataFrame or None."""
+    try:
+        from selenium import webdriver
+        from selenium.webdriver.chrome.options import Options
+        from selenium.webdriver.common.by import By
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium.webdriver.support import expected_conditions as EC
+    except ImportError:
+        print("Selenium not installed. Install with: pip install selenium")
+        return None
 
-    # Normalise team names in-place
-    df["team_kenpom"] = df["team_kenpom"].astype(str).apply(normalise_kenpom_name)
+    opts = Options()
+    opts.add_argument("--headless=new")
+    opts.add_argument("--no-sandbox")
+    opts.add_argument("--disable-dev-shm-usage")
+    opts.add_argument("--disable-gpu")
+    opts.add_argument("--window-size=1920,1080")
+    opts.add_argument(
+        "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    )
 
-    # Ensure rank is numeric
-    df["kenpom_rank"] = pd.to_numeric(df["kenpom_rank"], errors="coerce")
+    driver = None
+    try:
+        print("Starting headless Chrome browser...")
+        driver = webdriver.Chrome(options=opts)
+        driver.get("https://kenpom.com/")
 
-    return df
+        WebDriverWait(driver, 30).until(
+            EC.presence_of_element_located((By.ID, "ratings-table"))
+        )
+        time.sleep(2)
+
+        rows = driver.find_element(By.ID, "ratings-table").find_elements(By.TAG_NAME, "tr")
+        print(f"Found {len(rows)} rows in table")
+
+        data = []
+        for row in rows[1:]:
+            cells = row.find_elements(By.TAG_NAME, "td")
+            if len(cells) < 4:
+                continue
+            rank = re.sub(r"[^\d]", "", cells[0].text.strip())
+            team = cells[1].text.strip()
+
+            record = ""
+            try:
+                wl = row.find_element(By.CLASS_NAME, "wl").text.strip()
+                m = re.search(r"(\d+)-(\d+)", wl)
+                if m:
+                    record = f"{m.group(1)}-{m.group(2)}"
+            except Exception:
+                pass
+
+            if rank and team:
+                data.append({"kenpom_rank": int(rank), "team_kenpom": team, "record": record})
+
+        if not data:
+            print("No data found in table")
+            return None
+
+        df = pd.DataFrame(data)
+        df["team_kenpom"] = df["team_kenpom"].apply(normalise_kenpom_name)
+        print(f"Successfully parsed {len(df)} teams")
+        return df
+
+    except Exception as e:
+        print(f"Error scraping KenPom: {e}")
+        import traceback
+        traceback.print_exc()
+        return None
+    finally:
+        if driver:
+            driver.quit()
 
 
 def main():
-    print("Updating KenPom rankings...")
-    df = fetch_kenpom_rankings()
-    if df.empty:
-        print("No KenPom data – nothing written.")
+    print("Fetching KenPom rankings...")
+    df = scrape_kenpom_rankings()
+
+    if df is None or df.empty:
+        if os.path.exists(OUTPUT_PATH):
+            print(f"Failed to fetch new KenPom data. Keeping existing {OUTPUT_PATH}")
+        else:
+            print("Failed to fetch KenPom rankings.")
         return
 
-    import os
     os.makedirs("data_raw", exist_ok=True)
-    out_path = "data_raw/kenpom_rankings.csv"
-    df.to_csv(out_path, index=False)
-    print(f"Saved {len(df)} KenPom rankings to {out_path}")
-
-    # Spot-check a few known tricky names
-    checks = ["Iowa State", "Michigan State", "NC State", "Miami", "Miami (OH)",
-              "Ole Miss", "UTRGV", "UIC", "SIU Edwardsville", "Cal State Northridge",
-              "Omaha", "IUPUI", "ULM", "Gardner-Webb", "Saint Bonaventure"]
-    found = set(df["team_kenpom"].tolist())
-    print("\nName normalisation spot-check:")
-    for name in checks:
-        status = "✓" if name in found else "✗ MISSING"
-        print(f"  {status}  {name}")
+    df.to_csv(OUTPUT_PATH, index=False)
+    print(f"Saved {len(df)} KenPom rankings to {OUTPUT_PATH}")
+    print(df.head(10).to_string(index=False))
 
 
 if __name__ == "__main__":

@@ -8,11 +8,20 @@ from bs4 import BeautifulSoup
 import os
 import re
 from io import StringIO
+from datetime import date
+
+
+def current_season_year(today=None):
+    """Warren Nolan labels a season by the year it ends: Nov 2026 -> 2027, Feb 2027 -> 2027."""
+    today = today or date.today()
+    return today.year + 1 if today.month >= 10 else today.year
 
 
 def scrape_sos_rankings():
     """Scrape SOS rankings from Warren Nolan."""
-    url = "https://www.warrennolan.com/basketball/2026/sos-rpi-predict"
+    season = current_season_year()
+    url = f"https://www.warrennolan.com/basketball/{season}/sos-rpi-predict"
+    print(f"Using Warren Nolan season {season}")
     
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'

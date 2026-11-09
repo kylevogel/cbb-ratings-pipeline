@@ -16,6 +16,17 @@ from datetime import datetime, timezone, timedelta
 from clean_team_alias import standardize_team_names, load_team_alias
 
 
+def report_unmatched(df, source_col, label):
+    """Print raw source names that are not in team_alias.csv (they will show blank ranks)."""
+    alias = load_team_alias()
+    if alias is None or alias.empty:
+        return
+    known = set(alias["canonical"].astype(str).str.lower())
+    unmatched = sorted(set(df.loc[~df["team"].astype(str).str.lower().isin(known), source_col].astype(str)))
+    if unmatched:
+        print(f"  WARNING [{label}]: {len(unmatched)} names not in team_alias.csv: {unmatched[:25]}")
+
+
 def load_and_standardize_data():
     data = {}
 
@@ -23,6 +34,7 @@ def load_and_standardize_data():
     if os.path.exists(net_path):
         net_df = pd.read_csv(net_path)
         net_df = standardize_team_names(net_df, "team_net", "net")
+        report_unmatched(net_df, "team_net", "net")
         data["net"] = net_df[["team", "net_rank"]].drop_duplicates(subset=["team"])
         print(f"Loaded {len(data['net'])} NET rankings")
 
@@ -30,6 +42,7 @@ def load_and_standardize_data():
     if os.path.exists(kenpom_path):
         kenpom_df = pd.read_csv(kenpom_path)
         kenpom_df = standardize_team_names(kenpom_df, "team_kenpom", "kenpom")
+        report_unmatched(kenpom_df, "team_kenpom", "kenpom")
         data["kenpom"] = kenpom_df[["team", "kenpom_rank"]].drop_duplicates(subset=["team"])
         print(f"Loaded {len(data['kenpom'])} KenPom rankings")
 
@@ -41,6 +54,7 @@ def load_and_standardize_data():
     if os.path.exists(bpi_path):
         bpi_df = pd.read_csv(bpi_path)
         bpi_df = standardize_team_names(bpi_df, "team_bpi", "bpi")
+        report_unmatched(bpi_df, "team_bpi", "bpi")
         data["bpi"] = bpi_df[["team", "bpi_rank"]].drop_duplicates(subset=["team"])
         print(f"Loaded {len(data['bpi'])} BPI rankings")
 
@@ -49,6 +63,7 @@ def load_and_standardize_data():
         ap_df = pd.read_csv(ap_path)
         if not ap_df.empty:
             ap_df = standardize_team_names(ap_df, "team_ap", "ap")
+            report_unmatched(ap_df, "team_ap", "ap")
             data["ap"] = ap_df[["team", "ap_rank"]].drop_duplicates(subset=["team"])
             print(f"Loaded {len(data['ap'])} AP rankings")
 
@@ -56,6 +71,7 @@ def load_and_standardize_data():
     if os.path.exists(sos_path):
         sos_df = pd.read_csv(sos_path)
         sos_df = standardize_team_names(sos_df, "team_sos", "sos")
+        report_unmatched(sos_df, "team_sos", "sos")
         data["sos"] = sos_df[["team", "sos_rank"]].drop_duplicates(subset=["team"])
         print(f"Loaded {len(data['sos'])} SOS rankings")
 
