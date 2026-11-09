@@ -195,9 +195,35 @@ def build_master_rankings(data):
     has_ranking = master["net_rank"].notna() | master["kenpom_rank"].notna() | master["bpi_rank"].notna()
     master = master[has_ranking].reset_index(drop=True)
 
-    master["avg_rank"] = master["avg_value"].rank(method="min", ascending=False).astype("Int64")
+    # Rank by KV score (higher = better). Ties are split by record:
+    # win% first, then total wins. Teams still level after that share a rank.
+    wl = master["record"].apply(_parse_record)
+    wins = wl.apply(lambda t: t[0]).astype(float)
+    losses = wl.apply(lambda t: t[1]).astype(float)
+    games = wins + losses
+    master["_win_pct"] = (wins / games.where(games > 0)).fillna(-1.0)
+    master["_wins"] = wins.fillna(-1.0)
 
-    master = master.sort_values(["avg_rank", "team"], na_position="last").reset_index(drop=True)
+    ordered = master.sort_values(
+        ["avg_value", "_win_pct", "_wins", "team"],
+        ascending=[False, False, False, True],
+        na_position="last",
+    ).reset_index(drop=True)
+
+    keys = list(zip(ordered["avg_value"], ordered["_win_pct"], ordered["_wins"]))
+    ranks, prev_key, prev_rank = [], None, 0
+    for i, k in enumerate(keys, start=1):
+        if pd.isna(ordered.loc[i - 1, "avg_value"]):
+            ranks.append(pd.NA)
+            continue
+        if k == prev_key:
+            ranks.append(prev_rank)
+        else:
+            prev_key, prev_rank = k, i
+            ranks.append(i)
+    ordered["avg_rank"] = pd.array(ranks, dtype="Int64")
+
+    master = ordered.drop(columns=["_win_pct", "_wins"])
     return master
 
 
