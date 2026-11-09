@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 11/09/2026 at 09:56 am EST",
+  "updated": "Updated: 11/09/2026 at 01:04 pm EST",
   "teams": [
     {
       "team": "Duke",
@@ -942,24 +942,24 @@
       "sos_rank": 128
     },
     {
-      "team": "Dayton",
-      "record": "1-1",
-      "ap_rank": null,
-      "avg_rank": 95,
-      "net_rank": null,
-      "kenpom_rank": 93,
-      "bpi_rank": 88,
-      "sos_rank": 38
-    },
-    {
       "team": "George Mason",
       "record": "2-0",
       "ap_rank": null,
-      "avg_rank": 96,
+      "avg_rank": 95,
       "net_rank": null,
       "kenpom_rank": 104,
       "bpi_rank": 96,
       "sos_rank": 55
+    },
+    {
+      "team": "Dayton",
+      "record": "1-1",
+      "ap_rank": null,
+      "avg_rank": 96,
+      "net_rank": null,
+      "kenpom_rank": 93,
+      "bpi_rank": 88,
+      "sos_rank": 38
     },
     {
       "team": "Penn State",
@@ -1642,24 +1642,24 @@
       "sos_rank": 325
     },
     {
-      "team": "James Madison",
-      "record": "0-2",
-      "ap_rank": null,
-      "avg_rank": 165,
-      "net_rank": null,
-      "kenpom_rank": 146,
-      "bpi_rank": 167,
-      "sos_rank": 237
-    },
-    {
       "team": "Elon",
       "record": "2-0",
       "ap_rank": null,
-      "avg_rank": 166,
+      "avg_rank": 165,
       "net_rank": null,
       "kenpom_rank": 175,
       "bpi_rank": 190,
       "sos_rank": 214
+    },
+    {
+      "team": "James Madison",
+      "record": "0-2",
+      "ap_rank": null,
+      "avg_rank": 166,
+      "net_rank": null,
+      "kenpom_rank": 146,
+      "bpi_rank": 167,
+      "sos_rank": 237
     },
     {
       "team": "Central Arkansas",
@@ -2212,24 +2212,24 @@
       "sos_rank": 204
     },
     {
-      "team": "Oakland",
-      "record": "0-3",
-      "ap_rank": null,
-      "avg_rank": 222,
-      "net_rank": null,
-      "kenpom_rank": 213,
-      "bpi_rank": 211,
-      "sos_rank": 127
-    },
-    {
       "team": "Columbia",
       "record": "1-1",
       "ap_rank": null,
-      "avg_rank": 223,
+      "avg_rank": 222,
       "net_rank": null,
       "kenpom_rank": 260,
       "bpi_rank": 193,
       "sos_rank": 194
+    },
+    {
+      "team": "Oakland",
+      "record": "0-3",
+      "ap_rank": null,
+      "avg_rank": 223,
+      "net_rank": null,
+      "kenpom_rank": 213,
+      "bpi_rank": 211,
+      "sos_rank": 127
     },
     {
       "team": "Stony Brook",
@@ -2982,24 +2982,24 @@
       "sos_rank": 312
     },
     {
-      "team": "Bellarmine",
-      "record": "0-3",
-      "ap_rank": null,
-      "avg_rank": 299,
-      "net_rank": null,
-      "kenpom_rank": 290,
-      "bpi_rank": 292,
-      "sos_rank": 299
-    },
-    {
       "team": "Omaha",
       "record": "1-2",
       "ap_rank": null,
-      "avg_rank": 300,
+      "avg_rank": 299,
       "net_rank": null,
       "kenpom_rank": 286,
       "bpi_rank": 316,
       "sos_rank": 246
+    },
+    {
+      "team": "Bellarmine",
+      "record": "0-3",
+      "ap_rank": null,
+      "avg_rank": 300,
+      "net_rank": null,
+      "kenpom_rank": 290,
+      "bpi_rank": 292,
+      "sos_rank": 299
     },
     {
       "team": "UNC Asheville",
@@ -3032,24 +3032,24 @@
       "sos_rank": 342
     },
     {
-      "team": "North Carolina A&T",
-      "record": "0-1",
-      "ap_rank": null,
-      "avg_rank": 304,
-      "net_rank": null,
-      "kenpom_rank": 304,
-      "bpi_rank": 301,
-      "sos_rank": 219
-    },
-    {
       "team": "Alabama A&M",
       "record": "2-0",
       "ap_rank": null,
-      "avg_rank": 305,
+      "avg_rank": 304,
       "net_rank": null,
       "kenpom_rank": 308,
       "bpi_rank": 310,
       "sos_rank": 364
+    },
+    {
+      "team": "North Carolina A&T",
+      "record": "0-1",
+      "ap_rank": null,
+      "avg_rank": 305,
+      "net_rank": null,
+      "kenpom_rank": 304,
+      "bpi_rank": 301,
+      "sos_rank": 219
     },
     {
       "team": "Air Force",
@@ -3582,10 +3582,20 @@
       "sos_rank": 280
     },
     {
+      "team": "Coppin State",
+      "record": "1-2",
+      "ap_rank": null,
+      "avg_rank": 359,
+      "net_rank": null,
+      "kenpom_rank": 359,
+      "bpi_rank": 362,
+      "sos_rank": 238
+    },
+    {
       "team": "Arkansas-Pine Bluff",
       "record": "0-2",
       "ap_rank": null,
-      "avg_rank": 359,
+      "avg_rank": 360,
       "net_rank": null,
       "kenpom_rank": 357,
       "bpi_rank": 361,
@@ -3595,21 +3605,11 @@
       "team": "Eastern Illinois",
       "record": "0-2",
       "ap_rank": null,
-      "avg_rank": 360,
+      "avg_rank": 361,
       "net_rank": null,
       "kenpom_rank": 362,
       "bpi_rank": 357,
       "sos_rank": 331
-    },
-    {
-      "team": "Coppin State",
-      "record": "0-2",
-      "ap_rank": null,
-      "avg_rank": 361,
-      "net_rank": null,
-      "kenpom_rank": 359,
-      "bpi_rank": 362,
-      "sos_rank": 238
     },
     {
       "team": "Delaware State",
