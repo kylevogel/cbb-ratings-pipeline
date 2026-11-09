@@ -24,7 +24,7 @@ This pipeline updates data in three stages:
 
 3. Produces outputs for the dashboard
    - A master rankings table with all metrics merged by team
-   - A sortable dashboard that includes Record, AP, NET, KenPom, BPI, SoS, and an average rank
+   - A sortable dashboard that includes Record, AP, NET, KenPom, BPI, SoS, and the KV Rank
 
 ## Why it exists
 
@@ -42,11 +42,21 @@ In college basketball, there are so many different rankings and metrics these da
 - `docs/index.html` - Static dashboard page for GitHub Pages
 - `docs/rankings.json` - JSON data powering the dashboard
 
-## How the dashboard ranks teams
+## How the KV Rank works
 
-The dashboard displays individual metrics and includes an Avg Rank column that averages a team's NET, KenPom, and BPI ranks, then ranks teams by that average.
+KV Rank is a custom blend, not a simple average. Each rank is converted to a z-score (`z = -NORM.S.INV((rank - 0.5) / 365)`) so that being #1 vs #10 counts for more than #100 vs #110.
 
-Ties are allowed and teams can share the same average-based rank.
+- **Quality** = average of KenPom z and BPI z
+- **Record_adj** = z(win%) + 0.5 x SOS z (credit for winning against a harder schedule)
+
+**Phase 1: before NET is released (mid-December)**
+`Final = (1 - w) x Quality + w x Record_adj`, where `w = 0.45 x min(1, games played / 15)`.
+Early on this is almost all KenPom and BPI; record takes over gradually as games are played.
+
+**Phase 2: once NET is available**
+`Resume = 0.6 x NET z + 0.4 x Record_adj`, then `Final = 0.5 x Quality + 0.5 x Resume`.
+
+The pipeline switches to Phase 2 automatically for any team with a NET rank. AP is not used, and SOS is only used inside Record_adj. Teams are ranked by Final (highest first); ties share a rank.
 
 ## Quick start
 

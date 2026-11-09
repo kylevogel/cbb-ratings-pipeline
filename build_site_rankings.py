@@ -12,6 +12,8 @@ Edit docs/index.html directly — it will not be overwritten on pipeline runs.
 import pandas as pd
 import json
 import os
+import re
+from statistics import NormalDist
 from datetime import datetime, timezone, timedelta
 from clean_team_alias import standardize_team_names, load_team_alias
 
@@ -78,6 +80,79 @@ def load_and_standardize_data():
     return data
 
 
+N_TEAMS = 365            # number of D1 teams, used to convert ranks to z-scores
+GAMES_FOR_FULL_RECORD = 15  # record weight reaches its max after this many games
+MAX_RECORD_WEIGHT = 0.45
+
+
+def _rank_to_z(rank):
+    """Rank 1 -> large positive z, rank 365 -> large negative z."""
+    if pd.isna(rank):
+        return float("nan")
+    p = (float(rank) - 0.5) / N_TEAMS
+    p = min(max(p, 1e-6), 1 - 1e-6)
+    return -NormalDist().inv_cdf(p)
+
+
+def _parse_record(rec):
+    """'12-3' -> (12, 3). Returns (None, None) if unparseable."""
+    m = re.match(r"^\s*(\d+)\s*-\s*(\d+)", str(rec)) if pd.notna(rec) else None
+    return (int(m.group(1)), int(m.group(2))) if m else (None, None)
+
+
+def calc_kv_score(master):
+    """
+    KV score (higher = better). Rank is then assigned from this.
+
+    Quality  = avg of KenPom_z and BPI_z
+    Record_adj = z(win%) + 0.5 * SOS_z          (credit for winning vs. a harder schedule)
+
+    Phase 1 (no NET yet):  Final = (1 - w) * Quality + w * Record_adj
+                           w = 0.45 * min(1, games_played / 15)
+    Phase 2 (NET present): Resume = 0.6 * NET_z + 0.4 * Record_adj
+                           Final  = 0.5 * Quality + 0.5 * Resume
+
+    AP is not used. SOS is only used inside Record_adj.
+    """
+    m = master.copy()
+
+    for col, out in [("kenpom_rank", "kenpom_z"), ("bpi_rank", "bpi_z"),
+                     ("sos_rank", "sos_z"), ("net_rank", "net_z")]:
+        m[out] = m[col].apply(_rank_to_z) if col in m.columns else float("nan")
+
+    # Quality: average of whichever of KenPom/BPI exist for the team
+    m["quality"] = m[["kenpom_z", "bpi_z"]].mean(axis=1, skipna=True)
+
+    # Win% and games played from the W-L record
+    wl = m["record"].apply(_parse_record) if "record" in m.columns else pd.Series([(None, None)] * len(m))
+    wins = wl.apply(lambda t: t[0])
+    losses = wl.apply(lambda t: t[1])
+    games = (wins.fillna(0) + losses.fillna(0)).astype(float)
+    win_pct = (wins / games.where(games > 0)).astype(float)
+
+    mean, std = win_pct.mean(), win_pct.std(ddof=0)
+    if pd.notna(std) and std > 0:
+        win_z = (win_pct - mean) / std
+    else:
+        win_z = pd.Series(0.0, index=m.index)
+    win_z = win_z.fillna(0.0)            # no games yet -> neutral
+
+    sos_z = m["sos_z"].fillna(0.0)       # no SOS -> neutral
+    record_adj = win_z + 0.5 * sos_z
+
+    # Phase 1
+    w = MAX_RECORD_WEIGHT * (games / GAMES_FOR_FULL_RECORD).clip(upper=1.0)
+    phase1 = (1 - w) * m["quality"] + w * record_adj
+
+    # Phase 2 (only for teams that have a NET rank)
+    resume = 0.6 * m["net_z"] + 0.4 * record_adj
+    phase2 = 0.5 * m["quality"] + 0.5 * resume
+    phase2 = phase2.where(m["quality"].notna(), resume)   # NET but no KenPom/BPI
+
+    m["kv_score"] = phase2.where(m["net_z"].notna(), phase1)
+    return m["kv_score"].round(4)
+
+
 def build_master_rankings(data):
     alias_df = load_team_alias()
     if alias_df is not None:
@@ -115,24 +190,14 @@ def build_master_rankings(data):
     else:
         master["sos_rank"] = None
 
-    def calc_avg_value(row):
-        ranks = []
-        for col in ["net_rank", "kenpom_rank", "bpi_rank"]:
-            val = row.get(col)
-            if pd.notna(val):
-                ranks.append(float(val))
-        if ranks:
-            return round(sum(ranks) / len(ranks), 1)
-        return None
-
-    master["avg_value"] = master.apply(calc_avg_value, axis=1)
+    master["avg_value"] = calc_kv_score(master)   # higher = better
 
     has_ranking = master["net_rank"].notna() | master["kenpom_rank"].notna() | master["bpi_rank"].notna()
     master = master[has_ranking].reset_index(drop=True)
 
-    master["avg_rank"] = master["avg_value"].rank(method="min", ascending=True).astype("Int64")
+    master["avg_rank"] = master["avg_value"].rank(method="min", ascending=False).astype("Int64")
 
-    master = master.sort_values(["avg_rank", "avg_value", "team"], na_position="last").reset_index(drop=True)
+    master = master.sort_values(["avg_rank", "team"], na_position="last").reset_index(drop=True)
     return master
 
 
