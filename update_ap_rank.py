@@ -214,9 +214,15 @@ def scrape_ap_poll() -> pd.DataFrame | None:
         )
     }
 
-    resp = requests.get(url, headers=headers, timeout=30)
-    resp.raise_for_status()
-    soup = BeautifulSoup(resp.text, "html.parser")
+    try:
+        resp = requests.get(url, headers=headers, timeout=30)
+        resp.raise_for_status()
+        html = resp.text
+    except Exception as e:
+        print(f"  Plain request failed ({e}); retrying with headless Chrome...")
+        from browser_fetch import get_html
+        html = get_html(url, wait_s=6)
+    soup = BeautifulSoup(html, "html.parser")
 
     rows: list[dict] = []
 

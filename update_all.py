@@ -23,7 +23,7 @@ def run_script(script_name, description):
             [sys.executable, script_name],
             capture_output=True,
             text=True,
-            timeout=120
+            timeout=300
         )
         
         if result.stdout:

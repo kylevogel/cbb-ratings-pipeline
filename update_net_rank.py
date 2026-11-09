@@ -60,6 +60,13 @@ def main():
     df = scrape_net_rankings()
     
     if df is not None and not df.empty:
+        # The NCAA keeps showing last season's final table until the new season's NET
+        # launches (usually early December). Don't publish that as current data.
+        STALE_TOP = ["Michigan", "Duke", "Arizona", "Florida", "Illinois", "Houston", "Iowa St.", "Purdue", "Connecticut", "Gonzaga"]
+        top = df.sort_values('net_rank')['team_net'].head(10).tolist()
+        if [t.replace("UConn", "Connecticut") for t in top][:6] == STALE_TOP[:6]:
+            print("NCAA is still showing last season's NET table - new season NET not published yet. Skipping.")
+            return
         os.makedirs('data_raw', exist_ok=True)
         df.to_csv('data_raw/net_rankings.csv', index=False)
         print(f"Saved {len(df)} NET rankings to data_raw/net_rankings.csv")

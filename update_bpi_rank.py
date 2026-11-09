@@ -35,9 +35,16 @@ TEAM_ID_RE = re.compile(r"/mens-college-basketball/team/_/id/(\d+)/")
 
 
 def _get(url: str) -> str:
-    r = requests.get(url, headers=HEADERS, timeout=30)
-    r.raise_for_status()
-    return r.text
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=30)
+        r.raise_for_status()
+        if len(r.text) > 5000:
+            return r.text
+        print(f"  Empty/short response from {url}; retrying with headless Chrome...")
+    except Exception as e:
+        print(f"  Plain request failed ({e}); retrying with headless Chrome...")
+    from browser_fetch import get_html
+    return get_html(url, wait_s=5)
 
 
 def _extract_team_ids_in_order(html: str) -> list[int]:
