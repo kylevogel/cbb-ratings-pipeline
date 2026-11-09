@@ -24,6 +24,9 @@
             margin-bottom: 10px;
         }
         .updated { color: #888; font-size: 0.9rem; }
+        .sources { color: #888; font-size: 0.8rem; margin-top: 10px; line-height: 1.8; }
+        .sources a { color: #00d9ff; text-decoration: none; margin: 0 6px; white-space: nowrap; }
+        .sources a:hover { text-decoration: underline; }
         .search-container { margin-bottom: 20px; display: flex; justify-content: center; }
         #search {
             width: 100%;
@@ -90,6 +93,13 @@
         <header>
             <h1>CBB Rankings Dashboard</h1>
             <p class="updated"><span id="update-time">Loading...</span></p>
+            <p class="sources">Sources:
+                <a href="https://apnews.com/hub/ap-top-25-college-basketball-poll" target="_blank" rel="noopener">AP Poll</a>·
+                <a href="https://www.ncaa.com/rankings/basketball-men/d1/ncaa-mens-basketball-net-rankings" target="_blank" rel="noopener">NET (NCAA)</a>·
+                <a href="https://kenpom.com/" target="_blank" rel="noopener">KenPom</a>·
+                <a href="https://www.espn.com/mens-college-basketball/bpi" target="_blank" rel="noopener">ESPN BPI</a>·
+                <a id="sos-link" href="https://www.warrennolan.com/basketball/" target="_blank" rel="noopener">SOS (Warren Nolan)</a>
+            </p>
         </header>
 
         <div class="search-container">
@@ -120,6 +130,12 @@
     </div>
 
     <script>
+        // Point the SOS link at the current season's Warren Nolan page (season is named for the year it ends)
+        (function () {
+            const now = new Date();
+            const season = now.getFullYear() + (now.getMonth() >= 9 ? 1 : 0);
+            document.getElementById('sos-link').href = 'https://www.warrennolan.com/basketball/' + season + '/sos-rpi-predict';
+        })();
         let teamsData = [];
         let currentSort = { column: 'avg_rank', direction: 'asc' };
 
