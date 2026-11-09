@@ -104,7 +104,7 @@
                 <a href="https://www.espn.com/mens-college-basketball/bpi" target="_blank" rel="noopener">ESPN BPI</a>·
                 <a id="sos-link" href="https://www.warrennolan.com/basketball/" target="_blank" rel="noopener">SOS (Warren Nolan)</a>
             </p>
-            <p class="kv-note">KV Rank = the average of a team's NET, KenPom, and BPI ranks (whichever are available), ranked lowest to highest.</p>
+            <p class="kv-note">KV Rank = the average of a team's NET, KenPom, and BPI ranks, ranked lowest to highest.</p>
             <p class="credit">Created by <a href="https://www.linkedin.com/in/kylevogel3" target="_blank" rel="noopener">Kyle Vogel</a></p>
         </header>
 
@@ -163,6 +163,11 @@
                 const response = await fetch('rankings.json');
                 const data = await response.json();
                 teamsData = data.teams;
+                // NET isn't published until mid-December; label the column until data shows up
+                const netTh = document.querySelector('th[data-sort="net_rank"]');
+                if (netTh && !teamsData.some(t => t.net_rank)) {
+                    netTh.innerHTML = 'NET <span style="font-size:0.65rem;opacity:0.8;white-space:nowrap;">(Starts Mid-Dec)</span>';
+                }
                 document.getElementById('update-time').textContent = data.updated;
                 renderTable();
                 updateStats();
