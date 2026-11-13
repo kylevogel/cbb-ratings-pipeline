@@ -1,5 +1,5 @@
 {
-  "updated": "Updated: 11/13/2026 at 07:46 am EST",
+  "updated": "Updated: 11/13/2026 at 03:13 pm EST",
   "teams": [
     {
       "team": "Florida",
@@ -1912,10 +1912,20 @@
       "sos_rank": 147
     },
     {
+      "team": "Green Bay",
+      "record": "3-2",
+      "ap_rank": null,
+      "avg_rank": 192,
+      "net_rank": null,
+      "kenpom_rank": 203,
+      "bpi_rank": 184,
+      "sos_rank": 251
+    },
+    {
       "team": "Queens",
       "record": "2-2",
       "ap_rank": null,
-      "avg_rank": 192,
+      "avg_rank": 193,
       "net_rank": null,
       "kenpom_rank": 184,
       "bpi_rank": 186,
@@ -1925,21 +1935,11 @@
       "team": "Troy",
       "record": "1-2",
       "ap_rank": null,
-      "avg_rank": 193,
+      "avg_rank": 194,
       "net_rank": null,
       "kenpom_rank": 192,
       "bpi_rank": 189,
       "sos_rank": 176
-    },
-    {
-      "team": "Green Bay",
-      "record": "2-2",
-      "ap_rank": null,
-      "avg_rank": 194,
-      "net_rank": null,
-      "kenpom_rank": 203,
-      "bpi_rank": 184,
-      "sos_rank": 251
     },
     {
       "team": "Cal Poly",
@@ -2435,7 +2435,7 @@
       "team": "Stony Brook",
       "record": "1-2",
       "ap_rank": null,
-      "avg_rank": 243,
+      "avg_rank": 244,
       "net_rank": null,
       "kenpom_rank": 232,
       "bpi_rank": 230,
