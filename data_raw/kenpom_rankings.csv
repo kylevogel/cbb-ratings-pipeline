@@ -18,9 +18,9 @@ kenpom_rank,team_kenpom,record
 17,Texas Tech,3-0
 18,Texas A&M,4-0
 19,St. John's,3-0
-20,Louisville,2-0
-21,Auburn,2-0
-22,Miami,2-1
+20,Miami,3-1
+21,Louisville,2-0
+22,Auburn,2-0
 23,Missouri,2-1
 24,Tennessee,2-0
 25,Michigan,2-1
@@ -49,10 +49,10 @@ kenpom_rank,team_kenpom,record
 48,Wisconsin,3-0
 49,Grand Canyon,3-0
 50,Boise State,3-0
-51,Providence,2-1
-52,TCU,3-0
-53,Creighton,2-1
-54,Florida State,2-1
+51,Florida State,3-1
+52,Providence,2-1
+53,TCU,3-0
+54,Creighton,2-1
 55,VCU,2-1
 56,Mississippi St.,3-0
 57,Oregon,3-0
@@ -65,17 +65,17 @@ kenpom_rank,team_kenpom,record
 64,High Point,4-0
 65,Notre Dame,4-0
 66,Georgia,3-0
-67,Oklahoma,2-1
-68,Saint Mary's,2-1
+67,Saint Mary's,2-1
+68,Oklahoma,2-1
 69,San Diego State,3-0
 70,SMU,3-0
 71,Santa Clara,4-0
 72,Syracuse,2-1
 73,Clemson,3-0
 74,UCF,3-0
-75,Stanford,3-0
-76,Nevada,2-1
-77,Rutgers,2-0
+75,Rutgers,3-0
+76,Stanford,3-0
+77,Nevada,2-1
 78,Memphis,2-1
 79,Seton Hall,3-0
 80,Wichita State,2-1
@@ -99,8 +99,8 @@ kenpom_rank,team_kenpom,record
 98,Penn State,3-1
 99,Davidson,3-0
 100,UNLV,2-0
-101,Kansas State,2-1
-102,George Mason,3-0
+101,George Mason,3-0
+102,Kansas State,2-1
 103,UNC Wilmington,3-0
 104,Texas State,3-0
 105,UIC,3-0
@@ -188,22 +188,22 @@ kenpom_rank,team_kenpom,record
 187,La Salle,1-2
 188,Elon,2-1
 189,Fresno State,2-1
-190,Middle Tennessee,2-1
-191,Jacksonville,2-1
-192,Troy,1-2
+190,Troy,1-2
+191,Middle Tennessee,2-1
+192,Jacksonville,2-1
 193,Bethune-Cookman,0-4
 194,Howard,2-2
-195,Texas A&M-CC,2-1
-196,Monmouth,1-2
-197,Lipscomb,2-2
-198,Austin Peay,2-1
-199,Mercer,2-3
-200,Samford,1-1
-201,FIU,2-0
-202,UTSA,2-1
-203,Green Bay,3-2
-204,Tennessee Tech,2-2
-205,Denver,0-2
+195,Monmouth,1-2
+196,Lipscomb,2-2
+197,Austin Peay,2-1
+198,Mercer,2-3
+199,Samford,1-1
+200,FIU,2-0
+201,UTSA,2-1
+202,Green Bay,3-2
+203,Tennessee Tech,2-2
+204,Denver,0-2
+205,Texas A&M-CC,2-2
 206,Cal State Fullerton,2-1
 207,Iona,2-2
 208,UC Davis,2-1
@@ -215,8 +215,8 @@ kenpom_rank,team_kenpom,record
 214,Appalachian State,2-1
 215,UT Arlington,3-1
 216,Longwood,3-1
-217,Siena,2-1
-218,Youngstown State,1-2
+217,Youngstown State,1-2
+218,Siena,2-1
 219,Georgia State,1-3
 220,Long Beach State,1-2
 221,Arkansas State,1-2
@@ -230,8 +230,8 @@ kenpom_rank,team_kenpom,record
 229,Columbia,2-1
 230,Ball State,1-2
 231,Tennessee State,2-1
-232,Stony Brook,1-2
-233,Oakland,0-5
+232,Oakland,0-5
+233,Stony Brook,1-2
 234,Montana,1-2
 235,Cal State Bakersfield,3-0
 236,Milwaukee,2-2
@@ -246,13 +246,13 @@ kenpom_rank,team_kenpom,record
 245,Winthrop,0-3
 246,Northeastern,1-2
 247,Portland State,1-2
-248,Quinnipiac,2-2
-249,Louisiana,1-2
-250,Kansas City,2-3
-251,Abilene Christian,1-2
-252,Drexel,1-2
-253,UTRGV,2-1
-254,North Dakota State,1-3
+248,Kansas City,2-3
+249,Quinnipiac,2-2
+250,Abilene Christian,1-2
+251,Drexel,1-2
+252,UTRGV,2-1
+253,North Dakota State,1-3
+254,Louisiana,1-2
 255,Missouri St.,3-0
 256,Hampton,1-2
 257,East Texas A&M,2-1
@@ -273,9 +273,9 @@ kenpom_rank,team_kenpom,record
 272,Southeastern Louisiana,1-2
 273,Evansville,2-1
 274,UNC Greensboro,2-2
-275,North Alabama,2-1
-276,UMass Lowell,3-1
-277,Brown,1-3
+275,UMass Lowell,3-1
+276,Brown,1-3
+277,North Alabama,2-2
 278,Eastern Kentucky,2-1
 279,Lehigh,1-2
 280,Boston University,3-1
@@ -312,27 +312,27 @@ kenpom_rank,team_kenpom,record
 311,Mercyhurst,1-3
 312,Lindenwood,2-2
 313,Northwestern State,1-3
-314,Cleveland St.,1-2
-315,Charleston Southern,1-2
-316,Detroit Mercy,0-2
-317,Le Moyne,1-2
+314,Charleston Southern,1-2
+315,Detroit Mercy,0-2
+316,Le Moyne,1-2
+317,Cleveland St.,2-2
 318,Southern Indiana,1-3
-319,Bryant,1-3
-320,Manhattan,1-2
+319,Manhattan,1-2
+320,Bryant,1-4
 321,Prairie View A&M,2-2
 322,Sacred Heart,2-2
 323,The Citadel,2-1
 324,Central Connecticut,2-2
 325,Norfolk State,2-2
-326,Maine,1-3
-327,Alabama A&M,3-1
+326,Alabama A&M,3-1
+327,Maine,1-3
 328,New Hampshire,3-1
-329,Fairleigh Dickinson,2-2
-330,South Carolina St.,3-1
+329,South Carolina St.,3-1
+330,Fairleigh Dickinson,2-2
 331,Texas Southern,1-2
 332,Binghamton,3-1
-333,West Georgia,0-3
-334,Cal Baptist,0-3
+333,Cal Baptist,0-3
+334,West Georgia,0-3
 335,Lafayette,2-2
 336,Incarnate Word,0-4
 337,Wagner,1-3
@@ -346,8 +346,8 @@ kenpom_rank,team_kenpom,record
 345,USC Upstate,1-3
 346,New Haven,1-2
 347,Morgan State,3-1
-348,Albany,2-2
-349,West Florida,2-2
+348,West Florida,2-3
+349,Albany,2-2
 350,Gardner-Webb,1-2
 351,North Carolina Central,0-3
 352,Florida A&M,0-4
