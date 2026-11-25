@@ -6,13 +6,13 @@ kenpom_rank,team_kenpom,record
 5,Vanderbilt,7-0
 6,Arizona,6-1
 7,Connecticut,4-1
-8,Virginia,7-0
+8,Virginia,8-0
 9,Duke,4-2
 10,Texas,6-0
 11,Gonzaga,4-1
 12,Michigan State,5-1
-13,Iowa State,4-1
-14,Nebraska,6-0
+13,Nebraska,6-0
+14,Iowa State,4-1
 15,Texas A&M,6-0
 16,Ole Miss,6-0
 17,St. John's,6-0
@@ -39,9 +39,9 @@ kenpom_rank,team_kenpom,record
 38,Arkansas,4-2
 39,DePaul,6-0
 40,Pittsburgh,7-0
-41,Marquette,4-2
-42,Purdue,4-3
-43,Ohio State,4-3
+41,Marquette,4-3
+42,Ohio State,4-3
+43,Purdue,4-3
 44,Grand Canyon,5-0
 45,Michigan,3-3
 46,North Carolina,5-1
@@ -54,17 +54,17 @@ kenpom_rank,team_kenpom,record
 53,Villanova,5-2
 54,High Point,7-0
 55,Providence,5-2
-56,Xavier,5-1
-57,NC State,5-1
-58,Memphis,4-1
-59,Seton Hall,6-1
+56,NC State,5-1
+57,Xavier,5-1
+58,Seton Hall,6-1
+59,Memphis,4-1
 60,Rutgers,5-2
 61,Saint Louis,3-3
 62,Wichita State,6-1
 63,VCU,4-2
 64,SMU,6-0
-65,Mississippi St.,5-1
-66,Maryland,3-3
+65,Maryland,3-3
+66,Mississippi St.,5-1
 67,Kentucky,4-2
 68,San Diego State,5-1
 69,Texas State,7-0
@@ -73,9 +73,9 @@ kenpom_rank,team_kenpom,record
 72,Nevada,5-2
 73,Oregon St.,8-0
 74,Oregon,3-2
-75,UC Santa Barbara,6-0
-76,Wisconsin,4-2
-77,Arizona State,5-0
+75,Arizona State,5-0
+76,UC Santa Barbara,6-0
+77,Wisconsin,4-2
 78,UCF,4-2
 79,New Mexico,3-2
 80,Boise State,4-2
@@ -86,29 +86,29 @@ kenpom_rank,team_kenpom,record
 85,Butler,4-3
 86,Syracuse,4-2
 87,California,5-2
-88,Santa Clara,6-2
-89,Stanford,5-2
-90,South Carolina,5-0
-91,Wyoming,5-2
-92,South Florida,4-3
-93,Wright State,6-1
+88,Stanford,5-2
+89,Davidson,5-2
+90,Santa Clara,6-2
+91,South Carolina,5-0
+92,Wyoming,5-2
+93,South Florida,4-3
 94,George Washington,5-2
 95,Boston College,6-0
 96,Colorado,3-3
 97,Penn State,5-1
-98,Western Kentucky,5-2
-99,Davidson,4-2
-100,Seattle,5-2
-101,George Mason,5-1
-102,Illinois State,4-4
-103,Colorado State,4-3
-104,Miami (OH),5-0
-105,UNLV,4-3
-106,Akron,5-2
+98,Wright State,6-2
+99,Western Kentucky,5-2
+100,George Mason,5-1
+101,Seattle,5-2
+102,Miami (OH),6-0
+103,Illinois State,4-4
+104,Colorado State,4-3
+105,Charlotte,5-2
+106,UNLV,4-3
 107,Washington State,3-4
-108,Northwestern,4-3
-109,Charlotte,4-2
-110,Rhode Island,6-1
+108,Akron,5-2
+109,Northwestern,4-3
+110,Rhode Island,7-1
 111,Montana State,2-4
 112,Utah Valley,5-1
 113,UNC Wilmington,5-1
@@ -117,11 +117,11 @@ kenpom_rank,team_kenpom,record
 116,Tulsa,4-3
 117,Sam Houston,3-4
 118,James Madison,5-2
-119,Fordham,5-2
+119,Fordham,6-2
 120,McNeese,2-2
 121,San Diego,6-1
 122,Richmond,4-3
-123,Saint Bonaventure,6-1
+123,Saint Bonaventure,7-1
 124,Dayton,3-4
 125,Loyola Chicago,4-3
 126,North Texas,3-2
@@ -130,106 +130,106 @@ kenpom_rank,team_kenpom,record
 129,Pacific,5-1
 130,Utah,3-3
 131,Central Arkansas,4-3
-132,UTEP,5-1
-133,Saint Joseph's,5-1
-134,Western Michigan,5-1
-135,Tennessee Tech,6-2
-136,St. Thomas,5-3
-137,Georgia Tech,5-2
-138,UIC,4-3
-139,Florida Atlantic,5-1
-140,Duquesne,5-2
+132,Saint Joseph's,6-1
+133,UTEP,5-1
+134,UIC,4-3
+135,Western Michigan,5-1
+136,Tennessee Tech,6-2
+137,St. Thomas,5-3
+138,Georgia Tech,5-2
+139,Duquesne,5-2
+140,Florida Atlantic,5-1
 141,Columbia,5-1
 142,Liberty,4-2
 143,Charleston,4-2
-144,Old Dominion,6-1
-145,Toledo,3-3
-146,Stephen F. Austin,6-1
-147,Cal State Fullerton,3-2
-148,Valparaiso,4-2
-149,Ohio,4-1
-150,Kennesaw State,5-2
-151,Pepperdine,4-3
-152,San Jose St.,4-3
-153,UC San Diego,3-3
-154,Loyola Marymount,4-3
-155,UAB,4-3
-156,Marshall,2-4
-157,Drake,4-2
+144,Stephen F. Austin,6-1
+145,Old Dominion,6-1
+146,Cal State Fullerton,3-2
+147,Valparaiso,4-2
+148,Toledo,3-3
+149,Kennesaw State,5-2
+150,Pepperdine,4-3
+151,San Jose St.,4-3
+152,UC San Diego,3-3
+153,Loyola Marymount,4-3
+154,UAB,4-3
+155,Marshall,2-4
+156,Drake,4-2
+157,Ohio,4-2
 158,Eastern Michigan,5-1
-159,Eastern Washington,2-4
-160,Southern Illinois,3-4
-161,Princeton,4-2
-162,Belmont,5-2
-163,Massachusetts,3-2
-164,East Tennessee State,3-3
-165,Temple,3-4
-166,American,4-2
+159,Yale,5-4
+160,Eastern Washington,2-4
+161,Southern Illinois,3-4
+162,Princeton,4-2
+163,Belmont,5-3
+164,Massachusetts,3-2
+165,East Tennessee State,3-3
+166,Temple,3-4
 167,Hawaii,3-2
-168,William & Mary,6-2
+168,American,4-2
 169,Lamar,4-2
-170,Yale,4-4
+170,William & Mary,6-2
 171,Howard,4-3
 172,Arkansas State,5-2
-173,San Francisco,4-3
-174,Middle Tennessee,6-2
-175,Hofstra,2-3
-176,Georgia State,3-4
-177,South Dakota State,5-1
-178,Appalachian State,4-3
-179,Towson,3-4
-180,Jacksonville State,3-3
+173,Rice,6-2
+174,San Francisco,4-3
+175,Middle Tennessee,6-2
+176,Hofstra,2-3
+177,Appalachian State,4-3
+178,South Dakota State,5-1
+179,Georgia State,3-4
+180,Towson,3-4
 181,Kent State,3-3
-182,Northern Illinois,4-3
-183,UTSA,4-2
-184,FIU,5-1
-185,UT Martin,5-3
+182,Jacksonville State,3-3
+183,Northern Illinois,4-3
+184,UTSA,4-2
+185,FIU,5-1
 186,Fresno State,4-2
-187,Tulane,2-4
+187,UT Martin,5-3
 188,Cornell,4-3
-189,New Mexico State,1-6
-190,Cal Poly,3-3
-191,Houston Christian,5-1
-192,Rice,5-2
-193,Vermont,3-4
+189,Cal Poly,3-3
+190,Houston Christian,5-1
+191,New Mexico State,1-6
+192,Vermont,3-4
+193,UT Arlington,6-2
 194,Bowling Green,4-2
-195,UT Arlington,6-2
-196,Bethune-Cookman,1-5
-197,UC Riverside,3-2
-198,South Alabama,5-4
-199,Troy,3-4
+195,Bethune-Cookman,1-5
+196,UC Riverside,3-2
+197,South Alabama,5-4
+198,Troy,3-4
+199,Buffalo,3-3
 200,Elon,3-4
-201,Buffalo,3-3
-202,UC Davis,3-2
-203,Siena,5-2
-204,Cal State Northridge,1-4
-205,Louisiana Tech,5-2
-206,Samford,4-2
-207,Tennessee State,2-3
-208,Chattanooga,4-3
-209,Portland,4-4
-210,Monmouth,1-5
+201,UC Davis,3-2
+202,Siena,5-2
+203,Cal State Northridge,1-4
+204,Louisiana Tech,5-2
+205,Tennessee State,2-3
+206,Chattanooga,4-3
+207,Samford,4-2
+208,Portland,4-4
+209,Monmouth,1-5
+210,Texas A&M-CC,2-5
 211,Harvard,3-5
-212,Texas A&M-CC,2-5
+212,Tulane,2-5
 213,East Carolina,3-4
 214,Austin Peay,3-3
-215,Stony Brook,3-2
-216,Campbell,3-4
-217,Queens,3-4
-218,Portland State,3-4
+215,Campbell,3-4
+216,Queens,3-4
+217,Portland State,3-4
+218,Mercer,3-5
 219,Longwood,4-3
 220,Cal State Bakersfield,4-1
-221,Northern Iowa,3-4
-222,Southern Miss,5-3
-223,Mercer,3-5
-224,Denver,1-5
-225,UTRGV,4-2
-226,La Salle,3-4
-227,Delaware,4-3
-228,Sacramento State,1-3
-229,Lipscomb,4-5
-230,Missouri St.,5-0
-231,Bradley,3-4
+221,Southern Miss,5-3
+222,Stony Brook,4-2
+223,Denver,1-5
+224,UTRGV,4-2
+225,La Salle,3-4
+226,Delaware,4-3
+227,Sacramento State,1-3
+228,Bradley,3-4
+229,Northern Iowa,3-5
+230,Lipscomb,4-5
+231,Missouri St.,5-0
 232,Drexel,3-3
 233,Western Carolina,2-4
 234,Tarleton St.,4-3
@@ -241,14 +241,14 @@ kenpom_rank,team_kenpom,record
 240,Colgate,2-4
 241,Radford,2-4
 242,Ball State,2-4
-243,Green Bay,4-4
+243,Northeastern,2-4
 244,UMass Lowell,4-2
-245,Utah Tech,1-5
-246,Northeastern,2-4
+245,Green Bay,4-4
+246,Utah Tech,1-5
 247,Florida Gulf Coast,2-5
 248,Oakland,1-7
-249,Lehigh,4-3
-250,Eastern Kentucky,5-2
+249,Eastern Kentucky,5-3
+250,Lehigh,4-3
 251,Milwaukee,2-5
 252,Indiana St.,3-4
 253,Abilene Christian,3-3
@@ -259,48 +259,48 @@ kenpom_rank,team_kenpom,record
 258,Northern Kentucky,3-4
 259,Little Rock,3-4
 260,Youngstown State,3-4
-261,Idaho,4-3
-262,Georgia Southern,3-5
+261,Georgia Southern,3-5
+262,Idaho,4-3
 263,Bellarmine,3-5
-264,Kansas City,3-5
-265,East Texas A&M,4-3
+264,East Texas A&M,4-3
+265,Kansas City,3-5
 266,Jacksonville,2-5
-267,Long Beach State,1-5
-268,Montana,3-3
-269,Presbyterian,2-4
+267,Long Beach State,2-5
+268,Presbyterian,2-4
+269,Montana,3-3
 270,Wofford,5-3
 271,Merrimack,1-4
 272,Robert Morris,2-5
 273,Hampton,1-4
-274,IUPUI,4-3
-275,Brown,2-5
+274,Brown,3-5
+275,IUPUI,4-3
 276,Fairfield,4-2
 277,Quinnipiac,3-4
 278,Louisiana,2-4
-279,Southern Utah,3-5
-280,North Alabama,5-2
-281,LIU,1-7
+279,North Alabama,5-2
+280,LIU,1-7
+281,Southern Utah,3-6
 282,Southern,1-5
-283,Air Force,4-3
-284,Southeastern Louisiana,2-4
+283,Southeastern Louisiana,2-4
+284,Air Force,4-3
 285,Idaho State,1-5
-286,LSU New Orleans,3-2
-287,South Dakota,3-5
-288,UNC Greensboro,4-4
-289,Winthrop,0-7
-290,Nicholls,2-5
-291,North Carolina A&T,4-2
-292,Northern Colorado,3-4
-293,Cleveland St.,3-4
+286,Northern Colorado,4-4
+287,LSU New Orleans,3-2
+288,South Dakota,3-5
+289,UNC Greensboro,4-4
+290,Winthrop,0-7
+291,Cleveland St.,3-4
+292,North Carolina A&T,4-2
+293,Nicholls,2-5
 294,Bryant,3-5
 295,Marist,3-3
 296,Alabama State,2-5
 297,Alabama A&M,4-3
 298,Lafayette,3-4
 299,Grambling,2-3
-300,Jackson State,2-4
-301,Charleston Southern,2-5
-302,Fairleigh Dickinson,4-3
+300,Charleston Southern,2-5
+301,Jackson State,2-4
+302,Fairleigh Dickinson,5-3
 303,VMI,5-3
 304,Stetson,1-6
 305,Weber State,2-4
@@ -308,13 +308,13 @@ kenpom_rank,team_kenpom,record
 307,North Florida,3-4
 308,Northwestern State,1-5
 309,Dartmouth,4-2
-310,SIU Edwardsville,3-4
-311,Le Moyne,3-4
-312,North Dakota,4-3
-313,The Citadel,4-2
-314,Navy,5-3
-315,Binghamton,5-3
-316,New Hampshire,4-4
+310,Le Moyne,3-4
+311,SIU Edwardsville,3-4
+312,The Citadel,4-2
+313,Navy,5-3
+314,North Dakota,4-3
+315,New Hampshire,4-4
+316,Binghamton,5-3
 317,Prairie View A&M,2-4
 318,UNC Asheville,2-6
 319,Omaha,3-3
@@ -323,9 +323,9 @@ kenpom_rank,team_kenpom,record
 322,Mercyhurst,4-5
 323,West Florida,3-4
 324,Sacred Heart,2-4
-325,Southern Indiana,2-6
-326,Cal Baptist,2-5
-327,Lindenwood,2-5
+325,Lindenwood,2-6
+326,Southern Indiana,2-6
+327,Cal Baptist,2-5
 328,ULM,2-7
 329,Niagara,1-4
 330,Texas Southern,1-6
@@ -340,15 +340,15 @@ kenpom_rank,team_kenpom,record
 339,New Haven,4-3
 340,Manhattan,1-5
 341,North Carolina Central,2-5
-342,Detroit Mercy,0-6
-343,South Carolina St.,3-4
-344,Coppin St.,1-7
-345,Army,2-5
-346,Stonehill,3-4
-347,West Georgia,2-5
+342,South Carolina St.,3-4
+343,Coppin St.,1-7
+344,Army,2-5
+345,Stonehill,3-4
+346,West Georgia,2-5
+347,Detroit Mercy,0-7
 348,Saint Peter's,0-6
-349,Western Illinois,2-6
-350,Albany,4-4
+349,Albany,4-4
+350,Western Illinois,2-6
 351,Alcorn State,0-7
 352,Loyola Maryland,2-5
 353,Morgan State,4-4
